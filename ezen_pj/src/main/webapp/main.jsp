@@ -15,11 +15,18 @@
 					<div id="imgview3" style="position:absolute; width: 1520px; height:380px; top: 0; left:0;">
 						<div class="imgview4" style="position:relative; width: 360px; height:360px; margin: 25px 10px 10px 10px;
 						 background:black; float:left">
-							<div id="img1" style="width:350px; height:300px; margin:5px 5px 5px 5px; background:white; float">
-								<img src="images/list1.png" style="width:350px; height:300px;"/>
+							<div id="img1" style="width:350px; height:250px; margin:5px 5px 5px 5px; background:white; float">
+								<a href="ticket.do?command=detailcontent">
+									<img src="images/list1.png" style="width:350px; height:250px;"/>
+								</a>
 							</div>
 							<div id="title1" style="width:350px; height:40px; margin:5px 5px 5px 5px; background:white;">
 								<h3 style="line-height: 40px; text-align: center; width: 350px; font-size: 120%; font-weight: bold;">'세종문화회관 S씨어터'</h3>
+							</div>
+							<div id="apply" style="width:350px; height:40px; margin: 5px 5px 5px 5px; background:white;">
+								<a href="ticket.do?command=detail">
+									<h3 style="line-height:40px; text-align:center; width:350px; font-size:120%; font-weight: bold;">신청하기</h3>
+								</a>
 							</div>
 						</div>
 						<div class="imgview4" style="position:relative; width: 360px; height:360px; margin: 25px 10px 10px 10px;
@@ -53,13 +60,13 @@
 				</div>
 					<div id="remote1" style="position: relative;left: 915px;bottom: 207px;cursor: pointer; width:50px; height:50px;">
 						<ul style="width:50px; height:50px;">
-							<li id="btn2" onClick="moveRight();" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
+							<li id="btn2" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
 							 background: white; width: 50px; border-radius: 50%; height: 50px;">▶</li>
 						</ul>
 	        		</div>
 	        		<div id="remote2" style="position: relative; left: 35px; bottom: 270px; width:50px; height:50px;">
 		        		<ul style="width:50px; height:50px;">
-		        			<li id="btn1" onClick="moveLeft();" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
+		        			<li id="btn1" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
 		        			 background: white; width: 50px; border-radius: 50%; height: 50px;">◀</li>
 		        		</ul>
 	        		</div>
@@ -83,7 +90,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 			<div id="item" style="float: left; width: 250px; height: 390px;">
 				<a href="ticket.do?command=contentDetail&cseq=${ contentVO.cseq }">
@@ -92,7 +99,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 			<div id="item" style="float: left; width: 250px; height: 390px;">
 				<a href="ticket.do?command=contentDetail&cseq=${ contentVO.cseq }">
@@ -101,7 +108,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 			<div id="item" style="float: left; width: 250px; height: 390px;">
 				<a href="ticket.do?command=contentDetail&cseq=${ contentVO.cseq }">
@@ -110,7 +117,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 		<%-- </c:forEach> --%>
 	</div>
@@ -130,7 +137,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 			<div id="item" style="float: left; width: 250px; height: 390px;">
 				<a href="ticket.do?command=contentDetail&cseq=${ contentVO.cseq }">
@@ -139,7 +146,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 			<div id="item" style="float: left; width: 250px; height: 390px;">
 				<a href="ticket.do?command=contentDetail&cseq=${ contentVO.cseq }">
@@ -148,7 +155,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 			<div id="item" style="float: left; width: 250px; height: 390px;">
 				<a href="ticket.do?command=contentDetail&cseq=${ contentVO.cseq }">
@@ -157,7 +164,7 @@
 				<h1 style="width: 258px; height: 43px; line-height: 43px; text-align: center; font-size: 16px;
     				font-weight: bold; color: #0014ff; background: #e4ffae;	margin: 0 auto;">뮤지컬 <더 테일 에이프릴 풀스><%-- ${ contentVO.title } --%></h1>
 				<h2 style="width: 258px; height: 20px; line-height:43px; font-size: 15px; font-weight: bold;">
-				 서경대학교 공연예술센터 스콘2관 <%-- ${ contentVO.location } --%></h2>
+				 신청하기 <%-- ${ contentVO.location } --%></h2>
 			</div>
 		<%-- </c:forEach> --%>
 	</div>
@@ -223,14 +230,16 @@
 				<th style="border: 1px solid black; width: 400px; height: 30px; line-height: 30px; font-weight: bold;">제목</th>
 				<th style="border: 1px solid black; width: 150px; height: 30px; line-height: 30px; font-weight: bold;">날짜</th>
 			</tr>
-			<%-- <c:forEach items="${ successList }" var="successVO"> --%>
-				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
-					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
-					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
-					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
-					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
-				</tr>
-			<%-- </c:forEach> --%>
+			<tbody id="viewsuccess">
+				<%-- <c:forEach items="${ successList }" var="successVO"> --%>
+					<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+						<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+						<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+						<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+						<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+					</tr>
+				<%-- </c:forEach> --%>
+			</tbody>
 		</table>
 		<div class="clear"></div>
 		

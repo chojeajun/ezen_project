@@ -21,28 +21,34 @@
 var imgNum = 0;
 var dist = 0;
 
-function moveRight(){
-    if(imgNum == 2){
-    	imgNum = 0;
-    	dist = imgNum * -380;
-    	document.getElementById("imgview3").style.left = dist + "px";
-    }else{
-    	imgNum++;
-    	dist = imgNum * -380;
-    	document.getElementById("imgview3").style.left = dist + "px";
-    }
-}
-function moveLeft(){
-    if(imgNum == 0){
-    	imgNum = 2;
-    	dist = imgNum * -380;
-    	document.getElementById("imgview3").style.left = dist + "px";
-    }else{
-    	imgNum--;
-    	dist = imgNum * -380;
-    	document.getElementById("imgview3").style.left = dist + "px";
-    }
-}
+$(function(){
+	$("#btn2").click(function(){
+		if(imgNum == 2){
+			imgNum = 0;
+			dist = imgNum * -380;
+			$("#imgview3").animate({left:dist}, 300);
+		}else{
+			imgNum ++;
+			dist = imgNum * -380;
+			$("#imgview3").animate({left:dist}, 300);
+		}
+	});
+});
+
+$(function(){
+	$("#btn1").click(function(){
+		if(imgNum == 0){
+			imgNum = 2;
+			dist = imgNum * -380;
+			$("#imgview3").animate({left:dist}, 300);
+		}else{
+			imgNum--;
+			dist = imgNum * -380;
+			$("#imgview3").animate({left:dist}, 300);
+		}
+	})
+});
+
 </script>
 
 <style type="text/css">
