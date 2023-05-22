@@ -20,20 +20,27 @@
 <script type="text/javascript">
 var imgNum = 0;
 var dist = 0;
+
 function moveRight(){
-    /*if( flag == true ) return;
-    if(imgNum == 7) return;
-    imgNum++;
-    dist = imgNum * -600;
-    document.getElementById("imgs").style.left = dist + "px";*/
     if(imgNum == 2){
     	imgNum = 0;
-    	dist = imgNum * -400;
-    	document.getElementByClassName("imgview3").style.left = dist + "px";
+    	dist = imgNum * -380;
+    	document.getElementById("imgview3").style.left = dist + "px";
     }else{
     	imgNum++;
-    	dist = imgNum * -400;
-    	document.getElementByClassName("imgview3").style.left = dist + "px";
+    	dist = imgNum * -380;
+    	document.getElementById("imgview3").style.left = dist + "px";
+    }
+}
+function moveLeft(){
+    if(imgNum == 0){
+    	imgNum = 2;
+    	dist = imgNum * -380;
+    	document.getElementById("imgview3").style.left = dist + "px";
+    }else{
+    	imgNum--;
+    	dist = imgNum * -380;
+    	document.getElementById("imgview3").style.left = dist + "px";
     }
 }
 </script>
