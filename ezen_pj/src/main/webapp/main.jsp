@@ -11,7 +11,9 @@
 		</div>
 		<div id="bestcontentback" style="width: 1192px;margin: 0 auto;height: 400px;background: #f7f0f0;border: 1px solid black;">
 			<div class="imgview1" style="width: 1000px; height: 400px; background: #ffa0a0; margin: 0 auto;">
-				<div class="imgview2" style="position:relative;width:760px;height: 400px;background: white; /* overflow:hidden; */ margin: 0 auto; ">
+
+				<div class="imgview2" style="position:relative;width:760px;height: 400px;background: white; overflow:hidden; margin: 0 auto; ">
+
 					<div id="imgview3" style="position:absolute; width: 1520px; height:380px; top: 0; left:0;">
 						<div class="imgview4" style="position:relative; width: 360px; height:360px; margin: 25px 10px 10px 10px;
 						 background:black; float:left">
@@ -51,15 +53,15 @@
 						</div>
 					</div>
 				</div>
-					<div id="remote1" style="position: relative;left: 915px;bottom: 207px;cursor: pointer;">
-						<ul>
-							<li id="btn2" onClick="moveRight();" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
+					<div id="remote1" style="position: relative;left: 915px;bottom: 207px;cursor: pointer; width:50px; height:50px;">
+						<ul style="width:50px; height:50px;">
+							<li id="btn2" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
 							 background: white; width: 50px; border-radius: 50%; height: 50px;">▶</li>
 						</ul>
 	        		</div>
-	        		<div id="remote2" style="position: relative; left: 35px; bottom: 270px;">
-		        		<ul>
-		        			<li id="btn1" onClick="moveLeft();" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
+	        		<div id="remote2" style="position: relative; left: 35px; bottom: 270px; width:50px; height:50px;">
+		        		<ul style="width:50px; height:50px;">
+		        			<li id="btn1" style="text-align: center; font-size: 200%; line-height: 47px; color: black;
 		        			 background: white; width: 50px; border-radius: 50%; height: 50px;">◀</li>
 		        		</ul>
 	        		</div>
@@ -224,6 +226,36 @@
 				<th style="border: 1px solid black; width: 150px; height: 30px; line-height: 30px; font-weight: bold;">날짜</th>
 			</tr>
 			<%-- <c:forEach items="${ successList }" var="successVO"> --%>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
 				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
 					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
 					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">

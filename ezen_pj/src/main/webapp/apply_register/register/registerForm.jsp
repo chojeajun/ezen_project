@@ -14,7 +14,6 @@
 				</tr>
 				<td class="date">
 					<div class="dateBox">
-						<!-- 달력을 어캐해야할지.. -->
 						<%@ include file="calendar.jsp" %>
 				<td class="time">
 					<div class="timeBox">
