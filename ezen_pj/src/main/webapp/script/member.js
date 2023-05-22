@@ -13,9 +13,6 @@ function loginCheck() {
 		return true;
 	}
 }
-
-
-
 /* formForm 이동하기 
 	회원가입약관 동의하기 버튼 
  */
@@ -32,24 +29,26 @@ function go_next(){
    }
 }
 
-
-
-
-
-
 /* id 중복체크  */
-	function checkid(){	
-	if(document.joinForm.id.value==""){		
-		alert("아이디를 입력하고 중복체크를 진행하시오");
-		document.joinForm.id.focus();
-		return;
-	}
-	var url = "ticket.do?command=idCheckForm&id=" + document.joinForm.id.value;
-	var opt = "toolbar=no, menubar=no, resizable=no, width=600, height=250,scrollbars=no";
-	window.open(url,"checkid",opt);
-		
-	}
-	
+function checkid(){	
+if(document.joinForm.id.value==""){		
+	alert("아이디를 입력하고 중복체크를 진행하시오");
+	document.joinForm.id.focus();
+	return;
+}
+var url = "ticket.do?command=idCheckForm&id=" + document.joinForm.id.value;
+var opt = "toolbar=no, menubar=no, resizable=no, width=600, height=400,scrollbars=no";
+window.open(url,"checkid",opt);
+}
+
+
+/* 아이디 사용하기 버튼 클릭 */
+function idok(userid){	
+    opener.joinForm.id.value = userid;
+    opener.joinForm.reid.value = userid;
+    self.close();
+}
+
 
 
 

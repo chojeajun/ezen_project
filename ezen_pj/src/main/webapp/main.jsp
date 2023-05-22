@@ -11,7 +11,13 @@
 		</div>
 		<div id="bestcontentback" style="width: 1192px;margin: 0 auto;height: 400px;background: #f7f0f0;border: 1px solid black;">
 			<div class="imgview1" style="width: 1000px; height: 400px; background: #ffa0a0; margin: 0 auto;">
+<<<<<<< HEAD
 				<div class="imgview2" style="position:relative;width:760px;height: 400px;background: white; overflow:hidden; margin: 0 auto; ">
+=======
+
+				<div class="imgview2" style="position:relative;width:760px;height: 400px;background: white; overflow:hidden; margin: 0 auto; ">
+
+>>>>>>> branch 'Leesh' of https://github.com/chojeajun/ezen_project.git
 					<div id="imgview3" style="position:absolute; width: 1520px; height:380px; top: 0; left:0;">
 						<div class="imgview4" style="position:relative; width: 360px; height:360px; margin: 25px 10px 10px 10px;
 						 background:black; float:left">
@@ -230,6 +236,7 @@
 				<th style="border: 1px solid black; width: 400px; height: 30px; line-height: 30px; font-weight: bold;">제목</th>
 				<th style="border: 1px solid black; width: 150px; height: 30px; line-height: 30px; font-weight: bold;">날짜</th>
 			</tr>
+<<<<<<< HEAD
 			<tbody id="viewsuccess">
 				<%-- <c:forEach items="${ successList }" var="successVO"> --%>
 					<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
@@ -240,6 +247,46 @@
 					</tr>
 				<%-- </c:forEach> --%>
 			</tbody>
+=======
+			<%-- <c:forEach items="${ successList }" var="successVO"> --%>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+				<tr><td style="border: 1px solid black"> <%-- ${ successVO.sseq } --%>1</td>
+					<td style="border: 1px solid black"><%-- ${ successVO.id } --%>이상준</td>
+					<td style="border: 1px solid black;"><a href="ticket.do?command=successView&title=${ successVO.title }" style="color:blue;">
+					<%-- ${ successVO.title } --%>김호중 콘서트 티켓팅 성공했습니다</a></td>
+					<td style="border: 1px solid black"><%-- ${successVO.indate } --%>2023-05-19</td>
+				</tr>
+			<%-- </c:forEach> --%>
+>>>>>>> branch 'Leesh' of https://github.com/chojeajun/ezen_project.git
 		</table>
 		<div class="clear"></div>
 		

@@ -9,17 +9,19 @@
 
 <link href="css/ticketing.css" rel="stylesheet">
 
-<link rel="stylesheet" href="css/apply.css?ver=1" />
+
 <link rel="stylesheet" href="css/login.css?ver=1" />
 <link rel="stylesheet" href="css/qna.css?ver=1" />
 <script src="script/jquery-3.7.0.min.js"></script>
 <script src="script/main.js"></script>
 <script src="script/member.js"></script>
 <script src="apply_register/apply_register.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
 var imgNum = 0;
 var dist = 0;
+<<<<<<< HEAD
 
 $(function(){
 	$("#btn2").click(function(){
@@ -49,6 +51,34 @@ $(function(){
 	})
 });
 
+=======
+ $(function(){
+	 $('#btn2').click(function(){
+		 if( imgNum == 2){
+			 imgNum = 0;
+			 dist = imgNum * -380;
+			 $('#imgview3').animate({left:dist}, 1000);
+		 }else{
+			 imgNum++;
+			 dist = imgNum * -380;
+			 $('#imgview3').animate({left:dist}, 1000);
+		 }
+	 });
+ });
+ $(function(){
+	 $('#btn1').click(function(){
+		 if( imgNum == 0){
+			 imgNum = 2;
+			 dist = imgNum * -380;
+			 $('#imgview3').animate({left:dist}, 1000);
+		 }else{
+			 imgNum--;
+			 dist = imgNum * -380;
+			 $('#imgview3').animate({left:dist}, 1000);
+		 }
+	 });
+ });
+>>>>>>> branch 'Leesh' of https://github.com/chojeajun/ezen_project.git
 </script>
 
 <style type="text/css">

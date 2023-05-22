@@ -6,6 +6,7 @@ public class QnaVO {
 	
 	private Integer qseq;
 	private String subject;
+	private String title;
 	private String content;
 	private String reply;
 	private String id;
@@ -55,6 +56,14 @@ public class QnaVO {
 	public void setIndate(Timestamp indate) {
 		this.indate = indate;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 	
 	
 

@@ -68,7 +68,7 @@ CREATE TABLE admin
 	name varchar2(50) NOT NULL,
 	phone varchar2(20) NOT NULL,
 	email varchar2(50),
-	adminyn char DEFAULT 'Y',
+	adminyn char DEFAULT 'N',
 	PRIMARY KEY (id)
 );
 

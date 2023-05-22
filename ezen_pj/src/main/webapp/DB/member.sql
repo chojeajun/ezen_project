@@ -19,6 +19,8 @@ select * from user_sequences;
 
 
 
+
+
 insert into MEMBER(mseq,id,pwd, name,gender,nickname,birth,email,phone,zip_num, address1, address2,grade, success) 
 values (member_mseq.nextval,'dsan','1234','김두산',2,'최강두산',to_date('19980125','yyyy-mm-dd'),'dsan82@gmail.com','010-8282-8282',
 '133-110', '서울시 성동구 성수동1가' , '1번지21호',1,1);

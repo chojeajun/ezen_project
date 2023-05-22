@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#bodyBox_apply{border:1px solid black;}
+.applyBox{border:1px solid black; background:lightblue;}
+.applyContent{border:1px solid black; background: lightsalmon;}
+.applyTitleBox{border:1px solid blue;}
+.applyTitle{border:1px solid black;}
+.applyBodyBox{border:1px solid black; background:coral;}
+.categoryBox{border:1px solid black;}
+.contentNameBox{border:1px solid black;}
+.dateBox{border:1px solid black;}
+.timeBox{border:1px solid black;}
+.detailBox{border:1px solid black;}
+.seatingChartBox{border:1px solid black;}

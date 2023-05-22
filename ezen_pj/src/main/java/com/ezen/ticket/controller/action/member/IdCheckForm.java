@@ -28,7 +28,7 @@ public class IdCheckForm implements Action {
 		}
 		request.setAttribute("id", id);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ticket/idcheck.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("member/idcheck.jsp");
 		dispatcher.forward(request, response);
 		
 	}
