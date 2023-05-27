@@ -30,16 +30,22 @@ public class TicketingMallServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		
 		String command = request.getParameter("command");
-		System.out.println("command : " + command);
+		System.out.println("command => : " + command);
+		//System.out.println("00");
+		
 		ActionFactory af = ActionFactory.getInstance();
 		Action ac = af.getAction(command);
 		
+		//System.out.println("11");
 		if(ac != null) ac.execute(request, response);
 		else System.out.println("ac가 null 입니다.");
+		
 		
 	}
 
@@ -47,6 +53,7 @@ public class TicketingMallServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

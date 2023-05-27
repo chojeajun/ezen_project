@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>07_달력</title>
+<title>달력</title>
 
 <style type="text/css">
     td { font-weight:bold; font-size:110%; }
@@ -87,75 +87,18 @@
     </tr>
 </table>
 
-<!-- 선택된 날짜의 년도, 월, 일 출력 -->
-<div id="selectedDateInfo" style="margin-left: 20px;">
-    <h3>선택된 날짜</h3>
-    <p id="selectedYear"></p>
-    <p id="selectedMonthDay"></p>
+<div class="selected-date">
+    선택한 날짜:
+    <span id="selectedDate"></span>
 </div>
 
-<!-- 시간 선택 -->
-<div id="selectedTime" style="margin-left: 20px;">
-    <h3>시간 선택</h3>
-    <label for="startTime">시작 시간:</label>
-    <select id="startTime">
-        <% for (int hour = 0; hour <= 23; hour++) {
-            for (int minute = 0; minute <= 55; minute += 5) {
-                String formattedHour = String.format("%02d", hour);
-                String formattedMinute = String.format("%02d", minute);
-                out.print("<option value='" + formattedHour + ":" + formattedMinute + "'>" + formattedHour + ":" + formattedMinute + "</option>");
-            }
-        }
-        %>
-    </select>
-    <br>
-    <label for="endTime">종료 시간:</label>
-    <select id="endTime">
-        <% for (int hour = 0; hour <= 23; hour++) {
-            for (int minute = 0; minute <= 55; minute += 5) {
-                String formattedHour = String.format("%02d", hour);
-                String formattedMinute = String.format("%02d", minute);
-                out.print("<option value='" + formattedHour + ":" + formattedMinute + "'>" + formattedHour + ":" + formattedMinute + "</option>");
-            }
-        }
-        %>
-    </select>
-</div>
-
-<!-- 저장 버튼 -->
-<button onclick="registerDateTime()">저장</button>
-
-<!-- 선택된 날짜와 시간 출력 및 저장 -->
-<div id="selectedDateTime" style="margin-left: 20px;">
-    <h3>선택된 날짜와 시간</h3>
-    <p id="selectedDate"></p>
-    <p id="selectedTimeSlot"></p>
-    <p id="registrationResult"></p>
-</div>
-
-<!-- JavaScript 함수 -->
-<script type="text/javascript">
+<script>
     function showSelectedDate(year, month, day) {
-        var selectedYear = document.getElementById("selectedYear");
-        var selectedMonthDay = document.getElementById("selectedMonthDay");
-        selectedYear.innerHTML = "년도: " + year;
-        selectedMonthDay.innerHTML = "날짜: " + month + "월 " + day + "일";
-    }
+        var selectedDate = new Date(year, month - 1, day); // JavaScript Date 객체를 생성합니다.
+        var selectedDateString = selectedDate.toLocaleDateString('ko-KR'); // 선택한 날짜를 한국 날짜 형식으로 변환합니다.
 
-    function registerDateTime() {
-        var selectedDate = document.getElementById("selectedDate");
-        var selectedTimeSlot = document.getElementById("selectedTimeSlot");
-        var registrationResult = document.getElementById("registrationResult");
-
-        var year = document.getElementById("selectedYear").textContent.split(": ")[1];
-        var monthDay = document.getElementById("selectedMonthDay").textContent.split(": ")[1];
-        var startTime = document.getElementById("startTime").value;
-        var endTime = document.getElementById("endTime").value;
-
-        selectedDate.innerHTML = "날짜: " + year + " " + monthDay;
-        selectedTimeSlot.innerHTML = "시간: " + startTime + " - " + endTime;
-
-        registrationResult.innerHTML = "저장되었습니다.";
+        // 선택한 날짜를 출력합니다.
+        document.getElementById('selectedDate').innerText = selectedDateString;
     }
 </script>
 

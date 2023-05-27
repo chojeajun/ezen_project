@@ -55,6 +55,7 @@
     font-size: 20px;
     font-weight: bold;
     border: 1px solid black;
+    text-align:center;
 }
 
 #mypage_box #mypageFrm #mypage_sub tbody tr td{
@@ -62,13 +63,14 @@
     font-size: 20px;
     font-weight: bold;
     border: 1px solid black;
+    text-align: center;
 }
 
 #mypage_box #mypageFrm #buttons{
-	margin: 20px 0 0 850px;
+	margin: 20px 0 0 690px;
 }
-    
-#mypage_box #mypageFrm #buttons #update_button{
+
+#mypage_box #mypageFrm #buttons #registertable_button{
 	width: 150px;
     height: 50px;
     border-radius: 50px;
@@ -77,8 +79,21 @@
     font-weight: bold;
     background: white;
     color: black;
-    margin-right:25px;
 }
+
+#mypage_box #mypageFrm #buttons #updateForm_button{
+	width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    margin-right:20px;
+    margin-left:20px;
+}
+
 #mypage_box #mypageFrm #buttons #cancel_button{
 	width: 150px;
     height: 50px;
@@ -89,6 +104,118 @@
     background: white;
     color: black;
 }
+#mypage_box #mypageForm #buttons {
+	margin: 20px 0 0 690px;
+}
+#mypage_box #mypageForm #buttons .updateForm_btn{
+	width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    margin-right:20px;
+    margin-left:20px;
+}
+
+#mypage_box #mypageFrm #registeringtable{
+	width:1200px;
+	margin-top:35px;
+}
+
+#mypage_box #mypageFrm #registeringtable tbody tr{
+	height:50px;
+	line-height:50px;
+	font-size:20px;
+	font-weight:bold;
+}
+
+#mypage_box #mypageFrm #registeringtable tbody tr th{
+	border:1px solid black;
+}
+
+#mypage_box #mypageFrm #registeringtable tbody tr td{
+	border:1px solid black;
+}
+
+#mypage_box #mypageFrm #registeredtable{
+	width:1200px;
+	margin-top:35px;
+}
+
+#mypage_box #mypageFrm #registeredtable tbody tr{
+	height:50px;
+	line-height:50px;
+	font-size:20px;
+	font-weight:bold;
+}
+
+#mypage_box #mypageFrm #registeredtable tbody tr th{
+	border:1px solid black;
+}
+
+#mypage_box #mypageFrm #registeredtable tbody tr td{
+	border:1px solid black;
+}
+
+#mypage_box #mypageForm #mypageactionFrm #buttons #updateForm_btn{
+	
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background: royalblue;
+    color: white;
+	
+}
+
+#mypage_box #mypageactionFrm #mypagefield{
+
+    width: 1200px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+	
+}
+
+#legend{
+
+    font-size: 25px;
+    font-weight: bold;
+	
+}
+
+#mypage_box #mypageactionFrm #mypagefield label{
+    height: 50px;
+    width: 140px;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-right: 1px dashed black;
+    text-align: center;
+}
+
+#mypage_box #mypageactionFrm #mypagefield input{
+    height: 48px;
+    width: 250px;
+    /* border: none; */
+    background: white;
+    font-size: 25px;
+    text-align: left;
+    border: 1px solid black;
+    border-left: none;
+    line-height: 50px;
+}
+
+
+
+
+
+
+
 
 
 

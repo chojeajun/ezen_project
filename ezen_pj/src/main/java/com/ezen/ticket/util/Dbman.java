@@ -10,6 +10,7 @@ public class Dbman {
 
 	static String driver = "oracle.jdbc.driver.OracleDriver";
 	static String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//	static String url = "jdbc:oracle:thin:@192.168.0.21:1521:xe";
 	
 	public static Connection getConnection() {
 		Connection con = null;

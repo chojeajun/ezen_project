@@ -5,8 +5,8 @@
 
 <article>
 
-<h2> 고객 게시판 </h2>
-<h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다. </h3>
+<h2> 고객 게시판 </h2><br><br>
+<h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다. </h3><br><br>
 <form name="formm" method="post">
 <table id="cartList">
 	<tr><th>번호</th><th>제목</th><th>등록일</th><th>작성자</th><th>답변여부</th></tr>
@@ -16,14 +16,14 @@
 		<td><fmt:formatDate value="${QnaVO.indate}" type="date"/></td>
 		<td>${QnaVO.id}</td>
 		<td><c:choose>
-			<c:when test="${QnaVO.repyn=='1' }">no</c:when>
-			<c:when test="${QnaVO.repyn=='2' }">yes</c:when>
+			<c:when test="${QnaVO.repyn=='N' }">NO</c:when>
+			<c:when test="${QnaVO.repyn=='Y' }">YES</c:when>
 		</c:choose></td>
 		</tr>
 	</c:forEach>
 </table>
 <div class="clear"></div>
-<div id="paging" style="font-weight:bold; margin-left:300px">
+<div id="paging" style="font-weight:bold; text-align: center;">
 	<c:url var="action" value="ticket.do?command=qnaList"/>
 	
 	<c:if test="${paging.prev}">
@@ -52,7 +52,7 @@
 <div class="clear"></div><br>
 
 <div id="buttons" style="float:right">
-	<input type="button" value="질문하기" class="submit" style="color:black" onclick="location.href='ticket.do?command=qnaWriteForm'">
+	<input type="button" value="글쓰기" class="submit" style="color:black" onclick="location.href='ticket.do?command=qnaWriteForm'">
 	<input type="button" value="돌아가기" class="cancel" style="color:black" onclick="location.href='ticket.do?command=index'">
 </div>
 <div class="clear"></div><br>

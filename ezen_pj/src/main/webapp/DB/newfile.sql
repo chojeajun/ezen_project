@@ -15,6 +15,7 @@ DROP TABLE qna_board CASCADE CONSTRAINTS;
 DROP TABLE review_board CASCADE CONSTRAINTS;
 DROP TABLE success_board CASCADE CONSTRAINTS;
 DROP TABLE member CASCADE CONSTRAINTS;
+DROP TABLE registerTime CASCADE CONSTRAINTS;
 
 
 
@@ -30,7 +31,7 @@ DROP SEQUENCE qna_board_sucseq;
 DROP SEQUENCE review_board_rseq;
 DROP SEQUENCE seat_seatseq;
 DROP SEQUENCE success_board_sucseq;
-
+drop SEQUENCE registerTime_rtseq;
 
 
 
@@ -44,10 +45,27 @@ CREATE SEQUENCE qna_board_qseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE review_board_rseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE success_board_sucseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE locationNum_seq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE registerTime_rtseq INCREMENT BY 1 START WITH 1;
 
 
 
 /* Create Tables */
+
+
+
+drop table registerTime;
+
+select * from REGISTERTIME;
+CREATE TABLE registerTime
+(
+	-- 대리인 일정 등록 정보
+	rtseq number(5) not null,
+	mseq number(5,0) NOT NULL,
+	registerDate varchar2(100) default '00000000',
+	startTime varchar2(100) NOT NULL,
+	endTime varchar2(100) NOT NULL,
+	primary key(rtseq)
+);
 
 CREATE TABLE address
 (
@@ -99,6 +117,7 @@ CREATE TABLE content
 	content varchar2(3000) NOT NULL,
 	category number(2,0) NOT NULL,
 	age varchar2(20) DEFAULT '전체관람가',
+	tDateTime varchar2(100) default '0',
 	bestyn char(1) DEFAULT 'N',
 	PRIMARY KEY (cseq)
 );
@@ -126,6 +145,7 @@ CREATE TABLE locationNum
 (
 	locationNum number(5) NOT NULL,
 	locationName varchar2(50) NOT NULL UNIQUE,
+	areaImage varchar2(1000) default 'images/content/blankIMG.jpg',
 	PRIMARY KEY (locationNum)
 );
 
@@ -242,6 +262,11 @@ CREATE TABLE success_board
 
 
 /* Create Foreign Keys */
+
+ALTER TABLE registerTime
+	ADD FOREIGN KEY (mseq)
+	REFERENCES member (mseq) on delete cascade
+;
 
 ALTER TABLE contentTime
 	ADD FOREIGN KEY (cseq)

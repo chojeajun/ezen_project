@@ -2,7 +2,7 @@
 
 /* apply_Or_Register.jsp의 css */
 
-.form{border:1px solid black; height:700px; width:100%; margin:0 auto;}
+.form{border:1px solid black; height:700px; width:100%; margin:25px auto;}
 .body_Choose{border:1px solid black; height:100%; width:1200px; margin:0 auto;}
 .body_Choose header{border:2px solid black; height:125px; width:100%;}
 .titlearea_Choose{border:1px dotted black; height:100px; width:100%; margin-top: 12.5px;}
@@ -20,6 +20,9 @@ font-size:2em; line-height:50px;}
 .box_img{border:2px solid black; height:350px;width:450px;box-sizing:border-box;}
 .box_text{border:2px solid black; height:100px;width:450px;box-sizing:border-box;}
 .Image{border:1px solid black; height:320px; width:420px; margin:15px auto;}
+
+.Image img{border:1px solid black; margin:auto;}
+
 .smallBox_text{border:1px solid black; height:100%; width:400px; margin:0 auto;box-sizing:border-box; }
 .box_textTitle{border:1px solid red; box-sizing:border-box; height:50px; width:100%; top:0;}
 .box_textContent{box-sizing:border-box; border:1px solid red; height:50px; width:100%; bottom:0;}
@@ -79,10 +82,28 @@ font-size:1.25em; line-height:50px; text-align:center;}
 .contentDetail .detail{border:1px solid red; width:100%; height:150px;}
 
 .seatingChartBox{width:250px;}
+.seatingChartBoxSeparate{border: 2px solid black;box-sizing:border-box;width:100%; height:600px; }
 .AreaBox ul{margin:15px auto;}
 .AreaBox ul li{border:1px solid black; float:left; box-sizing:border-box; 
 font-size:1.25em; line-height:50px; text-align:center;}
 
+.quantityBox{border: 2px solid black;box-sizing:border-box;width:100%; height:50px;}
+.quantityBox #quantity{width:60px; height:40px; padding:0; margin:0; float:right;}
+input[type=number]::-webkit-inner-spin-button {opacity: 1;}
 
+.buttonSection{border:1px solid black; width:100%; height:80px;}
+.buttonBox{border:1px solid black; width:1200px; height:100%; margin:0 auto;}
+.groupBox{border:2px solid black; width:300px; height: 60px; margin:10px 0; float:right;}
+.buttonSmallBox{border:1px solid red; float:left; box-sizing:border-box; width:100px; height:100%;}
+#button{border-radius:10%; width:90px; height:50px; margin:5px;}
+
+
+/* applySelectCommissioner */
+.buttonBoxArea .Header{border:1px solid black; width:100%; height: 50px;box-sizing:border-box;}
+.buttonBoxArea .Body{border:1px solid blue; width:100%; height: 650px;box-sizing:border-box;}
+.posterZone{border:1px solid black; width:100%; height: 400px;box-sizing:border-box;}
+.posterZone .posterBox{border:1px solid black; width:300px; height:400px; margin:0 auto;}
+.detailZone{border:1px solid black; width:100%; height: 250px;box-sizing:border-box;}
+.detailZone .detail{border:1px solid black; width:100%; height: 20%;box-sizing:border-box;}
 
 /* register의 어떤 jsp의 css */

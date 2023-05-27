@@ -1,6 +1,7 @@
 package com.ezen.ticket.controller.action.mypage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ezen.ticket.controller.action.Action;
+import com.ezen.ticket.dao.MemberDao;
+import com.ezen.ticket.dao.RegisterTimeDao;
 import com.ezen.ticket.dto.MemberVO;
+import com.ezen.ticket.dto.RegisterTimeVO;
 
 public class MypageAction implements Action {
 

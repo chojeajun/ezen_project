@@ -18,6 +18,8 @@ values(4,'Platinum', 400000);
 insert into grade(gseq, gname, gprice)
 values(5,'Diamonds', 500000);
 
+select * from registertime
+select * from MEMBER
 
 --admin
 insert into admin(id, pwd, name, phone, email) 
@@ -28,4 +30,5 @@ insert into admin(id, pwd, name, phone, email)
 values('sung', '1111', '박성훈', '010-1564-7894', 'sung97@naver.com');
 insert into admin(id, pwd, name, phone, email) 
 values('like', '4567', '김사랑', '010-1564-7894', 'love12@naver.com');
+
 

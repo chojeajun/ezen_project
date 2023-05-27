@@ -12,6 +12,7 @@ import com.ezen.ticket.controller.action.Action;
 import com.ezen.ticket.dao.ReviewDao;
 import com.ezen.ticket.dto.MemberVO;
 import com.ezen.ticket.dto.ReviewVO;
+import com.ezen.ticket.util.Paging;
 
 public class ReviewListAction implements Action {
 
@@ -26,11 +27,20 @@ public class ReviewListAction implements Action {
 		if (mvo == null) {
 			url = "ticket.do?command=loginForm";
 		} else {
-
 			ReviewDao rdao = ReviewDao.getInstance();
-			ArrayList<ReviewVO> list = rdao.reviewListView();
+			int page = 1;
+			if(request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			Paging paging = new Paging();
+			paging.setPage(page);
+			int count = rdao.getAllcount();
+			paging.setTotalCount(count);
+			ArrayList<ReviewVO> list = rdao.selectReview(paging);
+			
 			System.out.println(list.size());
 			request.setAttribute("reviewList", list);
+			request.setAttribute("paging", paging);
 
 		}
 		request.getRequestDispatcher(url).forward(request, response);

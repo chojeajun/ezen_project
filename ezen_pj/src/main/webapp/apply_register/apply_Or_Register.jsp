@@ -20,7 +20,7 @@
 								<div class="box">
 									<div class="box_img">
 										<div class="Image">
-											<img	src=" "	class="" loading="lazy" alt="신청">
+											<img	src="images/anr/ticket.png" alt="티켓팅 신청" width="250" height="250">
 										</div>
 									</div>
 									<div class="box_text">
@@ -45,7 +45,7 @@
 								<div class="box">
 									<div class="box_img">
 										<div	class="Image">
-											<img src=" "	class="" loading="lazy" alt="일정 등록"></div>
+											<img src="images/anr/calendar.png"	alt="일정 등록" width="300" height="300"></div>
 										</div>
 									<div class="box_text">
 										<div class="smallBox_text">

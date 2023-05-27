@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link href="css/ticketing.css" rel="stylesheet" />
+
 <div class="clear"></div>
 
 <style>

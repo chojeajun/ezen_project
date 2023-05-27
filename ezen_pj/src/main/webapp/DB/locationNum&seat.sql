@@ -1,7 +1,5 @@
 select * from locationNum;
 
-alter table locationNum add areaImage varchar2(1000) default 'images/content/blankIMG.jpg';
-alter table seat drop column areaImage;
 
 insert into locationNum values(locationNum_seq.nextVal,'KBS부산홀');
 insert into locationNum values(locationNum_seq.nextVal,'잠실 실내체육관');

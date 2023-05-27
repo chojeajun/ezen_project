@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ include file="../../header.jsp" %>
 
-<script src="apply_register/apply_register.js"></script>
 
 <form name="frm" method="post" class="form">
 <section name="applyBody" id="bodyBox_apply">
@@ -10,6 +8,7 @@
 	
 
 			<div class="applyTitleBox">
+			
 				<ul class="applyTitle">
 					<li>공연 종류</li>
 					<li>공연</li>
@@ -31,27 +30,34 @@
 					</ul>
 				</div>
 				<div class="contentNameBox bodyBox">
-					<c:forEach items="${contentList}" var="contentVO">
 						<ul>
-							<li><a href="ticket.do?command=applyContentSelect&cseq=${contentVO.cseq}&category=${category}&locationNum=${contentVO.locationNum}">
-							${contentVO.title}</a></li>
-						</ul>
+					<c:forEach items="${contentList}" var="contentVO" varStatus="state">
+							<li onclick="saveCseq('${state.count}')"><a href="ticket.do?command=applyContentSelect&cseq=${contentVO.cseq}&category=${category}&locationNum=${contentVO.locationNum}">
+							${contentVO.title}</a>
+								<input type="hidden" value="${contentVO.cseq}" name="cseq" id='${"cseq"+=state.count}'>
+							</li>
 					</c:forEach>
+						</ul>
 				</div>
 				<div class="dateBox bodyBox">
-						<c:forEach items="${contentDateList}" var="contentDL">
-							<ul>
-								<li><a href="ticket.do?command=applyContentSelect&cseq=${contentDL.cseq}&category=${category}&locationNum=${contentDL.locationNum}&contentDate=to_date(${contentDL.contentDate}, 'yyyy-mm-dd')">
-								<fmt:formatDate value="${contentDL.contentDate}" pattern="yyyy-MM-dd" /></a></li>
-							</ul>
+							<ul class="date">
+						<c:forEach items="${contentDateList}" var="contentDL" varStatus="state">
+								<li onclick="saveDate('${state.count}')"><a href="ticket.do?command=applyContentSelect&cseq=${contentDL.cseq}&category=${category}&locationNum=${contentDL.locationNum}&contentDate=${contentDL.contentDate}">
+								<input type="hidden" value="${contentDL.contentDate}" name="date" id='${"date"+=state.count}'>
+								<fmt:formatDate value="${contentDL.contentDate}" pattern="yyyy-MM-dd" /></a>
+								</li>
 						</c:forEach>
+							</ul>
 				</div>
 				<div class="timeBox bodyBox">
-					<c:forEach items="${contentTimeList}" var="contentTil">
-								<ul>
-									<li><a href="#" onclick="return false">${contentTil.contentTime}</a></li>
-								</ul>
-					</c:forEach>
+					<ul>
+						<c:forEach items="${contentTimeList}" var="contentTil" varStatus="state">
+							<li onclick="saveTime('${state.count}')"><a href="#" onclick="return false">${contentTil.contentTime}</a>
+							<input type="hidden" value="${contentTil.contentTime}" name="time" id='${"time"+=state.count}'>
+							</li>
+						</c:forEach>
+									
+					</ul>
 				</div>
 				<div class="detailBox bodyBox">
 					<!-- 선택한 공연 정보(포스터, 제목, 위치, 아티스트) -->
@@ -72,24 +78,46 @@
 				</div>
 				<div class="seatingChartBox bodyBox">
 					<!-- 좌석 선택-좌석도 위에 보여주고 밑에 좌석 선택 -->
-					<div class="seatingChartDetailBox">
-						<c:forEach  items="${contentLocationList}" var="contentLL">
-						<div class="seatingChartImg">
-						<!-- 좌석도도 content_loc_seat_view에서 가져와야함 -->
-							<img alt="" src="${contentLL.areaImage}">
+					<div class="seatingChartBoxSeparate">
+						<div class="seatingChartDetailBox">
+							<div class="seatingChartImg">
+							<!-- 좌석도도 content_loc_seat_view에서 가져와야함 -->
+								<img alt="" src="${contentLL.areaImage}">
+							</div>
 						</div>
-						</c:forEach>
+						<div class="AreaBox">
+									<ul>
+							<c:forEach  items="${contentAreaList}" var="contentAL" varStatus="state">
+										<li onclick="saveArea('${state.count}')">
+										<a href="#" onclick="return false">${contentAL.area}&nbsp;&nbsp;&nbsp;${contentAL.price}원</a>
+										<input type="hidden" value="${contentAL.area}" name="area" id='${"area"+=state.count}'>
+										</li>
+							</c:forEach>
+									</ul>
+						</div>
 					</div>
-					<div class="AreaBox">
-						<c:forEach  items="${contentAreaList}" var="contentAL">
-								<ul>
-									<li><a href="#" onclick="return false">${contentAL.area}&nbsp;&nbsp;&nbsp;${contentAL.price}원</a></li>
-								</ul>
-						</c:forEach>
-					</div>
+					<div class="quantityBox">
+						<input type="number" min="1" max="10" id="quantity" onchange="saveQuantity()">
 					</div>
 				</div>
-</section>
+			</div>
+		</div>		
+	</section>
+	<section class=buttonSection>
+		<div class=buttonBox>
+			<div class=groupBox>
+					<div class=buttonSmallBox>
+						<input id="button" type="button" value="뒤로">
+					</div>
+					<div class=buttonSmallBox>
+						<input id="button" type="button" value="장바구니">
+					</div>
+					<div class=buttonSmallBox>
+						<input type="submit" id="button" value="다음" onclick="return applyFormCheck()"/>
+					</div>
+			</div>
+		</div>
+	</section>
 </form>	
 	
 

@@ -18,6 +18,7 @@ public class IndexAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//System.out.println(2);
 		// best, concert, musical 받아오기
 		ContentDao cdao = ContentDao.getInstance();
 		SuccessDao sdao = SuccessDao.getInstance();
@@ -30,6 +31,7 @@ public class IndexAction implements Action {
 		request.setAttribute("concert", concert);
 		request.setAttribute("musical", musical);
 		request.setAttribute("success", success);
+		//System.out.println(3);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
 		dispatcher.forward(request, response);

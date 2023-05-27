@@ -1,6 +1,27 @@
 select * from CONTENT order by cseq;
+select * from CONTENTTime order by cseq;
+
 --category==>콘서트=1, 뮤지컬=2, 스포츠=3, 페스티벌=4, 전시/행사=5
 --콘서트 데이터 추가
+
+update content set tDateTime='20230609110000' where cseq=1;
+update content set tDateTime='20230523140000' where cseq=2;
+update content set tDateTime='20230510113000' where cseq=3;
+update content set tDateTime='20230509000000' where cseq=4;
+update content set tDateTime='20230517120000' where cseq=5;
+update content set tDateTime='20230511100000' where cseq=6;
+update content set tDateTime='20230601000000' where cseq=7;
+update content set tDateTime='20230505150000' where cseq=8;
+update content set tDateTime='20230511110000' where cseq=9;
+update content set tDateTime='20230423160000' where cseq=10;
+update content set tDateTime='20230427110000' where cseq=11;
+update content set tDateTime='20230427110000' where cseq=12;
+update content set tDateTime='20230427110000' where cseq=13;
+update content set tDateTime='20230421120000' where cseq=14;
+update content set tDateTime='20230426150000' where cseq=15;
+update content set tDateTime='20230503140000' where cseq=16;
+update content set tDateTime='20230601000000' where cseq=17;
+update content set tDateTime='20230601000000' where cseq=18;
 
 UPDATE content SET title= '2023 김기태 전국투어 콘서트 '||CHR(091)||'위로'||CHR(093)||'' WHERE cseq=1;
 UPDATE content SET content= '김기태만의 짙고 울림있는 감성으로 여러분의 마음을 위로하며 가슴 깊은 곳 위로의 메세지를 전할 2023 김기태 전국투어 콘서트 '||CHR(091)||'위로'||CHR(093)||'' 
@@ -17,6 +38,7 @@ UPDATE content SET content= 'Tone'||CHR(038)||'Music Festival 2023' WHERE cseq=1
 
 delete from content where cseq=21;
 
+alter table content add tDateTime varchar2(100) default '0';
 
 insert into content (CSEQ, TITLE, locationNum,ARTIST,content,CATEGORY, AGE)
 values(content_cseq.nextVal, '2023 김기태 전국투어 콘서트 '||CHR(091)||'위로'||CHR(093)||'', 8, '김기태',

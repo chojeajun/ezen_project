@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.ezen.ticket.dto.AddressVO;
 import com.ezen.ticket.dto.MemberVO;
+import com.ezen.ticket.dto.ReviewVO;
 import com.ezen.ticket.util.Dbman;
 
 
@@ -138,6 +139,7 @@ private MemberDao() {}
 		}
 		return result;
 	}
+
 
 
 	

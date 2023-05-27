@@ -14,6 +14,15 @@ public class QnaVO {
 	private String pwd;
 	private String repyn;
 	private Timestamp indate;
+	private String num;
+	
+	
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
+	}
 	public Integer getQseq() {
 		return qseq;
 	}
