@@ -1,5 +1,6 @@
 select * from locationNum;
 select * from seat;
+select * from content;
 
 delete from seat;
 
@@ -21,6 +22,27 @@ insert into locationNum values(locationNum_seq.nextVal,'블루스퀘어 신한�
 insert into locationNum values(locationNum_seq.nextVal,'서울 올림픽 공원 88잔디마당');
 insert into locationNum values(locationNum_seq.nextVal,'더현대서울 6층');
 insert into locationNum values(locationNum_seq.nextVal,'인사센트럴뮤지엄');
+
+update locationNum set areaImage='images/areaImage/1.png' where locationNum=1;
+update locationNum set areaImage='images/areaImage/2.png' where locationNum=2;
+update locationNum set areaImage='images/areaImage/3.png' where locationNum=3;
+update locationNum set areaImage='images/areaImage/4.png' where locationNum=4;
+update locationNum set areaImage='images/areaImage/5.png' where locationNum=5;
+update locationNum set areaImage='images/areaImage/6.png' where locationNum=6;
+update locationNum set areaImage='images/areaImage/7.png' where locationNum=7;
+update locationNum set areaImage='images/areaImage/8.png' where locationNum=8;
+update locationNum set areaImage='images/areaImage/9.png' where locationNum=9;
+
+update locationNum set areaImage='images/areaImage/10.png' where locationNum=10;
+update locationNum set areaImage='images/areaImage/11.png' where locationNum=11;
+update locationNum set areaImage='images/areaImage/12.png' where locationNum=12;
+update locationNum set areaImage='images/areaImage/13.png' where locationNum=13;
+update locationNum set areaImage='images/areaImage/14.png' where locationNum=14;
+update locationNum set areaImage='images/areaImage/15.png' where locationNum=15;
+update locationNum set areaImage='images/areaImage/16.jpg' where locationNum=16;
+update locationNum set areaImage='images/areaImage/17.jpg' where locationNum=17;
+update locationNum set areaImage='images/areaImage/18.jpg' where locationNum=18;
+
 
 --seat
 insert into seat (locationNum, area, price)
