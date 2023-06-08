@@ -2,7 +2,7 @@
 
 /* apply_Or_Register.jsp의 css */
 
-.form{border:1px solid black; width:100%; margin:25px auto;  }
+.form{ width:100%; margin:25px auto;  }
 .body_Choose{ height:100%; width:1200px; margin:0 auto;}
 .body_Choose header{ height:125px; width:100%;}
 .titlearea_Choose{ height:100px; width:100%; margin-top: 12.5px;}
@@ -115,7 +115,7 @@ input[type=number]::-webkit-inner-spin-button {opacity: 1;}
 input[type=number]:hover::-webkit-inner-spin-button {  
     width: 20px;   height: 40px;}
 
-.buttonSection{border:1px solid black; width:100%; height:80px;}
+.buttonSection{ width:100%; height:80px;}
 .buttonBox{ width:1200px; height:100%; margin:0 auto;}
 .groupBox{width:100%; height: 60px; margin:10px 0; float:right;}
 .buttonSmallBox{ float:right; box-sizing:border-box; width:100px; height:100%;}
@@ -159,8 +159,8 @@ input[type=number]:hover::-webkit-inner-spin-button {
 .liclick_com{  background-color: #EEEEEE;}
 .click { background-color: #ABABAB; color:white;}
 
-.detailBody3{border:1px solid black; width:100%; height:100px;}
-.priceBox{border:1px solid black; width:590px; height:90px; margin:5px;}
+.detailBody3{width:100%; height:100px;}
+.priceBox{width:590px; height:90px; margin:5px;}
 .p{font-size:1.5em;text-align:center; line-height:130px; float:right; width:100px; height:100%;}
 div.css1{width:50px;}
 .totprice{padding-right:10px;width:160px; text-align: right; font-size: 2em; font-weight: bold;color: #CA0000;}
@@ -168,8 +168,8 @@ div.css1{width:50px;}
 
 /* applyFinalPage.jsp */
 .resultForm{width:100%;}
-.resultForm section{width:1200px;margin:0 auto;}
-.resultForm h1{text-align: center; color:black; font-family: 'Noto Sans KR', sans-serif;}
+.resultForm section{width:1200px;margin:0 auto;text-align: center;}
+.resultForm h2{    font-size: 3em;text-align: center; color:black; font-family: 'Noto Sans KR', sans-serif;}
 .resultForm .button2Box{text-align: center;}
 .resultForm .button2{font-weight:bold; background:#FFE3E3;font-size: 0.9em;border-radius: 15px;cursor: pointer; width:180px; height:40px; margin-left:10px;margin-right:10px;}
 .resultForm .button2:first-child {background:#d70000; color:white;}

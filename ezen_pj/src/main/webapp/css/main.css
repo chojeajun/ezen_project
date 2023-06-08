@@ -18,7 +18,6 @@ h2 {
 }
 
 #bestContent {
-   border: 3px solid black;
    margin: 0 auto;
    width: 1200px;
 }
@@ -184,7 +183,6 @@ h2 {
 
 #concert {
    width: 1200px;
-   border: 3px solid black;
    margin: 0 auto;
 }
 
@@ -252,7 +250,6 @@ h2 {
 /* musical */
 #musical {
    width: 1200px;
-   border: 3px solid black;
    margin: 0 auto;
 }
 
@@ -321,7 +318,6 @@ h2 {
    width: 1200px;
    height: 400px;
    margin: 0 auto;
-   border: 3px solid black;
 }
 
 #success .title {
@@ -471,7 +467,6 @@ h2 {
 
 #sports {
    width: 1200px;
-   border: 3px solid black;
    margin: 0 auto;
 }
 
@@ -546,7 +541,6 @@ h2 {
 
 #festival {
    width: 1200px;
-   border: 3px solid black;
    margin: 0 auto;
 }
 
@@ -621,7 +615,6 @@ h2 {
 
 #exhibition {
    width: 1200px;
-   border: 3px solid black;
    margin: 0 auto;
 }
 
