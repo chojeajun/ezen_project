@@ -38,3 +38,19 @@ function go_total(comm) {
 	document.frm.submit();
 }
 
+/* 공연 추가 */
+function go_wrt(){
+	document.frm.action = "ticket.do?command=adminContentInsertForm";
+	document.frm.submit();
+}
+
+function insert_content(){
+	var date = document.getElementById("date").value;
+    var date = date.replace("-","").replace("-","");
+    
+	document.frm.action = "ticket.do?command=adminContentInsert";
+	document.frm.submit();
+}
+
+
+
