@@ -29,6 +29,12 @@ update content set tDateTime='20230601000000' where cseq=18;
 update content set image='images/content/6.jpg' where cseq=6;
 update content set image='images/content/7.jpg' where cseq=7;
 
+update content set bestyn='Y' where cseq=6;
+update content set bestyn='Y' where cseq=7;
+update content set bestyn='N' where cseq=10;
+update content set bestyn='Y' where cseq=11;
+update content set bestyn='Y' where cseq=13;
+
 select*from content;
 
 
