@@ -21,10 +21,12 @@ function go_cart_delete() {
 	} else {
 		document.frm.action = "ticket.do?command=cartDelete";
 		document.frm.submit();
-		// jsp 파일에 있는 체크된  checkbox 들의 value들(cartseq 값들)이 배열로 전송됩니다.
+		// jsp 파일에 있는 체크된  checkbox 들의 value들(cseq 값들)이 배열로 전송됩니다.
 	}
 
 }
+
+
 
 /* 카트 리스트 주문하기 버튼 */
 
@@ -47,7 +49,7 @@ function go_cart_order() {
 	} else {
 		document.frm.action = "ticket.do?command=cartDetail";
 		document.frm.submit();
-		// jsp 파일에 있는 체크된  checkbox 들의 value들(cseq 값들)이 배열로 전송됩니다.
+		// jsp 파일에 있는 체크된  checkbox 들의 value들(cartseq 값들)이 배열로 전송됩니다.
 	}
 
 }
@@ -55,7 +57,7 @@ function go_cart_order() {
 /* 카트리스트 수정하기 버튼*/
 
 function go_cart_update() {
-
+	
 	sessionStorage.removeItem('selectedCseq');
 	sessionStorage.removeItem('selectedDate');
 	sessionStorage.removeItem('selectedTime');
@@ -72,6 +74,8 @@ function go_cart_update() {
 			var time = document.frm.contenttime.value;
 			var area = document.frm.area.value;
 			var quantity = document.frm.quantity.value;
+			var cartseq = document.frm.cartseq.value;
+			localStorage.setItem('cartSeq', cartseq);
 		}
 	} else {
 		for (var i = 0; i < document.frm.cartseq.length; i++) {
@@ -82,6 +86,9 @@ function go_cart_update() {
 				var time = document.frm.contenttime[i].value;
 				var area = document.frm.area[i].value;
 				var quantity = document.frm.quantity[i].value;
+				var cartseq = document.frm.cartseq[i].value;
+				localStorage.setItem('cartSeq', cartseq);
+
 			}
 		}
 	}
@@ -94,12 +101,12 @@ function go_cart_update() {
 	sessionStorage.setItem('selectedArea', area);
 	sessionStorage.setItem('selectedQuantity', quantity);
 
+
 	if (count == 0) {
 		alert('수정할 항목을 선택하세요');
 	} else if (count >= 2) {
 		alert('수정할 항목은 하나만 선택이 가능합니다');
 	} else {
-
 		document.frm.action = "ticket.do?command=applySelectCommissioner&cseq=" + cseq + "&date=" + date + "&time=" + time + "&area=" + area + "&quantity=" + quantity;
 		document.frm.submit();
 	}

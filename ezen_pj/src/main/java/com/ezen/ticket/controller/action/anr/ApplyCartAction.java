@@ -34,14 +34,8 @@ public class ApplyCartAction implements Action {
 			String area = request.getParameter("area");
 			String quantity = request.getParameter("quantity");
 			int result = 0;
-			result = cdao.hoonSelectCart(cseq, date, time, area,quantity); 
-			System.out.println(result);
+			if (request.getParameter("cartseq") == null) {
 
-			/*if (result == 1) {
-				result = 0;
-				int mseq2 = Integer.parseInt(request.getParameter("mseq2"));
-				result = cdao.hoonUpdateCart(mseq, cseq, date, time, area, quantity, mseq2);
-			} else {*/
 				if (request.getParameter("mseq2") != null) {
 					int mseq2 = Integer.parseInt(request.getParameter("mseq2"));
 					result = cdao.insertCart(mseq, cseq, date, time, area, mseq2, quantity);
@@ -50,8 +44,11 @@ public class ApplyCartAction implements Action {
 					result = cdao.insertCartMseq2Null(mseq, cseq, date, time, area, quantity);
 					System.out.println("대리인 선택안함!");
 				}
-				/* } */
-			System.out.println(result);
+			} else {
+				int cartseq = Integer.parseInt(request.getParameter("cartseq"));
+				result = cdao.hoonUpdateCart(cartseq, Integer.parseInt(request.getParameter("mseq2")));
+			}
+
 			if (result == 1) {
 				System.out.println("카트에 넣기 성공!");
 				request.setAttribute("message", "장바구니에 상품을 담았습니다. 장바구니로 가시겠습니까?");
@@ -64,8 +61,7 @@ public class ApplyCartAction implements Action {
 				System.out.println("실패,,,우우우,,,,,,,,,,,,,");
 			}
 
+			request.getRequestDispatcher(url).forward(request, response);
 		}
-		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }
