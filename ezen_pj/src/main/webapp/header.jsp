@@ -113,7 +113,7 @@
 </style>
 </head>
 <body>
-<form name="frm" method="post">
+<form name="log_frm" method="post">
 	<div id="wrap">
 		<header id="header">
 			<div class="header_inner">

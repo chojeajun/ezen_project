@@ -9,7 +9,7 @@ $(function() {
 function contentSearch(){
 	
 	var key = document.frm.key.value;
-	document.frm.action = "ticket.do?command=contentSearch&key=" + key;
-	document.frm.submit();
+	document.log_frm.action = "ticket.do?command=contentSearch&key=" + key;
+	document.log_frm.submit();
 	
 }

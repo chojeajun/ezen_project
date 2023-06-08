@@ -31,7 +31,7 @@ public class ContentDao {
 		con = Dbman.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "N");
+			pstmt.setString(1, "Y");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ContentVO cvo = new ContentVO();

@@ -1,7 +1,9 @@
 /* 카트 리스트 삭제하기 버튼 */
 
 function go_cart_delete() {
+
 	var count = 0;
+
 	if (document.frm.cartseq.length == undefined) {
 		// 체크박스가 한 개인 경우
 		if (document.frm.cartseq.checked == true)
@@ -53,7 +55,7 @@ function go_cart_order() {
 /* 카트리스트 수정하기 버튼*/
 
 function go_cart_update() {
-	
+
 	sessionStorage.removeItem('selectedCseq');
 	sessionStorage.removeItem('selectedDate');
 	sessionStorage.removeItem('selectedTime');
