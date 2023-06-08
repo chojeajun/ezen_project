@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 <%@ include file="/admin/sub_menu.jsp"%>
+<style type="text/css">
+#productList tbody tr .list_link_box:hover {text-decoration: underline;}
+</style>
 <script src="./script/admin.js"></script>
 <article class="pro_box">
 	<h1>상품리스트</h1>
@@ -31,13 +34,13 @@
 		<c:forEach items="${ productList }" var="productVO">
 			<tr>
 				<td style="text-align: left;">${ productVO.cseq }</td>
-				<td>${ productVO.title }</td>
+				<td class="list_link_box"><a style="color:#444; text-decoration: none; display: block; " href="ticket.do?command=adminContentListDetail&cseq=${ productVO.cseq }">${ productVO.title }</a></td>
 				<td>${ productVO.artist }</td>
 				<td>${ productVO.locationName }</td>
 				<td>${ productVO.category }</td>
 				<td>${ productVO.bestyn }</td>
 				<td><input type="button" value="수정" onclick="location.href='ticket.do?command=adminContentEditForm&cseq=${ productVO.cseq }'"></td>
-				<td><input type="button" value="삭제" onclick="location.href='ticket.do?command=adminContentDelete&cseq=${ productVO.cseq }''"></td>
+				<td><input type="button" value="삭제" onclick="location.href='ticket.do?command=adminContentDelete&cseq=${ productVO.cseq }'"></td>
 				
 			</tr>
 		</c:forEach>

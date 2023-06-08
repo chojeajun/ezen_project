@@ -194,13 +194,13 @@ public class AdminDao {
 					rs=pstmt.executeQuery();
 					if(rs.next()) {
 						cvo=new ContentVO();
-						cvo.setCseq(rs.getInt("cseq"));
-						cvo.setCategory(rs.getInt("category"));
+						cvo.setCseq(rs.getInt("cseq")); // adminproductDetail 에서 보기편하게 순서조정
 						cvo.setTitle(rs.getString("title"));
 						cvo.setArtist(rs.getString("artist"));
-						cvo.setLocationNum(rs.getInt("locationNum"));
-						cvo.setContent(rs.getString("content"));
 						cvo.setImage(rs.getString("image"));
+						cvo.setCategory(rs.getInt("category"));
+						cvo.setLocationNum(rs.getInt("locationNum")); // adminproductDetail에서는 사용하지 않음
+						cvo.setContent(rs.getString("content"));
 						cvo.setAge(rs.getString("age"));
 						cvo.setBestyn(rs.getString("bestyn").charAt(0));
 						cvo.settDateTime(rs.getString("tDateTime"));
@@ -223,7 +223,7 @@ public class AdminDao {
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
 					cvo=new ContentVO();
-					cvo.setLocationName(rs.getString("locationName"));
+					cvo.setLocationName(rs.getString("locationName")); // adminProductDetail 에서도 사용
 					cvo.setArea(rs.getString("area"));
 					cvo.setPrice(rs.getInt("price"));
 					cvo.setAreaImage(rs.getString("areaImage"));
@@ -254,6 +254,13 @@ public class AdminDao {
 				e.printStackTrace();
 			}finally {Dbman.close(con, pstmt, rs);}
 			return list;
+		}
+		public ContentVO getAdminProduct(int cseq) {
+			
+			
+			
+			
+			return null;
 		}
 		
 		public int adminDeleteContent(int cseq) {
