@@ -57,14 +57,15 @@ public class AdminProductListAction implements Action {
 			}
 
 			AdminDao adao = AdminDao.getInstance();
-			int count = adao.getAllCount("product", "name", key);
+			int count = adao.getAllCount("product_all_content_view", "title", key);
+			
 			paging.setTotalCount(count);
 			
-			ArrayList<ContentVO> productList1 = adao.adminProductList1(paging, key);
-			ArrayList<ContentVO> productList2 = adao.adminProductList2(paging, key);
+			ArrayList<ContentVO> productList = adao.adminProductList(paging, key);
+			//ArrayList<ContentVO> productList2 = adao.adminProductList2(paging, key);
 			
-			request.setAttribute("productList1", productList1);
-			request.setAttribute("productList2", productList2);
+			request.setAttribute("productList", productList);
+			//request.setAttribute("productList2", productList2);
 			request.setAttribute("paging", paging);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
