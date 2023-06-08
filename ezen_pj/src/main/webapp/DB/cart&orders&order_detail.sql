@@ -2,7 +2,7 @@
 
 select * from cart;
 select * from member
-
+select * from cart where mseq = 2 and buyyn = 'N'
 delete from CART;
 alter table cart modify mseq2 number(5,0) default 0;
 select * from member_grade_view where cmseq=0;

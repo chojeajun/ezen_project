@@ -11,13 +11,13 @@
 	sessionStorage.removeItem('selectedArea');
 	sessionStorage.removeItem('selectedQuantity');
 	sessionStorage.removeItem('selectedCom');
-	document.frm.action='ticket.do?command=categorySelect&category=0';
-	document.frm.submit();
+	document.anrFrm.action='ticket.do?command=categorySelect&category=0';
+	document.anrFrm.submit();
  }
  
  function go_register(){
-	 document.frm.action='ticket.do?command=registerForm';
-	 document.frm.submit();
+	 document.anrFrm.action='ticket.do?command=registerForm';
+	 document.anrFrm.submit();
 
  }
  

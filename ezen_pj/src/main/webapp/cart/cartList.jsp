@@ -63,7 +63,8 @@
 
 									</c:forEach>
 
-									<td><input type="checkbox" name="cartseq" value="${ cartListVO.cseq }"></td>
+									<td><input type="checkbox" name="cartseq"
+										value="${ cartListVO.cseq }"></td>
 								</c:forEach>
 							</tr>
 							<%
@@ -108,7 +109,7 @@
 					</tr>
 					<c:forEach items="${ buy_cartList }" var="cartListVO">
 						<tr>
-							<td>${ cartListVO.cseq }</td>
+							<td><%=seq%></td>
 							<td><fmt:formatDate value="${ cartListVO.contentdate }"
 									pattern="yyyy-MM-dd" /></td>
 							<td>${ cartListVO.contenttime }</td>
@@ -120,7 +121,13 @@
 							<td><fmt:formatDate value="${ cartListVO.indate }"
 									pattern="yyyy-MM-dd" /></td>
 						</tr>
+						<%
+						seq += 1;
+						%>
 					</c:forEach>
+					<%
+					seq = 1;
+					%>
 				</table>
 			</c:otherwise>
 		</c:choose>

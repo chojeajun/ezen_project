@@ -42,6 +42,7 @@ public class CartDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cartVO = new CartVO();
+				cartVO.setCartseq(rs.getInt("cartseq"));
 				cartVO.setMseq(rs.getInt("mseq"));
 				cartVO.setCseq(rs.getInt("cseq"));
 				cartVO.setContentdate(rs.getTimestamp("contentdate"));
