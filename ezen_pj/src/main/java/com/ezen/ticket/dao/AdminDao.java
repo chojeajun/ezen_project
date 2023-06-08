@@ -52,27 +52,33 @@ public class AdminDao {
 		return avo;
 	}
 	// 일반 회원의 전체 리스트를 갯수를 조회
-	// 회원리스트 
-		public int getAllCount(String tablename, String fieldname, String key) {
-			int count = 0;
-			String sql ="select count(*) as cnt from " + tablename 
-					+ " where " +  fieldname  + " like '%'||?||'%' ";
-			con = Dbman.getConnection();
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, key);
-				rs = pstmt.executeQuery();
-				if(rs.next() ) {
-					count = rs.getInt("cnt");
+		// 회원리스트 
+			public int getAllCount(String tablename, String fieldname, String key) {
+				int count = 0;
+				System.out.println("@@@@@@@@@@@@@ " + tablename);
+				System.out.println("!!!!!!!!!!!!! " + fieldname);
+				String sql =" select count(*) cnt from ( "
+						+ " select * from ( "
+						+ " select rownum as rn, c.* from ( "
+						+ "  (select cseq, title, artist, locationName, category, bestyn from product_all_content_view where title like '%'||?||'%'"
+						+ " group by cseq, title, artist, locationName, category, bestyn order by cseq desc) c ))) ";
+//				String sql ="select count(*) as cnt from " + tablename 
+//						+ " where " +  fieldname  + " like '%'||?||'%' ";
+				con = Dbman.getConnection();
+				try {
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, key);
+					rs = pstmt.executeQuery();
+					if(rs.next() ) {
+						count = rs.getInt("cnt");
+					}
+					
+				} catch (SQLException e) {e.printStackTrace();
+				} finally {	Dbman.close(con, pstmt, rs);
 				}
 				
-			} catch (SQLException e) {e.printStackTrace();
-			} finally {	Dbman.close(con, pstmt, rs);
+				return count;
 			}
-			
-			return count;
-		}
-
 	
 	// 일반 회원의 전체 리스트를 불러서 리스트로 리턴
 		// 회원리스트
@@ -113,66 +119,69 @@ public class AdminDao {
 		
 		
 		// 상품 리스트
-		public ArrayList<ContentVO> adminProductList1(Paging paging, String key) {
-			ArrayList<ContentVO> list = new ArrayList<ContentVO>();
-			con = Dbman.getConnection();
-			String sql ="select * from ( "
-					+ " select * from ( "
-					+ " select rownum as rn, c.* from ( "
-					+ "  (select distinct title, cseq, artist, locationName from content_loc_seat_view where title like '%'||?||'%' order by cseq desc) c ) "
-					+ " ) where rn >= ? "
-					+ " ) where rn <= ? ";
-			
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, key);
-				pstmt.setInt(2, paging.getStartNum());
-				pstmt.setInt(3, paging.getEndNum());
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					ContentVO cvo = new ContentVO();
-					cvo.setCseq(rs.getInt("cseq"));
-					cvo.setTitle(rs.getString("title"));
-					cvo.setArtist(rs.getString("artist"));
-					cvo.setLocationName(rs.getString("locationName"));
-					System.out.println(rs.getString("locationName"));
-					list.add(cvo);
+				public ArrayList<ContentVO> adminProductList(Paging paging, String key) {
+					ArrayList<ContentVO> list = new ArrayList<ContentVO>();
+					con = Dbman.getConnection();
+					String sql =" select * from ( "
+							+ " select * from ( "
+							+ " select rownum as rn, c.* from ( "
+							+ "  (select cseq, title, artist, locationName, category, bestyn from product_all_content_view where title like '%'||?||'%'"
+							+ " group by cseq, title, artist, locationName, category, bestyn order by cseq desc) c ) "
+							+ " ) where rn >= ?"
+							+ " ) where rn <= ?";
+					System.out.println("@@@@@  sql ==== " + sql);
+					try {
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, key);
+						pstmt.setInt(2, paging.getStartNum());
+						pstmt.setInt(3, paging.getEndNum());
+						rs = pstmt.executeQuery();
+						while(rs.next()) {
+							ContentVO cvo = new ContentVO();
+							cvo.setCseq(rs.getInt("cseq"));
+							cvo.setTitle(rs.getString("title"));
+							cvo.setArtist(rs.getString("artist"));
+							cvo.setLocationName(rs.getString("locationName"));
+							//System.out.println(rs.getString("locationName")); 대문자였음
+							cvo.setCategory(rs.getInt("category"));
+							cvo.setBestyn(rs.getString("bestyn").charAt(0));
+							list.add(cvo);
+						}
+						
+					} catch (SQLException e) {e.printStackTrace();
+					} finally {Dbman.close(con, pstmt, rs);
+					}
+					return list;
 				}
-				
-			} catch (SQLException e) {e.printStackTrace();
-			} finally {Dbman.close(con, pstmt, rs);
-			}
-			return list;
-		}
 		
-		// 상품 리스트
-		public ArrayList<ContentVO> adminProductList2(Paging paging, String key) {
-			ArrayList<ContentVO> list = new ArrayList<ContentVO>();
-			con = Dbman.getConnection();
-			String sql ="select * from ( "
-					+ " select * from ( "
-					+ " select rownum as rn, c.* from ( "
-					+ "  (select * from content where title like '%'||?||'%' order by cseq desc) c ) "
-					+ " ) where rn >= ? "
-					+ " ) where rn <= ? ";
-			
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, key);
-				pstmt.setInt(2, paging.getStartNum());
-				pstmt.setInt(3, paging.getEndNum());
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					ContentVO cvo = new ContentVO();
-					cvo.setCategory(rs.getInt("category"));
-					cvo.setBestyn(rs.getString("bestyn").charAt(0));
-					list.add(cvo);
-				}
-				
-			} catch (SQLException e) {e.printStackTrace();
-			} finally {Dbman.close(con, pstmt, rs);
-			}
-			return list;
-		}
+//		// 상품 리스트
+//		public ArrayList<ContentVO> adminProductList2(Paging paging, String key) {
+//			ArrayList<ContentVO> list = new ArrayList<ContentVO>();
+//			con = Dbman.getConnection();
+//			String sql ="select * from ( "
+//					+ " select * from ( "
+//					+ " select rownum as rn, c.* from ( "
+//					+ "  (select * from content where title like '%'||?||'%' order by cseq desc) c ) "
+//					+ " ) where rn >= ? "
+//					+ " ) where rn <= ? ";
+//			
+//			try {
+//				pstmt = con.prepareStatement(sql);
+//				pstmt.setString(1, key);
+//				pstmt.setInt(2, paging.getStartNum());
+//				pstmt.setInt(3, paging.getEndNum());
+//				rs = pstmt.executeQuery();
+//				while(rs.next()) {
+//					ContentVO cvo = new ContentVO();
+//					cvo.setCategory(rs.getInt("category"));
+//					cvo.setBestyn(rs.getString("bestyn").charAt(0));
+//					list.add(cvo);
+//				}
+//				
+//			} catch (SQLException e) {e.printStackTrace();
+//			} finally {Dbman.close(con, pstmt, rs);
+//			}
+//			return list;
+//		}
 		
 }

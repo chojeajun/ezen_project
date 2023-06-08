@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 <%@ include file="/admin/sub_menu.jsp"%>
-
+<script src="./script/admin.js"></script>
 <article class="pro_box">
 	<h1>상품리스트</h1>
 
@@ -28,19 +28,16 @@
 			<th>카테고리</th>
 			<th>베스트</th>
 		</tr>
-		<c:forEach items="${ productList1 }" var="productVO1">
+		<c:forEach items="${ productList }" var="productVO">
 			<tr>
-				<td style="text-align: left; padding-left: 50px;">${ productVO1.cseq }</td>
-				<td>${ productVO1.title }</td>
-				<td> ${ productVO1.artist }></td>
-				<td>${ productVO1.locationName }</td>
+				<td style="text-align: left;">${ productVO.cseq }</td>
+				<td>${ productVO.title }</td>
+				<td>${ productVO.artist }></td>
+				<td>${ productVO.locationName }</td>
+				<td>${ productVO.category }</td>
+				<td>${ productVO.bestyn }</td>
 			</tr>
 		</c:forEach>
-		<c:forEach items="${ productList2 }" var="productVO2">
-			<td>${ productVO2.category }</td>
-			<td>${ productVO2.bestyn }</td>
-		</c:forEach>
-		
 	</table>
 	<br> <br>
 	<jsp:include page="/admin/paging/page.jsp">

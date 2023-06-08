@@ -28,7 +28,7 @@ public class AdminMemberListAction implements Action {
 			
 			if(request.getParameter("start") != null) {
 				session.removeAttribute("page");
-				session.removeAttribute("key_name");
+				session.removeAttribute("key");
 			}
 			
 			Paging paging = new Paging();
@@ -43,14 +43,14 @@ public class AdminMemberListAction implements Action {
 				paging.setPage(1);
 			} 
 			String key =""; // 검색단어
-			if(request.getParameter("key_name") != null) {
-				key = request.getParameter("key_name");
-				session.setAttribute("key_name", key);
-			} else if(session.getAttribute("key_name") != null) {
-				key = (String)session.getAttribute("key_name");
+			if(request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if(session.getAttribute("key") != null) {
+				key = (String)session.getAttribute("key");
 			} else {
 				key = "";
-				session.removeAttribute("key_name");
+				session.removeAttribute("key");
 			} 
 			AdminDao adao = AdminDao.getInstance();
 			int count = adao.getAllCount("member", "name",  key); 
@@ -59,7 +59,7 @@ public class AdminMemberListAction implements Action {
 			ArrayList<MemberVO> memberlist = adao.selectMember(paging , key);
 			request.setAttribute("memberList", memberlist);
 			request.setAttribute("paging", paging);
-			request.setAttribute("key_name", key);
+			request.setAttribute("key", key);
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 		

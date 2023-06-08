@@ -134,6 +134,11 @@ create or replace view success_reply_member as select s.*, m.id from success_rep
 commit
 select * from success_reply_member;
 
+-- content 와 content_loc_seat_view 를 합쳐서 뷰 만들고 productlist 에 뿌릴 내용을 한번에 가져옴
+create or replace view product_all_content_view as select c.* , p.category, bestyn from content_loc_seat_view c, content p where c.cseq = p.cseq;
+
+
+select * from product_all_content_view;
 
 
 
