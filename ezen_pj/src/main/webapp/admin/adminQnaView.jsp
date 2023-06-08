@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp" %>
+<%@ include file="header.jsp" %>
+<%@ include file="/admin/sub_menu.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/qna.css">
+<script src="script/qna.js"></script>
 <style type="text/css">
 
 /*  admin qna table css  */
@@ -15,8 +18,7 @@
 </style>
 <title>Ticket Shop</title>
 
-<link rel="stylesheet" href="/css/qna.css">
-<script src="script/qna.js"></script>
+
 </head>
 
 <form action="ticket.do" method="get" name="frm_reply">
@@ -87,4 +89,4 @@
 	</article>
 </form>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="footer.jsp" %>
