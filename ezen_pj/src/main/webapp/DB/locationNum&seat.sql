@@ -23,6 +23,16 @@ insert into locationNum values(locationNum_seq.nextVal,'서울 올림픽 공원 
 insert into locationNum values(locationNum_seq.nextVal,'더현대서울 6층');
 insert into locationNum values(locationNum_seq.nextVal,'인사센트럴뮤지엄');
 
+update locationNum set areaImage='images/areaImage/1.png' where locationNum=1;
+update locationNum set areaImage='images/areaImage/2.png' where locationNum=2;
+update locationNum set areaImage='images/areaImage/3.png' where locationNum=3;
+update locationNum set areaImage='images/areaImage/4.png' where locationNum=4;
+update locationNum set areaImage='images/areaImage/5.png' where locationNum=5;
+update locationNum set areaImage='images/areaImage/6.png' where locationNum=6;
+update locationNum set areaImage='images/areaImage/7.png' where locationNum=7;
+update locationNum set areaImage='images/areaImage/8.png' where locationNum=8;
+update locationNum set areaImage='images/areaImage/9.png' where locationNum=9;
+
 update locationNum set areaImage='images/areaImage/10.png' where locationNum=10;
 update locationNum set areaImage='images/areaImage/11.png' where locationNum=11;
 update locationNum set areaImage='images/areaImage/12.png' where locationNum=12;
