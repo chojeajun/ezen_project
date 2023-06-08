@@ -174,5 +174,79 @@ public class AdminDao {
 			}
 			return list;
 		}
+		public ContentVO getAdminContent(int cseq) {
+			
+			ContentVO cvo=new ContentVO();
+			con=Dbman.getConnection();
+			String sql="select * from content where cseq=?";
+				try {
+					pstmt=con.prepareStatement(sql);
+					pstmt.setInt(1, cseq);
+					rs=pstmt.executeQuery();
+					if(rs.next()) {
+						cvo=new ContentVO();
+						cvo.setCseq(rs.getInt("cseq"));
+						cvo.setCategory(rs.getInt("category"));
+						cvo.setTitle(rs.getString("title"));
+						cvo.setArtist(rs.getString("artist"));
+						cvo.setLocationNum(rs.getInt("locationNum"));
+						cvo.setContent(rs.getString("content"));
+						cvo.setImage(rs.getString("image"));
+						cvo.setAge(rs.getString("age"));
+						cvo.setBestyn(rs.getString("bestyn").charAt(0));
+						cvo.settDateTime(rs.getString("tDateTime"));
+						
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return cvo;
+		}
+		public ArrayList<ContentVO> getAdminContentLoc(int cseq) {
+			ArrayList<ContentVO> list=new ArrayList<ContentVO>();
+			ContentVO cvo=null;
+			con=Dbman.getConnection();
+			String sql="select * from content_loc_seat_view where cseq=?";
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, cseq);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					cvo=new ContentVO();
+					cvo.setLocationName(rs.getString("locationName"));
+					cvo.setArea(rs.getString("area"));
+					cvo.setPrice(rs.getInt("price"));
+					cvo.setAreaImage(rs.getString("areaImage"));
+					list.add(cvo);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {Dbman.close(con, pstmt, rs);}
+			return list;
+		}
+		
+		public ArrayList<ContentVO> getAdminContentTime(int cseq) {
+			ArrayList<ContentVO> list=new ArrayList<ContentVO>();
+			ContentVO cvo=null;
+			con=Dbman.getConnection();
+			String sql="select * from content_time_view where cseq=?";
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, cseq);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					cvo=new ContentVO();
+					cvo.setContentDate(rs.getTimestamp("contentDate"));
+					cvo.setContentTime(rs.getString("contentTime"));
+					list.add(cvo);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {Dbman.close(con, pstmt, rs);}
+			return list;
+		}
+		
+		
 		
 }

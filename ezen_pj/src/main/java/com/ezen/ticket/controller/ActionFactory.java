@@ -3,6 +3,7 @@ package com.ezen.ticket.controller;
 import com.ezen.ticket.controller.action.Action;
 import com.ezen.ticket.controller.action.IndexAction;
 import com.ezen.ticket.controller.action.admin.AdminAction;
+import com.ezen.ticket.controller.action.admin.AdminContentEditFormAction;
 import com.ezen.ticket.controller.action.admin.AdminLoginAction;
 import com.ezen.ticket.controller.action.admin.AdminLoginFormAction;
 import com.ezen.ticket.controller.action.admin.AdminMemberListAction;
@@ -203,6 +204,7 @@ public class ActionFactory {
 		
 		// 상품 리스트 조회 
 		else if(command.equals("adminProductList")) ac = new AdminProductListAction();
+		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
 		
 
 		//admin qna reply
