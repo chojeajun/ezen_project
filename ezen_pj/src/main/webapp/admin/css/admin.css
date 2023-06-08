@@ -1,30 +1,39 @@
 @charset "UTF-8";
 
 body {
-	min-width: 1700px;
+	min-width: 1400px;
 	height: 100%;
 }
 
 /* admin 서브메뉴  */
 #sub_menu {
-	position: fixed;
-	left: 0;
-	top: 200px;
-	height: 300px;
-	width: 250px;
-	background: #eee;
-	border: 1px solid #444;
+	width: 1200px;
+	margin:0 auto;
+	background: #222;
+	border:1px solid #fff;
+	color:#fff;
+	height:100px;
 }
 
 #sub_menu h1 {
 	font-size: 30px;
+	text-align: center;
 }
 
 #sub_menu ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	overflow: hidden;
 }
+
+#sub_menu ul li{
+	float:left;
+	width:14.28%;
+	text-align: center;
+}
+
+#sub_menu ul li:last-child {width:14.31%;}
 
 .review_content {
 	width: 1200px;
@@ -48,11 +57,30 @@ body {
 	box-sizing: border-box;
 	text-decoration: none;
 	font-size: 18px;
-	color: #444;
+	color: #fff;
+	position: relative;
 }
 
+#sub_menu ul li a > .change {
+	transition: all .3s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: lawngreen;
+    font-weight: 700;
+    opacity: 0;
+}
+
+#sub_menu ul li a:after {content:''; position: absolute; left:0; bottom:0; width:100%;  height:2px; background: #fff; transition: 0.4s; transform:scale(0); }
+#sub_menu ul li:hover a:after {transform:scale(1);}
+#sub_menu ul li:hover a {color:#222;}
+#sub_menu ul li:hover a .change {opacity: 1;}
+
+
 #sub_menu ul li a:hover {
-	color: #ff8383;
+	color: #222;
 }
 
 .mbl_box {

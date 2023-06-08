@@ -142,7 +142,7 @@ create or replace view product_all_content_view as select c.* , p.category, best
 
 select * from product_all_content_view;
 
-
+select * from content_loc_seat_view;
 
 
 

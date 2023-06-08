@@ -3,18 +3,22 @@
 <%@ include file="/admin/sub_menu.jsp"%>
     
 <%--     			<c:set var="now" value="<%=new java.util.Date()%>" /> --%>
-    
+<script src="./script/admin.js"></script>
 <style type="text/css">
-
+.review_view_table {font-weight:700; font-size: 16px;}
 .review_view_table th {width:10%; border:1px solid #444; text-align: center;}
-.review_view_table td {border: 1px solid red; padding:5px;}
+.review_view_table td {border: 1px solid red; padding:10px;}
+.area_box {padding-left:3px; border-bottom: 1px solid #999;}
+
+
 
 </style>
     <div class="review_img_box"></div>
 <div id="review_box">
 	<div class="review_content">
 		<h2 class="review_title">관리자 상품 상세보기</h2>
-		<form name="rev_formm" method="post" class="review_form" action="ticket.do">
+		<form name="pro_update_frm" method="post" class="review_form" action="ticket.do">
+		<input type="hidden" name="cseq" value="${ ContentVO.cseq }">
 			<table class="review_view_table" style="width:100%;">
 				<tr>
 					<th>번호</th>
@@ -36,12 +40,18 @@
 					<th>카테고리</th>
 					<td>${ ContentVO.category }</td>
 				</tr>
-				<c:forEach items="locationList" var="LocationVO">
-				<tr>
-					<th>공연장소</th>
-					<td>${ LocationVO.locationName }</td>
-				</tr>
-				</c:forEach>
+					<tr>
+						<th>공연장소</th>
+					<c:forEach items="${ locationList }" var="LocVO" end="0">
+						<td>${ LocVO.locationName }</td>
+					</c:forEach>
+					<c:forEach items="${ locationList }" var="LocVO">
+						<tr>
+							<th>좌석</th>
+							<td><div class="area_box">${ LocVO.area }</div> <div>가격 : ${ LocVO.price }</div></td>
+						</tr>
+					</c:forEach>
+					</tr>
 				<tr>
 					<th>내용</th>
 					<td align="left">
@@ -60,11 +70,24 @@
 					<th>티켓팅 시간</th>
 					<td>${ ContentVO.tDateTime }</td>
 				</tr>
+				<c:forEach items="${ timeList }" var="timeVO">
+					<tr>
+						<th>공연 일자</th>
+						<td>${ timeVO.contentDate }</td>
+					</tr>
+					<tr>
+						<th>공연 시각</th>
+						<td>${ timeVO.contentTime }</td>
+					</tr>
+				</c:forEach>
 			</table>
 			
 			<div class="clear"></div>
 			<div class="rev_btn_box btn_box" style="float: left">
 				<input type="button" value="메인으로" class="cancel" onClick="location.href='ticket.do?command=index'">
+			</div>
+			<div class="rev_btn_box btn_box" style="float: right">
+				<input type="button" value="수정하기" class="update" onclick="go_pro_upd('${ ContentVO.cseq}')">
 			</div>
 		</form>
 	</div>
