@@ -2,7 +2,7 @@
 <%@ include file="header.jsp"%>
 <%@ include file="/admin/sub_menu.jsp"%>
 <div class="review_img_box"></div>
-<div id="review_box">
+<div id="review_box" style="width: 1200px; margin: 50px auto;">
 	<div class="review_content">
 		<h2 class="review_title">성공후기 게시판</h2>
 		<h3>고객님들의 성공 후기를 볼 수 있는 게시판 입니다.</h3>
