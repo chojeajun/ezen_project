@@ -15,7 +15,7 @@ input[type="text"] {width:100%;}
 <div id="review_box">
 	<div class="review_content">
 		<h2 class="review_title">관리자 상품 상세보기</h2>
-		<form name="pro_update_frm" method="post" class="review_form" action="ticket.do" enctype="multipart/form-date">
+		<form name="pro_update_frm" method="post" class="review_form" enctype="multipart/form-data">
 		<input type="hidden" name="cseq" value="${ ContentVO.cseq }">
 		<input type="hidden" name="oldimage" value="${ ContentVO.image }">
 			<table class="review_view_table" style="width:100%;">
@@ -33,7 +33,7 @@ input[type="text"] {width:100%;}
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><img src="${ ContentVO.image }" style="width:300px; height:400px;"><input type="file" name="image"></td>
+					<td><img src="./images/content/${ ContentVO.image }" style="width:300px; height:400px;"><input type="file" name="image"></td>
 				</tr>
 				<tr>
 					<th>카테고리</th>
@@ -76,10 +76,10 @@ input[type="text"] {width:100%;}
 			</table>
 			<div class="clear"></div>
 			<div class="rev_btn_box btn_box" style="float: left">
-				<input type="button" value="메인으로" class="cancel" onClick="location.href='ticket.do?command=index'">
+				<input type="button" value="메인으로" class="cancel" onClick="location.href='ticket.do?command=adminProductList'">
 			</div>
 			<div class="rev_btn_box btn_box" style="float: right">
-				<input type="submit" value="수정완료" class="update" onclick="pro_update()">
+				<input type="button" value="수정완료" class="update" onclick="product_update()">
 				<input type="reset" value="리셋" class="cancel">
 				
 			</div>

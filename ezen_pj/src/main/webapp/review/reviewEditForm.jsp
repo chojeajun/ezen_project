@@ -8,7 +8,6 @@
 		<form name="formm" method="post" class="review_form"  enctype="multipart/form-data">
 			<input type="hidden" name="rseq" value="${ reviewVO.rseq }">
 			<input type="hidden" name="oldimage" value="${ reviewVO.image }">
-			
 			<table class="review_update_table review_view_table"> 
 				<tr>
 					<th>작성자</th>
