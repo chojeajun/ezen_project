@@ -19,7 +19,7 @@ function go_cart_delete() {
 	} else {
 		document.frm.action = "ticket.do?command=cartDelete";
 		document.frm.submit();
-		// jsp 파일에 있는 체크된  checkbox 들의 value들(cseq 값들)이 배열로 전송됩니다.
+		// jsp 파일에 있는 체크된  checkbox 들의 value들(cartseq 값들)이 배열로 전송됩니다.
 	}
 
 }
@@ -53,7 +53,7 @@ function go_cart_order() {
 /* 카트리스트 수정하기 버튼*/
 
 function go_cart_update() {
-
+	
 	sessionStorage.removeItem('selectedCseq');
 	sessionStorage.removeItem('selectedDate');
 	sessionStorage.removeItem('selectedTime');
