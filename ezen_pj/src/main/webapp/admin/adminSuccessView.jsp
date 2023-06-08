@@ -4,8 +4,8 @@
 <div class="review_img_box"></div>
 <div id="review_box">
 	<div class="review_content">
-		<h2 class="review_title">성공 후기 게시판</h2>
-		<h3>고객님들의 성공 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
+		<h2 class="review_title">성공 내역 게시판</h2>
+		<h3>고객님들의 성공 내역을 상세히 볼 수 있는 게시판 입니다.</h3>
 		<form name="rev_formm" method="get" class="review_form" action="ticket.do">
 
 			<input type="hidden" name="command" value="successReply">
