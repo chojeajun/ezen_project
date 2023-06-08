@@ -63,4 +63,17 @@ function insert_content(){
 }
 
 
+/* 상품수정  */
+function pro_update() {
+	if(confirm("수정 ㄱ?")) {
+		return;
+//		document.formm.action ="ticket.do?command=adminContentEdit";
+//		document.formm.submit();
+	}
+	
+}
+
+
+
+
 

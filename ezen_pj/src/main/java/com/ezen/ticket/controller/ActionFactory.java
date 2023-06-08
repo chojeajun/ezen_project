@@ -4,6 +4,7 @@ import com.ezen.ticket.controller.action.Action;
 import com.ezen.ticket.controller.action.IndexAction;
 import com.ezen.ticket.controller.action.admin.AdminAction;
 import com.ezen.ticket.controller.action.admin.AdminContentDeleteAction;
+import com.ezen.ticket.controller.action.admin.AdminContentEditAction;
 import com.ezen.ticket.controller.action.admin.AdminContentEditFormAction;
 import com.ezen.ticket.controller.action.admin.AdminContentInsertFormAction;
 import com.ezen.ticket.controller.action.admin.AdminContentListDetailAction;
@@ -214,7 +215,7 @@ public class ActionFactory {
 		else if(command.equals("adminProductList")) ac = new AdminProductListAction();
 		else if(command.equals("adminContentListDetail")) ac = new AdminContentListDetailAction();
 		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
-//		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
+		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
 		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
 		else if(command.equals("adminContentInsertForm")) ac = new AdminContentInsertFormAction();
 		

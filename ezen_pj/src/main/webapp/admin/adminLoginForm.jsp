@@ -16,7 +16,7 @@
 </style>
 
 <header id="header">
-		<div id="logo"><a href="ticket.do?command=index"><img src="images/logo.png"/></a></div>
+		<div id="logo"><a style="display: block; text-align: center;" href="ticket.do?command=index"><img src="images/logo.png" style="width:189px;"/></a></div>
 	</header>
 <div id="wrap">
 
