@@ -75,6 +75,7 @@ select * from orders;
 select * from order_detail;
 select * from member;
 select * from content_time_view;
+select * from content_time_view where cseq=2
 select * from content_loc_seat_view;
 select *from member_grade_view;
 

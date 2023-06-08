@@ -5,12 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.ezen.ticket.dto.CartVO;
 import com.ezen.ticket.dto.CommissionerVO;
 import com.ezen.ticket.dto.ContentVO;
 import com.ezen.ticket.dto.Content_Loc_Seat_ViewVO;
+import com.ezen.ticket.dto.Content_Time_View_VO;
 import com.ezen.ticket.dto.MemberVO;
 import com.ezen.ticket.util.Dbman;
 
@@ -307,8 +309,11 @@ public class CartDao {
 			pstmt.setString(4, area);
 			pstmt.setString(5, quantity);
 			result = pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace();
-		} finally { Dbman.close(con, pstmt, rs); }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Dbman.close(con, pstmt, rs);
+		}
 		return result;
 	}
 
@@ -326,9 +331,53 @@ public class CartDao {
 			pstmt.setString(6, area);
 			pstmt.setString(7, quantity);
 			result = pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace();
-		} finally { Dbman.close(con, pstmt, rs); }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Dbman.close(con, pstmt, rs);
+		}
 		return result;
 	}
+
+	public Timestamp selectCartForDateByCseq(int cseq) {
+		Timestamp date = null;
+		String sql = "select distinct contentdate from cart where cseq = ?";
+		con = Dbman.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cseq);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				date = rs.getTimestamp("contentdate");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+
+	public ArrayList<Content_Time_View_VO> hoonSelectCartDetail(int cseq) {
+		ArrayList<Content_Time_View_VO> list = new ArrayList<Content_Time_View_VO>();
+		Content_Time_View_VO ctvv = null;
+		String sql = "select * from content_time_view where cseq=?";
+		con = Dbman.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cseq);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ctvv = new Content_Time_View_VO();
+				ctvv.setCseq(rs.getInt("cseq"));
+				ctvv.setTitle(rs.getString("title"));
+				ctvv.setContentdate(rs.getString("contentdate"));
+				ctvv.setContenttime(rs.getString("contenttime"));
+				list.add(ctvv);
+			}
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { Dbman.close(con, pstmt, rs); } 
+		return null;
+	}
+
+
 
 }

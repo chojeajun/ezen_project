@@ -63,8 +63,7 @@
 
 									</c:forEach>
 
-									<td><input type="checkbox" name="cartseq"
-										value="${ cartListVO.cseq }"></td>
+									<td><input type="checkbox" name="cartseq" value="${ cartListVO.cseq }"></td>
 								</c:forEach>
 							</tr>
 							<%

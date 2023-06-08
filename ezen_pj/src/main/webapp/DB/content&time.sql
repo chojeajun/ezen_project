@@ -1,7 +1,8 @@
 select * from CONTENT order by cseq;
 select * from CONTENTTime order by cseq;
 select * from content order by category asc
-select cseq from content where title like '%위로%'
+select distinct contenttime from cart where cseq = 2
+select distinct contentdate, contenttime from cart where cseq = 2
 --category==>콘서트=1, 뮤지컬=2, 스포츠=3, 페스티벌=4, 전시/행사=5
 --콘서트 데이터 추가
 

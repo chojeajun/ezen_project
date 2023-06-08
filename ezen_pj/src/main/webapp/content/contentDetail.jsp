@@ -4,6 +4,7 @@
 
 <div id="contentDetail">
 	<c:forEach items="${ content }" var="contentVO">
+
 		<div class="title">
 			<h2>${ contentVO.title }</h2>
 		</div>
@@ -21,19 +22,31 @@
 					type="hidden" value="${ contentVO.category }" name="category" /> <input
 					type="hidden" value="${ contentVO.locationNum }" name="locationNum" />
 				<table>
-					<tr style="line-height:50px;">
+					<tr style="line-height: 50px;">
 						<th style="width: 10%;">아티스트</th>
-						<th style="width: 60%;">내용</th>
-						<th style="width: 15%;">제한 연령</th>
-						<th style="width: 15%;">티켓팅날짜</th>
+						<th style="width: 45%;">내용</th>
+						<th style="width: 12%;">공연 날짜</th>
+						<th style="width: 9%;">공연 시간</th>
+						<th style="width: 12%;">제한 연령</th>
+						<th style="width: 12%;">티켓팅 날짜</th>
 					</tr>
 					<tr>
 
-						<td><br/><br/>${ contentVO.artist }</td>
-						<td style="height:100px; line-height:20px; font-size: 15px; font-weight: bold; text-align: left; border: 1px solid black;">${ contentVO.content }</td>
-						<td><br/><br/>${ contentVO.age }</td>
-						<td><br/><br/><fmt:parseDate value="${ contentVO.tDateTime }"
-								var="tdatetime" pattern="yyyyMMddHHmmss" /> <fmt:formatDate
+						<td><br />
+						<br />${ contentVO.artist }</td>
+						<td
+							style="height: 100px; line-height: 20px; font-size: 15px; font-weight: bold; text-align: left; border: 1px solid black;">${ contentVO.content }</td>
+
+						<c:forEach items="${ list }" begin="0" end="0" var="content">
+							<td><br/><br/>${ content.contentdate }</td>
+							<td><br/><br/>${ content.contenttime }</td>
+						</c:forEach>
+						<td><br />
+						<br />${ contentVO.age }</td>
+						<td><br />
+						<br />
+						<fmt:parseDate value="${ contentVO.tDateTime }" var="tdatetime"
+								pattern="yyyyMMddHHmmss" /> <fmt:formatDate
 								value="${ tdatetime }" pattern="yyyy-MM-dd HH:mm" /></td>
 					</tr>
 				</table>
