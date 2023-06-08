@@ -140,7 +140,7 @@ textarea:-ms-input-placeholder {color:#ccc;}
 
 
 /* updateForm css  */
-#update_box {width:1000px; height:500px; margin :0 auto;}
+#update_box {width:1000px; margin :0 auto;}
 #update_box h2 {background: none; color:#444; padding-top:15px;}
 
 /* update_btn_box   */
