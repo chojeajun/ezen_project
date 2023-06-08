@@ -256,6 +256,25 @@ public class AdminDao {
 			return list;
 		}
 		
+		public int adminDeleteContent(int cseq) {
+			int result=0;
+			con=Dbman.getConnection();
+			String sql="delete from content where cseq=?";
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, cseq);
+				result=pstmt.executeUpdate();
+				
+				sql="delete from contentTime where cseq=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, cseq);
+				result=pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {Dbman.close(con, pstmt, rs);}
+			return result;
+		}
+		
 		
 		
 }
