@@ -41,7 +41,7 @@
 				<tr>
 					<th>내용</th>
 					<td align="left">
-						<textarea cols="" rows="10" readonly="readonly" >${SuccessVO.content}</textarea>
+						<textarea cols="" rows="10" readonly="readonly" style="width:1000px;" >${SuccessVO.content}</textarea>
 					</td>
 				</tr>
 				<tr>
