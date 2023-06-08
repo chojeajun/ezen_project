@@ -4,6 +4,7 @@ import com.ezen.ticket.controller.action.Action;
 import com.ezen.ticket.controller.action.IndexAction;
 import com.ezen.ticket.controller.action.admin.AdminAction;
 import com.ezen.ticket.controller.action.admin.AdminContentEditFormAction;
+import com.ezen.ticket.controller.action.admin.AdminContentListDetailAction;
 import com.ezen.ticket.controller.action.admin.AdminLoginAction;
 import com.ezen.ticket.controller.action.admin.AdminLoginFormAction;
 import com.ezen.ticket.controller.action.admin.AdminMemberListAction;
@@ -204,10 +205,12 @@ public class ActionFactory {
 		
 		// 상품 리스트 조회 
 		else if(command.equals("adminProductList")) ac = new AdminProductListAction();
-		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
-		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
-		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
+		else if(command.equals("adminContentListDetail")) ac = new AdminContentListDetailAction();
 		
+		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
+//		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
+//		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
+//		
 
 		//admin qna reply
 		else if(command.equals("adminQnaList")) ac = new AdminQnaListAction();
