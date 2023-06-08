@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../header.jsp" %>
 
-<form name="frm" method="post" class="form">
+<form name="anrFrm" method="post" class="form">
 
 	<section class="body_Choose">
 		<header>
