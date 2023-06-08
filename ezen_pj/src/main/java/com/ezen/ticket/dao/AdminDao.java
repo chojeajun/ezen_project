@@ -283,6 +283,25 @@ public class AdminDao {
 			return result;
 		}
 		
+		public void updateContent(ContentVO cvo) {
+			
+			String sql ="update content set title=?, content=?, image=? where cseq=?";
+			con = Dbman.getConnection();
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cvo.getTitle());
+				pstmt.setString(2, cvo.getContent());
+				pstmt.setString(3, cvo.getImage());
+				pstmt.setInt(4, cvo.getCseq());
+				pstmt.executeUpdate();
+
+			} catch (SQLException e) {e.printStackTrace();
+			} finally { Dbman.close(con, pstmt, rs);
+			}
+			
+			
+		}
+		
 		
 		
 }

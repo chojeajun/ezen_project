@@ -86,9 +86,9 @@
 			<div class="rev_btn_box btn_box" style="float: left">
 				<input type="button" value="메인으로" class="cancel" onClick="location.href='ticket.do?command=index'">
 			</div>
-			<div class="rev_btn_box btn_box" style="float: right">
-				<input type="button" value="수정하기" class="update" onclick="go_pro_upd('${ ContentVO.cseq}')">
-			</div>
+<!-- 			<div class="rev_btn_box btn_box" style="float: right"> -->
+<%-- 				<input type="button" value="수정하기" class="update" onclick="go_pro_upd('${ ContentVO.cseq}')"> --%>
+<!-- 			</div> -->
 		</form>
 	</div>
 </div>
