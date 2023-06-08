@@ -14,6 +14,11 @@ import com.ezen.ticket.controller.action.admin.AdminQnaListAction;
 import com.ezen.ticket.controller.action.admin.AdminQnaReplyAction;
 import com.ezen.ticket.controller.action.admin.AdminQnaReplyDeleteAction;
 import com.ezen.ticket.controller.action.admin.AdminQnaViewAction;
+import com.ezen.ticket.controller.action.admin.AdminReviewListAction;
+import com.ezen.ticket.controller.action.admin.AdminReviewListDeleteAction;
+import com.ezen.ticket.controller.action.admin.AdminReviewReplyDeleteAction;
+import com.ezen.ticket.controller.action.admin.AdminReviewViewAction;
+import com.ezen.ticket.controller.action.admin.AdminReviewViewNoCountAction;
 import com.ezen.ticket.controller.action.admin.AdminSuccessListAction;
 import com.ezen.ticket.controller.action.admin.AdminSuccessListDeleteAction;
 import com.ezen.ticket.controller.action.admin.AdminSuccessReplyDeleteAction;
@@ -234,6 +239,13 @@ public class ActionFactory {
 		else if(command.equals("adminSuccessListDelete")) ac = new AdminSuccessListDeleteAction();
 		else if(command.equals("adminSuccessReplyDelete")) ac = new AdminSuccessReplyDeleteAction();
 		else if(command.equals("adminSuccessViewNoCount")) ac = new AdminSuccessViewNoCountAction();
+		
+		// admin review List
+		else if(command.equals("adminReviewList")) ac = new AdminReviewListAction();
+		else if(command.equals("adminReviewView")) ac = new AdminReviewViewAction();
+		else if(command.equals("adminReviewListDelete")) ac = new AdminReviewListDeleteAction();
+		else if(command.equals("adminReviewReplyDelete")) ac = new AdminReviewReplyDeleteAction();
+		else if(command.equals("adminReviewViewNoCount")) ac = new AdminReviewViewNoCountAction();
 		
 		//System.out.println("33 "+ command);
 		return ac;
