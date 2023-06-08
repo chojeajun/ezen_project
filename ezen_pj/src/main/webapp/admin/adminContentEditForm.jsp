@@ -42,12 +42,6 @@
 					<c:forEach items="${ locationList }" var="LocVO" end="0">
 						<td>${ LocVO.locationName }</td>
 					</c:forEach>
-					<c:forEach items="${ locationList }" var="LocVO">
-						<tr>
-							<th>좌석</th>
-							<td><div class="area_box">${ LocVO.area }</div> <div>가격 : ${ LocVO.price }</div></td>
-						</tr>
-					</c:forEach>
 					</tr>
 				<tr>
 					<th>내용</th>
