@@ -5,6 +5,7 @@ import com.ezen.ticket.controller.action.IndexAction;
 import com.ezen.ticket.controller.action.admin.AdminAction;
 import com.ezen.ticket.controller.action.admin.AdminContentDeleteAction;
 import com.ezen.ticket.controller.action.admin.AdminContentEditFormAction;
+import com.ezen.ticket.controller.action.admin.AdminContentInsertFormAction;
 import com.ezen.ticket.controller.action.admin.AdminContentListDetailAction;
 import com.ezen.ticket.controller.action.admin.AdminLoginAction;
 import com.ezen.ticket.controller.action.admin.AdminLoginFormAction;
@@ -210,11 +211,8 @@ public class ActionFactory {
 		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
 //		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
 		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
+		else if(command.equals("adminContentInsertForm")) ac = new AdminContentInsertFormAction();
 		
-		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
-//		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
-//		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
-//		
 
 		//admin qna reply
 		else if(command.equals("adminQnaList")) ac = new AdminQnaListAction();
