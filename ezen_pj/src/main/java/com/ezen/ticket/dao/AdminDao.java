@@ -224,6 +224,7 @@ public class AdminDao {
 				while(rs.next()) {
 					cvo=new ContentVO();
 					cvo.setLocationName(rs.getString("locationName")); // adminProductDetail 에서도 사용
+					System.out.println( "공연장소 뱉어어어어어어억!!!!" +   rs.getString("locationName"));
 					cvo.setArea(rs.getString("area"));
 					cvo.setPrice(rs.getInt("price"));
 					cvo.setAreaImage(rs.getString("areaImage"));
