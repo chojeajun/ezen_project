@@ -28,7 +28,6 @@ public class AdminContentListDetailAction implements Action {
 			url = "ticket.do?command=admin";
 		} else {
 			
-			
 			AdminDao adao=AdminDao.getInstance();
 			ContentVO content=adao.getAdminContent(Integer.parseInt(request.getParameter("cseq")));
 			ArrayList<ContentVO> locList=adao.getAdminContentLoc(Integer.parseInt(request.getParameter("cseq")));
