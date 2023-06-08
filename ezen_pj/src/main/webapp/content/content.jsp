@@ -53,19 +53,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="panel">
-		<c:forEach items="${ musical }" begin="4" end="7" var="musicalVO">
-			<div id="item">
-				<a href="ticket.do?command=contentDetail&cseq=${ musicalVO.cseq }">
-					<img src="${ musicalVO.image }" />
-				</a>
-				<h1 style="line-height: 30px; height: 90px;">${ musicalVO.title }</h1>
-				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ musicalVO.cseq }&category=${ musicalVO.category }&locationNum=${ musicalVO.locationNum }"><h3>신청하기</h3>
-				</a>
-			</div>
-		</c:forEach>
-	</div>
 </div>
 
 <div id="sports">
@@ -74,19 +61,6 @@
 	</div>
 	<div class="panel">
 		<c:forEach items="${ sports }" end="3" var="sportsVO">
-			<div id="item">
-				<a href="ticket.do?command=contentDetail&cseq=${ sportsVO.cseq }">
-					<img src="${ sportsVO.image }" />
-				</a>
-				<h1 style="line-height: 30px; height: 90px;">${ sportsVO.title }</h1>
-				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ sportsVO.cseq }&category=${ sportsVO.category }&locationNum=${ sportsVO.locationNum }"><h3>신청하기</h3>
-				</a>
-			</div>
-		</c:forEach>
-	</div>
-	<div class="panel">
-		<c:forEach items="${ sports }" begin="4" end="7" var="sportsVO">
 			<div id="item">
 				<a href="ticket.do?command=contentDetail&cseq=${ sportsVO.cseq }">
 					<img src="${ sportsVO.image }" />
@@ -117,19 +91,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="panel">
-		<c:forEach items="${ festival }" begin="4" end="7" var="festivalVO">
-			<div id="item">
-				<a href="ticket.do?command=contentDetail&cseq=${ festivalVO.cseq }">
-					<img src="${ festivalVO.image }" />
-				</a>
-				<h1 style="line-height: 30px; height: 90px;">${ festivalVO.title }</h1>
-				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ festivalVO.cseq }&category=${ festivalVO.category }&locationNum=${ festivalVO.locationNum }"><h3>신청하기</h3>
-				</a>
-			</div>
-		</c:forEach>
-	</div>
 </div>
 
 <div id="exhibition">
@@ -138,20 +99,6 @@
 	</div>
 	<div class="panel">
 		<c:forEach items="${ exhibition }" end="3" var="exhibitionVO">
-			<div id="item">
-				<a href="ticket.do?command=contentDetail&cseq=${ exhibitionVO.cseq }">
-					<img src="${ exhibitionVO.image }" />
-				</a>
-				<h1 style="line-height: 30px; height: 90px;">${ exhibitionVO.title }</h1>
-				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ exhibitionVO.cseq }&category=${ exhibitionVO.category }&locationNum=${ exhibitionVO.locationNum }"><h3>신청하기</h3>
-				</a>
-			</div>
-		</c:forEach>
-	</div>
-	<div class="panel">
-		<c:forEach items="${ exhibition }" begin="4" end="7"
-			var="exhibitionVO">
 			<div id="item">
 				<a href="ticket.do?command=contentDetail&cseq=${ exhibitionVO.cseq }">
 					<img src="${ exhibitionVO.image }" />
