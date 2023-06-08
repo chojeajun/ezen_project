@@ -1,55 +1,50 @@
 @charset "UTF-8";
 /*  초기화  */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   font-size: 100%;
-   font: inherit;
-   vertical-align: baseline;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-   display: block;
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section {
+	display: block;
 }
+
 body {
-   line-height: 1;
+	line-height: 1;
 }
+
 ol, ul {
-   list-style: none;
+	list-style: none;
 }
+
 blockquote, q {
-   quotes: none;
+	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-   content: '';
-   content: none;
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
 }
+
 table {
-   border-collapse: collapse;
-   border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-
-
-
 
 #wrap {
 	width: 100%;
-	height:100%;
+	height: 100%;
 }
 
 #header {
@@ -65,8 +60,7 @@ table {
 }
 
 #header .header_inner .top_menu {
-	float:right;
-	
+	float: right;
 	height: 50px;
 	line-height: 50px;
 }
@@ -77,22 +71,28 @@ table {
 }
 
 #header .header_inner .top_menu li {
-	float:left; 
+	float: left;
 	/* width:100px; */
-	margin:0 5px;
+	margin: 0 5px;
 	text-align: center;
 }
-#header .header_inner .top_menu li:hover a {color:#444; font-weight:700; border:1px transparent;} 
+
+#header .header_inner .top_menu li:hover a {
+	color: #444;
+	font-weight: 700;
+	border: 1px transparent;
+}
+
 #header .header_inner .top_menu li a {
 	color: #444;
 	text-decoration: none;
-	padding:10px 10px;
+	padding: 10px 10px;
 }
 
 #header .header_inner .top_header_inner {
 	width: 100%;
 	height: 100px;
-	margin-top:50px;
+	margin-top: 50px;
 }
 
 #header .header_inner .top_header_inner .search_box {
@@ -105,20 +105,26 @@ table {
 	height: 30px;
 	padding-left: 10px;
 	color: #888;
+	margin: auto;
+	border: 1px solid black;
+	background-color: white;
 }
 
 #header .header_inner .top_header_inner .search_box .btn {
 	vertical-align: middle;
 	width: 60px;
 	height: 34px;
+	margin: auto;
+	border: 1px solid black;
+	background-color: #c2c2c2;
 }
 
 #logo {
 	float: left;
 	margin-top: 10px;
-	margin-left:50px;
-	width:186px;
-	height:49px;
+	margin-left: 50px;
+	width: 186px;
+	height: 49px;
 }
 
 #logo a {
@@ -130,7 +136,7 @@ table {
 	height: 100%;
 }
 
-/*  카테고리메뉴  */ 
+/*  카테고리메뉴  */
 #category_menu {
 	float: left;
 	margin-top: 24px;
@@ -169,11 +175,13 @@ table {
 	box-sizing: border-box;
 	left: 0;
 	top: 40px;
-	display:none;
-	z-index:10;
+	display: none;
+	z-index: 10;
 }
 
-#category_menu ul li:hover > .depth2_menu {display:block;}
+#category_menu ul li:hover>.depth2_menu {
+	display: block;
+}
 
 #category_menu ul li .depth2_menu>li:first-child {
 	margin-left: 0;
@@ -187,20 +195,20 @@ table {
 	text-align: left;
 	padding-left: 10px;
 	box-sizing: border-box;
-	transition:0.5s;
-	font-weight:500;
+	transition: 0.5s;
+	font-weight: 500;
 }
 
-#category_menu ul li .depth2_menu>li:hover > a {color:#444; font-weight:700;}
-
-
+#category_menu ul li .depth2_menu>li:hover>a {
+	color: #444;
+	font-weight: 700;
+}
 
 /*  footer  */
-
 #footer {
 	width: 100%;
 	height: 250px;
-	margin-top:50px;
+	margin-top: 50px;
 }
 
 #footer .footer_inner {
@@ -227,7 +235,8 @@ table {
 	margin-top: 30px;
 }
 
-#footer .footer_inner .kb_icon {width:81px;
+#footer .footer_inner .kb_icon {
+	width: 81px;
 	height: 81px;
 	position: absolute;
 	left: 0;
@@ -239,7 +248,6 @@ table {
 	height: 100%;
 }
 
-
 /* top버튼 */
 #btn_top {
 	position: fixed;
@@ -249,18 +257,18 @@ table {
 	height: 60px;
 	background-color: #000;
 	z-index: 9999;
-	text-align:center;
+	text-align: center;
 	cursor: pointer;
-    padding-top: 30px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    
+	padding-top: 30px;
+	box-sizing: border-box;
+	border-radius: 10px;
 }
 
 #btn_top a {
-	color:#fff; 
+	color: #fff;
 	text-decoration: none;
 }
+
 #btn_top a:before {
 	content: '';
 	position: absolute;
@@ -273,9 +281,3 @@ table {
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
 }
-
-
-
-
-
-
