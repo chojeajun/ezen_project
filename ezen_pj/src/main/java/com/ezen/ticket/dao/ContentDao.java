@@ -328,7 +328,7 @@ public class ContentDao {
 		return content;
 	}
 
-	public ArrayList<ContnetVO> contentSearch(String key) {
+	public ArrayList<ContentVO> contentSearch(String key) {
 		con = Dbman.getConnection();
 		String sql = "select cseq from content where title like '%?%'";
 		try {
@@ -343,6 +343,8 @@ public class ContentDao {
 		
 		return cseq;
 	}
+
+
 	
 }
 
