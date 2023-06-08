@@ -205,6 +205,8 @@ public class ActionFactory {
 		// 상품 리스트 조회 
 		else if(command.equals("adminProductList")) ac = new AdminProductListAction();
 		else if(command.equals("adminContentEditForm")) ac = new AdminContentEditFormAction();
+		else if(command.equals("adminContentEdit")) ac = new AdminContentEditAction();
+		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
 		
 
 		//admin qna reply
