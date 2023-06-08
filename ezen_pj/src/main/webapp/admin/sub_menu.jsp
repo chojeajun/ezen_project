@@ -10,5 +10,6 @@
 		<li><a href="ticket.do?command=adminOrderList&changMenu=1">주문리스트</a></li>
 		<li><a href="ticket.do?command=adminMemberList&changMenu=1">회원리스트</a></li>
 		<li><a href="ticket.do?command=adminQnaList&changMenu=1">1:1 리스트</a></li>
+		<li><a href="ticket.do?command=index">메인으로 돌아가기</a></li>
 	</ul>
 </nav>

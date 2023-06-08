@@ -213,14 +213,13 @@ public class ActionFactory {
 		else if(command.equals("adminContentDelete")) ac = new AdminContentDeleteAction();
 		else if(command.equals("adminContentInsertForm")) ac = new AdminContentInsertFormAction();
 		
-
 		//admin qna reply
 		else if(command.equals("adminQnaList")) ac = new AdminQnaListAction();
 		else if(command.equals("adminQnaView")) ac = new AdminQnaViewAction();
 		else if(command.equals("adminQnaReply")) ac = new AdminQnaReplyAction();
 		else if(command.equals("adminQnaReplyDelete")) ac = new AdminQnaReplyDeleteAction();
-
-
+		
+		
 		
 		//  admin member List
 		else if(command.equals("adminMemberList")) ac = new AdminMemberListAction();

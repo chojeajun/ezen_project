@@ -36,11 +36,15 @@
 					<th>카테고리</th>
 					<td>${ ContentVO.category }</td>
 				</tr>
-				<c:forEach items="locationList" var="LocationVO">
-				<tr>
-					<th>공연장소</th>
-					<td>${ LocationVO.locationName }</td>
-				</tr>
+				<c:forEach items="${ locationList }" var="LocVO" end="0">
+					<tr>
+						<th>공연장소</th>
+						<td>${ LocVO.locationName }</td>
+						<th>좌석</th>
+						<td>${ LocVO.area }</td>
+						<th>가격</th>
+						<td>${ LocVO.price }</td>
+					</tr>
 				</c:forEach>
 				<tr>
 					<th>내용</th>
