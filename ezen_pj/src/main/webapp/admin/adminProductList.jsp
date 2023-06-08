@@ -32,10 +32,13 @@
 			<tr>
 				<td style="text-align: left;">${ productVO.cseq }</td>
 				<td>${ productVO.title }</td>
-				<td>${ productVO.artist }></td>
+				<td>${ productVO.artist }</td>
 				<td>${ productVO.locationName }</td>
 				<td>${ productVO.category }</td>
 				<td>${ productVO.bestyn }</td>
+				<td><input type="button" value="수정" onclick="location.href='ticket.do?command=adminContentEditForm&cseq=${ productVO.cseq }'"></td>
+				<td><input type="button" value="삭제" onclick="location.href='ticket.do?command=adminContentDelete&cseq=${ productVO.cseq }''"></td>
+				
 			</tr>
 		</c:forEach>
 	</table>

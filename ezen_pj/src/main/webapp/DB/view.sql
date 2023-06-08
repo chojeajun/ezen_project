@@ -138,6 +138,7 @@ select * from success_reply_member;
 create or replace view product_all_content_view as select c.* , p.category, bestyn from content_loc_seat_view c, content p where c.cseq = p.cseq;
 
 
+
 select * from product_all_content_view;
 
 
