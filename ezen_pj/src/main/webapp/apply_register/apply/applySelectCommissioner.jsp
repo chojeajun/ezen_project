@@ -54,7 +54,7 @@
                         </ul>
                         <script>
                         
-                        
+                        //대리인 선택했을 때 js로 가격얻는 함수
                         function saveCommissioner(num){
                      		var comPrice = document.getElementById('com_price'+num).value;
                      	 	var cprice = document.querySelector('.cprice');

@@ -34,19 +34,21 @@ public class ApplyCartAction implements Action {
 			String area = request.getParameter("area");
 			String quantity = request.getParameter("quantity");
 			int result = 0;
-			if (request.getParameter("cartseq") == null) {
+			
+			if (request.getParameter("cartseq") == null) { //상품을 처음으로 카트에 넣는 경우
 
-				if (request.getParameter("mseq2") != null) {
+				if (request.getParameter("mseq2") != null) { //대리인 선택하고 카트에 넣는 경우
 					int mseq2 = Integer.parseInt(request.getParameter("mseq2"));
 					result = cdao.insertCart(mseq, cseq, date, time, area, mseq2, quantity);
 					System.out.println("대리인 선택했어욤 대리인번호:" + mseq2);
-				} else {
+				} else { //대리인 선택 안하고 카트에 넣는 경우
 					result = cdao.insertCartMseq2Null(mseq, cseq, date, time, area, quantity);
 					System.out.println("대리인 선택안함!");
 				}
-			} else {
+			} else {  //이미 장바구니에 있던 상품을 수정해서 다시 장바구니에 넣는 경우
 				int cartseq = Integer.parseInt(request.getParameter("cartseq"));
-				result = cdao.hoonUpdateCart(cartseq, Integer.parseInt(request.getParameter("mseq2")));
+				result = cdao.hoonUpdateCart/*자기애 넘치는 상훈*/(cartseq, Integer.parseInt(request.getParameter("mseq2")));
+				
 			}
 
 			if (result == 1) {

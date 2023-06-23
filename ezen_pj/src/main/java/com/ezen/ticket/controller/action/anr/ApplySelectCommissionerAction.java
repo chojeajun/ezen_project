@@ -46,8 +46,8 @@ public class ApplySelectCommissionerAction implements Action {
 
 //		list의 tDateTime으로 registerTime이랑 비교해서 대리인 추출
 		RegisterTimeDao rtdao=RegisterTimeDao.getInstance();
-		String tDate=list.get(0).gettDateTime().substring(0, 8);
-		String tTimeStr=list.get(0).gettDateTime().substring(8,12);
+		String tDate=list.get(0).gettDateTime().substring(0, 8); //날짜 19991111형식으로 자름
+		String tTimeStr=list.get(0).gettDateTime().substring(8,12); //시간 0000형식으로 자름
 		int tTime=Integer.parseInt(tTimeStr);
 		
 		

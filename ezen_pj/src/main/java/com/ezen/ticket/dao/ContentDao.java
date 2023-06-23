@@ -60,16 +60,16 @@ public class ContentDao {
 		String sql;
 		ContentVO cvo = null;
 		try {
-			if (category == 0) {
+			if (category == 0) { //카테고리가 전체 선택인 경우
 				sql = "select * from content";
 				pstmt = con.prepareStatement(sql);
-			} else {
+			} else { //특정 카테고리 선택한 경우
 				sql = "select * from content where category=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, category);
 			}
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			while (rs.next()) { //평범하게 필요한 정보 담는중
 				cvo = new ContentVO();
 				cvo.setCseq(rs.getInt("cseq"));
 				cvo.setCategory(rs.getInt("category"));
@@ -120,6 +120,7 @@ public class ContentDao {
 	}
 
 	public ArrayList<ContentVO> selectFromContentByTitle(int cseq) {
+		//잘 모를 때 해서 list로 담았는데 그냥 ContentVO에 담으면 될듯....!!
 		ArrayList<ContentVO> list = new ArrayList<ContentVO>();
 		ContentVO cvo = null;
 		con = Dbman.getConnection();
@@ -135,7 +136,6 @@ public class ContentDao {
 				cvo.setTitle(rs.getString("title"));
 				cvo.setArtist(rs.getString("artist"));
 				cvo.setLocationNum(rs.getInt("locationNum"));
-				System.out.println("제대로 말해라 " + rs.getInt("locationNum"));
 				cvo.setContent(rs.getString("content"));
 				cvo.setImage(rs.getString("image"));
 				cvo.setAge(rs.getString("age"));
@@ -165,10 +165,9 @@ public class ContentDao {
 				cvo.setCseq(cseq);
 				cvo.setCategory(rs.getInt("category"));
 				cvo.setLocationNum(rs.getInt("locationNum"));
-				System.out.println("cseq=" + cvo.getCseq());
-				System.out.println("category=" + cvo.getCategory());
-				System.out.println("locationNum=" + cvo.getLocationNum());
-				list.add(cvo);
+				list.add(cvo); 
+				//이부분은 제목을 누르면 새창으로 뜨니까 정보가 다 날라가서 다시 뜨게 하려고 넣은 거임
+				//ajax로 해결하면 필요없는 부분일거라고 믿어..ㅎㅎ
 			}
 			sql = "select distinct contentDate, cseq from contentTime where cseq=?";
 			pstmt = con.prepareStatement(sql);

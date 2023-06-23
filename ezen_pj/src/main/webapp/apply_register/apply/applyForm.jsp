@@ -8,6 +8,10 @@
 	<div class="applyBox" name="applyBoxForm">
 	
 
+						<!-- 이 페이지 예전에 쌤한테 질문했을 때 ajax로 해결할 수 있다고 함
+							지금은 하나 누르면 페이지가 새로 뜨는데 한페이지에서 정보 뜨게 하면 최고일 것 같음 
+							파이팅 누군지는 몰라도
+						-->
 			<div class="applyTitleBox">
 			
 				<ul class="applyTitle">
@@ -32,6 +36,12 @@
 				</div>
 				<div class="contentNameBox bodyBox">
 						<ul>
+						<!--이 부분은 for문 돌릴 때 js로 클릭한 li의 아이디를 넘겨야 하는데 for문으로 돌리니까 전부 id가 같아서
+						모든 정보가 다 넘겨졌었음
+						그래서 varStatus="state" 한다음에 id에 state.count붙이고 ${state.count}로 순서 숫자 넘겨서,,,,
+						글로 설명하기 어렵다
+						js 펑션에서 cseq+숫자로 아이디 지정하는 거임
+						무슨 소린지 모르겠으면 걍 카톡해 머리아프다...............-->
 					<c:forEach items="${contentList}" var="contentVO" varStatus="state">
 							<li onclick="saveCseq('${state.count}')"><a href="ticket.do?command=applyContentSelect&cseq=${contentVO.cseq}&category=${category}&locationNum=${contentVO.locationNum}">
 							${contentVO.title}</a>
@@ -39,7 +49,6 @@
 							</li>
 					</c:forEach>
 						</ul>
-						<!-- 제목 눌렀을때 배경색이 바뀌면 참 좋겠다,,, -->
 				</div>
 				<div class="detailBox bodyBox">
 					<!-- 선택한 공연 정보(포스터, 제목, 위치, 아티스트) -->
@@ -63,6 +72,8 @@
 					</div>
 				</div>
 				<div class="dateBox bodyBox">
+				<!-- 얘도 위의 반복문하고 똑같은 방법으로 함 begin=1을 한 이유는 0부터 시작하게 그냥 두니까
+				공백도 떠서 1부터 시작하게 함 -->
 							<ul class="date">
 						<c:forEach items="${contentDateList}" var="contentDL" varStatus="state" begin="1">
 								<li onclick="saveDate('${state.count}')"><a href="ticket.do?command=applyContentSelect&cseq=${contentDL.cseq}&category=${category}&locationNum=${contentDL.locationNum}&contentDate=${contentDL.contentDate}">
@@ -83,6 +94,7 @@
 				</div>
 				
 				<script>
+					//챗선생이 해주심
 					//클릭하면 색 바뀌게 하는거!
 					//time
 					const non_Click = document.querySelectorAll(".liclick_time");

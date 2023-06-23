@@ -12,6 +12,7 @@ function go_apply() {
 	sessionStorage.removeItem('selectedQuantity');
 	sessionStorage.removeItem('selectedCom');
 	document.anrFrm.action = 'ticket.do?command=categorySelect&category=0';
+	// 전체보기 카테고리 선택한 페이지로 연결함
 	document.anrFrm.submit();
 }
 
