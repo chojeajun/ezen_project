@@ -66,25 +66,26 @@ public class RegisterTimeDao {
 		
 	}
 
-	//등록한 대리인 정보와 등록 날짜, 시간 불러오는 곳
 	public ArrayList<RegisterTimeVO> getCommissioner(int mseq, String tDate, int tTime) {
 		ArrayList<RegisterTimeVO> list=new ArrayList<RegisterTimeVO>();
+		//등록한 대리인 정보와 등록 날짜, 시간 불러오는 메소드
 		RegisterTimeVO rtvo=null;
 		con=Dbman.getConnection();
-		String sql="select * from commissioner_view where registerDate=?";
+		String sql="select * from commissioner_view where registerDate=?"; //티켓팅 날짜와 같은 대리인 select
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, tDate);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				String starttime=rs.getString("starttime").replace(":", "");
+				String starttime=rs.getString("starttime").replace(":", ""); //시간 형식 0000으로 바꿈
 				String endtime=rs.getString("endtime").replace(":", "");
-				int startTime=Integer.parseInt(starttime);
+				int startTime=Integer.parseInt(starttime); //String에서 숫자로 전환해서 비교할거임
 				int endTime=Integer.parseInt(endtime);
 				System.out.println("startTime: "+startTime);
 				System.out.println("endTime: "+endTime);
 				
 				sql="select * from commissioner_view where registerDate=? and ?<=? and ?<=? and mseq!=? order by success desc";
+				//티켓팅 날짜에 시간 되는 대리인 중 시간대도 되는 대리인 고름. 그중에서 본인은 제외함
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, tDate);
 				pstmt.setInt(2, startTime);
