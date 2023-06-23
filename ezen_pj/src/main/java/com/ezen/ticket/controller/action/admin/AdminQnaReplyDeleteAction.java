@@ -29,7 +29,7 @@ public class AdminQnaReplyDeleteAction implements Action {
 				System.out.println("답변상태 업뎃 안됨ㅠ");
 			}
 		}else {
-			System.out.println("qna답글 삭제 실패ㅠㅠㅠ");
+			System.out.println("qna답글 삭제 실패ㅠ");
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}

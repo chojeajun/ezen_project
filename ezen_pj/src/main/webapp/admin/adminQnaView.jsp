@@ -49,7 +49,7 @@
 		
 	</table>
 			
-	<c:set var="now" value="<%=new java.util.Date()%>" />
+<%-- 	<c:set var="now" value="<%=new java.util.Date()%>" /> --%>
 	
 				<table class="adminReplyList" id="adminReplyList">
 					<tr style="border-bottom:1px solid #444;">
