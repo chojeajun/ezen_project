@@ -22,20 +22,20 @@ public class ApplyContentSelectAction implements Action {
 		HttpSession session=request.getSession();
 		MemberVO mvo=(MemberVO)session.getAttribute("loginUser");
 		ArrayList<ContentVO> list =null;	
-		ArrayList<ContentVO> list2 =null;	
-		ArrayList<ContentVO> list3 =null;	
-		ArrayList<ContentVO> list4 =null;	
-		ArrayList<ContentVO> list5 =null;	
-		ArrayList<ContentVO> list6 =null;
+		ArrayList<ContentVO> contentTableList =null;	
+		ArrayList<ContentVO> contentDateList =null;	
+		ArrayList<ContentVO> contentLocationList =null;	
+		ArrayList<ContentVO> contentAreaList =null;	
+		ArrayList<ContentVO> contentTimeList =null;
 		if(mvo ==null) {
 			url="ticket.do?command=loginForm";
 		}else {
 			ContentDao cdao=ContentDao.getInstance();
 			
-			if(request.getParameter("contentDate")!=null) {
+			if(request.getParameter("contentDate")!=null) { //날짜를 선택했을 경우
 				System.out.println("contendDate:"+request.getParameter("contentDate"));
-				String contentDate=request.getParameter("contentDate").substring(0, 10);
-				contentDate=contentDate.replace("-", "");
+				String contentDate=request.getParameter("contentDate").substring(0, 10); //Timestamp 형식에서 시간부분 버림(0000-00-00 형식으로 변환)
+				contentDate=contentDate.replace("-", "");//날짜에서 - 부분 버리고 00000000 형식으로 변환 
 				System.out.println("contentDate:"+contentDate);
 				
 				int category=Integer.parseInt(request.getParameter("category"));
@@ -44,24 +44,24 @@ public class ApplyContentSelectAction implements Action {
 				
 				int cseq=Integer.parseInt(request.getParameter("cseq"));
 				
-				list2=cdao.selectFromContentByTitle(cseq);
-				int locationNum=list2.get(0).getLocationNum();
+				contentTableList=cdao.selectFromContentByTitle(cseq); //공연기본정보 얻음
+				int locationNum=contentTableList.get(0).getLocationNum();
 				System.out.println("locationNum:"+locationNum);
 
-				list3=cdao.selectFromContentTimeByTitle(cseq);
-				list4=cdao.selectFromLocationViewByTitle(cseq);
-				list5=cdao.selectFromContentAreaByTitle(locationNum);
-				list6=cdao.selectTimeByDate(cseq, contentDate);
+				contentDateList=cdao.selectFromContentTimeByTitle(cseq); //공연 날짜 얻음
+				contentLocationList=cdao.selectFromLocationViewByTitle(cseq); //공연장 이름, 좌석도 얻음
+				contentAreaList=cdao.selectFromContentAreaByTitle(locationNum); //구역, 구역별 가격 얻음
+				contentTimeList=cdao.selectTimeByDate(cseq, contentDate); //
 				
 				request.setAttribute("category", category);
 				
 				request.setAttribute("contentList", list);
-				request.setAttribute("contentTableList", list2);
-				request.setAttribute("contentDateList", list3);
-				request.setAttribute("contentLocationList", list4);
-				request.setAttribute("contentAreaList", list5);
-				request.setAttribute("contentTimeList", list6);
-			}else {
+				request.setAttribute("contentTableList", contentTableList);
+				request.setAttribute("contentDateList", contentDateList);
+				request.setAttribute("contentLocationList", contentLocationList);
+				request.setAttribute("contentAreaList", contentAreaList);
+				request.setAttribute("contentTimeList", contentTimeList);
+			}else { //제목을 선택했을 경우
 			
 			int category=Integer.parseInt(request.getParameter("category"));
 			list = cdao.selectContent(category);
@@ -70,18 +70,18 @@ public class ApplyContentSelectAction implements Action {
 			int locationNum=Integer.parseInt(request.getParameter("locationNum"));
 			System.out.println("locationNum:"+locationNum);
 
-			list2=cdao.selectFromContentByTitle(cseq);
-			list3=cdao.selectFromContentTimeByTitle(cseq);
-			list4=cdao.selectFromLocationViewByTitle(cseq);
-			list5=cdao.selectFromContentAreaByTitle(locationNum);
+			contentTableList=cdao.selectFromContentByTitle(cseq);
+			contentDateList=cdao.selectFromContentTimeByTitle(cseq);
+			contentLocationList=cdao.selectFromLocationViewByTitle(cseq);
+			contentAreaList=cdao.selectFromContentAreaByTitle(locationNum);
 			
 			request.setAttribute("category", category);
 
 			request.setAttribute("contentList", list);
-			request.setAttribute("contentTableList", list2);
-			request.setAttribute("contentDateList", list3);
-			request.setAttribute("contentLocationList", list4);
-			request.setAttribute("contentAreaList", list5);
+			request.setAttribute("contentTableList", contentTableList);
+			request.setAttribute("contentDateList", contentDateList);
+			request.setAttribute("contentLocationList", contentLocationList);
+			request.setAttribute("contentAreaList", contentAreaList);
 
 			
 			}
