@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+.review_img_box {background: url(../images/sub_bg.jpg) no-repeat; height:130px;}
+#review_box {width:100%; border:1px solid red; margin:0 auto;}
+#review_box .review_content {width:1200px;  border:1px solid black; margin:0 auto;  text-align: center;}
+#review_box .review_content .review_title { margin:10px 0;  background: none;}
+#review_box .review_content h3 {margin : 10px 0;}
+/* review_form review_list  */
+#review_box .review_content .review_form {width:1000px; margin:0 auto;}
+#review_box .review_content .review_form input[type="text"] , input[type="file"] {background:none; width:100%; box-sizing:border-box; height:40px;}
+#reviewList {border-collapse: collapse;border-top: 2px solid #333;border-bottom: 1px solid #333;width: 100%;margin-bottom: 20px;}
+
+#reviewList .review_list_h {background: #444; color:#fff;}
+
+#reviewList th, td {border-bottom: 1px solid #999; text-align: center;}
+#reviewList tr {height:40px; line-height:40px;}
+#reviewList tr td { border-top-color:#ddd; border-bottom-color:#ddd;}
+#reviewList tr td a {display: block; }
+.rev_btn_box.btn_box {margin-top:20px;}
+.rev_btn_box.btn_box input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px;}
+/* review_view */
+.review_view_table {width:100%; border:1px solid #ddd;}
+.review_view_table th {width:15%; vertical-align: middle; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
+.review_view_table td {border-bottom:1px solid #ddd; height:40px; line-height:40px; text-align: left; padding-left:10px;}
+.review_view_table td textarea {padding:10px; box-sizing:border-box;width:100%; resize: none;height:250px; resize: none;}
+/* .review_view_table tbody tr:nth-child(5) td {padding-left:0;} */
+
+/*  review_write  */
+#review_box .review_content .review_form table th {width:15%; vertical-align: middle; padding:0;}
+#review_box .review_content .review_form table td input {margin: 0;}
+#review_box .review_content .review_form table td textarea {width:100%; box-sizing: border-box; resize: none; padding:10px;}
+#review_box .review_content .review_form table td input[type="file"] button {height:40px;}
+
+/*  btn_fiel_up 버튼  */
+#reviewList label {margin:0;}
+#reviewList .file_up_label {width:100%; float:none;  text-align: left; }
+/* #reviewList .file_up_label input[type="file"] {} */
+/* #reviewList .btn_file_up {width:100%; height:40px; margin-left:20px} */
+
+
+
+ .review_update_btn {height: 30px;width: 150px;border: 1px solid #666;border-radius: 10px;box-shadow: 3px 3px 2px #ccc;font-size: 14px;background-repeat: repeat-x;background-position: center center;color: #fff;line-height: 30px;margin: 0 0 0 20px;}
+/*  로그인 한 아이디와 리뷰 작성한 아이디가 같을떄만 리뷰 수정하기 버튼 등장  */
+
+/*  리플 box table   */
+.reply_box {    width: 100%; margin-top: 50px;border-top: 1px solid #cdcdcd;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
