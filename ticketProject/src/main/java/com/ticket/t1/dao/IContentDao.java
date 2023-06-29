@@ -1,16 +1,12 @@
 package com.ticket.t1.dao;
 
-
 import java.util.HashMap;
-
 
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface IMemberDao {
+public interface IContentDao {
 
-
-	void getMember(HashMap<String, Object> paramMap);
-
+	void getBestNewSuccessBannerList(HashMap<String, Object> paramMap);
 
 }

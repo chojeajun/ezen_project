@@ -1,5 +1,6 @@
 package com.ticket.t1.controller;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ticket.t1.dto.MemberVO;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+
 import com.ticket.t1.service.MemberService;
 
 @Controller
@@ -24,6 +30,7 @@ public class MemberController {
 	@Autowired
 	MemberService ms;
 	
+
 	@RequestMapping("/")
 	public String root() {
 		return "member/main";
@@ -81,4 +88,5 @@ public class MemberController {
 	
 	
 	
+
 }
