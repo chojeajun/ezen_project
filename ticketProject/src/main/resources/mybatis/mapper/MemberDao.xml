@@ -17,5 +17,13 @@
 		}
 	</select>
 	
+	<insert id="joinKakao" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL joinKakao(
+				#{id}, #{name}, #{email}, #{provider} 
+			)
+		}
+	</insert>
+	
 	
 </mapper>
