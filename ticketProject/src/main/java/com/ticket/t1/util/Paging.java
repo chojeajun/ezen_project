@@ -13,7 +13,7 @@ public class Paging {
 	private int startNum;
 	private int endNum;
 	
-	private void paging() {
+	public void paging() {
 		endPage = ( (int)Math.ceil( page/(double)displayPage ) ) * displayPage;
     	beginPage = endPage - (displayPage - 1);
     	int totalPage = (int)Math.ceil( totalCount/(double)displayRow );
