@@ -14,7 +14,6 @@ import com.ticket.t1.dto.OrderVO;
 import com.ticket.t1.dto.QnaVO;
 import com.ticket.t1.util.Paging;
 
-
 @Mapper
 public interface IAdminDao {
 	
@@ -33,10 +32,6 @@ public interface IAdminDao {
 	void insertBanner(BannerVO bannervo);
 
 
-import org.apache.ibatis.annotations.Mapper;
-
-@Mapper
-public interface IAdminDao {
 
 
 }

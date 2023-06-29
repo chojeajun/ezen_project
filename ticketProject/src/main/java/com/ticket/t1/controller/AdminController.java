@@ -33,12 +33,6 @@ import com.ticket.t1.service.QnaService;
 import com.ticket.t1.util.Paging;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.ticket.t1.service.AdminService;
-
-
 @Controller
 public class AdminController {
 
