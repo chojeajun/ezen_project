@@ -11,7 +11,7 @@
 				<input class="btn" type="button" name="btn_write" value="새배너 등록" 
 						onClick="location.href='newBannerWrite'"></td></tr>
 		</table>
-		<table id="productList">
+		<table id="contentList">
 			<tr><th>번호</th><th>제목</th><th>순위</th><th>사용유무 </th><th>등록일</th><th>수정 </th></tr>
 			<c:choose>
 		    	<c:when test="${bannerListSize==0}">

@@ -1,7 +1,10 @@
 package com.ticket.t1.controller;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,52 +43,45 @@ public class AdminController {
 	@Autowired
 	AdminService as;
 	
-
-	@RequestMapping("/admin")
+	@RequestMapping(value="/admin")
 	public String admin() {
 		return "admin/adminLoginForm";
 	}
 	
-	
-	@RequestMapping("adminLogin")
-	public ModelAndView admin_login(
-						@RequestParam(value="workId", required=false) String workId,
-						@RequestParam(value="workPwd", required=false) String workPwd, 
-						HttpServletRequest request ) {
-		ModelAndView mav = new ModelAndView();
-		if( workId == null ) {
-			mav.addObject("msg" , "아이디를 입력하세요");
-			mav.setViewName("admin/adminLoginForm");
-			return mav;
-		}else if( workId.equals("") ) {
-			mav.addObject("msg" , "아이디를 입력하세요");
-			mav.setViewName("admin/adminLoginForm");
-			return mav;
-		}else if( workPwd == null) {
-			mav.addObject("msg" , "패쓰워드를 입력하세요");
-			mav.setViewName("admin/adminLoginForm");
-			return mav;
-		}else if( workPwd.equals("")) {
-			mav.addObject("msg" , "패쓰워드를 입력하세요");
-			mav.setViewName("admin/adminLoginForm");
-			return mav;
+	@RequestMapping(value="/adminLogin")
+	public String adminLogin( HttpServletRequest request, Model model, 
+			@RequestParam("workId") String workId, 
+			@RequestParam("workPwd") String workPwd) {	
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("workId", workId);
+		paramMap.put( "ref_cursor", null );
+		as.getAdmin(paramMap);	 // 아이디로 관리자 조회
+		ArrayList< HashMap<String,Object> > list 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		String url = "admin/adminLoginForm";
+		if(list.size() == 0) {  // 입력한 아이디 없다면
+			model.addAttribute("message" , "아이디가 없어요");
+			return "admin/adminLoginForm";
 		}
+		HashMap<String, Object> resultMap = list.get(0); 
+		if(resultMap.get("PWD")==null) model.addAttribute("message" , "관리자에게 문의하세요");
+		else if( !workPwd.equals( (String) resultMap.get("PWD") ) )
+			model.addAttribute("message" , "비번이 안맞아요");
+		else if( workPwd.equals( (String) resultMap.get("PWD") ) ) { 
+			HttpSession session = request.getSession();
+			session.setAttribute("loginAdmin", resultMap);
+			url = "redirect:/contentList";
+		}
+		return url;
+	}
+	
+	@RequestMapping(value="/adminLogout")
+	public String adminLogout( HttpServletRequest request ) {
 		
-		int result = as.workerCheck( workId, workPwd );
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginAdmin" );
 		
-		if(result == 1) {
-	    		HttpSession session = request.getSession();
-	    		session.setAttribute("workId", workId);
-	    		mav.setViewName("redirect:/productList");
-		} else if (result == 0) {
-	        	mav.addObject("message", "비밀번호를 확인하세요.");
-	        	mav.setViewName("admin/adminLoginForm");
-		} else if (result == -1) {
-	    		mav.addObject("message", "아이디를 확인하세요.");
-	    		mav.setViewName("admin/adminLoginForm");
-		}	
-		
-		return mav;
+		return "admin/adminLoginForm";
 	}
 	
 	@RequestMapping("/contentList")
@@ -106,30 +103,42 @@ public class AdminController {
 	
 
 	@RequestMapping(value="/contentWriteForm")
-	   public String product_write_form( HttpServletRequest request, Model model) {
-	      String kindList[] = { "Heels", "Boots", "Sandals", "Shcakers", "Slipers",  "Sale" };
-	      model.addAttribute("kindList", kindList);
-	      return "admin/content/contentWriteForm";
-	 }
+	public String product_write_form( HttpServletRequest request, Model model) {
+		String categoryList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
+		model.addAttribute("categoryList", categoryList);
+		return "admin/content/contentWriteForm";
+	}
 	
 	@Autowired
 	ServletContext context;
 	
 	@RequestMapping(value="fileup", method=RequestMethod.POST)
 	@ResponseBody
-	public HashMap<String, Object> fileup(Model model, HttpServletRequest request){
-		String path=context.getRealPath("/content_images");
-		HashMap<String, Object>result=new HashMap<String, Object>();
-		
-		try {
-			MultipartRequest multi=new MultipartRequest(request,path,5*1024*1024,"UTF-8", new DefaultFileRenamePolicy());
-			result.put("STATUS",1);
-			result.put("FILENAME", multi.getFilesystemName("fileimage"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public HashMap<String, Object> fileup( 
+			@RequestParam("fileimage") MultipartFile file,
+			HttpServletRequest request, Model model	) {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		String path = context.getRealPath("/content_images");	
+		Calendar today = Calendar.getInstance();
+ 		long t = today.getTimeInMillis();
+ 		String filename = file.getOriginalFilename(); 
+ 		String fn1 = filename.substring(0, filename.indexOf(".") );  
+ 		String fn2 = filename.substring(filename.indexOf(".")+1 );
+ 		
+ 		if (!file.isEmpty()) {   
+            String uploadPath = path + "/" + fn1 + t +  "." + fn2;
+            System.out.println("파일 저장 경로 = " + uploadPath);
+            try {
+				file.transferTo( new File(uploadPath) );
+			} catch (IllegalStateException e) { e.printStackTrace();
+			} catch (IOException e) { e.printStackTrace();
+			}
+ 		}
+		result.put("STATUS", 1);
+		result.put("FILENAME", fn1 + t +  "." + fn2 );
 		return result;
 	}
+	
 	
 	@RequestMapping(value="/contentWrite", method=RequestMethod.POST)
 	public String contentWrite(@ModelAttribute("dto") @Valid ContentVO contentvo, BindingResult result,
@@ -162,10 +171,10 @@ public class AdminController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("contentVO",ps.getContent(pseq));
 		
-		String kindList[]= {"0","Heels", "Boots", "Sandals", "Slippers", "Sneakers",  "Sale"};
-		int index=Integer.parseInt(ps.getContent(pseq).getcategory());
+		String categoryList[]= {"0","Heels", "Boots", "Sandals", "Slippers", "Sneakers",  "Sale"};
+		int index=Integer.parseInt(ps.getContent(pseq).getCategory());
 		
-		mav.addObject("kind",kindList[index]);
+		mav.addObject("Category",categoryList[index]);
 		mav.setViewName("admin/content/contentDetail");
 		
 		return mav;
