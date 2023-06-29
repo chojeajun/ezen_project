@@ -15,6 +15,31 @@ commit;
 select * from member;
 alter table member add provider varchar2(100);
 
+
+
+
+CREATE OR REPLACE PROCEDURE getAdmin(
+    p_id IN   worker.id%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        select * from worker where id=p_id;
+        
+END;
+
+DROP PROCEDURE getAdmin;
+
+DELIMITER $$
+
+CREATE PROCEDURE IF NOT EXISTS
+
+END$$
+
+DELIMITER ;
+
+
+
 --카카오로그인
 CREATE OR REPLACE PROCEDURE joinKakao(
     p_id IN member.id%TYPE,
@@ -60,3 +85,4 @@ select * from all_sequences where sequence = 'member_mseq';
 SELECT *
   FROM all_sequences
  WHERE sequence_name = 'member_mseq';
+

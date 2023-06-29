@@ -18,8 +18,6 @@ public class ContentService {
 	@Autowired
 	IContentDao cdao;
 
-
-
 	public HashMap<String, Object> getBestNewList() {
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		

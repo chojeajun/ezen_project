@@ -3,31 +3,32 @@
 <%@ include file="../../include/admin/sub_menu.jsp"%>
 
 <article>
-<h1>상품리스트</h1>
+<h1>공연리스트</h1>
 <form name="frm" method="post">
 	<table>
 		<tr><td width="642">
-			상품명<input type="text" name="key" value="${key}">
-			<input class="btn" type="button" name="btn_search" value="검색" onClick="go_search('productList');">
-			<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total('productList');">
-			<input class="btn" type="button" name="btn_write" value="상품등록"  	onClick="go_wrt();"></td></tr>
+			공연명<input type="text" name="key" value="${key}">
+			<input class="btn" type="button" name="btn_search" value="검색" onClick="go_search('contentList');">
+			<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total('contentList');">
+			<input class="btn" type="button" name="btn_write" value="공연등록"  	onClick="go_wrt();"></td></tr>
 	</table>
-	<table id="productList" align="center">
-		<tr><th>번호</th><th>상품명</th><th>원가</th><th>판매가</th><th>등록일</th><th>사용유무</th></tr>
+	<table id="contentList" align="center">
+		<tr><th>번호</th><th>공연명</th><th>아티스트</th><th>컨텐츠</th><th>가격</th><th>등록일</th><th>연령제한</th></tr>
 		<c:choose>
-	    	<c:when test="${productListSize<=0}">
+	    	<c:when test="${contentListSize<=0}">
 	    		<tr><td width="100%" colspan="7" align="center" height="23">등록된 상품이 없습니다.</td></tr>
 	    	</c:when>
 	    	<c:otherwise>
-	    		<c:forEach items="${productList}" var="productVO">
-			   		<tr><td height="23" align="center" >${productVO.pseq}</td>
+	    		<c:forEach items="${contentList}" var="contentVO">
+			   		<tr><td height="23" align="center" >${contentVO.cseq}</td>
 						<td style="text-align:left; padding-left:50px; padding-right:0px;">
-						<a href="#" onClick="go_detail('${productVO.pseq}')">${productVO.name}</a></td>
-						<td><fmt:formatNumber value="${productVO.price1}"/></td>
-						<td><fmt:formatNumber value="${productVO.price2}"/></td>
-			      		<td><fmt:formatDate value="${productVO.indate}"/></td>
+						<a href="#" onClick="go_detail('${contentVO.cseq}')">${contentVO.artist}</a></td>
+						<td><fmt:formatNumber value="${contentVO.content}"/></td>
+							<td><fmt:formatNumber value="${contentVO.price}"/></td>
+			      		<td><fmt:formatDate value="${contentVO.indate}"/></td>
+			      			<td><fmt:formatDate value="${contentVO.age}"/></td>
 			      		<td><c:choose>
-			      			<c:when test='${productVO.useyn=="N"}'>미사용</c:when>
+			      			<c:when test='${contentVO.useyn=="N"}'>미사용</c:when>
 			   	 			<c:otherwise>사용</c:otherwise> 
 						</c:choose></td>
 					</tr>
@@ -38,7 +39,7 @@
 </form><br>
 
 <jsp:include page="../../include/paging/paging.jsp">
-	<jsp:param name="command" value="productList" />
+	<jsp:param name="command" value="contentList" />
 </jsp:include>
 
 </article>

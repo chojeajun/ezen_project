@@ -26,18 +26,8 @@ public class AdminService {
 	@Autowired
 	IAdminDao adao;
 
-	public int workerCheck(String workId, String workPwd) {
-		
-		System.out.println("id : " + workId);
-		String pwd = adao.getPwd( workId );
-		System.out.println("pwd : " + pwd);
-		int result=0;
-		
-		if(pwd == null) result = -1;   // 아이디 없음
-		else if( workPwd.equals(pwd)) result =  1;   // 정상 로그인
-		else if( !workPwd.equals(pwd)) result =  0;  // 비번이 틀림
-		
-		return result;
+	public void getAdmin(HashMap<String, Object> paramMap) {
+		adao.getAdmin( paramMap );		
 	}
 
 	public HashMap<String, Object> getContentList(HttpServletRequest request) {
@@ -251,6 +241,7 @@ public class AdminService {
 		public void insertBanner(BannerVO bannervo) {
 			adao.insertBanner(bannervo);
 		}
+
 	
 
 	

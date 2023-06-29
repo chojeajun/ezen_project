@@ -1,6 +1,7 @@
 package com.ticket.t1.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,6 +31,7 @@ public interface IAdminDao {
 	void updateQna(int qseq, String reply);
 	List<BannerVO> getBannerList();
 	void insertBanner(BannerVO bannervo);
+	void getAdmin(HashMap<String, Object> paramMap);
     
 
 
