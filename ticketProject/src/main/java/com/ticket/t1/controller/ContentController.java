@@ -1,18 +1,15 @@
 package com.ticket.t1.controller;
 
 
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class ContentController {
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.service.ContentService;
@@ -57,6 +54,34 @@ public class ContentController {
 		//mav.addObject("size", list3.size());
 		
 		mav.setViewName("main");
+		return mav;
+	}
+	
+	@RequestMapping("/contentDetail")
+	public ModelAndView content_detail(@RequestParam("cseq") int cseq) {
+//		System.out.println("content_detail 메서드");
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("cseq", cseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		cs.getContentTimeList( paramMap );
+		
+		ArrayList<HashMap<String, Object>> list1
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		ArrayList<HashMap<String, Object>> list2
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+		
+//		System.out.println(list2.get(0).get("CONTENTDATE"));
+//		System.out.println(list2.get(0).get("CONTENTTIME"));
+		
+		mav.addObject("content", list1);
+		mav.addObject("list", list2.get(0));
+		mav.setViewName("content/contentDetail");
+		
 		return mav;
 	}
 	

@@ -21,6 +21,16 @@
 			)
 		}
 	</select>
+	
+	<select id="getContentTimeList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getContentTimeList(
+				#{cseq},
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1},
+				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap2}
+			)
+		}
+	</select>
 	<!-- <select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{
 			CALL getAllCount( #{ cnt, mode=OUT, jdbcType=INTEGER }) 숫자만 받아오는 것이므로 jdbcType=INTEGER

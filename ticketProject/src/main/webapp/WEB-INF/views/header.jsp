@@ -31,11 +31,24 @@
 <script type="text/javascript" src="/script/review.js"></script>
 <script type="text/javascript" src="/script/success.js"></script>
 <script type="text/javascript" src="/script/contentDetail.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <script type="text/javascript">
 	var imgNum = 0;
 	var dist = 0;
 
+	$(function(){
+		var num = 0;
+		setInterval(function(){
+			$('#imgs').animate({
+				left : num * -600
+			}, 1000);
+			num++;
+			if( num == 5 )
+				num = 0;
+		}, 2000);
+	});
+	
 	$(function() {
 		$("#btn2").click(function() {
 			if (imgNum == 2) {
@@ -111,8 +124,6 @@
 	});
 </script>
 
-<style type="text/css">
-</style>
 </head>
 <body>
 <form name="log_frm" method="post">
