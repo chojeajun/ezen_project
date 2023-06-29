@@ -1,5 +1,6 @@
 package com.ticket.t1.controller;
 
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -32,12 +33,19 @@ import com.ticket.t1.service.QnaService;
 import com.ticket.t1.util.Paging;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.ticket.t1.service.AdminService;
+
+
 @Controller
 public class AdminController {
 
 	@Autowired
 	AdminService as;
 	
+
 	@RequestMapping("/admin")
 	public String admin() {
 		return "admin/adminLoginForm";
@@ -332,5 +340,6 @@ public class AdminController {
 	
 	
 	
+
 	
 }

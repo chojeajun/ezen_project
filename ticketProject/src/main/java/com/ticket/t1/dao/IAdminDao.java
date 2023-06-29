@@ -1,5 +1,6 @@
 package com.ticket.t1.dao;
 
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,6 +31,12 @@ public interface IAdminDao {
 	void updateQna(int qseq, String reply);
 	List<BannerVO> getBannerList();
 	void insertBanner(BannerVO bannervo);
+
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface IAdminDao {
 
 
 }
