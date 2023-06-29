@@ -33,13 +33,16 @@
 
 						<td><br />
 						<br />${ contentVO.ARTIST }</td>
-						<td
-							style="height: 100px; line-height: 20px; font-size: 15px; font-weight: bold; text-align: left; border: 1px solid black;">${ contentVO.CONTENT }</td>
+						<td style="height: 100px; line-height: 20px; font-size: 15px; 
+							font-weight: bold; text-align: left; border: 1px solid black;"><br/>
+							${ contentVO.CONTENT }
+						</td>
 
-						<c:forEach items="${ list }" var="content">
-							<%-- <td><br/><br/>${ content.CONTENTDATE }</td> --%>
-							<%-- <td><br/><br/>${ content.CONTENTTIME }</td> --%>
-						</c:forEach>
+						<%-- <c:forEach items="${ list }" var="content"> --%>
+							<td><br/><br/>${ contentdate }</td>
+							<td><br/><br/>${ contenttime }</td>
+							<!-- content_time_view 받아오는 것을 인식하지 못하므로 직접 가져온다. -->
+						<%-- </c:forEach> --%>
 						<td><br />
 						<br />${ contentVO.AGE }</td>
 						<td><br />

@@ -52,6 +52,29 @@ public class ContentService {
 	public void getContentTimeList(HashMap<String, Object> paramMap) {
 		cdao.getContentTimeList( paramMap );
 	}
-	
+
+	public void getAllContent(HashMap<String, Object> paramMap) {
+		cdao.getAllContent( paramMap );
+	}
+
+	public void getConcert(HashMap<String, Object> paramMap) {
+		cdao.getConcert( paramMap );
+	}
+
+	public void getMusical(HashMap<String, Object> paramMap) {
+		cdao.getMusical( paramMap );
+	}
+
+	public void getSports(HashMap<String, Object> paramMap) {
+		cdao.getSports( paramMap );
+	}
+
+	public void getFestival(HashMap<String, Object> paramMap) {
+		cdao.getFestival( paramMap );
+	}
+
+	public void getExhibition(HashMap<String, Object> paramMap) {
+		cdao.getExhibition( paramMap );
+	}
 	
 }
