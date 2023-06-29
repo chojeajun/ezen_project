@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+#myRegister_box{
+	width:1200px;
+	margin: 50px auto;
+}
+
+#myRegister_box h2{
+	height: 50px;
+    background: white;
+    color: black;
+    text-shadow: 0 0 BLACK;
+    border-bottom: none;
+    line-height: 50px;
+    margin-left: 20px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#myRegister_box #registeringtable{
+	width: 1200px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+    margin:50px 0;
+}
+
+#myRegister_box #registeringtable tbody tr th{
+	border:1px solid black;
+	text-align:center;
+}
+
+#myRegister_box #registeringtable tbody tr td{
+	border:1px solid black;
+}
+
+#myRegister_box #registeredtable{
+	width: 1200px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+    margin:50px 0;
+}
+
+#myRegister_box #registeredtable tbody tr th{
+	border:1px solid black;
+	text-align:center;
+}
+
+#myRegister_box #registeredtable tbody tr td{
+	border:1px solid black;
+}
+
+#myRegister_box #buttons #go_home_button{
+	width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    margin-right:20px;
+    margin-left:20px;
+}
+
+#myRegister_box #buttons #myregister_button{
+	width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    margin-right:20px;
+    margin-left:20px;
+}
+
+#myRegister_box #buttons #myregistered_button{
+	width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    margin-right:20px;
+    margin-left:20px;
+}
+
+#myRegister_box #buttons #myregisterall_button{
+	width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    margin-right:20px;
+    margin-left:20px;
+}
+
+#myRegister_box #buttons{
+	
+    margin-bottom: 50px;
+    text-align: center;
+    background: greenyellow;
+	
+}

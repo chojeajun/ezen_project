@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+#cartlistwrap #frmcartList {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+#cartlistwrap #frmcartList .cartList_box h1 {
+	line-height: 100px;
+	margin: 20px 5px;
+}
+
+#cartlistwrap #frmcartList .cartList_box #buttons .cancel {
+	color: black;
+	background: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#cartlistwrap #frmcartList .cartList_box .cartItemList1 {
+	width: 1200px;
+	margin-bottom: 50px;
+}
+
+#cartlistwrap #frmcartList .cartList_box .cartItemList1 tbody tr th {
+	height: 50px;
+	line-height: 50px;
+	font-size: 120%;
+	font-weight: bold;
+	border: 1px solid black;
+	text-align: center;
+}
+
+#cartlistwrap #frmcartList .cartList_box .cartItemList1 tbody tr td {
+	height: 100px;
+	line-height: 50px;
+	font-size: 120%;
+	font-weight: bold;
+	border: 1px solid black;
+}
+
+#cartlistwrap #frmcartList .cartList_box .cartItemList2 {
+	width: 1200px;
+	margin-bottom: 50px;
+}
+
+#cartlistwrap #frmcartList .cartList_box .cartItemList2 tbody tr th {
+	height: 50px;
+	line-height: 50px;
+	font-size: 120%;
+	font-weight: bold;
+	border: 1px solid black;
+	text-align: center;
+}
+
+#cartlistwrap #frmcartList .cartList_box .cartItemList2 tbody tr td {
+	height: 50px;
+	line-height: 50px;
+	font-size: 120%;
+	font-weight: bold;
+	border: 1px solid black;
+}
+
+#cartlistwrap #frmcartList .cartList_box #buttons {
+	margin-top: 50px;
+	width: 800px;
+	height: 50px;
+	margin-left: 400px;
+	margin-bottom: 50px;
+}
+
+#cartlistwrap #frmcartList .cartList_box #buttons .submit {
+	color: black;
+	background: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#cartlistwrap #frmcartList .cartList_box #buttons .comeon {
+	height: 30px;
+	width: 150px;
+	border: 1px solid #666;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 14px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	color: #fff;
+	margin: 0 0 0 20px;
+	color: black;
+	background: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#cartlistwrap #frmcartList .cartList_box #buttons .update {
+	height: 30px;
+	width: 150px;
+	border: 1px solid #666;
+	border-radius: 10px;
+	box-shadow: 3px 3px 2px #ccc;
+	font-size: 14px;
+	background-repeat: repeat-x;
+	background-position: center center;
+	color: #fff;
+	margin: 0 0 0 20px;
+	color: black;
+	background: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#cartlistwrap #frmcartList #notbuyanything {
+	font-size: 30px;
+	line-height: 50px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#cartlistwrap #frmcartList .cartItemList {
+	width: 1200px;
+}
+
+#cartlistwrap #frmcartList .cartItemList tbody tr th {
+	height: 50px;
+	line-height: 50px;
+	font-size: 120%;
+	font-weight: bold;
+	border: 1px solid black;
+	text-align: center;
+}
+
+#cartlistwrap #frmcartList .cartItemList tbody tr td {
+	height: 50px;
+	line-height: 50px;
+	font-size: 120%;
+	font-weight: bold;
+	border: 1px solid black;
+}
