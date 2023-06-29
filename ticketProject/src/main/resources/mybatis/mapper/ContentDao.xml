@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ticket.t1.dao.IContentDao">
+<!-- 베너, 베스트, 새로운, 성공내역 getBestNewSuccessMainList -->
+	
+	<resultMap id="contentMap1" type="java.util.HashMap"></resultMap>
+	<resultMap id="contentMap2" type="java.util.HashMap"></resultMap>
+	<resultMap id="bannerMap" type="java.util.HashMap"></resultMap>
+	<resultMap id="successMap" type="java.util.HashMap"></resultMap>
+	
+	<select id="getBestNewSuccessBannerList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getBestNewSuccessBannerList(
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=bannerMap},
+				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1},
+				#{ref_cursor3, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap2},
+				#{ref_cursor4, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap}
+			)
+		}
+	</select>
+	<!-- <select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL getAllCount( #{ cnt, mode=OUT, jdbcType=INTEGER }) 숫자만 받아오는 것이므로 jdbcType=INTEGER
+		}
+	</select> -->
+	
+</mapper>
