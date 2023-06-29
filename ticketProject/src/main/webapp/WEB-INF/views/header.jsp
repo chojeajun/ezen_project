@@ -123,43 +123,43 @@
 					<ul>
 						<c:choose>
 							<c:when test="${ empty loginUser }">
-								<li><a href="ticket.do?command=loginForm">로그인</a></li>
-								<li><a href="ticket.do?command=contract">회원가입</a></li>
-								<li><a href="ticket.do?command=cartList">장바구니</a></li>
-								<li><a href="ticket.do?command=qnaList">1:1 문의하기</a></li>
-								<li><a href="ticket.do?command=admin">admin</a>
+								<li><a href="loginForm">로그인</a></li>
+								<li><a href="contract">회원가입</a></li>
+								<li><a href="cartList">장바구니</a></li>
+								<li><a href="qnaList">1:1 문의하기</a></li>
+								<li><a href="admin">admin</a>
 							</c:when>
 							<c:otherwise>
 								<li>${ loginUser.name }(${ loginUser.id })</li>
-								<li><a href="ticket.do?command=logout">로그아웃</a></li>
-								<li><a href="ticket.do?command=mypage">마이페이지</a></li>
-								<li><a href="ticket.do?command=cartList">장바구니</a></li>
-								<li><a href="ticket.do?command=editForm">정보수정</a></li>
-								<li><a href="ticket.do?command=qnaList">1:1 문의하기</a></li>
+								<li><a href="logout">로그아웃</a></li>
+								<li><a href="mypage">마이페이지</a></li>
+								<li><a href="cartList">장바구니</a></li>
+								<li><a href="editForm">정보수정</a></li>
+								<li><a href="qnaList">1:1 문의하기</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
 				</div>
 				<div class="top_header_inner">
 					<div id="logo">
-						<a href="ticket.do?command=index"> <img src="images/logo.png" />
+						<a href="main"> <img src="images/logo.png" />
 						</a>
 					</div>
 
 					<nav id="category_menu">
 						<ul>
-							<li><a href="ticket.do?command=contentForm">대리 티켓팅</a>
+							<li><a href="contentForm">대리 티켓팅</a>
 								<ul class="depth2_menu">
-									<li><a href="ticket.do?command=contentForm">전체</a></li>
-									<li><a href="ticket.do?command=concertForm">콘서트</a></li>
-									<li><a href="ticket.do?command=musicalForm">뮤지컬</a></li>
-									<li><a href="ticket.do?command=sportsForm">스포츠</a></li>
-									<li><a href="ticket.do?command=festivalForm">페스티벌</a></li>
-									<li><a href="ticket.do?command=exhibitionForm">전시/행사</a></li>
+									<li><a href="contentForm">전체</a></li>
+									<li><a href="concertForm">콘서트</a></li>
+									<li><a href="musicalForm">뮤지컬</a></li>
+									<li><a href="sportsForm">스포츠</a></li>
+									<li><a href="festivalForm">페스티벌</a></li>
+									<li><a href="exhibitionForm">전시/행사</a></li>
 								</ul></li>
-							<li><a href="ticket.do?command=applyAndRegister">신청/등록</a></li>
-							<li><a href="ticket.do?command=successList">성공내역</a></li>
-							<li><a href="ticket.do?command=reviewList">후기</a></li>
+							<li><a href="applyAndRegister">신청/등록</a></li>
+							<li><a href="successList">성공내역</a></li>
+							<li><a href="reviewList">후기</a></li>
 						</ul>
 					</nav>
 					<div class="search_box">
