@@ -253,9 +253,8 @@ public class AdminService {
 		public void insertBanner(BannerVO bannervo) {
 			adao.insertBanner(bannervo);
 		}
-	}
+	
 
-	IAdminDao idao;
 	
 }
 

@@ -56,10 +56,6 @@ public class MemberController {
 	MemberService ms;
 	
 
-	@RequestMapping("/")
-	public String root() {
-		return "member/main";
-	}
 
 
 
@@ -200,4 +196,7 @@ public class MemberController {
 	}
 	
 
+	
+	
+	
 }
