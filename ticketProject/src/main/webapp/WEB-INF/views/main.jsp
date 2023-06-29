@@ -1,6 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ include file="header.jsp"%>
+<div id="bannerList">
+	<div id="view">
+		<div id="imgs">
+			<c:forEach items="${ bannerList }" var="bannerVO">
+				<img src="${ bannerVO.IMAGE }" />
+			</c:forEach>
+		</div>
+	</div>
+</div>
 
 <div id="bestContent">
 	<div class="title">
@@ -13,18 +23,17 @@
 					<c:forEach items="${ bestList }" end="3" var="bestContentVO">
 						<div class="imgview4">
 							<div id="img1">
-								<a
-									href="ticket.do?command=contentDetail&cseq=${ bestContentVO.cseq }">
-									<img src="${ bestContentVO.image }" />
+								<a href="contentDetail?cseq=${ bestContentVO.CSEQ }">
+									<img src="${ bestContentVO.IMAGE }" />
 								</a>
 							</div>
 							<div id="title1">
-								<h3>${ bestContentVO.title }</h3>
+								<h3>${ bestContentVO.TITLE }</h3>
 							</div>
 							<div id="apply">
 								<a
-									href="ticket.do?command=applyContentSelect&cseq=${ bestContentVO.cseq }
-										&category=${ bestContentVO.category }&locationNum=${ bestContentVO.locationNum }">
+									href="applyContentSelect?cseq=${ bestContentVO.CSEQ }
+										&category=${ bestContentVO.CATEGORY }&locationNum=${ bestContentVO.LOCATIONNUM }">
 									<h3>신청하기</h3>
 								</a>
 
@@ -56,13 +65,13 @@
 	<div class="panel">
 		<c:forEach items="${ newList }" end="3" var="concertVO">
 			<div id="item">
-				<a href="ticket.do?command=contentDetail&cseq=${ concertVO.cseq }">
-					<img src="${ concertVO.image }" />
+				<a href="contentDetail?cseq=${ concertVO.CSEQ }">
+					<img src="${ concertVO.IMAGE }" />
 				</a>
-				<h1 style="line-height: 30px; height: 90px;">${ concertVO.title }</h1>
+				<h1 style="line-height: 30px; height: 90px;">${ concertVO.TITLE }</h1>
 				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ concertVO.cseq }&category=${ concertVO.category }
-						&locationNum=${ concertVO.locationNum }"><h3>신청하기</h3>
+					href="applyContentSelect?cseq=${ concertVO.CSEQ }&category=${ concertVO.CATEGORY }
+						&locationNum=${ concertVO.LOCATIONNUM }"><h3>신청하기</h3>
 				</a>
 			</div>
 		</c:forEach>
@@ -80,12 +89,12 @@
 					<div class="successitem">
 						<div class="successlisttitle">
 							<a
-								href="ticket.do?command=successView&sucseq=${ successVO.sucseq }">
-								<h2>${ successVO.title }</h2>
+								href="successView?sucseq=${ successVO.SUCSEQ }">
+								<h2>${ successVO.TITLE }</h2>
 							</a>
 						</div>
 						<div class="successlistid">
-							<h2>${ successVO.sucseq }.&nbsp;${ successVO.id }</h2>
+							<h2>${ successVO.SUCSEQ }.&nbsp;${ successVO.ID }</h2>
 						</div>
 					</div>
 				</c:forEach>

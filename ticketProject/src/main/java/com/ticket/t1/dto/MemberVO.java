@@ -24,7 +24,7 @@ public class MemberVO {
 	private Timestamp indate;
 	private char useyn;
 	private String cnickname;
-	
+	private String provider;
 	
 	
 

@@ -31,11 +31,24 @@
 <script type="text/javascript" src="/script/review.js"></script>
 <script type="text/javascript" src="/script/success.js"></script>
 <script type="text/javascript" src="/script/contentDetail.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <script type="text/javascript">
 	var imgNum = 0;
 	var dist = 0;
 
+	$(function(){
+		var num = 0;
+		setInterval(function(){
+			$('#imgs').animate({
+				left : num * -600
+			}, 1000);
+			num++;
+			if( num == 5 )
+				num = 0;
+		}, 2000);
+	});
+	
 	$(function() {
 		$("#btn2").click(function() {
 			if (imgNum == 2) {
@@ -111,8 +124,6 @@
 	});
 </script>
 
-<style type="text/css">
-</style>
 </head>
 <body>
 <form name="log_frm" method="post">
@@ -142,20 +153,20 @@
 				</div>
 				<div class="top_header_inner">
 					<div id="logo">
-						<a href="main"> <img src="images/logo.png" />
+						<a href="/"> <img src="images/logo.png" />
 						</a>
 					</div>
 
 					<nav id="category_menu">
 						<ul>
-							<li><a href="contentForm">대리 티켓팅</a>
+							<li><a href="category?kind=0">대리 티켓팅</a>
 								<ul class="depth2_menu">
-									<li><a href="contentForm">전체</a></li>
-									<li><a href="concertForm">콘서트</a></li>
-									<li><a href="musicalForm">뮤지컬</a></li>
-									<li><a href="sportsForm">스포츠</a></li>
-									<li><a href="festivalForm">페스티벌</a></li>
-									<li><a href="exhibitionForm">전시/행사</a></li>
+									<li><a href="category?kind=0">전체</a></li>
+									<li><a href="category?kind=1">콘서트</a></li>
+									<li><a href="category?kind=2">뮤지컬</a></li>
+									<li><a href="category?kind=3">스포츠</a></li>
+									<li><a href="category?kind=4">페스티벌</a></li>
+									<li><a href="category?kind=5">전시/행사</a></li>
 								</ul></li>
 							<li><a href="applyAndRegister">신청/등록</a></li>
 							<li><a href="successList">성공내역</a></li>

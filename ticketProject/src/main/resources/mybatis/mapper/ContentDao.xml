@@ -10,6 +10,9 @@
 	
 	<resultMap id="contentMap1" type="java.util.HashMap"></resultMap>
 	<resultMap id="contentMap2" type="java.util.HashMap"></resultMap>
+	<resultMap id="contentMap3" type="java.util.HashMap"></resultMap>
+	<resultMap id="contentMap4" type="java.util.HashMap"></resultMap>
+	<resultMap id="contentMap5" type="java.util.HashMap"></resultMap>
 	<resultMap id="bannerMap" type="java.util.HashMap"></resultMap>
 	<resultMap id="successMap" type="java.util.HashMap"></resultMap>
 	
@@ -20,6 +23,62 @@
 				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1},
 				#{ref_cursor3, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap2},
 				#{ref_cursor4, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap}
+			)
+		}
+	</select>
+	
+	<select id="getContentTimeList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getContentTimeList(
+				#{cseq},
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1},
+				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap2}
+			)
+		}
+	</select>
+	<select id="getAllContent" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getAllContent(
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1},
+				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap2},
+				#{ref_cursor3, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap3},
+				#{ref_cursor4, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap4},
+				#{ref_cursor5, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap5}
+			)
+		{
+	</select>
+	<select id="getConcert" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getConcert(
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
+			)
+		}
+	</select>
+	<select id="getMusical" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getMusical(
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap2}
+			)
+		}
+	</select>
+	<select id="getSports" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getSports(
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
+			)
+		}
+	</select>
+	<select id="getFestival" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getFestival(
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
+			)
+		}
+	</select>
+	<select id="getExhibition" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getExhibition(
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
 			)
 		}
 	</select>
