@@ -2,10 +2,6 @@ package com.ticket.t1.controller;
 
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,27 +14,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.context.annotation.Profile;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.ticket.t1.dto.MemberVO;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -46,7 +33,6 @@ import com.ticket.t1.dto.KakaoProfile;
 import com.ticket.t1.dto.KakaoProfile.KakaoAccount;
 import com.ticket.t1.dto.MemberVO;
 import com.ticket.t1.dto.OAuthToken;
-
 import com.ticket.t1.service.MemberService;
 
 @Controller
@@ -54,9 +40,6 @@ public class MemberController {
 	
 	@Autowired
 	MemberService ms;
-	
-
-
 
 
 	@RequestMapping(value="/loginForm")
