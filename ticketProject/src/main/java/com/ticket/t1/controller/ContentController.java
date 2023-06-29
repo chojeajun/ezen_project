@@ -1,12 +1,6 @@
 package com.ticket.t1.controller;
 
 
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class ContentController {
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
