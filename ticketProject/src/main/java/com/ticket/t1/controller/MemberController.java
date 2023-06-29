@@ -1,6 +1,11 @@
 package com.ticket.t1.controller;
 
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -13,18 +18,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.context.annotation.Profile;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.ticket.t1.dto.MemberVO;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -32,6 +46,7 @@ import com.ticket.t1.dto.KakaoProfile;
 import com.ticket.t1.dto.KakaoProfile.KakaoAccount;
 import com.ticket.t1.dto.MemberVO;
 import com.ticket.t1.dto.OAuthToken;
+
 import com.ticket.t1.service.MemberService;
 
 @Controller
@@ -41,6 +56,13 @@ public class MemberController {
 	MemberService ms;
 	
 
+	@RequestMapping("/")
+	public String root() {
+		return "member/main";
+	}
+
+
+
 	@RequestMapping(value="/loginForm")
 	public String loginForm() {
 		return "member/login";
@@ -49,7 +71,7 @@ public class MemberController {
 			// jsp파일의 form action = login 을 타고 이리 옴  
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	public String login(
-		// dto 라는 이름으로 객체를 받겠다 , 밸리데이션 membervo 진행하겠다 제약조건이름을 result  
+		// dto 라는 이름으로 객체를 받겠다 , 밸리데이션 membervo 진행하겠다 제약조건이름은 result  
 			@ModelAttribute("dto") @Valid MemberVO membervo,	BindingResult result,
 			HttpServletRequest request,	Model model	) {
 		
@@ -86,6 +108,8 @@ public class MemberController {
 		return url;
 	}
 	
+
+
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -174,13 +198,6 @@ public class MemberController {
 		session.setAttribute("loginUser", mvo);
 		return "redirect:/";
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 
 }

@@ -17,11 +17,17 @@ public class MemberService {
 
 
 	public void getMember(HashMap<String, Object> paramMap) {
+
+
+		mdao.getMember(paramMap);
+		
+
 		mdao.getMember(paramMap);
 	}
 
 	public void joinKakao(HashMap<String, Object> paramMap) {
 		mdao.joinKakao(paramMap);
+
 	}
 
 
