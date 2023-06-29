@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/* apply_Or_Register.jsp의 css */
+
+.form{ width:100%; margin:25px auto;  }
+.body_Choose{ height:100%; width:1200px; margin:0 auto;}
+.body_Choose header{ height:125px; width:100%;}
+.titlearea_Choose{ height:100px; width:100%; margin-top: 12.5px;}
+.hello{ height:50px; margin-left: 12.5px; margin-right: 12.5px;
+font-size:2em; line-height:50px;}
+.afterHello{height:50px; margin-left: 12.5px; margin-right: 12.5px; margin-top:0;
+font-size:2em; line-height:50px;}
+
+.bodyarea_Choose{ height:575px; width:100%;    margin-top: -25px;}
+.mainArea_UserChoice{height:550px; width:1150px; margin:12.5px auto;}
+.buttonBoxArea{height:100%; width:50%;float:left;box-sizing:border-box; }
+#buttonBox{box-sizing:border-box;height:500px; width:500px; margin:25px auto;}
+.button{width:100%; height:100%; border-radius:5%;}
+.box{ height:450px; width:450px; margin:auto;}
+.box_img{ height:350px;width:450px;box-sizing:border-box;}
+.box_text{ height:100px;width:450px;box-sizing:border-box;}
+.Image{ height:320px; width:420px; margin:15px auto;}
+
+.Image img{ margin:35px auto;}
+
+.smallBox_text{height:100%; width:400px; margin:0 auto;box-sizing:border-box; }
+.box_textTitle{box-sizing:border-box; height:50px; width:100%; top:0;}
+.box_textContent{box-sizing:border-box;  height:50px; width:100%; bottom:0;}
+.textTitle{font-size:1.7em; text-align:center; line-height:50px;font-weight: bold;}
+.textContent{font-size:1.3em; text-align:center; line-height:50px;}
+
+
+/* 여기부턴 applyForm.jsp의 css */
+#bodyBox_apply{height:700px; width:1200px; margin:0 auto;}
+.applyBox{ height:700px; width:1200px; margin:0 auto;}
+
+.applyTitleBox{background:#FFA5A5;position:relative; width:1200px; height:50px; border-top: 1px solid black; border-bottom: 1px solid black;}
+.applyTitle li{border-right:1px solid black; font-weight: bold;float:left; box-sizing:border-box; font-size:1.25em; line-height:50px; text-align:center;}
+.applyTitle li:first-child{width:125px;}
+.applyTitle li:nth-child(2){width:300px;}
+.applyTitle li:nth-child(3){width:250px;}
+.applyTitle li:nth-child(4){width:150px;}
+.applyTitle li:nth-child(5){width:125px;}
+.applyTitle li:last-child{width:250px; border-right:0; }
+
+.applyBodyBox{ background:#EEEEEE;postion:relative; width:1200px; height:650px;}
+.bodyBox{box-sizing:border-box; border-right:1px solid black;postion:relative; float:left; height:100%;}
+.bodyBox:last-child{border-right:0;}
+
+.categoryBox{width:125px;}
+.categoryBox ul{margin-top: 15px;} 
+.categoryBox ul li{cursor:pointer; width:100%; height:50px; margin:0; font-size:1.2em; text-align:center; line-height:50px;}
+#category:hover{background:#C4C4C4; color:#fff;}
+
+.contentNameBox{width:300px; overflow:auto;}
+.contentNameBox::-webkit-scrollbar {  width: 8px;  /* 스크롤바의 너비 */}
+
+.contentNameBox::-webkit-scrollbar-thumb {
+	height: 30%; /* 스크롤바의 길이 */
+    background: #B19893; /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+.contentNameBox::-webkit-scrollbar-track {
+    background: rgba(177, 152, 147, .1);  /*스크롤바 뒷 배경 색상*/
+}
+.contentNameBox ul{margin: 15px 7px 0 7px;}
+.contentNameBox ul li{cursor:pointer; width:100%; font-size:1.12em; text-align:left;}
+.contentNameBox ul li a{color:black;display: block; width:100%;padding:5px 0;text-decoration:none;}
+.contentNameBox ul li:hover{background:#C4C4C4; color:#fff;}
+
+.detailBox{width:250px;}
+.contentDetail{ width:220px; height:620px; margin:15px auto;}
+.poster{width:100%; height:294px; margin-bottom: 30px;}
+.contentDetail .detail{ width:100%; height:250px;}
+.header1{font-weight: lighter; margin-top:10px;}
+.box3{padding:3px 0 10px 0;}
+
+.dateBox{width:150px;}
+.dateBox ul{margin:15px auto;}
+.dateBox ul li{cursor:pointer; float:left; box-sizing:border-box; 
+font-size:1.25em; line-height:50px; text-align:center; width:100%;height:50px;}
+.dateBox ul li a{color:black; display: block; width:100%; text-decoration:none;}
+.dateBox ul li:hover{background:#C4C4C4; color:#fff;}
+
+.timeBox{width:125px;}
+.timeBox ul{margin:15px auto;}
+.timeBox ul li{cursor:pointer;float:left; box-sizing:border-box; 
+font-size:1.25em; line-height:50px; text-align:center;width:100%;height:50px;}
+.timeBox ul li:hover{background:#C4C4C4; color:#fff;}
+
+
+.seatingChartBox{width:250px;}
+.seatingChartBoxSeparate{box-sizing:border-box;width:100%; height:583px; }
+.seatingChartDetailBox{width:220px; height:570px; margin:15px;}
+.seatingChartImg{ width:100%; height:220px;}
+.AreaBox{overflow:auto;box-sizing:border-box; margin-top:10px; width:100%; height:340px;}
+.AreaBox ul li{cursor:pointer;width:100%; float:left; box-sizing:border-box; 
+font-size:1.25em; line-height:35px; text-align:center; height:35px;}
+.area1{float:left; height:100%}
+.price1{float:right; height:100%}
+.AreaBox::-webkit-scrollbar {  width: 8px;  /* 스크롤바의 너비 */}
+.AreaBox::-webkit-scrollbar-thumb {height: 30%;  background: #B19893;  border-radius: 10px;}
+.AreaBox::-webkit-scrollbar-track {background: rgba(177, 152, 147, .1);}
+
+.AreaBox ul li:hover{background:#C4C4C4; color:#fff;}
+.liclick_time{  background-color: #EEEEEE;}
+.liclick_area{  background-color: #EEEEEE;}
+
+
+.quantityBox{border-top:1px solid black;box-sizing:border-box;width:100%; height:50px;}
+.quantityTitle{border-right:1px solid black; font-weight:bold;box-sizing:border-box;width:50%; height:100%;background:#FFA5A5;float:left;font-size:1.25em; line-height:50px; text-align:center;}
+.quantityArea{box-sizing:border-box;width:50%; height:100%;float:left;}
+#quantity{width:115px; height:40px; padding:0; margin:5px; float:right;background:white; text-align: center; font-size:1.1em;}
+input[type=number]::-webkit-inner-spin-button {opacity: 1;}
+input[type=number]:hover::-webkit-inner-spin-button {  
+    width: 20px;   height: 40px;}
+
+.buttonSection{ width:100%; height:80px;}
+.buttonBox{ width:1200px; height:100%; margin:0 auto;}
+.groupBox{width:100%; height: 60px; margin:10px 0; float:right;}
+.buttonSmallBox{ float:right; box-sizing:border-box; width:100px; height:100%;}
+.button1{background: #FFE3E3;font-weight:bold; border-radius:10%; width:90px; height:50px; margin:5px; cursor:pointer;}
+.next{background: #d70000; color:white; font-weight:bold;}
+.buttonSmallBox:first-child{float:left;}
+
+
+
+/* applySelectCommissioner */
+.body_Choose2{border-bottom:1px solid black; height:700px; width:1200px; margin:0 auto;}
+.buttonBoxArea2{border-left:1px solid; height:100%; width:50%;float:left;box-sizing:border-box; }
+.Header{background:#FFA5A5;border-top:1px solid ;border-bottom:1px solid; width:100%; height: 50px;box-sizing:border-box; text-align: center; font-size:1.4em; font-weight:bold; line-height: 50px;}
+.Body{border:1px solid blue; width:100%; height: 650px;box-sizing:border-box;}
+.posterZone{ width:100%; height: 400px;box-sizing:border-box;}
+.posterZone .posterBox{border:1px solid black; width:300px; height:400px; margin:0 auto;}
+.detailZone{width:100%; height: 250px;box-sizing:border-box;}
+.detailZone .detail{padding-left:10px;line-height:41px; font-size:1.1em; width:100%; height: 16.66% ;box-sizing:border-box;}
+.detailZone .detail:first-child{height: 16.67%;}
+
+.detailBody{height:650px;width:100%;box-sizing: border-box;}
+.detailBody2{width:100%; height:550px;box-sizing: border-box;}
+.detailBody table{width:100%; height:50px; padding:10px 5px;background: #FFE3E3; }
+.detailBody table td{line-height:50px;font-size: 1.13em;}
+.detailBody table td:first-child{width:140px;}
+.detailBody table td:nth-child(2){width:70px;}
+.detailBody table td:nth-child(3){width:50px;}
+.detailBody table td:nth-child(4){width:200px;}
+.detailBody table td:last-child{width:140px;}
+.com_list{width:100%; height:500px; overflow: hidden;box-sizing: border-box;}
+
+.com_list ul li{cursor:pointer;border-bottom:1px solid; height:30px; line-height: 30px;box-sizing: border-box;}
+.com_list ul li:first-child{border-top:1px solid;}
+.com_list ul li div{ text-align: center;float:left; box-sizing: border-box;}
+.com_list ul li div:first-child{width:140px;}
+.com_list ul li div:nth-child(2){width:70px;}
+.com_list ul li div:nth-child(3){width:50px;}
+.com_list ul li div:nth-child(4){width:200px;}
+.com_list ul li div:nth-child(5){width:137px;}
+.com_list ul li:hover{background:#C4C4C4; color:#fff;}
+.liclick_com{  background-color: #EEEEEE;}
+.click { background-color: #ABABAB; color:white;}
+
+.detailBody3{width:100%; height:100px;}
+.priceBox{width:590px; height:90px; margin:5px;}
+.p{font-size:1.5em;text-align:center; line-height:130px; float:right; width:100px; height:100%;}
+div.css1{width:50px;}
+.totprice{padding-right:10px;width:160px; text-align: right; font-size: 2em; font-weight: bold;color: #CA0000;}
+
+
+/* applyFinalPage.jsp */
+.resultForm{width:100%;}
+.resultForm section{width:1200px;margin:0 auto;text-align: center;}
+.resultForm h2{    font-size: 3em;text-align: center; color:black; font-family: 'Noto Sans KR', sans-serif;}
+.resultForm .button2Box{text-align: center;}
+.resultForm .button2{font-weight:bold; background:#FFE3E3;font-size: 0.9em;border-radius: 15px;cursor: pointer; width:180px; height:40px; margin-left:10px;margin-right:10px;}
+.resultForm .button2:first-child {background:#d70000; color:white;}
+
+
+
+
+/* register의 어떤 jsp의 css */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

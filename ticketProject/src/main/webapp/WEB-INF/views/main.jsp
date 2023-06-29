@@ -10,7 +10,7 @@
 		<div class="imgview1">
 			<div class="imgview2">
 				<div id="imgview3">
-					<c:forEach items="${ bestContent }" end="3" var="bestContentVO">
+					<c:forEach items="${ bestList }" end="3" var="bestContentVO">
 						<div class="imgview4">
 							<div id="img1">
 								<a
@@ -51,10 +51,10 @@
 
 <div id="concert">
 	<div class="title">
-		<h1>Concert</h1>
+		<h1>New List</h1>
 	</div>
 	<div class="panel">
-		<c:forEach items="${ concert }" end="3" var="concertVO">
+		<c:forEach items="${ newList }" end="3" var="concertVO">
 			<div id="item">
 				<a href="ticket.do?command=contentDetail&cseq=${ concertVO.cseq }">
 					<img src="${ concertVO.image }" />
@@ -69,26 +69,6 @@
 	</div>
 </div>
 
-<div id="musical">
-	<div class="title">
-		<h1>Musical</h1>
-	</div>
-	<div class="panel">
-		<c:forEach items="${ musical }" end="3" var="musicalVO">
-			<div id="item">
-				<a href="ticket.do?command=contentDetail&cseq=${ musicalVO.cseq }">
-					<img src="${ musicalVO.image }" />
-				</a>
-				<h1 style="line-height: 30px; height: 90px;">${ musicalVO.title }</h1>
-				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ musicalVO.cseq }&category=${ musicalVO.category }
-						&locationNum=${ musicalVO.locationNum }"><h3>신청하기</h3>
-				</a>
-			</div>
-		</c:forEach>
-	</div>
-</div>
-
 <div id="success">
 	<div class="title">
 		<h1>성&nbsp;공&nbsp;내&nbsp;역</h1>
@@ -96,7 +76,7 @@
 	<div class="successlist1">
 		<div class="successlistrealview">
 			<div class="successlistview">
-				<c:forEach items="${ success }" end="3" var="successVO">
+				<c:forEach items="${ successList }" end="3" var="successVO">
 					<div class="successitem">
 						<div class="successlisttitle">
 							<a
