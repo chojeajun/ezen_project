@@ -32,7 +32,7 @@
 							</div>
 							<div id="apply">
 								<a
-									href="ticket.do?command=applyContentSelect&cseq=${ bestContentVO.CSEQ }
+									href="applyContentSelect?cseq=${ bestContentVO.CSEQ }
 										&category=${ bestContentVO.CATEGORY }&locationNum=${ bestContentVO.LOCATIONNUM }">
 									<h3>신청하기</h3>
 								</a>
@@ -70,7 +70,7 @@
 				</a>
 				<h1 style="line-height: 30px; height: 90px;">${ concertVO.TITLE }</h1>
 				<a
-					href="ticket.do?command=applyContentSelect&cseq=${ concertVO.CSEQ }&category=${ concertVO.CATEGORY }
+					href="applyContentSelect?cseq=${ concertVO.CSEQ }&category=${ concertVO.CATEGORY }
 						&locationNum=${ concertVO.LOCATIONNUM }"><h3>신청하기</h3>
 				</a>
 			</div>
@@ -89,7 +89,7 @@
 					<div class="successitem">
 						<div class="successlisttitle">
 							<a
-								href="successView&sucseq=${ successVO.SUCSEQ }">
+								href="successView?sucseq=${ successVO.SUCSEQ }">
 								<h2>${ successVO.TITLE }</h2>
 							</a>
 						</div>
