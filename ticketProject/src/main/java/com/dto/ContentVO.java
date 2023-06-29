@@ -20,6 +20,7 @@ public class ContentVO {
 	private String content;
 	private int category;
 	private String age;
+	private char useyn;
 	private char bestyn;
 	private String areaImage;
 	private String tDateTime;
