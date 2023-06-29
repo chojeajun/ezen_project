@@ -30,8 +30,11 @@ public interface IAdminDao {
 	void updateQna(int qseq, String reply);
 	List<BannerVO> getBannerList();
 	void insertBanner(BannerVO bannervo);
+    
+
 
 
 
 
 }
+
