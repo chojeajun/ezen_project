@@ -6,11 +6,12 @@ import javax.validation.Valid;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.dto.ContentVO;
-import com.dto.MemberVO;
-import com.dto.OrderVO;
-import com.dto.QnaVO;
-import com.util.Paging;
+import com.ticket.t1.dto.BannerVO;
+import com.ticket.t1.dto.ContentVO;
+import com.ticket.t1.dto.MemberVO;
+import com.ticket.t1.dto.OrderVO;
+import com.ticket.t1.dto.QnaVO;
+import com.ticket.t1.util.Paging;
 
 
 @Mapper

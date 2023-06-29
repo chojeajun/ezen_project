@@ -1,11 +1,11 @@
-package com.dao;
+package com.ticket.t1.dao;
 
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.dto.QnaVO;
+import com.ticket.t1.dto.QnaVO;
 
 @Mapper
 public interface IQnaDao {

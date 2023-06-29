@@ -1,12 +1,12 @@
-package com.service;
+package com.ticket.t1.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dao.IQnaDao;
-import com.dto.QnaVO;
+import com.ticket.t1.dao.IQnaDao;
+import com.ticket.t1.dto.QnaVO;
 
 
 @Service
