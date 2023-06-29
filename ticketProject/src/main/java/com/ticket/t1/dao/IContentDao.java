@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IContentDao {
 
 	void getBestNewSuccessBannerList(HashMap<String, Object> paramMap);
+	void getContentTimeList(HashMap<String, Object> paramMap);
 
 
 }

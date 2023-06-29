@@ -48,6 +48,10 @@ public class ContentService {
 	public void getBestNewSuccessBannerList(HashMap<String, Object> paramMap) {
 		cdao.getBestNewSuccessBannerList( paramMap );
 	}
+
+	public void getContentTimeList(HashMap<String, Object> paramMap) {
+		cdao.getContentTimeList( paramMap );
+	}
 	
 	
 }
