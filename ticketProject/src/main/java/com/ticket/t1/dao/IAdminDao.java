@@ -18,20 +18,20 @@ import com.ticket.t1.util.Paging;
 @Mapper
 public interface IAdminDao {
 	
-	String getPwd(String workId);
-	int getAllCount(String string, String string2, String key);
-	List<ContentVO> listProduct(Paging paging, String key);
-	void insertContent(@Valid ContentVO contentvo);
-	void updateContent(ContentVO contentvo);
-	List<OrderVO> listOrders(Paging paging, String key);
-	List<MemberVO> listMember(Paging paging, String key);
-	List<QnaVO> listQna(Paging paging, String key);
-	void updateOrderResult(int odseq);
-	void memberReinsert(String id, String useyn);
-	void updateQna(int qseq, String reply);
-	List<BannerVO> getBannerList();
-	void insertBanner(BannerVO bannervo);
 	void getAdmin(HashMap<String, Object> paramMap);
+	void adminGetAllCount(HashMap<String, Object> cntMap);
+	void getContentList(HashMap<String, Object> paramMap);
+	void insertontent(HashMap<String, Object> paramMap);
+	void updateontent(HashMap<String, Object> paramMap);
+	void getMemberList(HashMap<String, Object> paramMap);
+	void memberReinsert(HashMap<String, Object> paramMap);
+	void getOrderList(HashMap<String, Object> paramMap);
+	void updateOrderResult(HashMap<String, Object> paramMap);
+	void getQnaList(HashMap<String, Object> paramMap);
+	void updateOna(HashMap<String, Object> paramMap);
+	void getBannerList(HashMap<String, Object> paramMap);
+	void insertBanner(HashMap<String, Object> paramMap);
+	void updateSeq(HashMap<String, Object> paramMap);
     
 
 

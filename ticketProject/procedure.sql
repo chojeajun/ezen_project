@@ -122,4 +122,18 @@ select * from all_sequences where sequence = 'member_mseq';
 SELECT *
   FROM all_sequences
  WHERE sequence_name = 'member_mseq';
+ 
+ --어드민 페이지 배너리스트 관리
+ CREATE OR REPLACE PROCEDURE getBannerList(
+    p_rc   OUT     SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR
+        SELECT * FROM banner ORDER BY order_seq;
+        
+END;
+ 
+ select * from order_view
+ select * from member
 

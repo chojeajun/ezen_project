@@ -45,6 +45,15 @@
 		}
 	</select>
 	
+	<select id="getReplyMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getReplyMember(
+				#{sucseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=name}
+			)
+		}
+	</select>
+	
 	<delete id="replyDelete">
 		{
 			CALL replyDelete(
