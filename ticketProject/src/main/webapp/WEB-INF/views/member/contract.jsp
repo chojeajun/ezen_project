@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../header.jsp"%>
+<script type="text/javascript">
+function go_next(){
+	
+	   if( document.contractFrm.check_on1.checked == false ){
+	      alert('회원 약관에 동의하셔야 회원으로 가입이 가능합니다');
+	   }else if(document.contractFrm.check_on2.checked == false) {
+		   alert('개인정보처리방침 약관에 동의하셔야 회원으로 가입이 가능합니다');
+	   } else {
+		  document.contractFrm.action = 'joinForm';
+	      document.contractFrm.submit(); 
+	   }
+	}
+
+</script>
+
 
 <article style="width: 1200px; margin: 0 auto; text-align: center;">
 	<h2 style="color: #444; font-size: 24px; font-weight: 700; background: none; margin: 20px 0;">회원 가입 약관</h2>

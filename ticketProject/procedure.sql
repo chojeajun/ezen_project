@@ -57,7 +57,42 @@ END;
 commit;
 
 
+select * from member;
 
+CREATE OR REPLACE PROCEDURE insertMember(
+    p_id member.id%type,
+    p_pwd member.pwd%type,
+    p_name member.name%type,
+    p_nickname member.nickname%type,
+    p_gender member.gender%type,
+    p_email member.email%type,
+    p_phone member.phone%type,
+    p_birth member.birth%type,
+    p_zip_num member.zip_num%type,
+    p_address1 member.address1%type,
+    p_address2 member.address2%type,
+    p_address3 member.address3%type,
+    p_grade member.grade%type,
+    p_success member.success%type,
+    p_useyn member.useyn%type
+)
+IS
+BEGIN
+    INSERT INTO member(mseq, id, pwd, name, nickname, gender, email, phone, birth, zip_num, address1 ,address2 ,address3, grade, success, useyn)
+    VALUES( member_mseq.nextVal, p_id, p_pwd, p_name,p_nickname,p_gender,p_email,p_phone,p_birth,p_zip_num,p_address1,p_address2,p_address3,p_grade,p_success,p_useyn);
+    COMMIT;
+END;
+
+commit;
+--#{id}, #{pwd},
+--#{name}, #{nickname},
+--#{gender}, #{email},
+--#{phone}, #{birth},
+--#{zip_num}, #{address1} ,
+--#{address2}, #{address3} , 
+--#{grade} , #{success} , #{useyn}
+
+select count(*) from member where name like '%'||'롱'||'%';
 
 
 update member set name = '홍낄동' where mseq = 29;
