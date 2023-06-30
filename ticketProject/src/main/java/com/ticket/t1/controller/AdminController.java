@@ -59,13 +59,13 @@ public class AdminController {
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		String url = "admin/adminLoginForm";
 		if(list.size() == 0) {  // 입력한 아이디 없다면
-			model.addAttribute("message" , "아이디가 없어요");
+			model.addAttribute("message" , "아이디가 없습니다");
 			return "admin/adminLoginForm";
 		}
 		HashMap<String, Object> resultMap = list.get(0); 
 		if(resultMap.get("PWD")==null) model.addAttribute("message" , "관리자에게 문의하세요");
 		else if( !workPwd.equals( (String) resultMap.get("PWD") ) )
-			model.addAttribute("message" , "비번이 안맞아요");
+			model.addAttribute("message" , "비밀번호가 맞지 않습니다");
 		else if( workPwd.equals( (String) resultMap.get("PWD") ) ) { 
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", resultMap);

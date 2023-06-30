@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ticket.t1.dao.IOrderDao">
+
+	<resultMap id="orderMap" type="java.util.HashMap"></resultMap>
+	
+	<insert id="insertOrder" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL insertOrder(
+				#{mseq}, 
+				#{oseq, mode=OUT, jdbcType=INTEGER}
+			)
+		}
+	</insert>
+	
+	<select id="getOrderView" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getOrderView(
+				#{oseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+			)
+		}
+	</select>
+	
+	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  
+			CALL listOrderByOseq( 
+				#{oseq},
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+			)	  
+		}
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

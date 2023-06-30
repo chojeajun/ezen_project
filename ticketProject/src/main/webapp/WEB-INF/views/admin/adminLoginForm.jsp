@@ -10,7 +10,7 @@
 <div id="wrap">
 	<header>
 		<div id="logo">
-			<a href="admin"><img src="admin/bar_01.gif"  style="float:left;"><img src="admin/text.gif" ></a>
+			<a href="admin"><img src="admin/admin.png"  style="float:left; width:1200px;"><img src="admin/text.gif" ></a>
 		</div>
 	</header>
 	<div class="clear"></div>
