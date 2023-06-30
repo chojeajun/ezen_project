@@ -39,7 +39,7 @@ public class ContentController {
 		ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
 		ArrayList<HashMap<String, Object>> list3 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor3");
 		ArrayList<HashMap<String, Object>> list4 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor4");
-
+		
 		mav.addObject("bannerList", list1);
 		mav.addObject("bestList", list2);
 		mav.addObject("newList", list3);

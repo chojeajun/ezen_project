@@ -29,5 +29,10 @@ public class SuccessService {
 	public void getReplyMember(HashMap<String, Object> paramMap) {
 		sucdao.getReplyMember( paramMap );
 	}
+
+	public void replyDelete(int srseq) {
+		sucdao.replyDelete(srseq);
+		
+	}
 	
 }

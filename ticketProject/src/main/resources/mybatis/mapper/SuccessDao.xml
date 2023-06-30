@@ -44,5 +44,13 @@
 			)
 		}
 	</select>
+	
+	<delete id="replyDelete">
+		{
+			CALL replyDelete(
+				#{srseq}
+			)
+		}
+	</delete>
 
 </mapper>
