@@ -1,21 +1,14 @@
 package com.ticket.t1.service;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.t1.dao.IAdminDao;
-import com.ticket.t1.dto.BannerVO;
-import com.ticket.t1.dto.ContentVO;
-import com.ticket.t1.dto.MemberVO;
-import com.ticket.t1.dto.OrderVO;
-import com.ticket.t1.dto.QnaVO;
 import com.ticket.t1.util.Paging;
 
 
@@ -30,15 +23,68 @@ public class AdminService {
 		adao.getAdmin( paramMap );		
 	}
 
-	public HashMap<String, Object> getContentList(HttpServletRequest request) {
-		HashMap<String, Object> result = new HashMap<String, Object>();
+	public void getContentList(HashMap<String, Object> paramMap) {
+		
+		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
 		HttpSession session = request.getSession();
-
+		
 		if( request.getParameter("first")!=null ) {
 			session.removeAttribute("page");
 			session.removeAttribute("key");
 		}
+		
+		int page=1;
+		if( request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if( session.getAttribute("page") != null ) {
+			page = (Integer)session.getAttribute("page");
+		}else {
+			session.removeAttribute("page");
+		}
+		
+		String key = "";
+		if( request.getParameter("key") != null ) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		} else if( session.getAttribute("key")!= null ) {
+			key = (String)session.getAttribute("key");
+		} else {
+			session.removeAttribute("key");
+		}
+		
+		Paging paging = new Paging();
+		paging.setPage(page);
+		HashMap<String, Object> cntMap = new HashMap<String, Object>();
+		cntMap.put("cnt", 0);  // OUT 변수용
+		cntMap.put("tableName" , 1 );
+		cntMap.put("key", key);
+		adao.adminGetAllCount(cntMap);
+		
+		int count = Integer.parseInt( cntMap.get("cnt").toString() );
+		paging.setTotalCount(count);
+		paging.paging();
+		
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("key", key);
+		
+		adao.getContentList(paramMap);
+		paramMap.put("paging", paging);
+	}
 
+	
+
+	public void getMemberList(HashMap<String, Object> paramMap) {
+		
+		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
+		HttpSession session = request.getSession();
+		
+		if( request.getParameter("first")!=null ) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
+		
 		int page = 1;
 		if( request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -49,7 +95,6 @@ public class AdminService {
 			page = 1;
 			session.removeAttribute("page");
 		}
-
 		String key = "";
 		if( request.getParameter("key") != null ) {
 			key = request.getParameter("key");
@@ -60,190 +105,171 @@ public class AdminService {
 			session.removeAttribute("key");
 			key = "";
 		} 
-		
 		Paging paging = new Paging();
 		paging.setPage(page);
+		HashMap<String, Object> cntMap = new HashMap<String, Object>();
+		cntMap.put("cnt", 0);  // OUT 변수용
+		cntMap.put("tableName" , 3 );
+		cntMap.put("key", key);
+		adao.adminGetAllCount(cntMap);
 		
-		int count = adao.getAllCount( "content", "name", key );
+		int count = Integer.parseInt( cntMap.get("cnt").toString() );
 		paging.setTotalCount(count);
 		paging.paging();
 		
-		List<ContentVO> contentList = adao.listProduct( paging , key );
-		result.put("contentList" , contentList);
-		result.put("paging", paging);
-		result.put("key", key);
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("key", key);
 		
-		return result;
+		adao.getMemberList(paramMap);
+		
+		paramMap.put("paging", paging);
+		
 	}
 
-	public void insertContent(@Valid ContentVO contentvo) {
-		adao.insertContent(contentvo);
-		}
-		public void updateContent(ContentVO contentvo) {
-			adao.updateContent(contentvo);
-		}
-		public HashMap<String, Object> getOrderList(HttpServletRequest request) {
-			HashMap<String, Object> result = new HashMap<String, Object>();
-			HttpSession session = request.getSession();
-
-			if( request.getParameter("first")!=null ) {
-				session.removeAttribute("page");
-				session.removeAttribute("key");
-			}
-			
-			int page = 1;
-			if( request.getParameter("page") != null) {
-				page = Integer.parseInt(request.getParameter("page"));
-				session.setAttribute("page", page);
-			} else if( session.getAttribute("page")!= null ) {
-				page = (int) session.getAttribute("page");
-			} else {
-				page = 1;
-				session.removeAttribute("page");
-			}
-			
-			String key = "";
-			if( request.getParameter("key") != null ) {
-				key = request.getParameter("key");
-				session.setAttribute("key", key);
-			} else if( session.getAttribute("key")!= null ) {
-				key = (String)session.getAttribute("key");
-			} else {
-				session.removeAttribute("key");
-				key = "";
-			} 
-
-			Paging paging = new Paging();
-			paging.setPage(page);
-			
-			int count = adao.getAllCount( "order_view", "pname", key );
-			paging.setTotalCount(count);
-			paging.paging();
-			
-			List<OrderVO> orderList = adao.listOrders( paging , key );
-			result.put("orderList" , orderList);
-			result.put("paging", paging);
-			result.put("key", key);
-			
-			return result;
-		}
-
-		public HashMap<String, Object> getMemberList(HttpServletRequest request) {
-			  HashMap<String, Object> result = new HashMap<String, Object>();
-		      HttpSession session = request.getSession();
-		      
-		      if( request.getParameter("first")!=null) {
-		         session.removeAttribute("page");
-		         session.removeAttribute("key");
-		      }
-		      int page=1;
-		      if( request.getParameter("page") != null) {
-		         page = Integer.parseInt(request.getParameter("page"));
-		         session.setAttribute("page", page);
-		      }else if( session.getAttribute("page") != null ) {
-		         page = (int)session.getAttribute("page");
-		      }else {
-		         page = 1;
-		         session.removeAttribute("page");
-		      }
-		      
-		      String key = "";
-		      if( request.getParameter("key") != null ) {
-		         key = request.getParameter("key");
-		         session.setAttribute("key", key);
-		      } else if( session.getAttribute("key")!= null ) {
-		         key = (String)session.getAttribute("key");
-		      } else {
-		         session.removeAttribute("key");
-		         key="";
-		      }
-		      
-		      Paging paging = new Paging();
-		      paging.setPage(page);
-		      
-		      int count = adao.getAllCount("member", "name", key);
-		      paging.setTotalCount(count);
-		      paging.paging();
-		      
-		      List<MemberVO> list = adao.listMember(paging, key);
-		      result.put("memberList", list);
-		      result.put("paging", paging);
-		      result.put("key", key);
-		      
-		      return result;
-
+	public void memberReinsert(HashMap<String, Object> paramMap) {
+		adao.memberReinsert( paramMap );
 	}
 
-		public HashMap<String, Object> getQnaList(HttpServletRequest request) {
-			HashMap<String, Object> result = new HashMap<String, Object>();
-			HttpSession session = request.getSession();
-
-			if( request.getParameter("first")!=null ) {
-				session.removeAttribute("page");
-				session.removeAttribute("key");
-			}
-			
-			int page = 1;
-			if( request.getParameter("page") != null) {
-				page = Integer.parseInt(request.getParameter("page"));
-				session.setAttribute("page", page);
-			} else if( session.getAttribute("page")!= null ) {
-				page = (int) session.getAttribute("page");
-			} else {
-				page = 1;
-				session.removeAttribute("page");
-			}
-			
-			String key = "";
-			if( request.getParameter("key") != null ) {
-				key = request.getParameter("key");
-				session.setAttribute("key", key);
-			} else if( session.getAttribute("key")!= null ) {
-				key = (String)session.getAttribute("key");
-			} else {
-				session.removeAttribute("key");
-				key = "";
-			} 
-			
-			Paging paging = new Paging();
-			paging.setPage(page);
-			
-			int count = adao.getAllCount( "qna", "subject", key );
-			paging.setTotalCount(count);
-			paging.paging();
-			
-			List<QnaVO> qnaList = adao.listQna( paging , key );
-			result.put("qnaList" , qnaList);
-			result.put("paging", paging);
-			result.put("key", key);
-			
-			return result;
+	public void getOrderList(HashMap<String, Object> paramMap) {
+		
+		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
+		HttpSession session = request.getSession();
+		if( request.getParameter("first")!=null ) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
 		}
+		int page = 1;
+		if( request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		} else if( session.getAttribute("page")!= null ) {
+			page = (int) session.getAttribute("page");
+		} else {
+			page = 1;
+			session.removeAttribute("page");
+		}
+		String key = "";
+		if( request.getParameter("key") != null ) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		} else if( session.getAttribute("key")!= null ) {
+			key = (String)session.getAttribute("key");
+		} else {
+			session.removeAttribute("key");
+			key = "";
+		} 
+		Paging paging = new Paging();
+		paging.setPage(page);
+		HashMap<String, Object> cntMap = new HashMap<String, Object>();
+		cntMap.put("cnt", 0);  // OUT 변수용
+		cntMap.put("tableName" , 2 );
+		cntMap.put("key", key);
+		adao.adminGetAllCount(cntMap);
+		
+		int count = Integer.parseInt( cntMap.get("cnt").toString() );
+		paging.setTotalCount(count);
+		paging.paging();
+		System.out.print(count);
+		
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("key", key);
+		
+		adao.getOrderList(paramMap);
+		
+		paramMap.put("paging", paging);
+		
+	}
 
-		public void updateOrderResult(int[] results) {
+	public void updateOrderResult(HashMap<String, Object> paramMap) {
+		
+		int [] results = (int []) paramMap.get("results");
+		for( int odseq : results) {
+			paramMap.put("odseq", odseq);
+			adao.updateOrderResult(paramMap);
+		}
 			
-			for(int odseq : results)
-			adao.updateOrderResult(odseq);
-		}
+		
+	}
 
-		public void memberReinsert(String id, String useyn) {
-			adao.memberReinsert(id,useyn);
+	public void getQnaList(HashMap<String, Object> paramMap) {
+		
+		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
+		HttpSession session = request.getSession();
+		if( request.getParameter("first")!=null ) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
 		}
-
-		public void updateQna(int qseq, String reply) {
-			adao.updateQna(qseq,reply);
+		int page = 1;
+		if( request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		} else if( session.getAttribute("page")!= null ) {
+			page = (int) session.getAttribute("page");
+		} else {
+			page = 1;
+			session.removeAttribute("page");
 		}
+		String key = "";
+		if( request.getParameter("key") != null ) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		} else if( session.getAttribute("key")!= null ) {
+			key = (String)session.getAttribute("key");
+		} else {
+			session.removeAttribute("key");
+			key = "";
+		} 
+		Paging paging = new Paging();
+		paging.setPage(page);
+		HashMap<String, Object> cntMap = new HashMap<String, Object>();
+		cntMap.put("cnt", 0); 
+		cntMap.put("tableName" , 4 );
+		cntMap.put("key", key);
+		adao.adminGetAllCount(cntMap);
+		
+		int count = Integer.parseInt( cntMap.get("cnt").toString() );
+		paging.setTotalCount(count);
+		paging.paging();
+		
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("key", key);
+		adao.getQnaList(paramMap);
+		
+		paramMap.put("paging", paging);
+		
+	}
 
-		public List<BannerVO> getBannerList() {
-			return adao.getBannerList();
-		}
+	public void updateQna(HashMap<String, Object> paramMap) {
+		adao.updateOna( paramMap);
+		
+	}
 
-		public void insertBanner(BannerVO bannervo) {
-			adao.insertBanner(bannervo);
-		}
+	public void getBannerList(HashMap<String, Object> paramMap) {
+		adao.getBannerList( paramMap );
+		
+	}
 
-	
+	public void insertBanner(HashMap<String, Object> paramMap) {
+		adao.insertBanner(paramMap);
+		
+	}
+
+	public void updateSeq(HashMap<String, Object> paramMap) {
+		adao.updateSeq( paramMap);		
+	}
+
+	public void insertContent(HashMap<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateContent(HashMap<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 }
-

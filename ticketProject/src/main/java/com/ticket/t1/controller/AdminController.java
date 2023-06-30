@@ -60,13 +60,13 @@ public class AdminController {
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		String url = "admin/adminLoginForm";
 		if(list.size() == 0) {  // 입력한 아이디 없다면
-			model.addAttribute("message" , "아이디가 없습니다");
+			model.addAttribute("message" , "아이디가 없어요");
 			return "admin/adminLoginForm";
 		}
 		HashMap<String, Object> resultMap = list.get(0); 
 		if(resultMap.get("PWD")==null) model.addAttribute("message" , "관리자에게 문의하세요");
 		else if( !workPwd.equals( (String) resultMap.get("PWD") ) )
-			model.addAttribute("message" , "비밀번호가 맞지 않습니다");
+			model.addAttribute("message" , "비번이 안맞아요");
 		else if( workPwd.equals( (String) resultMap.get("PWD") ) ) { 
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", resultMap);
@@ -74,6 +74,7 @@ public class AdminController {
 		}
 		return url;
 	}
+	
 	
 	@RequestMapping(value="/adminLogout")
 	public String adminLogout( HttpServletRequest request ) {
@@ -84,30 +85,40 @@ public class AdminController {
 		return "admin/adminLoginForm";
 	}
 	
-	@RequestMapping("/contentList")
-	public ModelAndView product_list( HttpServletRequest request ) {
+	
+	
+	@RequestMapping(value="/contentList")
+	public ModelAndView content_list(HttpServletRequest request ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("workId");
-		if(id==null)
-			mav.setViewName("redirect:/admin");
+		if( session.getAttribute("loginAdmin")==null) 
+			mav.setViewName("admin/adminLoginForm");
 		else {
-			HashMap<String, Object> result =  as.getContentList( request );
-			mav.addObject("productList",  (List<ContentVO>)result.get("contentList")  );
-			mav.addObject("paging", (Paging)result.get("paging") );
-			mav.addObject("key", (String)result.get("key") );
-			mav.setViewName("admin/product/productList");
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
+			paramMap.put( "ref_cursor", null );
+			as.getContentList( paramMap );
+			
+			ArrayList< HashMap<String,Object> > list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("contentList", list);
+			mav.addObject("paging", paramMap.get("paging") );
+			mav.addObject("key", paramMap.get("key") );
+			mav.setViewName("admin/content/contentList");
 		}
 		return mav;
 	}
 	
-
+	
+	
 	@RequestMapping(value="/contentWriteForm")
 	public String product_write_form( HttpServletRequest request, Model model) {
-		String categoryList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
-		model.addAttribute("categoryList", categoryList);
+		String kindList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
+		model.addAttribute("kindList", kindList);
 		return "admin/content/contentWriteForm";
 	}
+	
 	
 	@Autowired
 	ServletContext context;
@@ -118,14 +129,14 @@ public class AdminController {
 			@RequestParam("fileimage") MultipartFile file,
 			HttpServletRequest request, Model model	) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		String path = context.getRealPath("/content_images");	
+		String path = context.getRealPath("/product_images");	
 		Calendar today = Calendar.getInstance();
  		long t = today.getTimeInMillis();
- 		String filename = file.getOriginalFilename(); 
- 		String fn1 = filename.substring(0, filename.indexOf(".") );  
+ 		String filename = file.getOriginalFilename(); // 파일이름 추출
+ 		String fn1 = filename.substring(0, filename.indexOf(".") );  // 파일이름과 확장장 분리
  		String fn2 = filename.substring(filename.indexOf(".")+1 );
  		
- 		if (!file.isEmpty()) {   
+ 		if (!file.isEmpty()) {   // 업로드할 파일이 존재한다면
             String uploadPath = path + "/" + fn1 + t +  "." + fn2;
             System.out.println("파일 저장 경로 = " + uploadPath);
             try {
@@ -139,192 +150,280 @@ public class AdminController {
 		return result;
 	}
 	
-	
-	@RequestMapping(value="/contentWrite", method=RequestMethod.POST)
-	public String contentWrite(@ModelAttribute("dto") @Valid ContentVO contentvo, BindingResult result,
-			Model model, HttpServletRequest request) {
-
-		String url="admin/content/contentWriteForm";
-	    if(result.getFieldError("name")!=null)
-	         model.addAttribute("message", result.getFieldError("name").getDefaultMessage());
-	      else if(result.getFieldError("price2")!=null)
-	         model.addAttribute("message", result.getFieldError("price2").getDefaultMessage());
-	      else if(result.getFieldError("content")!=null)
-	         model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
-	      else if(result.getFieldError("image")!=null)
-	         model.addAttribute("message", result.getFieldError("image").getDefaultMessage());
-	      else {
-	         as.insertContent(contentvo);
-	         url="redirect:/contentList";
-	      }
-
-		return url;
+	@RequestMapping(value="/contentWrite" , method = RequestMethod.POST)
+	public String contentWrite(	Model model ,  HttpServletRequest request ) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("name", request.getParameter("name") );
+		paramMap.put("kind", request.getParameter("kind") );
+		paramMap.put("price1", Integer.parseInt( request.getParameter("price1") ) );
+		paramMap.put("price2", Integer.parseInt( request.getParameter("price2") ) );
+		paramMap.put("price3", Integer.parseInt( request.getParameter("price3") ) );
+		paramMap.put("content", request.getParameter("content") );
+		if( request.getParameter("image") == null )
+			paramMap.put("image", "" );
+		else 
+			paramMap.put("image", request.getParameter("image") );
+		as.insertContent( paramMap);
+		return "redirect:/contentList";
 	}
 	
 	@Autowired
 	ContentService ps;
-
-	@RequestMapping("adminContentDetail")
-	public ModelAndView product_detail(
-			HttpServletRequest request, @RequestParam("pseq") int pseq) {
+	
+	@RequestMapping("/adminContentDetail")
+	public ModelAndView adminContentDetail( HttpServletRequest request,
+			@RequestParam("pseq") int pseq ) {
+		ModelAndView mav = new ModelAndView();
 		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("contentVO",ps.getContent(pseq));
-		
-		String categoryList[]= {"0","Heels", "Boots", "Sandals", "Slippers", "Sneakers",  "Sale"};
-		int index=Integer.parseInt(ps.getContent(pseq).getCategory());
-		
-		mav.addObject("Category",categoryList[index]);
-		mav.setViewName("admin/content/contentDetail");
-		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin")==null) 
+			mav.setViewName("admin/adminLoginForm");
+		else {
+			HashMap<String , Object>paramMap = new HashMap<String, Object>();
+			paramMap.put("pseq", pseq);
+			paramMap.put("ref_cursor", null);
+			ps.getContent(paramMap);
+			ArrayList< HashMap<String , Object> > list
+				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
+			HashMap<String , Object> pvo = list.get(0);
+			String kindList[] = { "0", "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
+			mav.addObject("kind", kindList[ Integer.parseInt( pvo.get("KIND").toString() ) ] );
+			mav.addObject("contentVO", pvo);
+			mav.setViewName("admin/content/contentDetail");
+		}
 		return mav;
 	}
 	
 	@RequestMapping("contentUpdateForm")
-	public ModelAndView content_update_form(
-			Model model, HttpServletRequest request, @RequestParam("pseq") int pseq) {
-		ModelAndView mav=new ModelAndView();
-		model.addAttribute("contentVO",ps.getContent(pseq));
-		String kindList[]= {"0","Heels", "Boots", "Sandals", "Slippers", "Sneakers",  "Sale"};
-
-		mav.addObject("kindList",kindList);
-		mav.setViewName("admin/content/contentUpdate");
+	public ModelAndView contentUpdateForm( HttpServletRequest request,
+			@RequestParam("pseq") int pseq ) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		if( session.getAttribute("loginAdmin")==null) 
+			mav.setViewName("admin/adminLoginForm");
+		else {
+			HashMap<String , Object>paramMap = new HashMap<String, Object>();
+			paramMap.put("pseq", pseq);
+			paramMap.put("ref_cursor", null);
+			ps.getContent(paramMap);
+			ArrayList< HashMap<String , Object> > list
+				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
+			HashMap<String , Object> pvo = list.get(0);
+			String kindList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
+			mav.addObject("kindList", kindList );
+			mav.addObject("dto", pvo);
+			mav.setViewName("admin/content/contentUpdate");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/contentUpdate", method=RequestMethod.POST)
+	public String contentUpdate( HttpServletRequest request , Model model) {
+		HashMap<String , Object>paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("pseq", request.getParameter("pseq") );
+		paramMap.put("kind", request.getParameter("kind") );
+		paramMap.put("name", request.getParameter("name") );
+		paramMap.put("price1", request.getParameter("price1") );
+		paramMap.put("price2", request.getParameter("price2") );
+		paramMap.put("price3", request.getParameter("price3") );
+		paramMap.put("content", request.getParameter("content") );
+		
+		if( request.getParameter("useyn") == null)
+			paramMap.put("useryn", "N" );
+		else
+			paramMap.put("useryn", "Y" );
+		
+		if( request.getParameter("bestyn") == null)
+			paramMap.put("bestyn", "N" );
+		else
+			paramMap.put("bestyn", "Y" );
+		
+		paramMap.put("image", request.getParameter("oldfilename") );
+		model.addAttribute("dto" , paramMap);
+		model.addAttribute("newImage", request.getParameter("image"));
+		
+		
+		if( request.getParameter("name") == null || request.getParameter("name").equals("") )
+			return "admin/content/contentUpdate";
+		else if( request.getParameter("price1") == null || request.getParameter("price1").equals("") )
+			return "admin/content/contentUpdate";
+		else if( request.getParameter("price2") == null || request.getParameter("price2").equals("") )
+			return "admin/content/contentUpdate";
+		else if( request.getParameter("price3") == null || request.getParameter("price3").equals("") )
+			return "admin/content/contentUpdate";
+		else if( request.getParameter("content") == null || request.getParameter("content").equals("") )
+			return "admin/content/contentUpdate";
+		else { 
+			if( request.getParameter("image")!=null || !request.getParameter("image").equals("") )
+				paramMap.put("image", request.getParameter("image") );
+			
+			as.updateContent( paramMap );
+			return "redirect:/adminContentDetail?pseq=" + request.getParameter("pseq"); 
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/memberList")
+	public ModelAndView memberList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin")==null) 
+			mav.setViewName("admin/adminLoginForm");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
+			as.getMemberList( paramMap );
+			mav.addObject("memberList",  
+					(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor")  );
+			mav.addObject("paging", (Paging)paramMap.get("paging") );
+			mav.addObject("key", (String)paramMap.get("key") );
+			mav.setViewName("admin/member/memberList");
+		}
 		
 		return mav;
 	}
 	
-	@RequestMapping(value="contentUpdate",method=RequestMethod.POST)
-	public String productUpdate(@ModelAttribute("dto") @Valid ContentVO contentvo, BindingResult result,
-								Model model, HttpServletRequest request) {
+	
+	@RequestMapping("/memberReinsert")
+	public String memberReinsert( @RequestParam("id") String id, 
+			@RequestParam("useyn") String useyn	) {
 		
-		String url="admin/content/contentUpdate";
-	    if(result.getFieldError("name")!=null)
-	         model.addAttribute("message", result.getFieldError("name").getDefaultMessage());
-	      else if(result.getFieldError("price2")!=null)
-	         model.addAttribute("message", result.getFieldError("price2").getDefaultMessage());
-	      else if(result.getFieldError("content")!=null)
-	         model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
-	      else if(result.getFieldError("image")!=null)
-	         model.addAttribute("message", result.getFieldError("image").getDefaultMessage());
-	      else {
-	    	  
-	    	  if(request.getParameter("useyn")!= null) {
-	    		  contentvo.setUseyn("Y");
-	    	  }else contentvo.setUseyn("N");
-	    	  
-	    	  if(request.getParameter("bestyn")!=null) {
-	    		  contentvo.setBestyn("Y");
-	    	  }else contentvo.setBestyn("N");
-	    	  
-	    	  if(contentvo.getImage()==null||contentvo.getImage().equals("")) {
-	    		  contentvo.setImage(request.getParameter("oldfilename"));
-	    	  }
-	         as.updateContent(contentvo);
-	         url="redirect:/admincontentDetail?cseq="+contentvo.getCseq();
-	      }
-		return url;
+		if( useyn.equals("Y") ) useyn="N";
+		else useyn="Y";
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", id);
+		paramMap.put("useyn", useyn);
+		
+		as.memberReinsert( paramMap );
+		return "redirect:/memberList";
 	}
 	
+	
+	
 	@RequestMapping("/adminOrderList")
-	public ModelAndView adminOrderList(HttpServletRequest request) {
-		ModelAndView mav=new ModelAndView();
+	public ModelAndView adminOrderList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("workId");
-		if(id==null)
-			mav.setViewName("redirect:/admin");
+		if( session.getAttribute("loginAdmin")==null) 
+			mav.setViewName("admin/adminLoginForm");
 		else {
-			HashMap<String, Object> result =  as.getOrderList( request );
-			mav.addObject("orderList",  (List<OrderVO>)result.get("orderList")  );
-			mav.addObject("paging", (Paging)result.get("paging") );
-			mav.addObject("key", (String)result.get("key") );
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
+			as.getOrderList( paramMap );
+			mav.addObject("orderList",  
+					(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor")  );
+			mav.addObject("paging", (Paging)paramMap.get("paging") );
+			mav.addObject("key", (String)paramMap.get("key") );
 			mav.setViewName("admin/order/orderList");
 		}
 		
 		return mav;
 	}
 	
-	@RequestMapping("/memberList")
-	public ModelAndView memberList(HttpServletRequest request) {
-		ModelAndView mav=new ModelAndView();
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("workId");
-		if(id==null)
-			mav.setViewName("redirect:/admin");
-		else {
-			HashMap<String, Object> result =  as.getMemberList( request );
-			mav.addObject("memberList",  (List<MemberVO>)result.get("memberList")  );
-			mav.addObject("paging", (Paging)result.get("paging") );
-			mav.addObject("key", (String)result.get("key") );
-			mav.setViewName("admin/member/memberList");
-		}
-		return mav;
+	
+	@RequestMapping("/orderUpdateResult")
+	public String orderUpdateResult( @RequestParam("result") int [] results  ) {
+		
+		// 전달된 results 속에 담긴 odseq 들을 하나씩 검색해서 result 값을 다음값으로 변경
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("results", results);
+		as.updateOrderResult( paramMap );
+		
+		return "redirect:/adminOrderList";
 	}
 	
+	
+	
+	
+	
 	@RequestMapping("/adminQnaList")
-	public ModelAndView adminQnaList(HttpServletRequest request) {
-		ModelAndView mav=new ModelAndView();
+	public ModelAndView adminQnaList( HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("workId");
-		if(id==null)
-			mav.setViewName("redirect:/admin");
+		if( session.getAttribute("loginAdmin")==null) 
+			mav.setViewName("admin/adminLoginForm");
 		else {
-			HashMap<String, Object> result =  as.getQnaList( request );
-			mav.addObject("qnaList",  (List<QnaVO>)result.get("qnaList")  );
-			mav.addObject("paging", (Paging)result.get("paging") );
-			mav.addObject("key", (String)result.get("key") );
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
+			as.getQnaList( paramMap );
+			mav.addObject("qnaList",  
+					(ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor")  );
+			mav.addObject("paging", (Paging)paramMap.get("paging") );
+			mav.addObject("key", (String)paramMap.get("key") );
 			mav.setViewName("admin/qna/qnaList");
 		}
 		
 		return mav;
 	}
 	
-	@RequestMapping("/orderUpdateResult")
-	public String orderUpdateResult(@RequestParam("result") int [] results){
-		
-		as.updateOrderResult(results);
-		
-		return "redirect:/adminOrderList";
-	}
-
-	@RequestMapping("/memberReinsert")
-	public String memberReinsert(@RequestParam("id") String id, @RequestParam("useyn") String useyn) {
-		if(useyn.equals("Y")) useyn="N";
-		else useyn="Y";
-		
-		as.memberReinsert(id,useyn);
-		return "redirect:/memberList";
-	}
 	
-
 	@Autowired
 	QnaService qs;
 	
 	@RequestMapping("/adminQnaView")
-	public ModelAndView adminQnaView(HttpServletRequest request, @RequestParam("qseq") int qseq) {
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("qnaVO",qs.getQna(qseq));
+	public ModelAndView adminQnaView( @RequestParam("qseq") int qseq   	) {
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qseq", qseq);
+		paramMap.put("ref_cursor", null);
+		qs.getQna(paramMap);
+		ArrayList<HashMap<String, Object>> list 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		HashMap<String, Object> qvo = list.get(0);
+		mav.addObject("qnaVO", qvo );
 		mav.setViewName("admin/qna/qnaView");
 		return mav;
 	}
-
-
+	
+	
+	
+	
 	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
-	public String adminQnaRepSave(@RequestParam("qseq") int qseq, @RequestParam("reply") String reply) {
-		System.out.println(1);
-		as.updateQna(qseq,reply);
-		return "redirect:/adminQnaView?qseq="+qseq;
+	public String adminQnaRepSave( @RequestParam("qseq") int qseq,
+								@RequestParam("reply") String reply ) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qseq", qseq);
+		paramMap.put("reply", reply);
+		
+		as.updateQna( paramMap );
+		return "redirect:/adminQnaView?qseq=" + qseq;
 	}
 	
 	
-	@RequestMapping(value="/adminBannerList")
-	public ModelAndView bannerList() {
-		ModelAndView mav=new ModelAndView();
+	
+	
+	
+	
+	
+	@RequestMapping("/adminBannerList")
+	public ModelAndView bannerList( ) {
+		ModelAndView mav = new ModelAndView();
+	
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ref_cursor", null);
+		as.getBannerList(paramMap);
+		ArrayList<HashMap<String, Object>> list 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		
-		mav.addObject("bannerList",as.getBannerList());
+		mav.addObject("bannerList",  list);
 		mav.setViewName("admin/banner/bannerList");
 		
 		return mav;
 	}
+	
+	
 	
 	
 	@RequestMapping("/newBannerWrite")
@@ -333,16 +432,41 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value="/bannerWrite")
-	public String bannerWrite(BannerVO bannervo) {
-		if(bannervo.getOrder_seq()==6) bannervo.setUseyn("N");
-		else bannervo.setUseyn("N");
-		as.insertBanner(bannervo);
-		return "admin/banner/bannerList";
+	@RequestMapping(value="/bannerWrite" )
+	public String bannerWrite( HttpServletRequest request	) {		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("subject", request.getParameter("subject") );
+		paramMap.put("order_seq", request.getParameter("order_seq") );
+		paramMap.put("image", request.getParameter("image") );
+		
+		if( request.getParameter("order_seq").equals("6") ) paramMap.put("useyn", "N" );
+		else paramMap.put("useyn", "Y" );
+		
+		as.insertBanner( paramMap );
+		return "redirect:/adminBannerList";
 	}
 	
 	
 	
+	@RequestMapping("/chane_order")
+	public String chane_order(
+			HttpServletRequest request,
+			@RequestParam("bseq") int bseq,
+			@RequestParam("changeval") int changeval  	) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("bseq", bseq );	
+		String useyn;
+		if( changeval > 5) paramMap.put("useyn", "N" );
+		else paramMap.put("useyn", "Y" );
+		paramMap.put("changeval", changeval );
+		
+		as.updateSeq( paramMap );
+		
+		return "redirect:/adminBannerList";
+	}
 
 	
 }
+
+

@@ -1,5 +1,6 @@
 package com.ticket.t1.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,16 @@ public class QnaService {
 		return qdao.listQns();
 	}
 
-	public QnaVO getQna(int qseq) {
-		return qdao.getQna( qseq );
-	}
+
 
 	public void insertQna(QnaVO qnavo) {
 		qdao.insertQna( qnavo);
+	}
+
+
+
+	public void getQna(HashMap<String, Object> paramMap) {
+		
+		
 	}
 }

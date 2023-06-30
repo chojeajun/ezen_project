@@ -8,9 +8,9 @@
 	<table>
 		<tr><td width="642">
 			공연명<input type="text" name="key" value="${key}">
-			<input class="btn" type="button" name="btn_search" value="검색" onClick="go_search('contentList');">
-			<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total('contentList');">
-			<input class="btn" type="button" name="btn_write" value="공연등록"  	onClick="go_wrt();"></td></tr>
+			<input class="btn2" type="button" name="btn_search" value="검색" onClick="go_search('contentList');">
+			<input class="btn2" type="button" name="btn_total" value="전체보기 " onClick="go_total('contentList');">
+			<input class="btn2" type="button" name="btn_write" value="공연등록"  	onClick="go_wrt();"></td></tr>
 	</table>
 	<table id="contentList" align="center">
 		<tr><th>번호</th><th>공연명</th><th>아티스트</th><th>컨텐츠</th><th>가격</th><th>등록일</th><th>연령제한</th></tr>

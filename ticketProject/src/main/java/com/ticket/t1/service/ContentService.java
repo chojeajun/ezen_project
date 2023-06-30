@@ -34,9 +34,7 @@ public class ContentService {
 		return cdao.getKindList(kind);
 	}
 
-	public ContentVO getContent(int pseq) {
-		return cdao.getContent(pseq);
-	}
+
 
 	public List<BannerVO> getBannerList() {
 		return cdao.getBannerList();
@@ -73,6 +71,11 @@ public class ContentService {
 
 	public void getExhibition(HashMap<String, Object> paramMap) {
 		cdao.getExhibition( paramMap );
+	}
+
+	public void getContent(HashMap<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
