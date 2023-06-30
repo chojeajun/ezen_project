@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ticket.t1.dao.ICartDao">
+
+	<resultMap id="cartMap" type="java.util.HashMap"></resultMap>
+	
+	<select id="notBuyList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL notBuyList(
+				#{mseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			)
+		}
+	</select>
+	
+	<select id="buyList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL buyList(
+				#{mseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			)
+		}
+	</select>
+	
+	<select id="select_Content_Loc_Seat_View" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL select_Content_Loc_Seat_View(
+				#{cseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			)
+		}
+	</select>
+	
+	<select id="select_Content_Loc_Seat_View_Buy" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL Content_Loc_Seat_View_Buy(
+				#{cseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			)
+		}
+	</select>
+	
+	<select id="getCnickName" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getCnickName(
+				#{mseq2}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			)
+		}
+	</select>
+
+</mapper>

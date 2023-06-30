@@ -22,7 +22,8 @@ public class SuccessController {
 	SuccessService ss;
 
 	@RequestMapping("/successView")
-	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int seq) {
+	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int seq,
+					@RequestParam(value = "isTrue", required=false) String isTrue) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -48,8 +49,8 @@ public class SuccessController {
 			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
 			mav.addObject("SuccessVO", list.get(0));
-
-			ss.readCountOne(paramMap1);
+			System.out.println("isTrue 값 = " + isTrue);
+			if(isTrue == null) ss.readCountOne(paramMap1);
 
 			ss.getReplyList(paramMap);
 
@@ -67,5 +68,15 @@ public class SuccessController {
 
 		return mav;
 
+	}
+	
+	@RequestMapping("/successReplyDelete")
+	public String success_reply_delete(@RequestParam("srseq") int srseq,
+				@RequestParam("sucseq") int sucseq) {
+		
+		ss.replyDelete(srseq);
+		
+		return "redirect:/successView?sucseq=" + sucseq + "&isTrue='Yes'";
+		
 	}
 }

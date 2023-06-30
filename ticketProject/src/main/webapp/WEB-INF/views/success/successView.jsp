@@ -72,7 +72,7 @@
 						<td style="line-height:30px;" align="left">&nbsp;${ reply.SUCCESSCONTENT }</td>
 						<td class="btn_del" style="line-height:1;">
 							<c:if test="${ reply.MSEQ == loginUser.MSEQ }">
-								<input type="button" value="삭제" onclick="location.href='successReplyDelete&srseq=${ reply.SRSEQ }&sucseq=${ SuccessVO.SUCSEQ }'">
+								<input type="button" value="삭제" onclick="location.href='successReplyDelete?srseq=${ reply.SRSEQ }&sucseq=${ SuccessVO.SUCSEQ }'">
 							</c:if>
 							&nbsp;
 							<!-- 로그인 한 유저가 쓴 댓글만 삭제할 수 있게 버튼을표시  -->
@@ -97,7 +97,7 @@
 		</table>
 			<div class="clear"></div>
 			<div class="rev_btn_box btn_box" style="float: left">
-				<input type="button" value="메인으로" class="cancel" onClick="location.href=''">
+				<input type="button" value="메인으로" class="cancel" onClick="location.href='redirect:/'">
 			</div>
 			
 			<!--  리뷰 수정box -->
