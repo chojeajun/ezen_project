@@ -13,8 +13,26 @@ public class SuccessService {
 	@Autowired
 	ISuccessDao sucdao;
 	
-	public void getSuccessListBySusseq(HashMap<String, Object> paramMap) {
-		sucdao.getSuccessListBySusseq( paramMap );
+	public void getSuccessListBySucseq(HashMap<String, Object> paramMap) {
+		sucdao.getSuccessListBySucseq( paramMap );
+	}
+
+	public void readCountOne(HashMap<String, Object> paramMap) {
+		sucdao.readCountOne( paramMap );
+	}
+
+	public void getReplyList(HashMap<String, Object> paramMap) {
+		sucdao.getReplyList( paramMap );
+		
+	}
+
+	public void getReplyMember(HashMap<String, Object> paramMap) {
+		sucdao.getReplyMember( paramMap );
+	}
+
+	public void replyDelete(int srseq) {
+		sucdao.replyDelete(srseq);
+		
 	}
 	
 }

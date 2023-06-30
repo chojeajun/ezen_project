@@ -8,39 +8,36 @@
 
 </head>
 <body>
-	<form method="post" name="joinForm" style="margin: 0 auto;">
-		<input type="hidden" name="command" value="join">
+	<form method="post" name="formm" style="margin: 0 auto;" action="join">
 		<div id="join_box">
 			<div class="join_title">
 				<span>회원정보 입력</span> 홈페이지에서 사용할 정보를 입력해주세요.
 			</div>
 			<div class="join_content">
 				<ul>
-					<li> <span>* </span> <input type="text" name="id" placeholder="아이디" />
-						<input type="hidden" name="reid">
-						<input type="button" value="중복체크" class="chk_id" onclick="checkid();">
+					<li> <span>* </span> <input type="text" name="id" placeholder="아이디" value="${dto.id}" />
+						<input type="hidden" name="reid" value="${reid} ">
+						<input type="button" value="중복체크" class="chk_id" onclick="idcheck();">
 					</li>
 					<li> <span>* </span> <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요." /></li>
 					<li> <span>* </span> <input type="password" name="pwdCheck" placeholder="비밀번호 재확인." /><br></li>
-					<li> <span>* </span> <input type="text" name="name" placeholder="이름을 입력해주세요." /></li>
+					<li> <span>* </span> <input type="text" name="name" placeholder="이름을 입력해주세요." value="${dto.name}" /></li>
 					<li> <select name="gender" class="gender">
 							<option value="무관">성별 선택</option>
 							<option value="남">남</option>
 							<option value="여">여</option>
 					</select></li>
 					<li> <input type="text" name="nickname" placeholder="별명을 입력해주세요." /></li>
-					<li> <span>* </span> <input type="text" name="email" placeholder="이메일을 입력해주세요." /></li>
-					<li> <span>* </span> <input type="text"  name="phone" placeholder="(입력예 : 010-7777-3333)" /></li>
-					<li><span>* </span> <input type="text" class="birthday" name="birth" placeholder="(입력예 yyyy-mm-dd)" onblur="birthCheck()">
+					<li> <span>* </span> <input type="text" name="email" placeholder="이메일을 입력해주세요." value="${dto.email}" /></li>
+					<li> <span>* </span> <input type="text"  name="phone" placeholder="(입력예 : 010-7777-3333)" value="${dto.phone}" /></li>
+					<li><span>* </span> <input type="text" class="birthday" name="birth" placeholder="(입력예 yyyy-mm-dd)">
 					<li>
-						 <span>* </span> <input type="text" name="zip_num" placeholder="우편번호를 입력해주세요." readonly="readonly" />
-						<input type="button" value="주소 찾기" class="zip_find" onclick="post_zip()">
+						 <span>* </span> <input type="text"  id="sample6_postcode"  name="zip_num" placeholder="우편번호를 입력해주세요." readonly="readonly" />
+						<input type="button" style="position:absolute; right:0;" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호찾기"><br>
 					</li>
-					<li>
-						 <span>* </span> <input type="text" name="address1" placeholder="주소를 입력해주세요." readonly="readonly" />
-					</li>
-				
-					<li> <input type="text" name="address2" placeholder="상세주소를 입력해주세요." /></li>
+        			<li><input type="text" id="sample6_address" size="50" name="address1" value="${ dto.address1 }" readonly><br></li>
+			        <li><input type="text" id="sample6_detailAddress" name="address2" value="${ dto.address2 }" placeholder="상세주소 입력" size="50"><br></li>
+        			<li><input type="text" id="sample6_extraAddress" name="address3" value="${ dto.address3 }" readonly><br></li>
 				</ul>
 				
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -100,7 +97,7 @@
 				</div>
 			</div>
 			<div id="buttons">
-				<input type="button" value="회원가입" class="submit join_ok"  onclick="join_insert()">
+				<input type="submit" value="회원가입" class="submit join_ok" >
 				<input type="button" value="취소" class="cancel join_cancel" >
 			</div>
 		</div>

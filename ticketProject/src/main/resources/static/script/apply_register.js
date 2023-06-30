@@ -17,7 +17,7 @@ function go_apply() {
 }
 
 function go_register() {
-	document.anrFrm.action = 'ticket.do?command=registerForm';
+	document.anrFrm.action = 'registerForm';
 	document.anrFrm.submit();
 
 }

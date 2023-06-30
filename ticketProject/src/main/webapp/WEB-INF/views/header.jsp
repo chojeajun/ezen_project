@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ticket Shop</title>
 <link rel="stylesheet" type="text/css" href="/css/board.css"/>
-<script type="text/javascript" src="/script/board.js"></script>
+<!-- <script type="text/javascript" src="/script/board.js"></script> -->
 
 <link rel="stylesheet" type="text/css" href="/css/ticketing.css"/>
 <link rel="stylesheet" type="text/css" href="/css/apply.css?ver=1"/>
@@ -25,7 +25,7 @@
 <script src="script/jquery-3.7.0.min.js"></script>
 
 <script type="text/javascript" src="/script/main.js"></script>
-<script type="text/javascript" src="/script/member.js"></script>
+<script type="text/javascript" src="./script/member.js"></script>
 <script type="text/javascript" src="/script/cartlist.js"></script>
 <script type="text/javascript" src="/script/apply_register.js"></script>
 <script type="text/javascript" src="/script/review.js"></script>
@@ -141,11 +141,11 @@
 								<li><a href="admin">admin</a>
 							</c:when>
 							<c:otherwise>
-								<li>${ loginUser.name }(${ loginUser.id })</li>
+								<li>${ loginUser.NAME }(${ loginUser.ID })</li>
 								<li><a href="logout">로그아웃</a></li>
 								<li><a href="mypage">마이페이지</a></li>
 								<li><a href="cartList">장바구니</a></li>
-								<li><a href="editForm">정보수정</a></li>
+								<li><a href="memberEditForm">정보수정</a></li>
 								<li><a href="qnaList">1:1 문의하기</a></li>
 							</c:otherwise>
 						</c:choose>

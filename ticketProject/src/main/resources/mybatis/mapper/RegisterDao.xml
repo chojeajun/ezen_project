@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ticket.t1.dao.IRegisterDao">
+
+	<insert id="insertRegisterTime" parameterType="com.ticket.t1.dto.RegisterTimeVO">
+	        INSERT INTO register_time (mseq, date, starttime, endtime)
+	        VALUES (#{mseq}, #{date}, #{starttime}, #{endtime})
+	</insert>
+	    
+	<select id="getMyRegister" parameterType="com.ticket.t1.dto.MemberVO" resultType="com.ticket.t1.dto.RegisterTimeVO">
+	        SELECT * FROM register_time WHERE mseq = #{mseq}
+	</select>
+
+
+</mapper>

@@ -6,14 +6,13 @@
 <mapper namespace="com.ticket.t1.dao.IMemberDao">
 
 	<resultMap id="memberMap" type="java.util.HashMap"></resultMap>
-	<resultMap id="memberMap2" type="com.ticket.t1.util.Lowercase"></resultMap>
+<!-- 	<resultMap id="memberMap2" type="com.ticket.t1.util.Lowercase"></resultMap> -->
 	
 	<select id="getMember" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL getMember( 
 				#{id}, 
-				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap2 }
-			)
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap2 }	)
 		}
 	</select>
 	
@@ -24,6 +23,18 @@
 			)
 		}
 	</insert>
+	
+	<insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertMember(
+				#{id}, #{pwd}, #{name}, #{nickname}, #{gender}, #{email}, #{phone}, #{birth},  #{zip_num}, #{address1} , #{address2}, #{address3} 
+			)
+		}	
+	</insert>
+	
+	
+	
+	
 	
 	
 </mapper>

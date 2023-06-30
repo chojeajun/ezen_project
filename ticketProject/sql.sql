@@ -1,13 +1,12 @@
 select * from member;
 
-
+select * from orders_view;
 select * from banner;
 select * from qna;
 select * from content;
 select * from admin;
 select * from worker;
 
-GRANT SELECT, DELETE, INSERT, UPDATE ON admin TO scott;
 
 create or replace procedure getMember(
     p_id 

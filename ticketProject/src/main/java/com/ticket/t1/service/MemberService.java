@@ -3,7 +3,6 @@ package com.ticket.t1.service;
 
 import java.util.HashMap;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +24,13 @@ public class MemberService {
 		mdao.joinKakao(paramMap);
 
 	}
+
+	public void insertMember(HashMap<String, Object> paramMap) {
+		
+		mdao.insertMember(paramMap);
+		
+	}
+
 
 
 }
