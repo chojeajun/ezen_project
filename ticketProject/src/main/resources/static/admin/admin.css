@@ -24,7 +24,7 @@ a:hover {
 
 #wrap {
  width: 1200px;
- text-align: center;
+/* text-align: center; */
  margin: 0px;
  margin-right: auto;
  margin-left: auto;
@@ -124,13 +124,13 @@ footer hr {
 .btn {
  width: 100px;
  border-radius: 5px;
- background-color: #FC3;
+ background-color: rgb(255, 213, 225);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
  text-align: center;
  padding: 5px;
- margin: 0 7px 7px 0px;
+ /* margin: 0 7px 7px 0px; */
 }
 
 .btn:HOVER {
