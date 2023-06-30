@@ -7,6 +7,7 @@
 
 	<resultMap  id="adminMap" type="java.util.HashMap"></resultMap>
 	
+	
 	<select id="getAdmin" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  
 			CALL getAdmin( 
@@ -14,6 +15,7 @@
 				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
 			)	  
 		}
+
 	</select>
 	
 	

@@ -14,7 +14,7 @@
 	<resultMap id="contentMap4" type="java.util.HashMap"></resultMap>
 	<resultMap id="contentMap5" type="java.util.HashMap"></resultMap>
 	<resultMap id="bannerMap" type="java.util.HashMap"></resultMap>
-	<resultMap id="successMap" type="java.util.HashMap"></resultMap>
+	<resultMap id="successMap1" type="java.util.HashMap"></resultMap>
 	
 	<select id="getBestNewSuccessBannerList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
