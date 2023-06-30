@@ -5,13 +5,13 @@
 	
 <mapper namespace="com.ticket.t1.dao.ISuccessDao">
 
-	<resultMap id="successMap" type="java.util.HashMap"></resultMap>
+	<resultMap id="successMap1" type="java.util.HashMap"></resultMap>
 	
 	<select id="getSuccessListBySusseq" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL getSuccessListBySusseq(
 				#{susseq},
-				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap}
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1}
 			)
 		}
 	</select>
