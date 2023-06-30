@@ -6,12 +6,43 @@
 <mapper namespace="com.ticket.t1.dao.ISuccessDao">
 
 	<resultMap id="successMap1" type="java.util.HashMap"></resultMap>
+
+	<resultMap id="replyMap1" type="java.util.HashMap"></resultMap>
+	<resultMap id="name" type="java.util.HashMap"></resultMap>
+
 	
-	<select id="getSuccessListBySusseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<select id="getSuccessListBySucseq" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL getSuccessListBySusseq(
-				#{susseq},
+
+				#{sucseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1}
+			)
+		}
+	</select>
+	
+	<insert id="readCountOne" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL readCountOne(
+				#{sucseq}
+			)
+		}
+	</insert>
+	
+	<select id="getReplyList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getReplyList(
+				#{sucseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=replyMap1}
+			)
+		}
+	</select>
+	
+	<select id="getReplyMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getReplyMember(
+				#{sucseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=name}
 			)
 		}
 	</select>
