@@ -19,14 +19,15 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.ticket.t1.dto.KakaoProfile;
@@ -47,10 +48,13 @@ public class MemberController {
 		return "member/login";
 	}
 	
-			// jsp파일의 form action = login 을 타고 이리 옴  
+		 
+	
+	
+	// dto 라는 이름으로 객체를 받겠다 , 밸리데이션 membervo 진행하겠다 제약조건이름은 result
+	// jsp파일의 form action = login 을 타고 이리 옴  
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	public String login(
-		// dto 라는 이름으로 객체를 받겠다 , 밸리데이션 membervo 진행하겠다 제약조건이름은 result  
 			@ModelAttribute("dto") @Valid MemberVO membervo,	BindingResult result,
 			HttpServletRequest request,	Model model	) {
 		
@@ -66,19 +70,22 @@ public class MemberController {
 			paramMap.put("ref_cursor", null);
 			ms.getMember(paramMap);
 			
-			ArrayList< HashMap<String,Object> > list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList< HashMap<String,Object> > list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			if( list==null || list.size() == 0 ) {
 				model.addAttribute("message" , "아이디가 없습니다");
 				return "member/login";
 			}
+			System.out.println("존재하는 회원의 아이디 갯수는 " + list.size() + "개 입니다"); // 여기까진 탐
 			HashMap<String, Object> mvo = list.get(0);
-			System.out.println("존재하는 회원의 아이디 갯수는 " + list.size() + "개 입니다");
-			if( mvo.get("pwd") == null )
-				model.addAttribute("message" , "관리자에게 문의하세요 문의 ㄱ?");
-			else if( !mvo.get("pwd").equals( membervo.getPwd() ) )
-				model.addAttribute("message" , "비밀번호 안맞습니다 확인 ㄱ?");
-			else  if( mvo.get("pwd").equals( membervo.getPwd() ) ) {
+			if( mvo.get("PWD") == null ) {
+				model.addAttribute("message" , "관리자에게 문의하세요");
+				System.out.println("받은 비밀번호 : @@@@@@@@ "+ membervo.getPwd());
+			} else if(!mvo.get("PWD").equals( membervo.getPwd() )) {
+				model.addAttribute("message" , "비밀번호가 틀립니다");
+				System.out.println("틀린 비밀번와 비교 : @@@@@@@@ "+ membervo.getPwd());
+			} else if( mvo.get("PWD").equals( membervo.getPwd() ) ) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
 				url = "redirect:/";
@@ -87,7 +94,6 @@ public class MemberController {
 		return url;
 	}
 	
-
 
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpServletRequest request) {
@@ -254,8 +260,88 @@ public class MemberController {
 	}
 	
 	
-
+	// 회원가입 창 ㄱ
+		@RequestMapping("/contract")
+		public String contract(Model model, HttpServletRequest request) {
+			return "member/contract";
+		}
 	
 	
+		// 회원가입 창 ㄱ
+		@RequestMapping("/joinForm")
+		public String join_form() {
+			
+			return "member/joinForm";
+		}
+	
+		
+		@RequestMapping("/idCheckForm")
+		public ModelAndView id_check_form( @RequestParam("id") String id ) {
+			
+			ModelAndView mav = new ModelAndView();
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", id);
+			paramMap.put("ref_cursor", null);
+			ms.getMember(paramMap);
+			ArrayList<HashMap<String, Object>> list =(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			if( list==null || list.size() == 0) {
+				mav.addObject("result" , -1);
+			} else {
+				mav.addObject("result", 1);
+			} 
+			// id , result 값을 리턴받아서 넣어주고 idcheck.jsp 로 리턴
+			mav.addObject("id" , id);
+			mav.setViewName("member/idcheck");
+			return mav;
+		}
+		
+		
+		@RequestMapping(value="/join", method=RequestMethod.POST)
+		public String join(
+				@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
+				@RequestParam(value="reid", required=false) String reid,
+				@RequestParam(value="pwdCheck", required=false) String pwdCheck,
+				HttpServletRequest request, Model model	) {
+			String url = "member/joinForm";
+			if( result.getFieldError("id")!=null)
+				model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
+			else if( result.getFieldError("pwd")!=null)
+				model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+			else if( result.getFieldError("name")!=null)
+				model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+			else if( result.getFieldError("email")!=null)
+				model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
+			else if( reid == null || (   reid != null && !reid.equals(membervo.getId() ) ) )
+					model.addAttribute("message", "아이디 중복체크를 하지 않으셨습니다");
+			else if( pwdCheck == null || (  pwdCheck != null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
+				model.addAttribute("message", "비밀번호 확인 일치하지 않습니다");
+			else {
+				HashMap<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("id", membervo.getId() );
+				paramMap.put("pwd", membervo.getPwd() );
+				paramMap.put("name", membervo.getName() );
+				paramMap.put("email", membervo.getEmail() );
+				paramMap.put("phone", membervo.getPhone() );
+				paramMap.put("nickname", membervo.getNickname() );
+				paramMap.put("gender", membervo.getGender() );
+				paramMap.put("birth", membervo.getBirth() );
+				paramMap.put("zip_num", membervo.getZip_num() );
+				paramMap.put("address1", membervo.getAddress1() );
+				paramMap.put("address2", membervo.getAddress2() );
+				paramMap.put("address3", membervo.getAddress3() );
+				paramMap.put("grade", membervo.getGrade() );
+				paramMap.put("success", membervo.getSuccess() );
+				paramMap.put("useyn", membervo.getUseyn() );
+				ms.insertMember( paramMap );
+				model.addAttribute("message", "회원가입이 완료되었어요. 로그인하세요");
+				url = "member/login";
+			}
+			return url;
+		}
+		
+		
+	
+		
+		
 	
 }

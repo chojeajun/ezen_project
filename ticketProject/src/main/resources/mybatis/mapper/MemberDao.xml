@@ -12,8 +12,7 @@
 		{
 			CALL getMember( 
 				#{id}, 
-				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap2 }
-			)
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap }	)
 		}
 	</select>
 	
@@ -24,6 +23,18 @@
 			)
 		}
 	</insert>
+	
+	<insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertMember(
+				#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{nickname}, #{gender},  #{birth}, #{zip_num}, #{address1} , #{address2}, #{address3} , #{grade} , #{success} , #{useyn} 
+			)
+		}	
+	</insert>
+	
+	
+	
+	
 	
 	
 </mapper>
