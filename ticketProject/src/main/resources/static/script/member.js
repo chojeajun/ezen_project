@@ -30,20 +30,20 @@ function go_next(){
 }
 
 function idcheck() {// 스크립트가 늦게먹거나 적용이 안되는 경우가 종종 생김
-	if(document.joinForm.id.value == "") {
+	if(document.formm.id.value == "") {
 		alert("아이디를 입력하고 중복체크를 진행하세요");
-		document.joinForm.id.focus();
+		document.formm.id.focus();
 		return;
 	}
-	var url ="idCheckForm?id=" + document.joinForm.id.value;
+	var url ="idCheckForm?id=" + document.formm.id.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url , "IdCheck" , opt);
 }
 
 
-function idok(userid) {
-	opener.idCheckForm.id.value = userid;
-	opener.idCheckForm.reid.value = userid;
+function idok( userid ){
+	opener.formm.id.value = userid;
+	opener.formm.reid.value = userid;
 	self.close();
 }
 /* 주소찾기  */

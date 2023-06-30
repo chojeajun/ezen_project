@@ -71,17 +71,19 @@ CREATE OR REPLACE PROCEDURE insertMember(
     p_zip_num member.zip_num%type,
     p_address1 member.address1%type,
     p_address2 member.address2%type,
-    p_address3 member.address3%type,
-    p_grade member.grade%type,
-    p_success member.success%type,
-    p_useyn member.useyn%type
+    p_address3 member.address3%type
 )
 IS
 BEGIN
-    INSERT INTO member(mseq, id, pwd, name, nickname, gender, email, phone, birth, zip_num, address1 ,address2 ,address3, grade, success, useyn)
-    VALUES( member_mseq.nextVal, p_id, p_pwd, p_name,p_nickname,p_gender,p_email,p_phone,p_birth,p_zip_num,p_address1,p_address2,p_address3,p_grade,p_success,p_useyn);
+    INSERT INTO member(mseq, id, pwd, name, nickname, gender, email, phone, birth, zip_num, address1 ,address2 ,address3) 
+    VALUES( member_mseq.nextVal, p_id, p_pwd, p_name, p_nickname, p_gender, p_email, p_phone, p_birth, p_zip_num, p_address1, p_address2, p_address3);
     COMMIT;
 END;
+
+
+
+
+select * from member;
 
 commit;
 --#{id}, #{pwd},

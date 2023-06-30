@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<form method="post" name="joinForm" style="margin: 0 auto;">
+	<form method="post" name="formm" style="margin: 0 auto;" action="join">
 		<div id="join_box">
 			<div class="join_title">
 				<span>회원정보 입력</span> 홈페이지에서 사용할 정보를 입력해주세요.
@@ -32,8 +32,8 @@
 					<li> <span>* </span> <input type="text"  name="phone" placeholder="(입력예 : 010-7777-3333)" value="${dto.phone}" /></li>
 					<li><span>* </span> <input type="text" class="birthday" name="birth" placeholder="(입력예 yyyy-mm-dd)">
 					<li>
-						 <span>* </span> <input type="text" name="zip_num" placeholder="우편번호를 입력해주세요." readonly="readonly" />
-						<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호찾기"><br>
+						 <span>* </span> <input type="text"  id="sample6_postcode"  name="zip_num" placeholder="우편번호를 입력해주세요." readonly="readonly" />
+						<input type="button" style="position:absolute; right:0;" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호찾기"><br>
 					</li>
         			<li><input type="text" id="sample6_address" size="50" name="address1" value="${ dto.address1 }" readonly><br></li>
 			        <li><input type="text" id="sample6_detailAddress" name="address2" value="${ dto.address2 }" placeholder="상세주소 입력" size="50"><br></li>
@@ -97,7 +97,7 @@
 				</div>
 			</div>
 			<div id="buttons">
-				<input type="button" value="회원가입" class="submit join_ok"  onclick="join_insert()">
+				<input type="submit" value="회원가입" class="submit join_ok" >
 				<input type="button" value="취소" class="cancel join_cancel" >
 			</div>
 		</div>
