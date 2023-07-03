@@ -51,18 +51,12 @@ function go_save(){
 	if (theForm.name.value == '') {
 		alert('상품명을 입력하세요.'); 	
 		theForm.name.focus();	
-	} else if (theForm.price1.value == '') {
-		alert('원가를 입력하세요.'); 		
-		theForm.price1.focus();
-	} else if (theForm.price2.value == '') {
-		alert('판매가를 입력하세요.'); 		
-		theForm.price2.focus();
 	} else if (theForm.content.value == '') {
 		alert('상품상세를 입력하세요.'); 		
 		theForm.content.focus();
-	} else if (theForm.image.value == '') {
-		alert('상품이미지들 입력하세요.'); 	
-		theForm.image.focus();	
+	//} else if (theForm.image.value == '') {
+		//alert('상품이미지들 입력하세요.'); 	
+		//theForm.image.focus();	
 	} else{
 		theForm.action = "contentWrite";
 		theForm.submit();
@@ -70,14 +64,14 @@ function go_save(){
 }
 
 
-function go_detail(pseq){
-	document.frm.action = "adminContentDetail?pseq=" + pseq;
+function go_detail(cseq){
+	document.frm.action = "adminContentDetail?cseq=" + cseq;
 	document.frm.submit();
 }
 
 
-function go_mod(pseq){
-	document.frm.action = "contentUpdateForm?pseq=" + pseq;
+function go_mod(cseq){
+	document.frm.action = "contentUpdateForm?cseq=" + cseq;
 	document.frm.submit();
 }
 
@@ -136,7 +130,7 @@ function reInsert(id, useyn){
 
 
 function go_view( qseq ){
-	location.href = "adminqnaView?qseq=" + qseq;
+	location.href = "adminQnaView?qseq=" + qseq;
 }
 
 

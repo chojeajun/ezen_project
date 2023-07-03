@@ -5,12 +5,13 @@
 <h1>공연등록</h1>  
 <form name="frm" method="post" >
 <table id="list">
-	<tr><th>공연분류</th><td colspan="5">
+		<tr> <%--<th>공연분류</th><td colspan="5">
 		<select name="category">
-    		<c:forEach items="${category.LIST}" var="category" varStatus="status">
-      			<option value="${status.COUNT}">${category}</option>
+    		<c:forEach items="${categoryList}" var="category" varStatus="status">
+      			<option value="${status.count}">${category}</option>
    			</c:forEach>
-  		</select></td>
+  		</select></td>--%>
+ 
 	<tr><th>공연명</th> <td width="343" colspan="5">
 	       <input type="text" name="name" size="47" maxlength="100" > </td></tr>
 	<tr><th>상세설명</th><td colspan="5">
@@ -30,11 +31,11 @@
 <div id="msg" ></div>
 </form> 
 
-<div style="position:relative;  border:1px solid black; width:500px; margin:0 auto;">
-	<form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
-				<input type="file" name="fileimage"><input type="button" id="myButton" value="추가">
-	</form>
-</div>
+<div style="position:relative; top:-70px; ">
+		<form style="margin-left:230px;" name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+					<input type="file" name="fileimage"><input type="button" id="myButton" value="추가">
+		</form>
+	</div>
 
 </article>
 <%@ include file="../../include/admin/footer.jsp"%>

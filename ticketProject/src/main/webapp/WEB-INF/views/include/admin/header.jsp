@@ -33,7 +33,7 @@ $(function(){
 	            if( data.STATUS == 1 ){  	// 동적으로 div태그 달아주기.
 	            	$("#filename").append("<div>"+data.FILENAME+"</div>");
 	            	$("#image").val(data.FILENAME);
-	            	$("#filename").append("<img src='product_images/"+data.FILENAME+"' height='150'/>");
+	            	$("#filename").append("<img src='content_images/"+data.FILENAME+"' height='150'/>");
 	            }
 	        },
 	        error: function() {				alert("실패");			}
@@ -49,7 +49,7 @@ $(function(){
 <div id="wrap">
 <header>			
 	<div id="logo">
-		<img style="width:800px" src="admin/admin.png">
+		<img style="width:1200px" src="admin/admin.png">
 		<img src="/admin/text.gif">
 	</div>	
 	<input class="btn" type="button" value="logout" style="float: right;"
