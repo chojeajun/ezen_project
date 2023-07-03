@@ -21,7 +21,7 @@ public class MemberVO {
 	@NotEmpty(message="id를 입력하세요")
 	private String email;
 	private String phone;
-	private String birth;
+	private Timestamp birth;
 	private String zip_num;
 	private String address1;
 	private String address2;

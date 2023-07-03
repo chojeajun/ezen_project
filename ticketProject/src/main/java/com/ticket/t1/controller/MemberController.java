@@ -72,8 +72,7 @@ public class MemberController {
 			
 			ms.getMember(paramMap);
 
-			ArrayList< HashMap<String,Object> > list 
-			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList< HashMap<String,Object> > list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
 			if( list==null || list.size() == 0 ) {
 				model.addAttribute("message" , "아이디가 없습니다");
@@ -86,7 +85,7 @@ public class MemberController {
 				System.out.println("받은 비밀번호 : @@@@@@@@ "+ membervo.getPwd());
 			} else if(!mvo.get("PWD").equals( membervo.getPwd() )) {
 				model.addAttribute("message" , "비밀번호가 틀립니다");
-				System.out.println("틀린 비밀번와 비교 : @@@@@@@@ "+ membervo.getPwd());
+				System.out.println("틀린 비밀번호 비교 : @@@@@@@@ "+ membervo.getPwd());
 			} else if( mvo.get("PWD").equals( membervo.getPwd() ) ) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
@@ -188,9 +187,6 @@ public class MemberController {
 	//	}
 	//	
 
-
-
-
 	@RequestMapping("/kakaoLogin")
 	public String loginKakao(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
 
@@ -236,8 +232,6 @@ public class MemberController {
 		KakaoProfile kakaoProfile = gson2.fromJson(sb2.toString(), KakaoProfile.class);
 		KakaoAccount ac = kakaoProfile.getAccount();
 		com.ticket.t1.dto.KakaoProfile.KakaoAccount.Profile pf = ac.getProfile();
-
-
 
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", kakaoProfile.getId() );
@@ -356,33 +350,121 @@ public class MemberController {
 			mav.setViewName("member/login");
 		} else {
 			
-			dto.setMseq(Integer.parseInt(loginUser.get("MSEQ").toString()));
+			//dto.setMseq(Integer.parseInt(loginUser.get("MSEQ").toString()));
 			dto.setId((String)loginUser.get("ID"));
 			dto.setName((String)loginUser.get("NAME"));
 			dto.setNickname((String)loginUser.get("NICKNAME"));
-		
-			dto.setGender(Integer.parseInt(loginUser.get("GENDER").toString()));
+			
+			// dto.setGender(Integer.parseInt(loginUser.get("GENDER").toString()));
 			// bit int 로 처리되서 tostring 로 해야함
-			System.out.println("GENDER" + dto.getGender());
+			// System.out.println("GENDER" + dto.getGender());
 			dto.setEmail((String)loginUser.get("EMAIL"));
 			dto.setPhone((String)loginUser.get("PHONE"));
-			dto.setBirth(loginUser.get("BIRTH").toString());
+			dto.setBirth((Timestamp)loginUser.get("BIRTH"));
 			dto.setZip_num((String)loginUser.get("ZIP_NUM"));
 			dto.setAddress1((String)loginUser.get("ADDRESS1"));
 			dto.setAddress2((String)loginUser.get("ADDRESS2"));
 			dto.setAddress3((String)loginUser.get("ADDRESS3"));
-			
+			dto.setProvider((String)loginUser.get("PROVIDER"));
 			mav.addObject("dto", dto); // 로그인유세션을 dto 라는 이름으로
 			mav.setViewName("member/updateForm");
-		
 		}
 			
 		return mav;
 	}
-
+	
+	
+	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
+	public String memberUpdate( 
+			@ModelAttribute("dto") @Valid MemberVO membervo, 	BindingResult result,
+			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
+			HttpServletRequest request, Model model	) {
+		
+		String url = "member/updateForm";
+		if( result.getFieldError("pwd") != null )
+			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+		else if( result.getFieldError("name") != null )
+			model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+		else if( result.getFieldError("email") != null )
+			model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
+		else if( result.getFieldError("phone") != null )
+			model.addAttribute("message", result.getFieldError("phone").getDefaultMessage() );
+		else if( pwdCheck == null || (  pwdCheck != null && !pwdCheck.equals(membervo.getPwd() ) ) ) 
+			model.addAttribute("message", "비밀번호 확인 일치하지 않습니다");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			// 세션(loginUser)에 대문자 키값의 HashMap 이 저장될 예정이므로 키값을 대문자로 지정
+			paramMap.put("ID", membervo.getId());   
+			paramMap.put("PWD", membervo.getPwd());
+			paramMap.put("NAME", membervo.getName());
+			paramMap.put("NICKNAME", membervo.getNickname());
+			paramMap.put("EMAIL", membervo.getEmail());
+			paramMap.put("PHONE", membervo.getPhone());
+			paramMap.put("BIRTH", membervo.getBirth());
+			paramMap.put("ZIP_NUM", membervo.getZip_num());
+			paramMap.put("ADDRESS1", membervo.getAddress1());
+			paramMap.put("ADDRESS2", membervo.getAddress2());
+			paramMap.put("ADDRESS3", membervo.getAddress3());		
+			
+			System.out.println("수정할내용1 " + membervo.getId() );
+			System.out.println("수정할내용2 " + membervo.getPwd() );
+			System.out.println("수정할내용3 " + membervo.getName() );
+			System.out.println("수정할내용4 " + membervo.getNickname() );
+			System.out.println("수정할내용5 " + membervo.getEmail() );
+			System.out.println("수정할내용6 " + membervo.getPhone() );
+			System.out.println("수정할내용7 " + membervo.getBirth() );
+			System.out.println("수정할내용8 " + membervo.getZip_num() );
+			System.out.println("수정할내용9 " + membervo.getAddress1() );
+			System.out.println("수정할내용10 " + membervo.getAddress2() );
+			System.out.println("수정할내용11 " + membervo.getAddress3() );
+			
+			// ms.updateMember( paramMap );
+			ms.updateMember( membervo );
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", paramMap);
+			url = "redirect:/";
+		}
+		return url;
+	}
+	
+	 //자바스크립트 분기처리 중 kakao 로그인 유저라면 이쪽으로 와서 카카오 로그인 회원정보 수정으로
+	@RequestMapping(value="/memberUpdateKakao", method=RequestMethod.POST)
+	public String memberUpdateKakao(
+		@ModelAttribute("dto") @Valid MemberVO membervo , BindingResult result,
+		HttpServletRequest request , Model model ) {
+		String url = "member/updateForm";
+		
+		if(result.getFieldError("name") != null) {
+			model.addAttribute("message" , result.getFieldError("name").getDefaultMessage());
+		} else if(result.getFieldError("email") != null) {
+			model.addAttribute("message" , result.getFieldError("email").getDefaultMessage());
+		} else {
+			HashMap<String , Object> paramMap = new HashMap<String , Object>();
+			
+//			paramMap.put("ID", membervo.getId());
+//			paramMap.put("PWD", membervo.getId());
+//			paramMap.put("NAME", membervo.getId());
+//			paramMap.put("NICKNAME", membervo.getId());
+//			paramMap.put("EMAIL", membervo.getId());
+//			paramMap.put("PHONE", membervo.getId());
+//			paramMap.put("BIRTH", membervo.getId());
+//			paramMap.put("ZIP_NUM", membervo.getId());
+//			paramMap.put("ADDRESS1", membervo.getId());
+//			paramMap.put("ADDRESS2", membervo.getId());
+//			paramMap.put("ADDRESS3", membervo.getId());
+//			paramMap.put("PROVIDER", "kakao"); //PROVIDER 카카오 로그인 시 kakao 라고 명시 // 카카오 로그인이니까 
+		
+			//ms.updateMember(paramMap);
+			ms.updateMember(membervo);
+			HttpSession session = request.getSession();
+			// 변경 사항을 session 에 paramMap 이라는 객체를 넣어서 갱신
+			session.setAttribute("loginUser", paramMap);
+			url = "redirect:/";
+		}
+		return url;
+	}
 	@RequestMapping("/myPage")
 	public String my_page( HttpServletRequest request ) {
-		
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
@@ -411,8 +493,7 @@ public class MemberController {
 			
 			ms.getMyRegister(paramMap);
 			
-			ArrayList<HashMap<String, Object>> list
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			mav.addObject("myRegister", list);
 			mav.addObject("member", loginUser.get("NICKNAME"));
@@ -421,6 +502,11 @@ public class MemberController {
 		
 		return mav;
 	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/myRegistered")
 	public ModelAndView my_registered( HttpServletRequest request ) {
@@ -438,8 +524,7 @@ public class MemberController {
 			
 			ms.getMyRegister(paramMap);
 			
-			ArrayList<HashMap<String, Object>> list
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			mav.addObject("registered", list);
 			mav.addObject("member", loginUser.get("NICKNAME"));
@@ -465,8 +550,7 @@ public class MemberController {
 			
 			ms.getMyRegister(paramMap);
 			
-			ArrayList<HashMap<String, Object>> list
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			mav.addObject("myAllRegister", list);
 			mav.addObject("member", loginUser.get("NICKNAME"));

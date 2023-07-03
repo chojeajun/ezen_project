@@ -71,76 +71,94 @@ function birthCheck() {
 	}	
 }
 
-/* 회원정보 저장 */
-function join_insert(){ 
-   if( document.joinForm.id.value == "" ){
-      alert("아이디를 입력하여 주세요.");
-      document.joinForm.id.focus();     
-     }else if(document.joinForm.reid.value != document.joinForm.id.value){	
-	   alert("아이디 중복확인을 하지 않았습니다.");
-       document.joinForm.id.focus();	 
-     }else if(document.joinForm.pwd.value == ""){	
-	  alert("비밀번호를 입력해 주세요.");
-      document.joinForm.pwd.focus();	      
-     }else if(document.joinForm.pwd.value != document.joinForm.pwdCheck.value){	
-	  alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-      document.joinForm.pwdCheck.focus();	      
-     }else if(document.joinForm.name.value ==""){	
-	  alert("이름을 입력해 주세요.");
-      document.joinForm.name.focus();
-     }else if(document.joinForm.email.value ==""){	
-	  alert("이메일을 입력해주세요 주세요.");
-      document.joinForm.email.focus();
-     }else if(document.joinForm.phone.value ==""){	
-	  alert("전화번호를 입력해 주세요.");
-      document.joinForm.phone.focus();
-     }else if(document.joinForm.zip_num.value ==""){	
-	  alert("우편번호를 입력해주세요.");
-      document.joinForm.zip_num.focus();
-     }else if(document.joinForm.address1.value ==""){	
-	  alert("주소를 입력 주세요.");
-      document.joinForm.address1.focus();
-     }else{
-	     document.joinForm.action = "ticket.do";
-         document.joinForm.submit();
-   }
+function go_update(){
+	if( document.m_frm.provider.value=='kakao' ){
+		document.m_frm.action='memberUpdateKakao';
+	}else{ 
+		document.m_frm.action='memberUpdate';
+	}
+		
+	document.m_frm.submit();
 }
+
+
+
+
+
+
+/* 회원정보 저장 */
+// 마이바티스로 구성하면서 스크립트가 빠진
+// 하지만 프론트단에서 밸리데이션 체크가 가능하다면 원칙적으로는 프론트에서 하는것이맞음
+// 프론트에서 체크가 가능한데 굳이 빽단까지 데이터를 가지고 들어가서 튕겨낼 이유는 없음
+//function join_insert(){ 
+//   if( document.joinForm.id.value == "" ){
+//      alert("아이디를 입력하여 주세요.");
+//      document.joinForm.id.focus();     
+//     }else if(document.joinForm.reid.value != document.joinForm.id.value){	
+//	   alert("아이디 중복확인을 하지 않았습니다.");
+//       document.joinForm.id.focus();	 
+//     }else if(document.joinForm.pwd.value == ""){	
+//	  alert("비밀번호를 입력해 주세요.");
+//      document.joinForm.pwd.focus();	      
+//     }else if(document.joinForm.pwd.value != document.joinForm.pwdCheck.value){	
+//	  alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+//      document.joinForm.pwdCheck.focus();	      
+//     }else if(document.joinForm.name.value ==""){	
+//	  alert("이름을 입력해 주세요.");
+//      document.joinForm.name.focus();
+//     }else if(document.joinForm.email.value ==""){	
+//	  alert("이메일을 입력해주세요 주세요.");
+//      document.joinForm.email.focus();
+//     }else if(document.joinForm.phone.value ==""){	
+//	  alert("전화번호를 입력해 주세요.");
+//      document.joinForm.phone.focus();
+//     }else if(document.joinForm.zip_num.value ==""){	
+//	  alert("우편번호를 입력해주세요.");
+//      document.joinForm.zip_num.focus();
+//     }else if(document.joinForm.address1.value ==""){	
+//	  alert("주소를 입력 주세요.");
+//      document.joinForm.address1.focus();
+//     }else{
+//	     document.joinForm.action = "ticket.do";
+//         document.joinForm.submit();
+//   }
+//}
 
 
 /* updateForm 회원정보 수정 */
-function go_update(){ 
-   if( document.joinForm.pwd.value == "" ){
-      alert("비밀번호를 입력해 주세요.");
-      document.joinForm.pwd.focus();     
-     }else if(document.joinForm.pwd.value != document.joinForm.pwdCheck.value){	
-	   alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-       document.joinForm.pwd.focus();	 
-     }else if(document.joinForm.name.value == ""){	
-	  alert("이름을 입력해 주세요.");
-      document.joinForm.name.focus();	      
-     }else if(document.joinForm.nickname.value == ""){	
-	  alert("별명을 입력해 주세요.");
-      document.joinForm.nickname.focus();	      
-     }else if(document.joinForm.email.value ==""){	
-	  alert("이메일을 입력해 주세요.");
-      document.joinForm.email.focus();
-     }else if(document.joinForm.phone.value ==""){	
-	  alert("전화번호를 입력해 주세요.");
-      document.joinForm.phone.focus();
-     }else if(document.joinForm.birth.value =="" ){	
-	  alert("생년월일을 형식에 맞게 입력해 주세요");
-      document.joinForm.birth.focus();
-     }else if(document.joinForm.zip_num.value ==""){	
-	  alert("우편번호를 입력해 주세요.");
-      document.joinForm.zip_num.focus();
-     }else if(document.joinForm.address2.value ==""){	
-	  alert("상세주소를 입력해 주세요.");
-      document.joinForm.address1.focus();
-     }else{
-	     document.joinForm.action = "ticket.do";
-         document.joinForm.submit();
-   }
-}
+//function go_update(){ 
+//   if( document.joinForm.pwd.value == "" ){
+//      alert("비밀번호를 입력해 주세요.");
+//      document.joinForm.pwd.focus();     
+//     }else if(document.joinForm.pwd.value != document.joinForm.pwdCheck.value){	
+//	   alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+//       document.joinForm.pwd.focus();	 
+//     }else if(document.joinForm.name.value == ""){	
+//	  alert("이름을 입력해 주세요.");
+//      document.joinForm.name.focus();	      
+//     }else if(document.joinForm.nickname.value == ""){	
+//	  alert("별명을 입력해 주세요.");
+//      document.joinForm.nickname.focus();	      
+//     }else if(document.joinForm.email.value ==""){	
+//	  alert("이메일을 입력해 주세요.");
+//      document.joinForm.email.focus();
+//     }else if(document.joinForm.phone.value ==""){	
+//	  alert("전화번호를 입력해 주세요.");
+//      document.joinForm.phone.focus();
+//     }else if(document.joinForm.birth.value =="" ){	
+//	  alert("생년월일을 형식에 맞게 입력해 주세요");
+//      document.joinForm.birth.focus();
+//     }else if(document.joinForm.zip_num.value ==""){	
+//	  alert("우편번호를 입력해 주세요.");
+//      document.joinForm.zip_num.focus();
+//     }else if(document.joinForm.address2.value ==""){	
+//	  alert("상세주소를 입력해 주세요.");
+//      document.joinForm.address1.focus();
+//     }else{
+//	     document.joinForm.action = "ticket.do";
+//         document.joinForm.submit();
+//   }
+//}
 
 
 
