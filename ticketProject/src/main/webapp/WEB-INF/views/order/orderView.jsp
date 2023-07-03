@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<form name="frm" action="ticket.do" method="post" class="formOrder">
+<form name="frm" method="post" class="formOrder">
 
 
 <section>
@@ -13,7 +13,7 @@
 				<td>공연명</td>
 				<td>가격</td>
 				<td>주문 날짜</td>
-				<td></td>
+				<td>주문 상세</td>
 			</tr>
 			</table>
 					<ul class="orderListUl">
@@ -35,8 +35,8 @@
 								<div>${totalPrice}</div>
 								</c:forEach>
 								<% total++; %>
-								<div><fmt:formatDate value="${ol.OINDATE}" pattern="yyyy-MM-dd" /></div>
-								<div><input type="button" class="orderDetailButton"value="주문 상세 보기" 
+								<div><fmt:formatDate value="${ol.INDATE}" pattern="yyyy-MM-dd" /></div>
+								<div><input type="button" class="orderDetailButton" value="주문 상세 보기" 
 								onclick="location.href='orderDetail&oseq=${ol.OSEQ}'" /></div>
 							</li>
 					</c:forEach>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -119,40 +120,117 @@ public class OrderController {
 				String [] Title = new String[list.size()];
 				int totalPrice = 0;
 				String title = null;
+				ArrayList<HashMap<String, Object>> list1 = null;
+				ArrayList<HashMap<String, Object>> list4 = null;
 				
-				for(int i = 0; i<list.size(); i++) {
+				for(int i = 0; i < list.size(); i++) {
 					HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
 					System.out.println(Integer.parseInt(list.get(i).get("OSEQ").toString()));
 					paramMap1.put("oseq", Integer.parseInt(list.get(i).get("OSEQ").toString()));
 					paramMap1.put("ref_cursor", null);
 					os.getOrderList(paramMap1);
-					ArrayList<HashMap<String, Object>> list1
-						= (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+					list1 = (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+					
 					for(int j=0; j<list1.size(); j++) {
 						totalPrice += Integer.parseInt(list1.get(j).get("CONTENT_PRICE").toString()) 
 								* Integer.parseInt(list1.get(j).get("QUANTITY").toString()) 
 								+ Integer.parseInt(list1.get(j).get("COM_PRICE").toString());
-						System.out.println(totalPrice);
+						System.out.println("합계 = " + totalPrice);
 					}
 					TotalPrice[i] = totalPrice;
+					totalPrice = 0;
 					
-					if( list1.size()>1) {
-						title = list1.get(i).get("TITLE").toString() + " 외 " + (list1.size()-1) + "건";
+					if( list1.size() > 1 ) {
+						title = list1.get(0).get("TITLE").toString() + " 외 " + (list1.size()-1) + "건";
+						System.out.println("title = " + title);
+//						for(int k=0; k < list1.size(); k++) {
+//							title = list1.get(k).get("TITLE").toString() + " 외 " 
+//									+ (list1.get(k).size()) + "건";
+//						}
+						
 					}else {
-						title = list1.get(i).get("TITLE").toString();
+						title = list1.get(0).get("TITLE").toString();
+						System.out.println("title = " + title);
 					}
 					
 					Title[i] = title;
-					mav.addObject("orderList", list1);
+					System.out.println("Title[i] = " + Title[i]);
 					
 				}
+				mav.addObject("orderList", list1);
 				mav.addObject("totalPrice", TotalPrice);
 	    		mav.addObject("title", Title);
-	    		mav.setViewName("order/orderView");
+	    		
 	    		
 			}
 			
+//			int k = 0;
+//			int[] oseq = new int[list.size()-1];
+//			ArrayList<HashMap<String, Object>> [] list3 = null;
+//			HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
+//			
+//			for(int i = 0; i < list.size(); i++) {
+//				
+//				oseq[i] = Integer.parseInt(list.get(i).get("OSEQ").toString());
+//				System.out.print("oseq = " + oseq[i] + " ");
+//			}
+//			for (int i : oseq) {
+//				paramMap2.put("oseq", i);
+//				paramMap2.put("ref_cursor", null);
+//				os.getOrderList(paramMap2);
+//				ArrayList<HashMap<String, Object>> list2 
+//					= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+//				
+//				list3[k] = list2;
+//				k++;
+//			}
+//			k = 0;
+			HashMap<String, Object> list3 = new HashMap<String, Object>();
+			list3.put("mseq", loginUser.get("MSEQ"));
+			list3.put("ref_cursor", null);
+			
+			os.getAllOrderViewByMyMseq(list3);
+			
+			ArrayList<HashMap<String, Object>> list4 
+					= (ArrayList<HashMap<String, Object>>) list3.get("ref_cursor");
+			
+			for(int i = 0; i < list4.size(); i++) {
+				for(int j = i+1; j < list4.size(); j++ ) {
+					if(list4.get(j).get("OSEQ").equals(list4.get(i).get("OSEQ"))){
+						list4.remove(j);
+					}
+				}
+			}
+			
+			mav.addObject("orderList", list4);
+			mav.setViewName("order/orderView");
 		}
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/orderDetail", method=RequestMethod.POST)
+	public ModelAndView order_detail( HttpServletRequest request, @RequestParam("oseq") int oseq ) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mseq", loginUser.get("MSEQ"));
+			paramMap.put("oseq", oseq);
+			paramMap.put("ref_cursor", null);
+			
+			os.getOrderDetail(paramMap);
+			ArrayList<HashMap<String, Object>> list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("orderDetailList", list);
+			mav.setViewName("order/orderDetail");
+		}
+		
 		return mav;
 		
 	}
