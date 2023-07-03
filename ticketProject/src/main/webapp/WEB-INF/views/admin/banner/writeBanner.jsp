@@ -24,11 +24,11 @@
 	   			<input type="hidden" name="image" id="image" value="">
 	   			<div id="filename"></div></td></tr>
 	</table>
-	<input class="btn" type="button" value="등록" onClick="go_banner_save()">   
-	<input class="btn1" type="button" value="취소" onClick="go_mov()">
+	<input class="btn4" type="button" value="등록" onClick="go_banner_save()">   
+	<input class="btn5" type="button" value="취소" onClick="go_mov()">
 	</form>
 	<div style="position:relative; top:-70px; ">
-		<form name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+		<form style="margin-left:230px;" name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
 					<input type="file" name="fileimage"><input type="button" id="myButton" value="추가">
 		</form>
 	</div></article>

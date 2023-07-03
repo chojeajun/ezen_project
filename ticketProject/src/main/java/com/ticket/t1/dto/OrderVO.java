@@ -30,6 +30,10 @@ public class OrderVO {
 	private Timestamp odindate; //이건 주문상세내역 날짜
 	private int totalPrice;
 	private String orderTitle;
+	private String adress1;
+	private String adress2;
+	private String phone;
+	private Timestamp indate;
 	
 	
 

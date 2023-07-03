@@ -4,8 +4,8 @@
 <article>
 <h1>공연수정</h1>  
 <form name="frm" method="post">
-<input type="hidden" name="cseq" value="${contentVO.cseq}">
-<input type="hidden" name="oldfilename" value="${contentVO.image}">
+<input type="hidden" name="cseq" value="${contentVO.CSEQ}">
+<input type="hidden" name="oldfilename" value="${contentVO.IMAGE}">
 <table id="list">
   <tr><th>공연분류</th><td colspan="5">
 	    <select name="category">
@@ -14,21 +14,15 @@
 				          <c:when test="${contentVO.category==status.count}">
 				            	<option value="${status.count}" selected="selected">${category}</option>
 				          </c:when>
-			          <c:otherwise><option value="${status.count}">${kind}</option></c:otherwise>
+			          <c:otherwise><option value="${status.count}">${category}</option></c:otherwise>
 			        </c:choose>
 		      </c:forEach>
 	    </select></td></tr>
   <tr><th>공연명</th><td width="343" colspan="5">
-      <input type="text" name="name" size="47" value="${content.title}"></td></tr>
-  <tr><th>원가[A]</th><td width="70">        
-      <input type="text" name="price1" size="11" value="${content.price1}" onKeyup="cal()"></td>
-       <th>판매가[B]</th><td width="70">
-      <input type="text" name="price2" size="11" value="${content.price2}"  onKeyup="cal()"></td>
-  <th>[B-A]</th><td width="72">
-      <input type="text" name="price3" size="11" value="${content.price3}"></td></tr>
+      <input type="text" name="name" size="47" value="${content.TITLE}"></td></tr>
   <tr><th>베스트공연</th><td>
       <c:choose>
-        <c:when test='${productVO.bestyn=="Y"}'>
+        <c:when test='${contentVO.BESTYN=="Y"}'>
             <input type="checkbox" name="bestyn" value="Y" checked="checked">
         </c:when>
         <c:otherwise>

@@ -5,8 +5,8 @@
 <article>
 <h1>주문리스트</h1>
 <form name="frm" method="post">
-	<table style="float: right;">
-		<tr><td>상품 이름<input type="text" name="key" value="${key}" > 
+	<table style= "margin-left: 660px;">
+		<tr><td>공연 이름<input type="text" name="key" value="${key}" > 
 			<input class="btn" type="button" value="검색"	onClick="go_search('adminOrderList');">
 			<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total('adminOrderList');"></td></tr>
 	</table>
@@ -14,7 +14,7 @@
 		<tr>
 			<th style="width:120px">주문번호(처리여부)</th>
 			<th style="width:80px">주문자</th>
-			<th style="width:100px">상품명</th>
+			<th style="width:100px">공연명</th>
 			<th style="width:30px"> 수량</th>
 		    <th style="width:60px">우편번호</th>
 		    <th>배송지</th>
@@ -38,10 +38,10 @@
 				      		(<input type="checkbox" checked="checked" disabled="disabled"> 구매확정)</span></c:otherwise>
 					</c:choose>
 				</td>
-				<td>${orderVO.mname}(${orderVO.id})</td><td>${orderVO.pname}</td><td>${orderVO.quantity}</td>
-				<td>${orderVO.zip_num}</td>
-				<td  style="text-align:left">${orderVO.address1} ${orderVO.address2}</td> <td>${orderVO.phone}</td>
-				<td><fmt:formatDate value="${orderVO.indate}" /></td></tr>
+				<td>${orderVO.BUYER_NAME}(${orderVO.ID})</td><td>${orderVO.TITLE}</td><td>${orderVO.QUANTITY}</td>
+				<td>${orderVO.ZIP_NUM}</td>
+				<td  style="text-align:left">${orderVO.ADDRESS1} ${orderVO.ADDRESS2}</td> <td>${orderVO.PHONE}</td>
+				<td><fmt:formatDate value="${orderVO.INDATE}" /></td></tr>
 		</c:forEach>
 	</table>
 	<div class="clear"></div>

@@ -53,7 +53,7 @@
 	<insert id="updateContent" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ 
 			CALL updateContent( 
-				#{cseq}, #{title}, #{category}, #{price1}, #{price2}, #{price3}, #{content} , #{image} 
+				#{cseq}, #{title}, #{category}, #{content} , #{image} 
 			)	 
 		}
 	</insert>

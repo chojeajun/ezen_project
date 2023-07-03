@@ -5,7 +5,7 @@
 <article>
 <h1>공연리스트</h1>
 <form name="frm" method="post">
-	<table>
+	<table style= "margin-left: 513px;">
 		<tr><td width="642">
 			공연명<input type="text" name="key" value="${key}">
 			<input class="btn2" type="button" name="btn_search" value="검색" onClick="go_search('contentList');">
@@ -20,13 +20,13 @@
 	    	</c:when>
 	    	<c:otherwise>
 	    		<c:forEach items="${contentList}" var="contentVO">
-			   		<tr><td height="23" align="center" >${contentVO.cseq}</td>
+			   		<tr><td height="23" align="center" >${contentVO.CSEQ}</td>
 						<td style="text-align:left; padding-left:50px; padding-right:0px;">
-						<a href="#" onClick="go_detail('${contentVO.cseq}')">${contentVO.artist}</a></td>
+						<a href="#" onClick="go_detail('${contentVO.CSEQ}')">${contentVO.ARTIST}</a></td>
 						<td><fmt:formatNumber value="${contentVO.content}"/></td>
-							<td><fmt:formatNumber value="${contentVO.price}"/></td>
-			      		<td><fmt:formatDate value="${contentVO.indate}"/></td>
-			      			<td><fmt:formatDate value="${contentVO.age}"/></td>
+						<td><fmt:formatNumber value="${contentVO.PRICE}"/></td>
+			      		<td><fmt:formatDate value="${contentVO.INDATE}"/></td>
+			      		<td><fmt:formatDate value="${contentVO.age}"/></td>
 			      		<td><c:choose>
 			      			<c:when test='${contentVO.useyn=="N"}'>미사용</c:when>
 			   	 			<c:otherwise>사용</c:otherwise> 

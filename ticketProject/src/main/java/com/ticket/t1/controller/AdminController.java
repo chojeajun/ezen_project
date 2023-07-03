@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -196,7 +197,7 @@ public class AdminController {
 	
 	@RequestMapping("contentUpdateForm")
 	public ModelAndView contentUpdateForm( HttpServletRequest request,
-			@RequestParam("pseq") int pseq ) {
+			@RequestParam("cseq") int cseq ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -204,14 +205,14 @@ public class AdminController {
 			mav.setViewName("admin/adminLoginForm");
 		else {
 			HashMap<String , Object>paramMap = new HashMap<String, Object>();
-			paramMap.put("pseq", pseq);
+			paramMap.put("cseq", cseq);
 			paramMap.put("ref_cursor", null);
 			ps.getContent(paramMap);
 			ArrayList< HashMap<String , Object> > list
 				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
 			HashMap<String , Object> pvo = list.get(0);
-			String kindList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
-			mav.addObject("kindList", kindList );
+			String categoryList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
+			mav.addObject("categoryList", categoryList );
 			mav.addObject("dto", pvo);
 			mav.setViewName("admin/content/contentUpdate");
 		}
@@ -362,6 +363,7 @@ public class AdminController {
 			mav.addObject("key", (String)paramMap.get("key") );
 			mav.setViewName("admin/qna/qnaList");
 		}
+		
 		
 		return mav;
 	}
