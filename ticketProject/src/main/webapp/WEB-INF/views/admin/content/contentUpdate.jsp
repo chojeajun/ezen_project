@@ -31,7 +31,7 @@
       </c:choose></td>        
     <th>사용유무</th><td>
       <c:choose>
-        <c:when test='${contentVO.useyn=="Y"}'>
+        <c:when test='${contentVO.USEYN=="Y"}'>
               <input type="checkbox" name="useyn" value="Y" checked="checked">
         </c:when>
       <c:otherwise>
@@ -39,18 +39,18 @@
       	</c:otherwise>
     </c:choose></td></tr>
   <tr><th>상세설명</th><td colspan="5">
-      <textarea name="content" rows="8" cols="70" >${contentVO.content}</textarea></td></tr>
+      <textarea name="content" rows="8" cols="70" >${contentVO.CONTENT}</textarea></td></tr>
   <tr><th>공연이미지</th>
   
 	    <td width="343" colspan="5" style="vertical-align:top;">
-      현재 이미지 : <img src="content_images/${contentVO.image}" width="200pt"><br>
+      현재 이미지 : <img src="content_images/${contentVO.IMAGE}" width="200pt"><br>
       <!-- <input type="file" name="image">  -->* 주의 : 이미지를 수정할때에만 선택해주세요
 	   		<input type="hidden" name="image" id="image" >
 	   		<div id="filename"></div>
 		</td>
       </tr>    
 </table>
-<input class="btn" type="button" value="수정" onClick="go_mod_save('${contentVO.cseq}')">           
+<input class="btn" type="button" value="수정" onClick="go_mod_save('${contentVO.pseq}')">           
 <input class="btn" type="button" value="취소" onClick="go_mov()">
 </form> 
 

@@ -23,7 +23,7 @@ public interface IAdminDao {
 	void adminGetAllCount(HashMap<String, Object> cntMap);
 	void getContentList(HashMap<String, Object> paramMap);
 	void insertontent(HashMap<String, Object> paramMap);
-	void updateontent(HashMap<String, Object> paramMap);
+	void updatecontent(HashMap<String, Object> paramMap);
 	void getMemberList(HashMap<String, Object> paramMap);
 	void memberReinsert(HashMap<String, Object> paramMap);
 	void getOrderList(HashMap<String, Object> paramMap);

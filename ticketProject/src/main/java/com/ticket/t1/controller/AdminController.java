@@ -113,7 +113,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/contentWriteForm")
-	public String product_write_form( HttpServletRequest request, Model model) {
+	public String content_write_form( HttpServletRequest request, Model model) {
 		String kindList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
 		model.addAttribute("kindList", kindList);
 		return "admin/content/contentWriteForm";
@@ -129,7 +129,7 @@ public class AdminController {
 			@RequestParam("fileimage") MultipartFile file,
 			HttpServletRequest request, Model model	) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		String path = context.getRealPath("/product_images");	
+		String path = context.getRealPath("/content_images");	
 		Calendar today = Calendar.getInstance();
  		long t = today.getTimeInMillis();
  		String filename = file.getOriginalFilename(); // 파일이름 추출
@@ -154,11 +154,7 @@ public class AdminController {
 	public String contentWrite(	Model model ,  HttpServletRequest request ) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("name", request.getParameter("name") );
-		paramMap.put("kind", request.getParameter("kind") );
-		paramMap.put("price1", Integer.parseInt( request.getParameter("price1") ) );
-		paramMap.put("price2", Integer.parseInt( request.getParameter("price2") ) );
-		paramMap.put("price3", Integer.parseInt( request.getParameter("price3") ) );
+		paramMap.put("title", request.getParameter("title") );
 		paramMap.put("content", request.getParameter("content") );
 		if( request.getParameter("image") == null )
 			paramMap.put("image", "" );
@@ -173,7 +169,7 @@ public class AdminController {
 	
 	@RequestMapping("/adminContentDetail")
 	public ModelAndView adminContentDetail( HttpServletRequest request,
-			@RequestParam("pseq") int pseq ) {
+			@RequestParam("cseq") int cseq ) {
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
@@ -181,15 +177,15 @@ public class AdminController {
 			mav.setViewName("admin/adminLoginForm");
 		else {
 			HashMap<String , Object>paramMap = new HashMap<String, Object>();
-			paramMap.put("pseq", pseq);
+			paramMap.put("cseq", cseq);
 			paramMap.put("ref_cursor", null);
 			ps.getContent(paramMap);
 			ArrayList< HashMap<String , Object> > list
 				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
-			HashMap<String , Object> pvo = list.get(0);
+			HashMap<String , Object> cvo = list.get(1);
 			String kindList[] = { "0", "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
-			mav.addObject("kind", kindList[ Integer.parseInt( pvo.get("KIND").toString() ) ] );
-			mav.addObject("contentVO", pvo);
+			mav.addObject("kind", kindList[ Integer.parseInt( cvo.get("KIND").toString() ) ] );
+			mav.addObject("contentVO", cvo);
 			mav.setViewName("admin/content/contentDetail");
 		}
 		return mav;
@@ -210,7 +206,7 @@ public class AdminController {
 			ps.getContent(paramMap);
 			ArrayList< HashMap<String , Object> > list
 				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
-			HashMap<String , Object> pvo = list.get(0);
+			HashMap<String , Object> pvo = list.get(1);
 			String categoryList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
 			mav.addObject("categoryList", categoryList );
 			mav.addObject("dto", pvo);
@@ -223,12 +219,8 @@ public class AdminController {
 	public String contentUpdate( HttpServletRequest request , Model model) {
 		HashMap<String , Object>paramMap = new HashMap<String, Object>();
 		
-		paramMap.put("pseq", request.getParameter("pseq") );
-		paramMap.put("kind", request.getParameter("kind") );
-		paramMap.put("name", request.getParameter("name") );
-		paramMap.put("price1", request.getParameter("price1") );
-		paramMap.put("price2", request.getParameter("price2") );
-		paramMap.put("price3", request.getParameter("price3") );
+		paramMap.put("cseq", request.getParameter("cseq") );
+		paramMap.put("title", request.getParameter("title") );
 		paramMap.put("content", request.getParameter("content") );
 		
 		if( request.getParameter("useyn") == null)
@@ -246,13 +238,7 @@ public class AdminController {
 		model.addAttribute("newImage", request.getParameter("image"));
 		
 		
-		if( request.getParameter("name") == null || request.getParameter("name").equals("") )
-			return "admin/content/contentUpdate";
-		else if( request.getParameter("price1") == null || request.getParameter("price1").equals("") )
-			return "admin/content/contentUpdate";
-		else if( request.getParameter("price2") == null || request.getParameter("price2").equals("") )
-			return "admin/content/contentUpdate";
-		else if( request.getParameter("price3") == null || request.getParameter("price3").equals("") )
+		if( request.getParameter("title") == null || request.getParameter("title").equals("") )
 			return "admin/content/contentUpdate";
 		else if( request.getParameter("content") == null || request.getParameter("content").equals("") )
 			return "admin/content/contentUpdate";
@@ -261,7 +247,7 @@ public class AdminController {
 				paramMap.put("image", request.getParameter("image") );
 			
 			as.updateContent( paramMap );
-			return "redirect:/adminContentDetail?pseq=" + request.getParameter("pseq"); 
+			return "redirect:/adminContentDetail?pseq=" + request.getParameter("cseq"); 
 		}
 		
 		
@@ -381,7 +367,7 @@ public class AdminController {
 		qs.getQna(paramMap);
 		ArrayList<HashMap<String, Object>> list 
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-		HashMap<String, Object> qvo = list.get(0);
+		HashMap<String, Object> qvo = list.get(1);
 		mav.addObject("qnaVO", qvo );
 		mav.setViewName("admin/qna/qnaView");
 		return mav;

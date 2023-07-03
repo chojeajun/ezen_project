@@ -13,22 +13,21 @@
 			<input class="btn2" type="button" name="btn_write" value="공연등록"  	onClick="go_wrt();"></td></tr>
 	</table>
 	<table id="contentList" align="center">
-		<tr><th>번호</th><th>공연명</th><th>아티스트</th><th>컨텐츠</th><th>가격</th><th>등록일</th><th>연령제한</th></tr>
+		<tr><th>번호</th><th>공연명</th><th>아티스트</th><th>컨텐츠</th><th>연령제한</th><th>사용여부</th></tr>
 		<c:choose>
 	    	<c:when test="${contentListSize<=0}">
-	    		<tr><td width="100%" colspan="7" align="center" height="23">등록된 상품이 없습니다.</td></tr>
+	    		<tr><td width="100%" colspan="7" align="center" height="23">등록된 공연이 없습니다.</td></tr>
 	    	</c:when>
 	    	<c:otherwise>
 	    		<c:forEach items="${contentList}" var="contentVO">
 			   		<tr><td height="23" align="center" >${contentVO.CSEQ}</td>
-						<td style="text-align:left; padding-left:50px; padding-right:0px;">
-						<a href="#" onClick="go_detail('${contentVO.CSEQ}')">${contentVO.ARTIST}</a></td>
-						<td><fmt:formatNumber value="${contentVO.content}"/></td>
-						<td><fmt:formatNumber value="${contentVO.PRICE}"/></td>
-			      		<td><fmt:formatDate value="${contentVO.INDATE}"/></td>
-			      		<td><fmt:formatDate value="${contentVO.age}"/></td>
+						<td style="text-align:center; padding-left:30px; padding-right:0px;">
+						<a href="#" onClick="go_detail('${contentVO.CSEQ}')">${contentVO.TITLE}</a></td>
+						<td style="text-align:center;  padding-right:0px;">${contentVO.ARTIST}</td>
+						<td style="text-align:center;  padding-right:0px;">${contentVO.CONTENT}</td>
+						<td style="text-align:center;  padding-right:0px;">${contentVO.AGE}</td>
 			      		<td><c:choose>
-			      			<c:when test='${contentVO.useyn=="N"}'>미사용</c:when>
+			      			<c:when test='${contentVO.USEYN=="N"}'>미사용</c:when>
 			   	 			<c:otherwise>사용</c:otherwise> 
 						</c:choose></td>
 					</tr>
