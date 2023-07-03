@@ -2,15 +2,17 @@ package com.ticket.t1.controller;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.service.CartService;
@@ -32,10 +34,10 @@ public class CartController {
 		if (loginUser == null) {
 			mav.setViewName("member/login");
 		} else {
-
+			
 			// 사지 않은 카트 목록(cart)
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
-			paramMap1.put("mseq", loginUser.get("mseq"));
+			paramMap1.put("mseq", loginUser.get("MSEQ"));
 			paramMap1.put("ref_cursor", null);
 			cs.notBuyList(paramMap1);
 			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
@@ -43,7 +45,7 @@ public class CartController {
 
 			// 산 카트 목록(cart)
 			HashMap<String, Object> paramMap2 = new HashMap<String, Object>();
-			paramMap2.put("mseq", loginUser.get("mseq"));
+			paramMap2.put("mseq", loginUser.get("MSEQ"));
 			paramMap2.put("ref_cursor", null);
 			cs.buyList(paramMap2);
 			ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
@@ -108,4 +110,17 @@ public class CartController {
 		return mav;
 
 	}
+	
+	/*
+	 * @RequestMapping("/orderInsert") public String
+	 * order_insert(@RequestParam("cartseq") String cartseq) {
+	 * 
+	 * // System.out.println(cartseq.split(",")); // String[] arr =
+	 * cartseq.split(","); // System.out.println(arr[0] + " " +arr[1]);
+	 * 
+	 * for(int i = 0; i < arr.length; i++) { cs.orderCart(Integer.parseInt(arr[i]));
+	 * }
+	 * 
+	 * return "redirect:/cartList"; }
+	 */
 }

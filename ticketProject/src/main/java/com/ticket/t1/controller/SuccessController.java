@@ -34,30 +34,30 @@ public class SuccessController {
 			mav.setViewName("member/login");
 		} else {
 			
-			System.out.println(loginUser.get("id"));
-			System.out.println(loginUser.get("name"));
+			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
+			paramMap1.put("sucseq", seq);
+			
+			if(isTrue == null) ss.readCountOne(paramMap1);
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("sucseq", seq);
 			paramMap.put("ref_cursor", null);
-			
-			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
-			paramMap1.put("sucseq", seq);
 
 			ss.getSuccessListBySucseq(paramMap);
 
-			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 
 			mav.addObject("SuccessVO", list.get(0));
-			System.out.println("isTrue 값 = " + isTrue);
-			if(isTrue == null) ss.readCountOne(paramMap1);
 
 			ss.getReplyList(paramMap);
 
-			ArrayList<HashMap<String, Object>> list1 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list1 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			ss.getReplyMember( paramMap );
-			ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list2 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			mav.addObject("replyList", list1);
 			mav.addObject("loginUser", loginUser);
@@ -77,6 +77,25 @@ public class SuccessController {
 		ss.replyDelete(srseq);
 		
 		return "redirect:/successView?sucseq=" + sucseq + "&isTrue='Yes'";
+		
+	}
+	
+	@RequestMapping("/replyInsert")
+	public String reply_insert( HttpServletRequest request,  
+		@RequestParam("sucseq") String seq,
+		@RequestParam("reply") String reply) {
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
+		if(loginUser == null) {
+			return "member/login";
+		}else {
+			
+			ss.insertReply(Integer.parseInt(seq), reply, (String)loginUser.get("NICKNAME"));
+			
+			return "redirect:/successView?sucseq=" + seq + "&isTrue='yes'";
+		}
 		
 	}
 }

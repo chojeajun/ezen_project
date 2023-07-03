@@ -34,7 +34,23 @@
 		}
 	</select>
 
-
+	<select id="getOrderViewByMyMseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getOrderViewByMyMseq(
+				#{mseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+			)
+		}
+	</select>
+	
+	<select id="getOrderList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getOrderList(
+				#{oseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+			)
+		}
+	</select>
 </mapper>
 
 

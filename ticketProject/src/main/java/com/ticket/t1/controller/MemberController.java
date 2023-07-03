@@ -380,10 +380,101 @@ public class MemberController {
 		return mav;
 	}
 
-
-
-
-
+	@RequestMapping("/myPage")
+	public String my_page( HttpServletRequest request ) {
+		
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if(loginUser == null) 
+			return "member/login";
+		else 
+			return "mypage/mypage";
+		
+		
+	}
+	
+	@RequestMapping("/myRegister")
+	public ModelAndView my_register( HttpServletRequest request ) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mseq", loginUser.get("MSEQ"));
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMyRegister(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("myRegister", list);
+			mav.addObject("member", loginUser.get("NICKNAME"));
+			mav.setViewName("mypage/myregister");
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping("/myRegistered")
+	public ModelAndView my_registered( HttpServletRequest request ) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mseq", loginUser.get("MSEQ"));
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMyRegister(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("registered", list);
+			mav.addObject("member", loginUser.get("NICKNAME"));
+			mav.setViewName("mypage/myregistered");
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping("/myAllRegister")
+	public ModelAndView my_all_register( HttpServletRequest request ) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mseq", loginUser.get("MSEQ"));
+			paramMap.put("ref_cursor", null);
+			
+			ms.getMyRegister(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("myAllRegister", list);
+			mav.addObject("member", loginUser.get("NICKNAME"));
+			mav.setViewName("mypage/myallregister");
+		}
+		
+		return mav;
+	}
 
 
 }

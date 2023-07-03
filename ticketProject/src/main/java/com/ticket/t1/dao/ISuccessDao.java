@@ -16,5 +16,7 @@ public interface ISuccessDao {
 	void getReplyMember(HashMap<String, Object> paramMap);
 
 	void replyDelete(int srseq);
+
+	void insertReply(int seq, String reply, String nickname);
 	
 }

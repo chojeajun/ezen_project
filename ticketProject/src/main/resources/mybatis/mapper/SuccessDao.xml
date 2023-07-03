@@ -52,5 +52,15 @@
 			)
 		}
 	</delete>
+	
+	<insert id="insertReply">
+		{
+			CALL insertReply(
+				#{seq},
+				#{reply},
+				#{nickname}
+			)
+		}
+	</insert>
 
 </mapper>
