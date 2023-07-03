@@ -34,5 +34,10 @@ public class SuccessService {
 		sucdao.replyDelete(srseq);
 		
 	}
+
+	public void insertReply(int seq, String reply, String nickname) {
+		sucdao.insertReply(seq, reply, nickname);
+		
+	}
 	
 }

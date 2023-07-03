@@ -31,6 +31,12 @@ public class MemberService {
 		
 	}
 
+	public void getMyRegister(HashMap<String, Object> paramMap) {
+
+		mdao.getMyRegister(paramMap);
+		
+	}
+
 
 
 }

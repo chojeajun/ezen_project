@@ -143,7 +143,7 @@
 							<c:otherwise>
 								<li>${ loginUser.NAME }(${ loginUser.ID })</li>
 								<li><a href="logout">로그아웃</a></li>
-								<li><a href="mypage">마이페이지</a></li>
+								<li><a href="myPage">마이페이지</a></li>
 								<li><a href="cartList">장바구니</a></li>
 								<li><a href="memberEditForm">정보수정</a></li>
 								<li><a href="qnaList">1:1 문의하기</a></li>

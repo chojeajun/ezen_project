@@ -10,7 +10,8 @@
 	<select id="notBuyList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL notBuyList(
-				#{mseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+				#{mseq}, 
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 			)
 		}
 	</select>

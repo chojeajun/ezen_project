@@ -5,9 +5,9 @@
 	<div class="review_content">
 		<h2 class="review_title">성공 후기 게시판</h2>
 		<h3>고객님들의 성공 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
-		<form name="rev_formm" method="get" class="review_form" action="ticket.do">
+		<form name="rev_formm" method="get" class="review_form">
 
-			<input type="hidden" name="command" value="successReply">
+			<!-- <input type="hidden" name="command" value="replyInsert"> -->
 			<input type="hidden" name="rseq" value="${ SuccessVO.SUCSEQ }">
 			
 			<table class="review_view_table">
@@ -92,19 +92,21 @@
 				<td>${ loginUser.ID }<input type="hidden" name="id" value="${ loginUser.ID }"></td>
 				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>
 				<td><input type="text" name="reply" size="80"></td>
-				<td><input type="submit" value="답글 작성" onclick="return success_chk();"></td>
+				<td><input type="submit" value="답글 작성" 
+					onclick="return success_chk('${successVO.SUCSEQ}');"></td>
 			</tr>
 		</table>
 			<div class="clear"></div>
 			<div class="rev_btn_box btn_box" style="float: left">
-				<input type="button" value="메인으로" class="cancel" onClick="location.href='redirect:/'">
+				<input type="button" value="메인으로" onClick="location.href='/'">
 			</div>
 			
 			<!--  리뷰 수정box -->
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
-				<input type="button" value="목록보기" class="submit" onClick="location.href='ticket.do?command=successList'">
+				<input type="button" value="목록보기" class="submit" onClick="location.href='successList'">
 				<c:if test="${ SuccessVO.ID == loginUser.ID }">
-					<input type="button" value="수정하기" class="review_update_btn" onclick="go_supd('${ successVO.SUCSEQ}')">
+					<input type="button" value="수정하기" class="review_update_btn" 
+						onclick="go_supd('${ successVO.SUCSEQ}')">
 				</c:if>&nbsp; <!-- 로그인 한 유저가 쓴 글만 수정할 수 있게 버튼을표시  -->
 			</div>
 

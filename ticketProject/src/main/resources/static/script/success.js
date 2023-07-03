@@ -3,13 +3,15 @@
  */
 
 /* success reply 리뷰댓글작성 */
-function success_chk() {
+function success_chk(sucseq) {
 	if(document.rev_formm.reply.value == "") {
 		alert("댓글 내용을 입력해주세요");
 		document.rev_formm.reply.focus();
 		return false;
 	}
-	return true;
+	var reply = document.rev_formm.reply.value;
+	document.rev_formm.action = "replyInsert?reply=" + reply + "&sucseq=" + sucseq;
+	document.rev_formm.submit();
 }
  
  // 수정 버튼 클릭  // 수정 폼으로 이동
