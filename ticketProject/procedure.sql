@@ -64,7 +64,6 @@ CREATE OR REPLACE PROCEDURE insertMember(
     p_pwd member.pwd%type,
     p_name member.name%type,
     p_nickname member.nickname%type,
-    p_gender member.gender%type,
     p_email member.email%type,
     p_phone member.phone%type,
     p_birth member.birth%type,
@@ -80,6 +79,33 @@ BEGIN
     COMMIT;
 END;
 
+CREATE OR REPLACE PROCEDURE updateMember(
+    p_id member.id%type,
+    p_pwd member.pwd%type,
+    p_name member.name%type,
+    p_nickname member.nickname%type,
+    p_email member.email%type,
+    p_phone member.phone%type,
+    p_birth member.birth%type,
+    p_zip_num member.zip_num%type,
+    p_address1 member.address1%type,
+    p_address2 member.address2%type,
+    p_address3 member.address3%type
+)
+IS
+BEGIN
+    UPDATE member SET  pwd=p_pwd, name=p_name, nickname=p_nickname, email=p_email, phone=p_phone, 
+     birth=p_birth, zip_num=p_zip_num, address1=p_address1, address2=p_address2, address3=p_address3 
+    WHERE id=p_id;
+    COMMIT;
+END;
+
+commit;
+
+
+
+
+select * from member;
 
 
 
@@ -122,18 +148,4 @@ select * from all_sequences where sequence = 'member_mseq';
 SELECT *
   FROM all_sequences
  WHERE sequence_name = 'member_mseq';
- 
- --어드민 페이지 배너리스트 관리
- CREATE OR REPLACE PROCEDURE getBannerList(
-    p_rc   OUT     SYS_REFCURSOR
-)
-IS
-BEGIN
-    OPEN p_rc FOR
-        SELECT * FROM banner ORDER BY order_seq;
-        
-END;
- 
- select * from order_view
- select * from member
 
