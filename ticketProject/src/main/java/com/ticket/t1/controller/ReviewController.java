@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.g15.dto.QnaVO;
 import com.ticket.t1.dto.ReviewReplyVO;
 import com.ticket.t1.dto.ReviewVO;
 import com.ticket.t1.service.ReviewService;
+import com.ticket.t1.util.Paging;
 
 @Controller
 public class ReviewController {
@@ -25,16 +27,22 @@ public class ReviewController {
 	@RequestMapping("/reviewList")
 	public ModelAndView review_list(HttpServletRequest request) {
 		
-		ModelAndView mav = new ModelAndView();
+ModelAndView mav = new ModelAndView();
+		
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser
-		= (HashMap<String, Object>) session.getAttribute("loginUser");
-		if( loginUser == null ) {
-			mav.setViewName("member/login");
-		}else {
-			List<ReviewVO> listReview = res.listReview();
-			mav.addObject("review", listReview);
-			System.out.println(listReview.size());
+		if(session.getAttribute("loginUser")==null)
+			mav.setViewName("member/loginForm");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
+			paramMap.put("ref_cursor", null);
+			
+			res.selectReview(paramMap);
+			
+			ArrayList<HashMap<String, Object>>list
+							=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			mav.addObject("reviewList", list);
+			mav.addObject("paging",(Paging)paramMap.get("paging"));
 			mav.setViewName("review/reviewList");
 		}
 		return mav;

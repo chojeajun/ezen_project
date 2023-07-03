@@ -5,8 +5,24 @@
 	
 <mapper namespace="com.ticket.t1.dao.IReviewDao">
 
-	<select id="listReview" resultType="com.ticket.t1.dto.ReviewVO">
-			select * from review_board order by rseq desc
+	<resultMap  id="ReviewMap" type="java.util.HashMap"></resultMap>
+	<resultMap  id="replyMap" type="java.util.HashMap"></resultMap>
+	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ 
+			CALL getAllCount( 
+				#{ cnt, mode=OUT, jdbcType=INTEGER } 
+			) 
+		}
+	</select>	
+	
+	<select id="selectReview"  statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{
+			CALL selectBoard(
+				#{startNum}, #{endNum},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=ReviewMap}
+			)
+		}
 	</select>
 
 </mapper>
