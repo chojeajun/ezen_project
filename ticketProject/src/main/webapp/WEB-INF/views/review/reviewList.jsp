@@ -16,20 +16,20 @@
 				</tr>
 				<c:forEach items="${reviewList }" var="reviewVO">
 					<tr>
-						<td>${reviewVO.rseq }</td>
+						<td>${reviewVO.RSEQ }</td>
 						<td width="30%">
-							<a href="reviewView&rseq=${ reviewVO.rseq }">${reviewVO.title}</a>
+							<a href="reviewView&rseq=${ reviewVO.RSEQ }">${reviewVO.TITLE}</a>
 						</td>
-						<td>${ reviewVO.id}</td>
+						<td>${ reviewVO.ID}</td>
 						<td>
-							<fmt:parseDate var="indateStr" value="${reviewVO.indate}" pattern="yyyy-MM-dd" />
+							<fmt:parseDate var="indateStr" value="${reviewVO.INDATE}" pattern="yyyy-MM-dd" />
 							<fmt:formatDate var="indate" value="${indateStr}" pattern="yyyy-MM-dd" />
 							${indate}
 						</td>
 						<td>
 							<c:choose>
-								<c:when test="${reviewVO.repyn=='N' }">no</c:when>
-								<c:when test="${reviewVO.repyn=='Y' }">yes</c:when>
+								<c:when test="${reviewVO.REPYN=='N' }">no</c:when>
+								<c:when test="${reviewVO.REPYN=='Y' }">yes</c:when>
 							</c:choose>
 						</td>
 					</tr>
