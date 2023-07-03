@@ -123,7 +123,7 @@
                 queryString += "&";
             }
         }
-
+		alert(queryString);
         document.registerForm.action = "registerTimeForm?" + queryString;
         document.registerForm.submit();
         
@@ -193,7 +193,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {background-color: #f44336
             <ul id="output"></ul>
 			<div class="btn_box">
 				<button type="button" id="addButton" onclick="addTime()">추가</button>
-				<input type="submit" id="submit_Button" value="저장" onClick="gotime()">
+				<input type="button" id="submit_Button" value="저장" onClick="gotime()">
 			</div>
 		</div>
     </section>

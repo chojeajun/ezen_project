@@ -6,12 +6,12 @@
 <mapper namespace="com.ticket.t1.dao.IRegisterDao">
 
 	<insert id="insertRegisterTime" parameterType="com.ticket.t1.dto.RegisterTimeVO">
-	        INSERT INTO register_time (mseq, date, starttime, endtime)
-	        VALUES (#{mseq}, #{date}, #{starttime}, #{endtime})
+	        INSERT INTO registertime (rtseq, mseq, registerdate, starttime, endtime)
+	        VALUES (REGISTERTIME_RTSEQ.nextVal, #{mseq}, #{registerdate}, #{starttime}, #{endtime})
 	</insert>
 	    
 	<select id="getMyRegister" parameterType="com.ticket.t1.dto.MemberVO" resultType="com.ticket.t1.dto.RegisterTimeVO">
-	        SELECT * FROM register_time WHERE mseq = #{mseq}
+	        SELECT * FROM registertime WHERE mseq = #{mseq}
 	</select>
 
 

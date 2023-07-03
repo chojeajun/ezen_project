@@ -16,7 +16,12 @@ public class RegisterService {
 	IRegisterDao rdao;
 	
 	public void insertRegisterTime(int mseq, String string, String string2, String string3) {
-		rdao.insertRegisterTime(mseq, string, string2, string3);
+		RegisterTimeVO rtvo = new RegisterTimeVO();
+		rtvo.setMseq(mseq);
+		rtvo.setRegisterdate(string);
+		rtvo.setStarttime(string2);
+		rtvo.setEndtime(string3);
+		rdao.insertRegisterTime(rtvo);
 		
 	}
 
