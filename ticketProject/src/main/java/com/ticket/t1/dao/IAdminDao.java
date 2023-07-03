@@ -18,6 +18,7 @@ import com.ticket.t1.util.Paging;
 @Mapper
 public interface IAdminDao {
 	
+
 	void getAdmin(HashMap<String, Object> paramMap);
 	void adminGetAllCount(HashMap<String, Object> cntMap);
 	void getContentList(HashMap<String, Object> paramMap);

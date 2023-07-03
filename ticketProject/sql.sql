@@ -6,7 +6,7 @@ select * from qna;
 select * from content;
 select * from admin;
 select * from worker;
-
+select * from order_view;
 
 create or replace procedure getMember(
     p_id 

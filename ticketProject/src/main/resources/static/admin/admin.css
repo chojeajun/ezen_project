@@ -130,7 +130,7 @@ footer hr {
  text-decoration: none;
  text-align: center;
  padding: 5px;
- margin-left: 200px;
+ /* margin-left: 200px; */
  /* margin: 0 7px 7px 0px; */
 }
 
@@ -156,6 +156,63 @@ footer hr {
  text-align: center;
  padding: 5px;
  /* margin: 0 7px 7px 0px; */
+}
+
+.btn3 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: rgb(255, 213, 225);
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+}
+
+.btn4 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: rgb(255, 213, 225);
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+ margin-left: 200px;
+}
+
+.btn5 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: rgb(255, 213, 225);
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+}
+
+.btn6 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: rgb(255, 213, 225);
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+}
+
+.btn7 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: rgb(255, 213, 225);
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+ margin-left: 850px;
 }
 
 
@@ -208,8 +265,49 @@ table#productList {
  margin-bottom: 20px;
 }
 
+table#contentList {
+    border-collapse: collapse;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table#qnaList {
+    border-collapse: collapse;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table#orderList {
+    border-collapse: collapse;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table#memberList {
+    border-collapse: collapse;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 th, td{ 
  padding: 8px 5px;
+ text-align: center;
  
 }
 

@@ -8,7 +8,7 @@
 	<form name="frm" method="post">
 		<table>
 			<tr><td width="800" align="right">
-				<input class="btn" type="button" name="btn_write" value="새배너 등록" 
+				<input class="btn7" type="button" name="btn_write" value="새배너 등록" 
 						onClick="location.href='newBannerWrite'"></td></tr>
 		</table>
 		<table id="contentList">
@@ -20,16 +20,16 @@
 		    	<c:otherwise>
 		    			<c:forEach items="${bannerList}" var="bannerVO">
 		    				<tr>
-		    					<td height="23" align="center" >${bannerVO.bseq}</td>
+		    					<td height="23" align="center" >${bannerVO.BSEQ}</td>
 		    					<td style="text-align:left; padding-left:50px; padding-right:0px;width:300px;">
-		    						${bannerVO.subject}
+		    						${bannerVO.SUBJECT}
 		    					</td>
 		    					<td>
-			    						<select name="order_seq" id="${bannerVO.bseq}"	
-			    								onChange="change_order('${bannerVO.bseq}');">
+			    						<select name="order_seq" id="${bannerVO.BSEQ}"	
+			    								onChange="change_order('${bannerVO.BSEQ}');">
 				    							<c:forEach var="cnt" begin="1" end="5" varStatus="status">
 				    								<c:choose>
-														<c:when test="${cnt==bannerVO.order_seq}">
+														<c:when test="${cnt==bannerVO.ORDER_SEQ}">
 															<option value="${cnt}" selected>${cnt}</option>
 														</c:when>
 														<c:otherwise>
@@ -38,7 +38,7 @@
 													</c:choose>
 				    							</c:forEach>
 				    							<c:choose>
-													<c:when test="${bannerVO.order_seq==6}">
+													<c:when test="${bannerVO.ORDER_SEQ==6}">
 														<option value="6" selected>사용안함</option>
 													</c:when>
 													<c:otherwise>
@@ -47,10 +47,10 @@
 												</c:choose>
 			    						</select>
 		    					</td>
-		    					<td>${bannerVO.useyn}</td>
-		    					<td width="150"><fmt:formatDate value="${bannerVO.indate}"/></td>
+		    					<td>${bannerVO.USEYN}</td>
+		    					<td width="150"><fmt:formatDate value="${bannerVO.INDATE}"/></td>
 			      				<td><input type="button" value="수정" 
-			      					onClick="location.href='editBannerForm?bseq=${bannerVO.bseq}'"></td></td>
+			      					onClick="location.href='editBannerForm?bseq=${bannerVO.BSEQ}'"></td></td>
 		    				</tr>
 		    			</c:forEach>
 		    	</c:otherwise>

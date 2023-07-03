@@ -22,6 +22,8 @@
        		<tr align="center" ><td  colspan="2">
        			<input class="btn" type="submit" value="업무 로그인" onClick="return worker_check();"><br><br>
        			<h4 style="color:red">${message}</h4></td></tr>
+       			<tr align="center" ><td  colspan="2">
+       	
 		</table>
 		</form>
 	</div></article>

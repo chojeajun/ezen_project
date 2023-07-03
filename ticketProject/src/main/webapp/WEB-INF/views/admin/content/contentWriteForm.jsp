@@ -7,15 +7,12 @@
 <table id="list">
 	<tr><th>공연분류</th><td colspan="5">
 		<select name="category">
-    		<c:forEach items="${category.List}" var="category" varStatus="status">
-      			<option value="${status.count}">${category}</option>
+    		<c:forEach items="${category.LIST}" var="category" varStatus="status">
+      			<option value="${status.COUNT}">${category}</option>
    			</c:forEach>
   		</select></td>
 	<tr><th>공연명</th> <td width="343" colspan="5">
 	       <input type="text" name="name" size="47" maxlength="100" > </td></tr>
-	<tr><th>원가[A]</th> <td width="70"><input type="text" name="price1" size="11" ></td>
-		<th>판매가[B]</th><td width="70"><input type="text" name="price2" size="11" ></td>
-	    <th>[B-A]</th><td width="72"><input type="text" name="price3" size="11"></td></tr>
 	<tr><th>상세설명</th><td colspan="5">
 	      <textarea name="content" rows="8" cols="70" ></textarea></td></tr>
 
@@ -28,8 +25,8 @@
 	</tr>
       
 </table>
-<input class="btn" type="button" value="등록" onClick="go_save()">           
-<input class="btn" type="button" value="취소" onClick="go_mov()"><br/>
+<input class="btn4" type="button" value="등록" onClick="go_save()">           
+<input class="btn5" type="button" value="취소" onClick="go_mov()"><br/>
 <div id="msg" ></div>
 </form> 
 

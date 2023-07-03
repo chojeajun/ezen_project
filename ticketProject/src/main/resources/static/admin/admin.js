@@ -29,7 +29,7 @@ function go_total( requestName ){
 
 
 function go_wrt(){
-	document.frm.action = "productWriteForm";
+	document.frm.action = "contentWriteForm";
 	document.frm.submit();
 }
 
@@ -64,20 +64,20 @@ function go_save(){
 		alert('상품이미지들 입력하세요.'); 	
 		theForm.image.focus();	
 	} else{
-		theForm.action = "productWrite";
+		theForm.action = "contentWrite";
 		theForm.submit();
 	}
 }
 
 
 function go_detail(pseq){
-	document.frm.action = "adminProductDetail?pseq=" + pseq;
+	document.frm.action = "adminContentDetail?pseq=" + pseq;
 	document.frm.submit();
 }
 
 
 function go_mod(pseq){
-	document.frm.action = "productUpdateForm?pseq=" + pseq;
+	document.frm.action = "contentUpdateForm?pseq=" + pseq;
 	document.frm.submit();
 }
 
@@ -98,7 +98,7 @@ function go_mod_save(){
 		document.frm.content.focus();
 	 }else{
 		if( confirm('수정하시겠습니까?') ){
-			 document.frm.action = "productUpdate";
+			 document.frm.action = "contentUpdate";
 			 document.frm.submit();
 		}
 	}
@@ -136,7 +136,7 @@ function reInsert(id, useyn){
 
 
 function go_view( qseq ){
-	location.href = "adminQnaView?qseq=" + qseq;
+	location.href = "adminqnaView?qseq=" + qseq;
 }
 
 
