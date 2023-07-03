@@ -12,6 +12,8 @@ public interface IOrderDao {
 	void listOrderByOseq(HashMap<String, Object> paramMap);
 	void getOrderViewByMyMseq(HashMap<String, Object> paramMap);
 	void getOrderList(HashMap<String, Object> paramMap1);
+	void getAllOrderViewByMyseq(HashMap<String, Object> list3);
+	void getOrderDetail(HashMap<String, Object> paramMap);
 
 
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<form name="frm" action="ticket.do" method="post" class="formOrder">
+<form name="frm" method="post" class="formOrder">
 
 
 <section>
@@ -19,10 +19,10 @@
 				<ul class="orderDListUl">
 			<c:forEach items="${orderDetailList}" var="odl">
 					<li>
-						<div class="od"><div id="oseq">${odl.oseq}</div><div>구매날짜 <fmt:formatDate value="${odl.odindate}" pattern="yyyy-MM-dd" /></div></div>
-						<div class="od"><div id="title">${odl.title}</div><div>${odl.artist}</div><div>${odl.locationName}&nbsp;&nbsp;${odl.area }</div><div>날짜/시간 <fmt:formatDate value="${odl.contentDate}" pattern="yyyy-MM-dd" />&nbsp;&nbsp;${odl.contentTime}</div></div>
-						<div class="od"><div style="font-weight: bold;">${odl.com_nickname }</div><div>${odl.com_grade}</div></div>
-						<div class="od"><div>좌석 가격 ${odl.content_price }</div><div>커미션비 ${odl.com_price}</div><div>수량 ${odl.quantity }</div><div id="totPrice">총합가격 ${odl.content_price*odl.quantity+odl.com_price}</div></div>
+						<div class="od"><div id="oseq">${odl.OSEQ}</div><div>구매날짜 <fmt:formatDate value="${odl.ODINDATE}" pattern="yyyy-MM-dd" /></div></div>
+						<div class="od"><div id="title">${odl.TITLE}</div><div>${odl.ARTIST}</div><div>${odl.LOCATIONNAME}&nbsp;&nbsp;${odl.AREA}</div><div>날짜/시간 <fmt:formatDate value="${odl.CONTENTDATE}" pattern="yyyy-MM-dd" />&nbsp;&nbsp;${odl.CONTENTTIME}</div></div>
+						<div class="od"><div style="font-weight: bold;">${odl.COM_NICKNAME }</div><div>${odl.COM_GRADE}</div></div>
+						<div class="od"><div>좌석 가격 ${odl.CONTENT_PRICE }</div><div>커미션비 ${odl.COM_PRICE}</div><div>수량 ${odl.QUANTITY }</div><div id="totPrice">총합가격 ${odl.CONTENT_PRICE*odl.QUANTITY+odl.COM_PRICE}</div></div>
 					</li>
 			</c:forEach>
 				</ul>

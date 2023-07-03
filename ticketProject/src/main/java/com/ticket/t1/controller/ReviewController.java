@@ -50,9 +50,9 @@ public class ReviewController {
 		if( loginUser == null ) {
 			mav.setViewName("member/login");
 		}else {
-			res.plusOneReadcount();
-			ArrayList<ReviewReplyVO> list = res.selectReply();
-			request.setAttribute("replyList", list); /// 댓글 리스트 긁어와서 뿌려
+//			res.plusOneReadcount();
+//			ArrayList<ReviewReplyVO> list = res.selectReply();
+//			request.setAttribute("replyList", list); /// 댓글 리스트 긁어와서 뿌려
 		}
 		return mav;
 	}

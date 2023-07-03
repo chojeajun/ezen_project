@@ -48,6 +48,16 @@ public class OrderService {
 		
 	}
 
+	public void getAllOrderViewByMyMseq(HashMap<String, Object> list3) {
+		odao.getAllOrderViewByMyseq(list3);
+		
+	}
+
+	public void getOrderDetail(HashMap<String, Object> paramMap) {
+		odao.getOrderDetail(paramMap);
+		
+	}
+
 	
 	
 	
