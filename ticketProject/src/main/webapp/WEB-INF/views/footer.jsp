@@ -16,7 +16,7 @@
 				ON</strong> 2019.All rights reserved.<br />
 		</div>
 		<div class=fot_logo>
-			<a href="ticket.do?command=index"><img src="images/logo.png" style="width: 189px;"/></a>
+			<a href="/"><img src="images/logo.png" style="width: 189px;"/></a>
 		</div>
 		<div class="kb_icon">
 			<img src="images/footer_title.gif" alt="kb인증마크">

@@ -126,7 +126,7 @@
 
 </head>
 <body>
-<form name="log_frm" method="post">
+<form name="log_frm">
 	<div id="wrap">
 		<header id="header">
 			<div class="header_inner">
