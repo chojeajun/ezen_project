@@ -19,7 +19,7 @@
 				<ul class="orderDListUl">
 			<c:forEach items="${orderDetailList}" var="odl">
 					<li>
-						<div class="od"><div id="oseq">${odl.OSEQ}</div><div>구매날짜 <fmt:formatDate value="${odl.ODINDATE}" pattern="yyyy-MM-dd" /></div></div>
+						<div class="od"><div id="oseq">${odl.OSEQ}</div><div>구매날짜 <fmt:formatDate value="${odl.INDATE}" pattern="yyyy-MM-dd" /></div></div>
 						<div class="od"><div id="title">${odl.TITLE}</div><div>${odl.ARTIST}</div><div>${odl.LOCATIONNAME}&nbsp;&nbsp;${odl.AREA}</div><div>날짜/시간 <fmt:formatDate value="${odl.CONTENTDATE}" pattern="yyyy-MM-dd" />&nbsp;&nbsp;${odl.CONTENTTIME}</div></div>
 						<div class="od"><div style="font-weight: bold;">${odl.COM_NICKNAME }</div><div>${odl.COM_GRADE}</div></div>
 						<div class="od"><div>좌석 가격 ${odl.CONTENT_PRICE }</div><div>커미션비 ${odl.COM_PRICE}</div><div>수량 ${odl.QUANTITY }</div><div id="totPrice">총합가격 ${odl.CONTENT_PRICE*odl.QUANTITY+odl.COM_PRICE}</div></div>
@@ -28,6 +28,7 @@
 				</ul>
 	</div>
 </section>
+<input type="button" class="goOrderView" value="목록" onclick="location.href='/myOrderView'"/>
 </form>
 
 <%@ include file="../footer.jsp" %>

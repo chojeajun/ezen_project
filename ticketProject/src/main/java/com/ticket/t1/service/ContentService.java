@@ -76,7 +76,9 @@ public class ContentService {
 
 	public void getContent(HashMap<String, Object> paramMap) {
 		cdao.getContent(paramMap);
+
 	}
+	
 	public void searchContentByTitle(HashMap<String, Object> paramMap) {
 		cdao.searchContentByTitle(paramMap);
 

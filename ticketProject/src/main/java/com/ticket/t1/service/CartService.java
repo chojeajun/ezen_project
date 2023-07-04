@@ -37,5 +37,15 @@ public class CartService {
 		cdao.getCnickName(paramMap5);
 		
 	}
+
+	public void deleteCart(int parseInt) {
+		cdao.deleteCart(parseInt);
+		
+	}
+
+	public void orderCart(int parseInt) {
+		cdao.orderCart(parseInt);
+		
+	}
 	
 }

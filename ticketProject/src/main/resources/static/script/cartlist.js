@@ -44,9 +44,10 @@ function go_cart_order() {
 		for (var i = 0; i < document.frm.cartseq.length; i++) {
 			if (document.frm.cartseq[i].checked == true){
 				count++;
-				cartseq = document.frm.cartseq[i].value + " ";
+				cartseq[count-1] = document.frm.cartseq[i].value;
 			}
-				
+			for(var i = 0; i < count; i++)
+			cartseqs = cartseq[i] + " ";  
 		}
 		
 	}
