@@ -77,7 +77,7 @@ function go_update(){
 	}else{ 
 		document.m_frm.action='memberUpdate';
 	}
-		
+
 	document.m_frm.submit();
 }
 

@@ -17,9 +17,10 @@
 				<label>User ID</label> <input type="text" name="id"
 					value="${dto.id }" readonly> <input type="text"
 					name="provider" value="${dto.provider}" readonly><br>
+					<!-- procider 즉 카카오 로그인이 아니라면 비밀번호 작성이 가능하게 , 아니라면 수정이 불가능  -->
 				<c:choose>
-					<c:when test="${empty dto.provider }">
-						<label>Password</label>
+					<c:when test="${empty dto.provider }"> 
+						<label>Password</label><br>
 						<input type="password" placeholder="비밀번호" name="pwd">
 						<br>
 						<label>Retype Password</label>
@@ -27,9 +28,8 @@
 					</c:when>
 					<c:otherwise>
 						<label>Password</label>
-						<input type="password" placeholder="비밀번호" name="pwd" disabled>
-						<label>Retype Password</label>
-						<input type="password" name="pwdCheck" disabled>
+						<input type="password" placeholder="비밀번호" name="pwd" disabled><br>
+						<label>Retype Password</label><input type="password" name="pwdCheck" disabled><br>
 					</c:otherwise>
 				</c:choose>
 				<br> <label>Name</label> <input type="text" name="name"
@@ -46,12 +46,14 @@
 						<br>
 					</c:otherwise>
 				</c:choose>
+				<label>전화번호</label>
 				<input type="text" name="phone" value="${ dto.phone }"> <br>
 				<label>생년월일</label>
 <%-- 				<fmt:parseDate var="birth" value="${dto.birth}" pattern="yyyy-MM-dd" /> --%>
 <%-- 				<fmt:formatDate var="birthday" value="${birth}" pattern="yyyy-MM-dd" /> --%>
-				<input type="text" name="birth" value="${ dto.birth}" >
-	
+				
+				<input type="text" name="birth" id="birth" value="<fmt:formatDate value='${dto.birth}' pattern='yyyy-MM-dd'/>" >
+				<!--  데이터 타입 변경  -->
 
 				
 				<!--  string 형 으로 넘어올때   -->

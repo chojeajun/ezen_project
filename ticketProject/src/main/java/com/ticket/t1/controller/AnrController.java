@@ -78,7 +78,8 @@ public class AnrController {
             for (int i = 0; i < date.length -1; i++) {
                 rs.insertRegisterTime(mseq, date[i], starttime[i], endtime[i]);
             }
-            ArrayList<RegisterTimeVO> regi = rs.getMyRegister(membervo);
+            ArrayList<RegisterTimeVO> regi = rs.getMyRegister(mseq);
+            System.out.println("$$$$$" + regi.size());
             mav.addObject("register", regi);
 
             mav.setViewName("apply_register/register/registerTimeForm");

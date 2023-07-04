@@ -72,6 +72,8 @@ public class OrderController {
 	@RequestMapping(value="/orderDetail")  
 	public ModelAndView orderDetail( HttpServletRequest request,
 			@RequestParam("oseq") int oseq ) {
+//		System.out.println("어서오세요");
+		
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
@@ -83,13 +85,15 @@ public class OrderController {
 			paramMap.put("oseq", oseq);
 			paramMap.put("ref_cursor", null);
 			os.listOrderByOseq(paramMap);
-				
+			
+			
 			ArrayList<HashMap<String,Object>> orderListByOseq 
 				= (ArrayList<HashMap<String,Object>>)paramMap.get("ref_cursor");
-				
+			System.out.println(orderListByOseq.size());
+			
 			mav.addObject("totalPrice", paramMap.get("totalPrice"));
-			mav.addObject("orderList", orderListByOseq);
-			mav.addObject("orderDetail", orderListByOseq.get(0) );  
+			mav.addObject("orderDetailList", orderListByOseq);
+//			mav.addObject("orderDetail", orderListByOseq.get(0) );  
 			mav.setViewName("order/orderDetail");
 		}
 		return mav;
@@ -212,6 +216,8 @@ public class OrderController {
 	@RequestMapping(value="/orderDetail", method=RequestMethod.POST)
 	public ModelAndView order_detail( HttpServletRequest request, @RequestParam("oseq") int oseq ) {
 		
+		System.out.println("orderDetail까지 옵니다.");
+		
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
@@ -226,6 +232,8 @@ public class OrderController {
 			os.getOrderDetail(paramMap);
 			ArrayList<HashMap<String, Object>> list 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			System.out.println("list사이즈는 =============" + list.size());
 			
 			mav.addObject("orderDetailList", list);
 			mav.setViewName("order/orderDetail");

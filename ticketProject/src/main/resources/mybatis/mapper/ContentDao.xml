@@ -88,12 +88,20 @@
 		}
 	</select> -->
 	
+
 	<select id="getContent" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{ 
 			CALL getContent(
 				#{cseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
 			) 
+
+	<select id="searchContentByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL searchContentByTitle(
+				#{key},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
+			)
 		}
 	</select>
 	

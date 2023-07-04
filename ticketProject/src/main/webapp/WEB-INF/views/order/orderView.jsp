@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<form name="frm" method="post" class="formOrder">
+<form name="frm" class="formOrder">
 
 
 <section>
@@ -37,7 +37,7 @@
 								<% total++; %>
 								<div><fmt:formatDate value="${ol.INDATE}" pattern="yyyy-MM-dd" /></div>
 								<div><input type="button" class="orderDetailButton" value="주문 상세 보기" 
-								onclick="location.href='orderDetail&oseq=${ol.OSEQ}'" /></div>
+								onclick="location.href='orderDetail?oseq=${ol.OSEQ}'" /></div>
 							</li>
 					</c:forEach>
 					<% title = 0; %>

@@ -30,9 +30,9 @@ public class OrderService {
 		ArrayList<HashMap<String, Object>> list 
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		int totalPrice = 0;
-		for( HashMap<String, Object> ovo : list ) {
-			totalPrice += Integer.parseInt( ovo.get("QUANTITY").toString() ) 
-						* Integer.parseInt( ovo.get("PRICE2").toString() );
+		for(int i = 0; i < list.size(); i++) {
+			totalPrice += Integer.parseInt(list.get(i).get("QUANTITY").toString()) 
+					* Integer.parseInt(list.get(i).get("PRICE2").toString()); 
 		}
 		paramMap.put("totalPrice", totalPrice);
 		

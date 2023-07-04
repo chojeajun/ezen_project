@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 
 import com.ticket.t1.dto.ReviewReplyVO;
 import com.ticket.t1.dto.ReviewVO;
@@ -49,19 +49,60 @@ ModelAndView mav = new ModelAndView();
 	}
 	
 	@RequestMapping("/reviewView")
-	public ModelAndView reviewView(HttpServletRequest request) {
+	public ModelAndView boardView( @RequestParam("rseq") int rseq,  
+			HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser
-		= (HashMap<String, Object>) session.getAttribute("loginUser");
-		if( loginUser == null ) {
-			mav.setViewName("member/login");
-		}else {
-//			res.plusOneReadcount();
-//			ArrayList<ReviewReplyVO> list = res.selectReply();
-//			request.setAttribute("replyList", list); /// 댓글 리스트 긁어와서 뿌려
-		}
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rseq", rseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		res.getReview( paramMap );
+		
+		ArrayList<HashMap<String, Object>> list1
+	 		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		
+		ArrayList<HashMap<String, Object>> list2
+ 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+		
+		mav.addObject("reviewVO" , list1.get(0) );
+		mav.addObject("replyList", list2 );
+		mav.setViewName("review/reviewView");		
+		
 		return mav;
 	}
+	
+	@RequestMapping("/addReply")
+	public String addReply( 
+			@RequestParam("rseq") int rseq, 
+			@RequestParam("mseq") int mseq,
+			@RequestParam("content") String replycontent,
+			HttpServletRequest request ) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("mseq", mseq);
+		paramMap.put("content", replycontent);
+		paramMap.put("rseq", rseq);
+		
+		res.insertReply( paramMap );
+		
+		return "redirect:/boardViewWithoutCount?num=" + rseq;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
