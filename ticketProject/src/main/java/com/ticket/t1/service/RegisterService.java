@@ -25,8 +25,8 @@ public class RegisterService {
 		
 	}
 
-	public ArrayList<RegisterTimeVO> getMyRegister(MemberVO membervo) {
-		return rdao.getMyRegister(membervo);
+	public ArrayList<RegisterTimeVO> getMyRegister(int mseq) {
+		return rdao.getMyRegister(mseq);
 	}
 
 	

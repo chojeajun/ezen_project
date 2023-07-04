@@ -66,6 +66,18 @@ public class ReviewService {
 		
 	}
 
+
+	public void getReview(HashMap<String, Object> paramMap) {
+		redao.plusOneReadCount(paramMap);
+		redao.getReview(paramMap);
+	}
+
+
+	public void insertReply(HashMap<String, Object> paramMap) {
+		redao.insertReply(paramMap);
+		
+	}
+
 	
 	
 }

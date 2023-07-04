@@ -10,7 +10,7 @@ import com.ticket.t1.dto.RegisterTimeVO;
 @Mapper
 public interface IRegisterDao {
 
-	ArrayList<RegisterTimeVO> getMyRegister(MemberVO membervo);
+	ArrayList<RegisterTimeVO> getMyRegister(int mseq);
 	void insertRegisterTime(RegisterTimeVO rtvo);
 
 	
