@@ -16,20 +16,17 @@ public class QnaService {
 	@Autowired
 	IQnaDao qdao;
 
-	public List<QnaVO> listQna() {
-		return qdao.listQns();
+	public void listQna(HashMap<String, Object> paramMap) {
+		qdao.listQna(paramMap);		
 	}
-
-
-
-	public void insertQna(QnaVO qnavo) {
-		qdao.insertQna( qnavo);
-	}
-
-
 
 	public void getQna(HashMap<String, Object> paramMap) {
-		
-		
+		qdao.getQna( paramMap );		
 	}
+
+	public void insertQna(HashMap<String, Object> paramMap) {
+		qdao.insertQna( paramMap);
+	}
+
+	
 }

@@ -6,19 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ticket.t1.dto.BannerVO;
-import com.ticket.t1.dto.ContentVO;
-import com.ticket.t1.dto.MemberVO;
-import com.ticket.t1.dto.OrderVO;
-import com.ticket.t1.dto.QnaVO;
 import com.ticket.t1.service.AdminService;
 import com.ticket.t1.service.ContentService;
 import com.ticket.t1.service.QnaService;
@@ -160,6 +150,7 @@ public class AdminController {
 			paramMap.put("image", "" );
 		else 
 			paramMap.put("image", request.getParameter("image") );
+		
 		as.insertContent( paramMap);
 		return "redirect:/contentList";
 	}
@@ -182,9 +173,9 @@ public class AdminController {
 			ps.getContent(paramMap);
 			ArrayList< HashMap<String , Object> > list
 				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
-			HashMap<String , Object> cvo = list.get(1);
-			String kindList[] = { "0", "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
-			mav.addObject("kind", kindList[ Integer.parseInt( cvo.get("KIND").toString() ) ] );
+			HashMap<String , Object> cvo = list.get(0);
+			//String categoryList[] = { "1", "2", "3", "4", "5" };
+			//mav.addObject("kind", categoryList[ Integer.parseInt( cvo.get("CATEGORY").toString() ) ] );
 			mav.addObject("contentVO", cvo);
 			mav.setViewName("admin/content/contentDetail");
 		}
@@ -360,6 +351,7 @@ public class AdminController {
 	
 	@RequestMapping("/adminQnaView")
 	public ModelAndView adminQnaView( @RequestParam("qseq") int qseq   	) {
+		System.out.println(qseq);
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
@@ -367,10 +359,13 @@ public class AdminController {
 		qs.getQna(paramMap);
 		ArrayList<HashMap<String, Object>> list 
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-		HashMap<String, Object> qvo = list.get(1);
+		System.out.println(qseq);
+		HashMap<String, Object> qvo = list.get(0);
 		mav.addObject("qnaVO", qvo );
 		mav.setViewName("admin/qna/qnaView");
 		return mav;
+		
+		
 	}
 	
 	

@@ -17,7 +17,7 @@ public interface IContentDao {
 
 	List<ContentVO> getKindList(String kind);
 
-	ContentVO getContent(int pseq);
+	void getContent(HashMap<String, Object> paramMap);
 
 	List<BannerVO> getBannerList();
 

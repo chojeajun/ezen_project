@@ -6,7 +6,7 @@ body {
  background-color: white;
  margin: 0;
  padding: 0;
- font-size: 0.75em;
+ font-size: 0.85em;
  line-height: 1.2em;
  color: #333;
 }
@@ -124,7 +124,7 @@ footer hr {
 .btn {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -137,7 +137,7 @@ footer hr {
 .btn1 {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -149,7 +149,7 @@ footer hr {
 .btn2 {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -161,7 +161,7 @@ footer hr {
 .btn3 {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -172,7 +172,7 @@ footer hr {
 .btn4 {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -184,7 +184,7 @@ footer hr {
 .btn5 {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -195,7 +195,7 @@ footer hr {
 .btn6 {
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -204,9 +204,10 @@ footer hr {
 }
 
 .btn7 {
+	
  width: 100px;
  border-radius: 5px;
- background-color: rgb(255, 213, 225);
+ background-color: rgb(255, 227, 235);
  color: #333;
  box-shadow: 3px 3px 3px #999999;
  text-decoration: none;
@@ -215,6 +216,30 @@ footer hr {
  margin-left: 850px;
 }
 
+.btn8 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: #e4e4e4;
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+top: -20px;
+position: relative;
+}
+
+.btn9 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: #e4e4e4;
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+ margin-left: 160px
+}
 
 .btn:HOVER {
  background-color: #FFF;
@@ -260,7 +285,7 @@ table#productList {
  border-collapse: collapse; /* border 사이의 간격 없앰 */
  border-top: 2px solid #333;
  border-bottom: 1px solid #333;
- width: 80%; /* 전체 테이블 길이 설정 */
+ /* width: 80%; 전체 테이블 길이 설정 */
  margin-left: 100px;
  margin-bottom: 20px;
 }
@@ -269,7 +294,7 @@ table#contentList {
     border-collapse: collapse;
     border-top: 2px solid #333;
     border-bottom: 1px solid #333;
-    width: 80%;
+    width: 80%; /*전체 테이블 길이 설정 */
     margin-left: 100px;
     margin-bottom: 20px;
     text-align: center;
@@ -475,6 +500,7 @@ table#orderList {
 nav#sub_menu {
  float: left;
  margin-right: 10px;
+ 
 }
 
 nav#sub_menu ul li {
