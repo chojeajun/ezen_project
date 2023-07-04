@@ -36,7 +36,7 @@
 	
 	<select id="select_Content_Loc_Seat_View_Buy" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
-			CALL Content_Loc_Seat_View_Buy(
+			CALL sclsvb(
 				#{cseq}, #{area}, 
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 			)
@@ -50,5 +50,12 @@
 			)
 		}
 	</select>
+	
+	<delete id="deleteCart">
+		delete from cart where cartseq = #{param}
+	</delete>
 
+	<update id="orderCart">
+		update cart set buyyn = 'Y' where cartseq = #{param}
+	</update>
 </mapper>
