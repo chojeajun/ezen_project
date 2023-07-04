@@ -95,6 +95,8 @@
 				#{cseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=contentMap1}
 			) 
+			
+	</select>
 
 	<select id="searchContentByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
