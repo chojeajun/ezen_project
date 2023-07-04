@@ -45,7 +45,7 @@
 	
 	<select id="getOrderList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
-			CALL getOrderList(
+			CALL hoonGetOrderList(
 				#{oseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 			)
@@ -65,12 +65,12 @@
 	<select id="getOrderDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL getOrderDetail(
-				#{mseq},
 				#{oseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 			)
 		}
 	</select>
+	
 </mapper>
 
 

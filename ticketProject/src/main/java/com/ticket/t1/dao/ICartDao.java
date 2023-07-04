@@ -17,4 +17,8 @@ public interface ICartDao {
 
 	void getCnickName(HashMap<String, Object> paramMap5);
 
+	void deleteCart(int parseInt);
+
+	void orderCart(int parseInt);
+
 }

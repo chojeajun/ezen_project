@@ -125,4 +125,21 @@ public class CartController {
 	 * 
 	 * return "redirect:/cartList"; }
 	 */
+	
+	@RequestMapping("/orderInsert")
+	public String order_insert(@RequestParam("cartseq") String cartseq, HttpServletRequest request) {
+		
+//		System.out.println(Integer.parseInt(arr[0]));
+//		System.out.println("카트번호" + cartseq.split(" "));
+		String[] arr = cartseq.split(",");
+		
+		
+		for(int i = 0; i < arr.length; i++) {
+			cs.orderCart(Integer.parseInt(arr[i]));
+		}
+		
+		
+		return "redirect:/cartList";
+		
+	}
 }

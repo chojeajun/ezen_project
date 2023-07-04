@@ -2,16 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="header.jsp"%>
-<div id="bannerList">
-	<div id="view">
-		<div id="imgs">
-			<c:forEach items="${ bannerList }" var="bannerVO">
-				<img src="${ bannerVO.IMAGE }" />
-			</c:forEach>
-		</div>
-	</div>
-</div>
-
 <div id="bestContent">
 	<div class="title">
 		<h1>Best Content</h1>
@@ -108,6 +98,16 @@
 		</div>
 	</div>
 
+</div>
+
+<div id="bannerList">
+	<div id="view">
+		<div id="imgs">
+			<c:forEach items="${ bannerList }" var="bannerVO">
+				<img src="${ bannerVO.IMAGE }" />
+			</c:forEach>
+		</div>
+	</div>
 </div>
 
 <%@ include file="footer.jsp"%>
