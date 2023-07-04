@@ -195,11 +195,11 @@ function apply() {
 }
 
 function go_main() {
-	document.registerForm.action = "ticket.do?command=index";
+	document.registerForm.action = "/";
 	document.registerForm.submit();
 }
 
 function go_mypage() {
-	document.registerForm.action = "ticket.do?command=mypage";
+	document.registerForm.action = "mypage";
 	document.registerForm.submit();
 }

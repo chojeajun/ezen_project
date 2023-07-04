@@ -6,7 +6,7 @@
 <mapper namespace="com.ticket.t1.dao.IReviewDao">
 
 	<resultMap  id="ReviewMap" type="java.util.HashMap"></resultMap>
-	<resultMap  id="replyMap" type="java.util.HashMap"></resultMap>
+	<resultMap  id="ReplyMap99" type="java.util.HashMap"></resultMap>
 	
 	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{ 
@@ -24,5 +24,43 @@
 			)
 		}
 	</select>
+	
+	<select id="getReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{	
+			CALL getReview(
+				#{rseq},
+				#{ref_cursor1 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=ReviewMap},
+				#{ref_cursor2 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=ReplyMap99}
+			)
+		}
+	</select>
+	
+	<update id="plusOneReadCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+			{	
+				CALL plusOneReadCount( #{rseq} )
+			}
+	</update>
 
+
+	<insert id="insertReply" statementType="CALLABLE"   parameterType="java.util.HashMap" >
+		{
+			CALL insertReply(
+				#{ rseq }, #{ mseq }, #{ replycontent } 
+			)
+		}
+	</insert>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

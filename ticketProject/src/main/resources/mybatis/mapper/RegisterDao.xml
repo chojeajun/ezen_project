@@ -10,8 +10,8 @@
 	        VALUES (REGISTERTIME_RTSEQ.nextVal, #{mseq}, #{registerdate}, #{starttime}, #{endtime})
 	</insert>
 	    
-	<select id="getMyRegister" parameterType="com.ticket.t1.dto.MemberVO" resultType="com.ticket.t1.dto.RegisterTimeVO">
-	        SELECT * FROM registertime WHERE mseq = #{mseq}
+	<select id="getMyRegister" resultType="com.ticket.t1.dto.RegisterTimeVO">
+	        SELECT * FROM registertime WHERE mseq = #{param}
 	</select>
 
 

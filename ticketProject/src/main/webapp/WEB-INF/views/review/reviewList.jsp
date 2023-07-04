@@ -18,7 +18,7 @@
 					<tr>
 						<td>${reviewVO.RSEQ }</td>
 						<td width="30%">
-							<a href="reviewView&rseq=${ reviewVO.RSEQ }">${reviewVO.TITLE}</a>
+							<a href="reviewView?rseq=${ reviewVO.RSEQ }">${reviewVO.TITLE}</a>
 						</td>
 						<td>${ reviewVO.ID}</td>
 						<td>
@@ -53,7 +53,7 @@
 			<div class="clear"></div>
 			<br>
 			<div class="rev_btn_box btn_box" style="float: left">
-				<input type="button" value="메인으로" class="cancel" onclick="location.href='ticket.do?command=index'">
+				<input type="button" value="메인으로" class="cancel" onclick="location.href='/'">
 			</div>
 			<!--  버튼 위치 좌우로 수정 -->
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">

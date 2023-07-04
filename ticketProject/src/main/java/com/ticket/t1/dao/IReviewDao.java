@@ -16,6 +16,9 @@ public interface IReviewDao {
 	List<ReviewVO> listReview(Paging paging);
 	void getAllCount(HashMap<String, Object> paramMap);
 	void selectReview(HashMap<String, Object> paramMap);
+	void plusOneReadCount(HashMap<String, Object> paramMap);
+	void getReview(HashMap<String, Object> paramMap);
+	void insertReply(HashMap<String, Object> paramMap);
 
 	
 }
