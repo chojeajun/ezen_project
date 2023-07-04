@@ -59,7 +59,7 @@ public class MemberController {
 			@ModelAttribute("dto") @Valid MemberVO membervo,	BindingResult result,
 			HttpServletRequest request,	Model model	) {
 
-		String url="member/login.jsp";
+		String url="member/login";
 		if( result.getFieldError("id") != null )
 			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
 		else if( result.getFieldError("pwd") != null )
@@ -80,7 +80,7 @@ public class MemberController {
 			}
 			System.out.println("존재하는 회원의 아이디 갯수는 " + list.size() + "개 입니다"); // 여기까진 탐
 			HashMap<String, Object> mvo = list.get(0);
-			if( mvo.get("PWD") == null ) {
+			if(( mvo.get("PWD") == null || mvo.get("PWD").equals("")) && !mvo.get("PROVIDER").equals("kakao")) {
 				model.addAttribute("message" , "관리자에게 문의하세요");
 				System.out.println("받은 비밀번호 : @@@@@@@@ "+ membervo.getPwd());
 			} else if(!mvo.get("PWD").equals( membervo.getPwd() )) {
@@ -361,6 +361,7 @@ public class MemberController {
 			dto.setEmail((String)loginUser.get("EMAIL"));
 			dto.setPhone((String)loginUser.get("PHONE"));
 			dto.setBirth((Timestamp)loginUser.get("BIRTH"));
+			System.out.println("수정폼으로 가져오는 생일 값" +  loginUser.get("BIRTH"));
 			dto.setZip_num((String)loginUser.get("ZIP_NUM"));
 			dto.setAddress1((String)loginUser.get("ADDRESS1"));
 			dto.setAddress2((String)loginUser.get("ADDRESS2"));
@@ -378,7 +379,7 @@ public class MemberController {
 	public String memberUpdate( 
 			@ModelAttribute("dto") @Valid MemberVO membervo, 	BindingResult result,
 			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
-			HttpServletRequest request, Model model	) {
+			HttpServletRequest request, Model model, @RequestParam(value="birth") String birth) {
 		
 		String url = "member/updateForm";
 		if( result.getFieldError("pwd") != null )
@@ -412,13 +413,16 @@ public class MemberController {
 			System.out.println("수정할내용4 " + membervo.getNickname() );
 			System.out.println("수정할내용5 " + membervo.getEmail() );
 			System.out.println("수정할내용6 " + membervo.getPhone() );
-			System.out.println("수정할내용7 " + membervo.getBirth() );
+			//System.out.println("수정할내용7 birth:" + membervo.getBirth() );
+			System.out.println("파라미터로 전달받은 생일" + birth);
 			System.out.println("수정할내용8 " + membervo.getZip_num() );
 			System.out.println("수정할내용9 " + membervo.getAddress1() );
 			System.out.println("수정할내용10 " + membervo.getAddress2() );
 			System.out.println("수정할내용11 " + membervo.getAddress3() );
-			
+			System.out.println( "업데이트 폼에서의 membervo :" +  membervo);
 			// ms.updateMember( paramMap );
+			membervo.setBirth(java.sql.Timestamp.valueOf(birth + " 00:00:00"));
+			// mvo 를 보냈기때문에 sql 에서 소문자로 부를것
 			ms.updateMember( membervo );
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", paramMap);
@@ -431,7 +435,8 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdateKakao", method=RequestMethod.POST)
 	public String memberUpdateKakao(
 		@ModelAttribute("dto") @Valid MemberVO membervo , BindingResult result,
-		HttpServletRequest request , Model model ) {
+		HttpServletRequest request , Model model , @RequestParam(value="birth") String birth
+		) {
 		String url = "member/updateForm";
 		
 		if(result.getFieldError("name") != null) {
@@ -441,23 +446,49 @@ public class MemberController {
 		} else {
 			HashMap<String , Object> paramMap = new HashMap<String , Object>();
 			
-//			paramMap.put("ID", membervo.getId());
-//			paramMap.put("PWD", membervo.getId());
-//			paramMap.put("NAME", membervo.getId());
-//			paramMap.put("NICKNAME", membervo.getId());
-//			paramMap.put("EMAIL", membervo.getId());
-//			paramMap.put("PHONE", membervo.getId());
-//			paramMap.put("BIRTH", membervo.getId());
-//			paramMap.put("ZIP_NUM", membervo.getId());
-//			paramMap.put("ADDRESS1", membervo.getId());
-//			paramMap.put("ADDRESS2", membervo.getId());
-//			paramMap.put("ADDRESS3", membervo.getId());
-//			paramMap.put("PROVIDER", "kakao"); //PROVIDER 카카오 로그인 시 kakao 라고 명시 // 카카오 로그인이니까 
+			paramMap.put("ID", membervo.getId());
+			
+			paramMap.put("PWD" , "" ); // PWD 는 빈 값으로 수정
+			//paramMap.put("PWD", membervo.getPwd());
+			paramMap.put("NAME", membervo.getName());
+			paramMap.put("NICKNAME", membervo.getNickname());
+			paramMap.put("EMAIL", membervo.getEmail());
+			paramMap.put("PHONE", membervo.getPhone());
+			paramMap.put("BIRTH", membervo.getBirth());
+			paramMap.put("ZIP_NUM", membervo.getZip_num());
+			paramMap.put("ADDRESS1", membervo.getAddress1());
+			paramMap.put("ADDRESS2", membervo.getAddress2());
+			paramMap.put("ADDRESS3", membervo.getAddress3());
+			paramMap.put("PROVIDER", "kakao"); //PROVIDER 카카오 로그인 시 kakao 라고  // 카카오 로그인이니까 
 		
+			System.out.println("카카오 수정 id" + membervo.getId());
+			//System.out.println("카카오 수정 pwd" + membervo.getPwd()); // 카카오 로그인은 pwd 가 없으므로 null 이 나옴
+			System.out.println("카카오 수정 name" + membervo.getName());
+			System.out.println("카카오 수정 nickname" + membervo.getNickname());
+			System.out.println("카카오 수정 email" + membervo.getEmail());
+			System.out.println("카카오 수정 phone" + membervo.getPhone());
+			//System.out.println("카카오 수정 birth" + membervo.getBirth());
+			System.out.println("파라미터로 전달받은 카카오로그인 생일" + birth);
+			System.out.println("카카오 수정 zip_num" + membervo.getZip_num());
+			System.out.println("카카오 수정 address1" + membervo.getAddress1());
+			System.out.println("카카오 수정 address2" + membervo.getAddress2());
+			System.out.println("카카오 수정 address3" + membervo.getAddress3());
+			
+			membervo.setBirth(java.sql.Timestamp.valueOf(birth + " 00:00:00")); // Timestamp 형태로 변형 후 오라클 데이터포멧에맞는
+			membervo.setPwd(""); 
+			// Timestamp 형태로 변형 후 오라클 데이터포멧에맞는
+			System.out.println("카카오톡회원수정폼 에서의 mvo" + membervo);
+			// 형태로 변형해서 넣어준다
+			
+			// jsp 파일에서 넘겨주는 데이터가 string 형태여야 날짜 데이터를 받을 수 있는데 
+			// membervo 에 birth 는 timestamp 형태이다 그래서 @rEQUESTpARAM 으로 받은 이후에 
+			// sql.date 를 사용해서 데이터타입 형태를 변형해서 membervo 에 set 해줌
+			
 			//ms.updateMember(paramMap);
 			ms.updateMember(membervo);
 			HttpSession session = request.getSession();
 			// 변경 사항을 session 에 paramMap 이라는 객체를 넣어서 갱신
+			
 			session.setAttribute("loginUser", paramMap);
 			url = "redirect:/";
 		}
