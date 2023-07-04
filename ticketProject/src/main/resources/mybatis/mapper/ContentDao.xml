@@ -97,6 +97,7 @@
 			) 
 	</select>
 	
+
 	<select id="searchContentByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL searchContentByTitle(
