@@ -103,6 +103,7 @@
 	
 	
 	<select id="getQnaList" statementType="CALLABLE" parameterType="java.util.HashMap">
+	
 		{  
 			CALL getQnaList( 
 				#{startNum}, 

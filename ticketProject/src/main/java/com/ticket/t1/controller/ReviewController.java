@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ezen.g15.dto.QnaVO;
+
 import com.ticket.t1.dto.ReviewReplyVO;
 import com.ticket.t1.dto.ReviewVO;
 import com.ticket.t1.service.ReviewService;

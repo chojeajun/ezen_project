@@ -1,13 +1,10 @@
 package com.ticket.t1.service;
 
-import java.awt.Dialog;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.util.MapUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -227,8 +224,8 @@ public class AdminService {
 		Paging paging = new Paging();
 		paging.setPage(page);
 		HashMap<String, Object> cntMap = new HashMap<String, Object>();
-		cntMap.put("cnt", 1); 
-		cntMap.put("tableName" , 1 );
+		cntMap.put("cnt", 0); 
+		cntMap.put("tableName" ,1 );
 		cntMap.put("key", key);
 		adao.adminGetAllCount(cntMap);
 		

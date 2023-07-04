@@ -74,7 +74,7 @@ public class ContentService {
 	}
 
 	public void getContent(HashMap<String, Object> paramMap) {
-		// TODO Auto-generated method stub
+		cdao.getContent(paramMap);
 		
 	}
 	
