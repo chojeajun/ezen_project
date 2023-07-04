@@ -79,6 +79,9 @@ BEGIN
     COMMIT;
 END;
 
+update member set pwd = null where pwd = 'pwd';
+select * from member;
+commit;
 CREATE OR REPLACE PROCEDURE updateMember(
     p_id member.id%type,
     p_pwd member.pwd%type,
@@ -102,7 +105,7 @@ END;
 
 commit;
 
-
+SELECT COUNT(*) as cnt FROM content WHERE title LIKE '%'||'하리보'|| '%';
 
 
 select * from member;

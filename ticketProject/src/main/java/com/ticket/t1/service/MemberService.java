@@ -3,8 +3,6 @@ package com.ticket.t1.service;
 
 import java.util.HashMap;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,10 +38,10 @@ public class MemberService {
 		
 	}
 
-	public void updateMember(HashMap<String, Object> paramMap) {
-		mdao.updateMember(paramMap);
-		
-	}
+//	public void updateMember(HashMap<String, Object> paramMap) {
+//		mdao.updateMember(paramMap);
+//		
+//	}
 
 	public void updateMember(MemberVO membervo) {
 		mdao.updateMember2(membervo);

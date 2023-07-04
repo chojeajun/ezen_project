@@ -10,15 +10,15 @@ import lombok.Data;
 public class MemberVO {
 	
 	private int mseq;
-	@NotEmpty(message="id를 입력하세요")
+	@NotEmpty(message="아이디를 입력하세요")
 	private String id;
-	@NotEmpty(message="id를 입력하세요")
+	@NotEmpty(message="비밀번호를 입력하세요")
 	private String pwd;
-	@NotEmpty(message="id를 입력하세요")
+	@NotEmpty(message="이름을 입력하세요")
 	private String name;
 	private String nickname;
 	private int gender;
-	@NotEmpty(message="id를 입력하세요")
+	@NotEmpty(message="이메일을 입력하세요")
 	private String email;
 	private String phone;
 	private Timestamp birth;
