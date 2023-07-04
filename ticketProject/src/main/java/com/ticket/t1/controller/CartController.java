@@ -53,12 +53,13 @@ public class CartController {
 
 			// 사지 않은 카트 장소 시간 목록 (content_loc_seat_view) HashMap<String, Object>
 			if (list.size() != 0) {
-
+				
 				HashMap<String, Object> paramMap3 = new HashMap<String, Object>();
 				ArrayList<HashMap<String, Object>> list3 = new ArrayList<HashMap<String, Object>>();
 
 				for (int i = 0; i < list.size(); i++) {
 					paramMap3.put("cseq", list.get(i).get("CSEQ"));
+					paramMap3.put("area", list.get(i).get("AREA"));
 					paramMap3.put("ref_cursor", null);
 					cs.select_Content_Loc_Seat_View(paramMap3);
 
@@ -77,6 +78,7 @@ public class CartController {
 
 				for (int i = 0; i < list.size(); i++) {
 					paramMap4.put("cseq", list2.get(i).get("CSEQ"));
+					paramMap4.put("area", list2.get(i).get("AREA"));
 					paramMap4.put("ref_cursor", null);
 					cs.select_Content_Loc_Seat_View_Buy(paramMap4);
 

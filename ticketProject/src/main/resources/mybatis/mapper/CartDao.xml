@@ -19,7 +19,8 @@
 	<select id="buyList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL buyList(
-				#{mseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+				#{mseq}, 
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 			)
 		}
 	</select>
@@ -27,7 +28,8 @@
 	<select id="select_Content_Loc_Seat_View" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL select_Content_Loc_Seat_View(
-				#{cseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+				#{cseq}, #{area}, 
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 			)
 		}
 	</select>
@@ -35,7 +37,8 @@
 	<select id="select_Content_Loc_Seat_View_Buy" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL Content_Loc_Seat_View_Buy(
-				#{cseq}, #{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+				#{cseq}, #{area}, 
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 			)
 		}
 	</select>

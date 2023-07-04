@@ -29,6 +29,7 @@ public interface IContentDao {
 	void getSports(HashMap<String, Object> paramMap);
 	void getFestival(HashMap<String, Object> paramMap);
 	void getExhibition(HashMap<String, Object> paramMap);
+	void searchContentByTitle(HashMap<String, Object> paramMap);
 
 
 }

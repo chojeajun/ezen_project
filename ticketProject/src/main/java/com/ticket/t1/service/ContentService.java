@@ -73,8 +73,8 @@ public class ContentService {
 		cdao.getExhibition( paramMap );
 	}
 
-	public void getContent(HashMap<String, Object> paramMap) {
-		// TODO Auto-generated method stub
+	public void searchContentByTitle(HashMap<String, Object> paramMap) {
+		cdao.searchContentByTitle(paramMap);
 		
 	}
 	

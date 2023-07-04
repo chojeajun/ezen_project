@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -141,6 +142,28 @@ public class ContentController {
 		}
 
 		return mav;
+	}
+	
+	@RequestMapping(value="/contentSearch")
+	public String content_search(@RequestParam("key") String key) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("key", key);
+		paramMap.put("ref_cursor", null);
+		cs.searchContentByTitle(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list 
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		System.out.println(list.size());
+		
+		
+		if(list.size() == 0) {
+			return "redirect:/";
+		}else {
+			int cseq = Integer.parseInt(list.get(0).get("CSEQ").toString());
+			return "redirect:/contentDetail?cseq=" + cseq;
+		}
+		
 	}
 
 	// -----------------------------------------------------------------------------------
