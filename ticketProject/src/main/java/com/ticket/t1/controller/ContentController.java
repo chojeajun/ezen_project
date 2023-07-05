@@ -170,10 +170,26 @@ public class ContentController {
 
 	@RequestMapping("/mobilemain")
 	public ModelAndView mobilemain() {
-
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("mobileindex");
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ref_cursor1", null); // 메인 베너용
+		paramMap.put("ref_cursor2", null); // 베스트용
+		paramMap.put("ref_cursor3", null); // 새로운 항목용
+		paramMap.put("ref_cursor4", null); // 성공 내역용
+
+		cs.getBestNewSuccessBannerList(paramMap);
+
+		ArrayList<HashMap<String, Object>> list1 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+		ArrayList<HashMap<String, Object>> list3 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor3");
+		ArrayList<HashMap<String, Object>> list4 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor4");
+		
+		mav.addObject("bannerList", list1);
+		mav.addObject("bestList", list2);
+		mav.addObject("newList", list3);
+		mav.addObject("successList", list4);
+		mav.setViewName("mobilemain");
 		return mav;
 	}
 
