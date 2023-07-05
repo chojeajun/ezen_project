@@ -108,13 +108,15 @@ public class QnaController {
 	}
 	
 	
-	@RequestMapping(value="/qnaWriteForm")
-	public String qna_writre_form( HttpServletRequest request) {
+	@RequestMapping("/qnaWriteForm")
+	public String write_form(HttpServletRequest request) {
+		
+		String url = "qna/qnaWriteForm";
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser 
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
-		if( loginUser == null ) return "member/login";
-	    return "qna/qnaWrite";
+		if( session.getAttribute("loginUser") == null)
+			url="member/loginForm";		
+		
+		return url;
 	}
 	
 	
@@ -123,8 +125,10 @@ public class QnaController {
 	public ModelAndView qna_write( HttpServletRequest request,
 			@RequestParam(value="check", required=false) String check,
 			@RequestParam(value="pass", required=false) String pass, 
-			@RequestParam("subject") String subject,
-			@RequestParam("content") String content ) {
+			//@RequestParam("subject") String subject,
+			//@RequestParam("content") String content 
+			@RequestParam(value="subject", required=false) String subject,
+			@RequestParam(value="content", required=false) String content ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser 
