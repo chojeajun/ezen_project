@@ -50,6 +50,22 @@
 		}
 	</insert>
 	
+	<delete id="deleteReply" statementType="CALLABLE"  parameterType="java.util.HashMap">
+		{ 
+			CALL deleteReply( 
+				#{repseq} 
+			)  
+		}
+	</delete>
+	
+	<insert id="insertReview" statementType="CALLABLE"  parameterType="java.util.HashMap">
+		{
+			CALL insertBoard(
+				#{ id }, #{ pwd }, #{ title }, #{ content }, #{ imgfilename }
+			)
+		}
+	</insert>
+	
 </mapper>
 
 
