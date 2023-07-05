@@ -2,15 +2,14 @@
 <%@ include file="../../header.jsp" %>
 
 
-<form name="frm" method="post" class="form">
-<input type="hidden" name="command" value="apply">
+<form name="frm" class="form">
 <section name="applyBody" id="bodyBox_apply">
 	<div class="applyBox" name="applyBoxForm">
 	
 
 						<!-- 이 페이지 예전에 쌤한테 질문했을 때 ajax로 해결할 수 있다고 함
 							지금은 하나 누르면 페이지가 새로 뜨는데 한페이지에서 정보 뜨게 하면 최고일 것 같음 
-							파이팅 누군지는 몰라도
+							파이팅 누군지는 몰라도 - 나다
 						-->
 			<div class="applyTitleBox">
 			
@@ -43,9 +42,9 @@
 						js 펑션에서 cseq+숫자로 아이디 지정하는 거임
 						무슨 소린지 모르겠으면 걍 카톡해 머리아프다...............-->
 					<c:forEach items="${contentList}" var="contentVO" varStatus="state">
-							<li onclick="saveCseq('${state.count}')"><a href="ticket.do?command=applyContentSelect&cseq=${contentVO.cseq}&category=${category}&locationNum=${contentVO.locationNum}">
-							${contentVO.title}</a>
-								<input type="hidden" value="${contentVO.cseq}" name="cseq" id='${"cseq"+=state.count}' class="li_count">
+							<li onclick="saveCseq('${state.count}')"><a href="applyContentSelect?cseq=${contentVO.CSEQ}&category=${category}&locationNum=${contentVO.LOCATIONNUM}">
+							${contentVO.TITLE}</a>
+								<input type="hidden" value="${contentVO.CSEQ}" name="cseq" id='${"cseq"+=state.count}' class="li_count">
 							</li>
 					</c:forEach>
 						</ul>
@@ -55,18 +54,18 @@
 					<div class="contentDetail">
 						<div class="poster">
 					<c:forEach items="${contentTableList}" var="contentTL">
-							<img src="${contentTL.image}" width="220px" height="294">
+							<img src="${contentTL.IMAGE}" width="220px" height="294">
 					</c:forEach>
 						</div>
 						<div class="detail">
 					<c:forEach items="${contentTableList}" var="contentTL">
-							<div class="header1">공연명</div><div class="box3">${contentTL.title}</div>
+							<div class="header1">공연명</div><div class="box3">${contentTL.TITLE}</div>
 					</c:forEach>
 					<c:forEach items="${contentTableList}" var="contentTL">
-							<div class="header1">아티스트</div><div class="artist box3">${contentTL.artist}</div>
+							<div class="header1">아티스트</div><div class="artist box3">${contentTL.ARTIST}</div>
 					</c:forEach>
-					<c:forEach items="${contentLocationList}" var="contentLL">
-							<div class="header1">공연 위치</div><div class="location box3">${contentLL.locationName}</div>
+					<c:forEach items="${contentLocationList}" end="0" var="contentLL">
+							<div class="header1">공연 위치</div><div class="location box3">${contentLL.LOCATIONNAME}</div>
 					</c:forEach>
 						</div>
 					</div>
@@ -75,10 +74,10 @@
 				<!-- 얘도 위의 반복문하고 똑같은 방법으로 함 begin=1을 한 이유는 0부터 시작하게 그냥 두니까
 				공백도 떠서 1부터 시작하게 함 -->
 							<ul class="date">
-						<c:forEach items="${contentDateList}" var="contentDL" varStatus="state" begin="1">
-								<li onclick="saveDate('${state.count}')"><a href="ticket.do?command=applyContentSelect&cseq=${contentDL.cseq}&category=${category}&locationNum=${contentDL.locationNum}&contentDate=${contentDL.contentDate}">
-								<input type="hidden" value="${contentDL.contentDate}" name="date" id='${"date"+=state.count}'>
-								<fmt:formatDate value="${contentDL.contentDate}" pattern="yyyy-MM-dd" /></a>
+						<c:forEach items="${contentDateList}" var="contentDL" varStatus="state">
+								<li onclick="saveDate('${state.count}')"><a href="applyContentSelect?cseq=${contentDL.CSEQ}&category=${category}&locationNum=${locationNum}&contentDate=${contentDL.CONTENTDATE}">
+								<input type="hidden" value="${contentDL.CONTENTDATE}" name="date" id='${"date"+=state.count}'>
+								<fmt:formatDate value="${contentDL.CONTENTDATE}" pattern="yyyy-MM-dd" /></a>
 								</li>
 						</c:forEach>
 							</ul>
@@ -86,8 +85,8 @@
 				<div class="timeBox bodyBox">
 					<ul>
 						<c:forEach items="${contentTimeList}" var="contentTil" varStatus="state">
-							<li onclick="saveTime('${state.count}')" class="liclick_time">${contentTil.contentTime}
-							<input type="hidden" value="${contentTil.contentTime}" name="time" id='${"time"+=state.count}' >
+							<li onclick="saveTime('${state.count}')" class="liclick_time">${contentTil.CONTENTTIME}
+							<input type="hidden" value="${contentTil.CONTENTTIME}" name="time" id='${"time"+=state.count}' >
 							</li>
 						</c:forEach>
 					</ul>
@@ -117,16 +116,16 @@
 						<div class="seatingChartDetailBox">
 							<div class="seatingChartImg">
 							<!-- 좌석도도 content_loc_seat_view에서 가져와야함 -->
-					<c:forEach items="${contentLocationList}" var="contentLL">
-								<img alt="좌석도" src="${contentLL.areaImage}" width="220" height="220">
+					<c:forEach items="${contentLocationList}" end="0" var="contentLL">
+								<img alt="좌석도" src="${contentLL.AREAIMAGE}" width="220" height="220">
 					</c:forEach>
 							</div>
 						<div class="AreaBox">
 									<ul>
 							<c:forEach  items="${contentAreaList}" var="contentAL" varStatus="state">
 										<li onclick="saveArea('${state.count}')" class="liclick_area">
-										<div class="area1">${contentAL.area}</div><div class="price1">${contentAL.price}원</div>
-										<input type="hidden" value="${contentAL.area}" name="area" id='${"area"+=state.count}'>
+										<div class="area1">${contentAL.AREA}</div><div class="price1">${contentAL.PRICE}원</div>
+										<input type="hidden" value="${contentAL.AREA}" name="area" id='${"area"+=state.count}'>
 										</li>
 							</c:forEach>
 									</ul>
