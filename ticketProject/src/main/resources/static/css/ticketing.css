@@ -60,7 +60,9 @@ table {
 }
 
 #header .header_inner .top_menu {
-	float: right;
+	position : absolute;
+	right:15px; 
+	top:55px;
 	height: 50px;
 	line-height: 50px;
 }
@@ -97,7 +99,7 @@ table {
 
 #header .header_inner .top_header_inner .search_box {
 	float: left;
-	margin-top: 28px;
+	margin-top: 95px;
 }
 
 #header .header_inner .top_header_inner .search_box .input_search {
@@ -127,7 +129,7 @@ table {
 	
 	
 	position: absolute;
-    left: 247px;
+    left: 200px;
     top: 20px;
     width: 186px; 
     /* 모바일페이지 위치 이슈로 위치 이동 jsp 파일 위치이동, css 위치잡는 방법 수정 */
@@ -145,7 +147,7 @@ table {
 /*  카테고리메뉴  */
 #category_menu {
 	float: left;
-	margin-top: 75px;
+	margin-top: 90px;
 	margin-left:83px;
 }
 
