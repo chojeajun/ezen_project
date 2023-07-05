@@ -36,6 +36,8 @@ CREATE TABLE qna
 	subject varchar2(300) NOT NULL,
 	content varchar2(1000) NOT NULL,
 	reply varchar2(1000),
+	passcheck varchar2(1000),
+	pass varchar2(1000),
 	rep char(1) DEFAULT '1',
 	indate date DEFAULT SYSDATE,
 	id varchar2(20) NOT NULL,

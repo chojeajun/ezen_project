@@ -156,7 +156,25 @@ public class QnaController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("/addReply1")
+	public String addReply( 
+			@RequestParam("qseq") int qseq, 
+			@RequestParam("mseq") int mseq,
+			@RequestParam("content") String replycontent,
+			HttpServletRequest request ) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("mseq", mseq);
+		paramMap.put("content", replycontent);
+		paramMap.put("qseq", qseq);
+		
+		qs.insertReply( paramMap );
+		
+		return "redirect:/boardViewWithoutCount?num=" + qseq;
+	}
 }
+
 
 
 

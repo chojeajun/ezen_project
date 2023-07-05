@@ -33,6 +33,29 @@
 		}
 	</insert>
 	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ 
+			CALL getAllCount( 
+				#{ cnt, mode=OUT, jdbcType=INTEGER } 
+			) 
+		}
+	</select>
+	
+		<update id="plusOneReadCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+			{	
+				CALL plusOneReadCount( #{qseq} )
+			}
+	</update>
+
+
+	<insert id="insertReply" statementType="CALLABLE"   parameterType="java.util.HashMap" >
+		{
+			CALL insertReply(
+				#{ qseq }, #{ mseq }, #{ replycontent } 
+			)
+		}
+	</insert>	
+	
 </mapper>
 
 

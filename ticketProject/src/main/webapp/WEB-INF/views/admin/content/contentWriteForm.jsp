@@ -33,7 +33,7 @@
 </form> 
 
 <div style="position:relative; top:-70px; ">
-		<form style="margin-left:230px;" name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
+		<form style="margin-left:250px;" name="fromm" id="fileupForm" method="post" enctype="multipart/form-data">
 					<input type="file" name="fileimage"><input type="button" id="myButton" value="추가">
 		</form>
 	</div>

@@ -15,13 +15,12 @@ public class QnaVO {
 	private String reply;
 	private String id;
 	private String pwd;
-	private String passcheck;
 	private String repyn;
 	private Timestamp indate;
 	private String num;
 	private String image;
 	private int readcount;
-	
+
 	
 	
 
