@@ -8,7 +8,7 @@
 <script type="text/javascript">
 // 이미지 배너 페이드인아웃
 
-    var imgNum=1;
+    var imgNum=2;
 $(function() {
 	var temp;
     // $('div').fadeOut(1000);
@@ -16,7 +16,7 @@ $(function() {
     clearInterval(temp);
     temp = setInterval(function() {
         	//console.log( "111111" + imgNum);
-            
+              
         	$('.imgview4').fadeOut(500);
             //console.log( "22222222" + imgNum);
            	$('.imgview4').eq(imgNum-1).fadeIn(2000);

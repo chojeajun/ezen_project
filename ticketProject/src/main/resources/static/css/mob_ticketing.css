@@ -64,6 +64,8 @@ table {
 	height: 50px;
 	line-height: 50px;
 	margin-top:90px;
+	position: static; 
+	
 }
 
 #header .header_inner .top_menu ul {
