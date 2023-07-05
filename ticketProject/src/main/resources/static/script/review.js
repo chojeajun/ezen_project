@@ -20,7 +20,7 @@ function review_write() {
 		alert("내용을 입력해주세요")
 		reviewForm.content.focus()
 	}  else {
-		reviewForm.action = "ticket.do?command=reviewWrite";
+		reviewForm.action = "reviewWrite";
 		reviewForm.submit();
 	}
 
@@ -29,7 +29,7 @@ function review_write() {
 
 //  리뷰수정 버튼 클릭  // 수정 폼으로 이동
 function go_upd(rseq) {
-	var url = "ticket.do?command=reviewEditForm&rseq=" + rseq
+	var url = "reviewEditForm?rseq=" + rseq
 	location.href = url
 }
 
@@ -104,15 +104,19 @@ function review_delete(rseq) {
 function reply_chk() {
 	if(document.rev_formm.reply.value == "") {
 		alert("댓글 내용을 입력해주세요");
-		document.rev_formm.reply.focus();
 		return false;
 	}
 	return true;
 }
 
+function selectimg(){
+	var opt = "toolbar=no,menubar=no,resizable=no,width=450,height=200";
+	window.open( 'selectimg' , 'selectimg',  opt);
+}
 
-
-
+function selectedimage(){
+	document.frm.submit();
+}
 
 
 

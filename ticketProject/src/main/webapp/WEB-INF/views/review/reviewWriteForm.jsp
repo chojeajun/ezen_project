@@ -24,11 +24,11 @@
 						</tr>
 						<tr>
 							<th>이미지업로드</th>
-							<td>
-								<div class="filebox">
-									<label for="file" style="width: 100%; text-align: left; padding-left: 20px;">첨부파일</label>
-									<input type="file" id="file" name="image" style="display: none;">
-								</div>
+							<td>	
+								<input type="button" value="파일 선택" onClick="selectimg()">
+								<div id="image" style="float:left"></div>
+								<input type="hidden" name="imgfilename" >
+								<img src=""  id="previewimg" width="150" style="display:none" />
 							</td>
 						</tr>
 					</table>
@@ -37,7 +37,7 @@
 				<div id="buttons" class="rev_btn_box btn_box" style="float: right">
 					<input type="button" value="작성완료" class="submit" onclick="review_write()">
 					<input type="reset" value="다시작성" class="cancel">
-					<input type="button" value=" 목록보기" class="submit" onClick="location.href='ticket.do?command=reviewList'">
+					<input type="button" value=" 목록보기" class="submit" onClick="location.href='reviewList'">
 				</div>
 			</form>
 		</article>
