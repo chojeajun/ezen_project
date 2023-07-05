@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ticket.t1.dao.IApplyDao">
+
+	<resultMap id="applyMap" type="java.util.HashMap"></resultMap>
+	<resultMap id="applyMap1" type="java.util.HashMap"></resultMap>
+	
+	<select id="selectContent" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL applySelectContent(
+				#{category},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="selectContentAll" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL applySelectContentAll(
+				#{category},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="selectFromContentByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL sfcbt(
+				#{cseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="selectFromContentTimeByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL sfctbt(
+				#{cseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap},
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap1}
+			)
+		}
+	</select>
+	
+	<select id="selectFromLocationViewByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL sflvbt(
+				#{cseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="selectFromContentAreaByTitle" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL sfcabt(
+				#{locationNum},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="selectTimeByDate" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL stbd(
+				#{cseq},
+				#{contentDate},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap1}
+			)
+		}
+	</select>
+	
+	<select id="selectTimeByDateMybatis" resultType="com.ticket.t1.dto.Content_Time_View_VO">
+		select distinct contentTime from  contenttime where cseq=#{param1} and contentDate=#{param2} order by contentTime
+		<!-- select * from  contenttime where cseq=#{param1} and contentDate=#{param2} order by contentTime -->
+	</select> 
+
+</mapper>

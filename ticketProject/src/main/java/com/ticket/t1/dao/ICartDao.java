@@ -13,7 +13,7 @@ public interface ICartDao {
 
 	void select_Content_Loc_Seat_View(HashMap<String, Object> paramMap3);
 
-	void select_Content_Loc_Seat_View_Buy(HashMap<String, Object> paramMap4);
+	void sclsvb(HashMap<String, Object> paramMap4);
 
 	void getCnickName(HashMap<String, Object> paramMap5);
 

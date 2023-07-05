@@ -34,10 +34,11 @@
 		}
 	</select>
 	
-	<select id="select_Content_Loc_Seat_View_Buy" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<select id="sclsvb" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL sclsvb(
-				#{cseq}, #{area}, 
+				#{cseq}, 
+				#{area}, 
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 			)
 		}
@@ -58,4 +59,5 @@
 	<update id="orderCart">
 		update cart set buyyn = 'Y' where cartseq = #{param}
 	</update>
+	
 </mapper>

@@ -36,11 +36,14 @@ public class CartController {
 		} else {
 			
 			// 사지 않은 카트 목록(cart)
+			System.out.println("멤버번호는 " + loginUser.get("MSEQ"));
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
 			paramMap1.put("mseq", loginUser.get("MSEQ"));
 			paramMap1.put("ref_cursor", null);
 			cs.notBuyList(paramMap1);
-			ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list 
+				= (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+			System.out.println("list사이즈는 " + list.size());
 			mav.addObject("notBuy_cartList", list);
 
 			// 산 카트 목록(cart)
@@ -75,16 +78,19 @@ public class CartController {
 
 				HashMap<String, Object> paramMap4 = new HashMap<String, Object>();
 				ArrayList<HashMap<String, Object>> list4 = new ArrayList<HashMap<String, Object>>();
-
-				for (int i = 0; i < list.size(); i++) {
+				
+				System.out.println("산 목록 " + list2.get(0).get("CSEQ"));
+				System.out.println("산 목록 " + list2.get(0).get("AREA"));
+				
+				for (int i = 0; i < list2.size(); i++) {
 					paramMap4.put("cseq", list2.get(i).get("CSEQ"));
 					paramMap4.put("area", list2.get(i).get("AREA"));
 					paramMap4.put("ref_cursor", null);
-					cs.select_Content_Loc_Seat_View_Buy(paramMap4);
-
-					list4.addAll((ArrayList<HashMap<String, Object>>) paramMap4.get("ref_cursor"));
+					cs.sclsvb(paramMap4);
+					list4 = (ArrayList<HashMap<String, Object>>) paramMap4.get("ref_cursor");
+					
 				}
-
+				System.out.println(list4.size());
 				mav.addObject("buy", list4);
 
 			}
@@ -127,16 +133,41 @@ public class CartController {
 	 */
 	
 	@RequestMapping("/orderInsert")
-	public String order_insert(@RequestParam("cartseq") String cartseq, HttpServletRequest request) {
+	public String order_insert(@RequestParam("cartseq") String[] cartseq, HttpServletRequest request) {
 		
-//		System.out.println(Integer.parseInt(arr[0]));
-//		System.out.println("카트번호" + cartseq.split(" "));
-		String[] arr = cartseq.split(",");
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
 		
-		
-		for(int i = 0; i < arr.length; i++) {
-			cs.orderCart(Integer.parseInt(arr[i]));
+		if( loginUser == null) {
+			return "member/login";
+		} else {
+			for(int i = 0; i < cartseq.length; i++) {
+				cs.orderCart(Integer.parseInt(cartseq[i]));
+			}
 		}
+		
+		
+		
+		return "redirect:/cartList";
+		
+	}
+	
+	@RequestMapping("/cartDelete")
+	public String cart_delete(@RequestParam("cartseq") String[] cartseq, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if( loginUser == null) {
+			return "member/login";
+		} else {
+			for(int i = 0; i < cartseq.length; i++) {
+				cs.deleteCart(Integer.parseInt(cartseq[i]));
+			}
+		}
+		
 		
 		
 		return "redirect:/cartList";
