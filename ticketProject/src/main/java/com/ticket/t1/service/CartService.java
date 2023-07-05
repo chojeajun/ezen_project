@@ -28,8 +28,8 @@ public class CartService {
 		
 	}
 
-	public void select_Content_Loc_Seat_View_Buy(HashMap<String, Object> paramMap4) {
-		cdao.select_Content_Loc_Seat_View_Buy(paramMap4);
+	public void sclsvb(HashMap<String, Object> paramMap4) {
+		cdao.sclsvb(paramMap4);
 		
 	}
 

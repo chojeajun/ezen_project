@@ -15,6 +15,28 @@ commit;
 select * from member;
 alter table member add provider varchar2(100);
 
+select * from banner;
+
+create or replace procedure getBestNewSuccessBannerList(
+    p_rc1 out sys_refcursor,
+    p_rc2 out sys_refcursor,
+    p_rc3 out sys_refcursor,
+    p_rc4 out sys_refcursor
+)
+is
+begin
+    open p_rc1 for
+    select * from banner where order_seq <= 5;
+    open p_rc2 for
+    select * from content where bestyn = 'Y';
+    open p_rc3 for
+    select * from(select * from content order by cseq desc) where rownum <=4;
+    open p_rc4 for
+    select * from(select * from success_board order by sucseq desc) where rownum <=4;
+end;
+
+commit;
+
 
 
 

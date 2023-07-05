@@ -11,8 +11,8 @@ function go_apply() {
 	sessionStorage.removeItem('selectedArea');
 	sessionStorage.removeItem('selectedQuantity');
 	sessionStorage.removeItem('selectedCom');
-	document.anrFrm.action = 'ticket.do?command=categorySelect&category=0';
-	// 전체보기 카테고리 선택한 페이지로 연결함
+	document.anrFrm.action = 'categorySelect?category=0';
+	// 전체보기 카테고리 선택한 페이지로 연결함categorySelect
 	document.anrFrm.submit();
 }
 
@@ -27,42 +27,42 @@ function go_register() {
 
 function select_category(category) {
 	switch (category) {
-		case 0: location.href = "ticket.do?command=categorySelect&category=0";
+		case 0: location.href = 'categorySelect?category=0';
 			sessionStorage.removeItem('selectedCseq');
 			sessionStorage.removeItem('selectedDate');
 			sessionStorage.removeItem('selectedTime');
 			sessionStorage.removeItem('selectedArea');
 			sessionStorage.removeItem('selectedQuantity');
 			break;
-		case 1: location.href = "ticket.do?command=categorySelect&category=1";
+		case 1: location.href = 'categorySelect?category=1';
 			sessionStorage.removeItem('selectedCseq');
 			sessionStorage.removeItem('selectedDate');
 			sessionStorage.removeItem('selectedTime');
 			sessionStorage.removeItem('selectedArea');
 			sessionStorage.removeItem('selectedQuantity');
 			break;
-		case 2: location.href = "ticket.do?command=categorySelect&category=2";
+		case 2: location.href = 'categorySelect?category=2';
 			sessionStorage.removeItem('selectedCseq');
 			sessionStorage.removeItem('selectedDate');
 			sessionStorage.removeItem('selectedTime');
 			sessionStorage.removeItem('selectedArea');
 			sessionStorage.removeItem('selectedQuantity');
 			break;
-		case 3: location.href = "ticket.do?command=categorySelect&category=3";
+		case 3: location.href = 'categorySelect?category=3';
 			sessionStorage.removeItem('selectedCseq');
 			sessionStorage.removeItem('selectedDate');
 			sessionStorage.removeItem('selectedTime');
 			sessionStorage.removeItem('selectedArea');
 			sessionStorage.removeItem('selectedQuantity');
 			break;
-		case 4: location.href = "ticket.do?command=categorySelect&category=4";
+		case 4: location.href = 'categorySelect?category=4';
 			sessionStorage.removeItem('selectedCseq');
 			sessionStorage.removeItem('selectedDate');
 			sessionStorage.removeItem('selectedTime');
 			sessionStorage.removeItem('selectedArea');
 			sessionStorage.removeItem('selectedQuantity');
 			break;
-		case 5: location.href = "ticket.do?command=categorySelect&category=5";
+		case 5: location.href = 'categorySelect?category=5';
 			sessionStorage.removeItem('selectedCseq');
 			sessionStorage.removeItem('selectedDate');
 			sessionStorage.removeItem('selectedTime');
@@ -74,22 +74,31 @@ function select_category(category) {
 
 
 function saveCseq(num) {
-
 	sessionStorage.setItem('selectedCseq', document.getElementById('cseq' + num).value);
-
+	sessionStorage.removeItem('selectedDate');
+	sessionStorage.removeItem('selectedTime');
+	sessionStorage.removeItem('selectedArea');
+	sessionStorage.removeItem('selectedQuantity');
 }
 function saveDate(num) {
-
 	sessionStorage.setItem('selectedDate', document.getElementById('date' + num).value);
+	sessionStorage.removeItem('selectedTime');
+	sessionStorage.removeItem('selectedArea');
+	sessionStorage.removeItem('selectedQuantity');
 }
 function saveTime(num) {
 	sessionStorage.setItem('selectedTime', document.getElementById('time' + num).value);
 	/*document.getElementById('time'+num).style.backgroundColor = 'red';*/
+	sessionStorage.removeItem('selectedArea');
+	sessionStorage.removeItem('selectedQuantity');
 
 }
 
 function saveArea(num) {
 	sessionStorage.setItem('selectedArea', document.getElementById('area' + num).value);
+	sessionStorage.removeItem('selectedQuantity');
+	var Myelement = document.getElementById("quantity");
+	Myelement.value = "";
 }
 function saveQuantity() {
 	sessionStorage.setItem('selectedQuantity', document.getElementById('quantity').value);
@@ -117,14 +126,14 @@ function applyFormCheck() {
 		alert("티켓 수량을 선택해 주세요.");
 		return false;
 	} else {
-		document.frm.action = 'ticket.do?command=applySelectCommissioner&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
+		document.frm.action = 'applySelectCommissioner&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
 		document.frm.submit();
 
 	}
 }
 
 function goMain() {
-	document.frm.action = 'ticket.do?command=index';
+	document.frm.action = '/';
 	document.frm.submit();
 }
 

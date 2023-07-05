@@ -126,9 +126,15 @@
 
 </head>
 <body>
+<div class="container">
 <form name="log_frm">
 	<div id="wrap">
+	
 		<header id="header">
+		<div id="logo">
+			<a href="/"> <img src="images/logo.png" />
+			</a>
+		</div>
 			<div class="header_inner">
 				<div class="top_menu">
 					<ul>
@@ -152,11 +158,6 @@
 					</ul>
 				</div>
 				<div class="top_header_inner">
-					<div id="logo">
-						<a href="/"> <img src="images/logo.png" />
-						</a>
-					</div>
-
 					<nav id="category_menu">
 						<ul>
 							<li><a href="category?kind=0">대리 티켓팅</a>
@@ -183,5 +184,6 @@
 				</div>
 			</div>
 		</header>
+		
 	</div>
 </form>

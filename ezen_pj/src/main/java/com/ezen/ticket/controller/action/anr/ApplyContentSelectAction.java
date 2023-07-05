@@ -1,4 +1,4 @@
-package com.ezen.ticket.controller.action.anr;
+@package com.ezen.ticket.controller.action.anr;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class ApplyContentSelectAction implements Action {
 			int cseq=Integer.parseInt(request.getParameter("cseq"));
 			int locationNum=Integer.parseInt(request.getParameter("locationNum"));
 			System.out.println("locationNum:"+locationNum);
-
+			
 			contentTableList=cdao.selectFromContentByTitle(cseq);
 			contentDateList=cdao.selectFromContentTimeByTitle(cseq);
 			contentLocationList=cdao.selectFromLocationViewByTitle(cseq);

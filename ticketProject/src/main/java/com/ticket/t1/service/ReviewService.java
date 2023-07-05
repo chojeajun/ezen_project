@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.t1.dao.IReviewDao;
+import com.ticket.t1.dto.ReviewReplyVO;
 import com.ticket.t1.dto.ReviewVO;
 import com.ticket.t1.util.Paging;
 
@@ -73,8 +74,26 @@ public class ReviewService {
 	}
 
 
-	public void insertReply(HashMap<String, Object> paramMap) {
-		redao.insertReply(paramMap);
+	public void insertReply(ReviewReplyVO rvo) {
+		redao.insertReply(rvo);
+		
+	}
+
+
+	public void getReviewWithoutCount(HashMap<String, Object> paramMap) {
+		redao.getReview(paramMap);
+		
+	}
+
+
+	public void deleteReply(HashMap<String, Object> paramMap) {
+		redao.deleteReply(paramMap);
+		
+	}
+
+
+	public void insertReview(HashMap<String, Object> paramMap) {
+		redao.insertReview(paramMap);
 		
 	}
 

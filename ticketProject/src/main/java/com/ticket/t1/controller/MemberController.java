@@ -475,7 +475,7 @@ public class MemberController {
 			System.out.println("카카오 수정 address3" + membervo.getAddress3());
 			
 			membervo.setBirth(java.sql.Timestamp.valueOf(birth + " 00:00:00")); // Timestamp 형태로 변형 후 오라클 데이터포멧에맞는
-			membervo.setPwd(""); 
+			membervo.setPwd("");  // 비밀번호공백값 (null) 이긴하지만 실제로 파라미터는 null 이 아닌 빈 공백값을 보냄
 			// Timestamp 형태로 변형 후 오라클 데이터포멧에맞는
 			System.out.println("카카오톡회원수정폼 에서의 mvo" + membervo);
 			// 형태로 변형해서 넣어준다
