@@ -1,27 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
-<%@ include file="../include/sub04/sub_image_menu.jsp" %> 
-
-<article>
-<h2> 1:1 고객 게시판 </h2>
-<h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
-	<form name="formm" method="post">
-	<table width="600">
-		<tr><th width="100" align="center">제목</th>
-				<td  style="text-align:left; font-size:120%">${qnaVO.SUBJECT}</td></tr>
-		<tr><th align="center">등록일</th>
-				<td style="text-align:left;"><fmt:formatDate value="${qnaVO.INDATE}" type="date"/></td></tr>
-		<tr><th align="center">질문내용</th>
-				<td  style="text-align:left; font-size:120%"><pre>${qnaVO.CONTENT}</pre></td></tr>
-		<tr><th align="center">답변 내용</th>
-				<td  style="text-align:left; font-size:120%">${qnaVO.REPLY}</tr>
+<%@ include file="../header.jsp"%>
+<div class="review_img_box"></div>
+<div id="review_box">
+	<div class="review_content">
+		<h2 class="review_title">1:1 고객 게시판</h2>
+		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
+		<form name="rev_formm" method="post" class="review_form" action="ticket.do">
+			<input type="hidden" name="command" value="reviewReply">
+			<input type="hidden" name="qseq" value="${ qnaVO.QSEQ }">
+			<table class="review_view_table">
+				<tr>
+					<th>번호</th>
+					<td>${qnaVO.QSEQ}</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${qnaVO.ID}</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td width="200">${qnaVO.SUBJECT}</td>
+				</tr>
+				<tr>
+					<th>등록일</th>
+					<td align="left">
+						<fmt:parseDate var="parseDate" value="${qnaVO.INDATE}" pattern="yyyy-MM-dd" />
+						<fmt:formatDate var="resultdate" value="${parseDate}" pattern="yyyy-MM-dd" />
+						${qnaVO.INDATE}
+					</td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>${qnaVO.READCOUNT}</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td align="left">
+						<textarea cols="" rows="10" readonly="readonly" >${qnaVO.CONTENT}</textarea>
+					</td>
+				</tr>
+				<!-- <tr>
+					<th>이미지</th>
+					<td align="left" style=" color: white;"><img src="./images/content/${qnaVO.IMAGE }" style="width:200px; "></td>
+				</tr>-->
+<!-- 				<tr> -->
+<!-- 					<th>댓글</th> -->
+<%-- 					<td align="left" style=" color: white;">${reviewVO.reply } --%>
+<!-- 				</tr>		 -->
+			</table>
+			<!--  리뷰 댓글box  -->
+			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<table class="reply_box">
+				<tr style="height:30px; border-bottom:1px solid #ddd;">
+					<th style="width:20%;">댓글 작성자</th>
+					<th style="width:20%; border-right:1px solid #ddd; border-left:1px solid #ddd;">작성일</th>
+					<th style="width:60%;">댓글내용</th>
+				</tr>
+				<c:forEach items="${ replyList }" var="reply">
+					<tr align="center" style="height:30px;">
+						<td style="line-height:30px;">${ reply.USERID }</td>
+						<td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.WRITEDATE }" pattern="MM/dd HH:mm" /></td>
+						<td style="line-height:30px;" align="left">&nbsp;${ reply.REPLYCONTENT }</td>
+						<td style="line-height:30px;">
+							<c:if test="${ reply.USERID == loginUser.ID }">
+								<input type="button" value="삭제" onclick="location.href='ticket.do?command=reviewReplyDelete&repseq=${ reply.RESEQ }&qseq=${ qnaVO.QSEQ }'">
+							</c:if>
+							<!-- 로그인 한 유저가 쓴 댓글만 삭제할 수 있게 버튼을표시  -->
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<table>
+			<tr>
+				<th style="width:20%;">작성자</th>
+				<th style="width:20%;">작성일</th>
+				<th style="width:60%;">내용</th>
+			</tr>
+			<tr align="center">
+				<td>${ loginUser.ID }<input type="hidden" name="id" value="${ loginUser.ID }"></td>
+				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>
+				<td><input type="text" name="reply" size="80"></td>
+				<td><input type="submit" value="답글 작성" onclick="return reply_chk();"></td>
+			</tr>
 		</table>
-		<div class="clear"></div>
-		<div id="buttons" style="float:right">
-			<input type="button"  value="목록보기" class="submit" onclick="location.href='qnaList'"> 
-			<input type="button"  value="쇼핑 계속하기"  class="cancel" onclick="location.href='/'">  
-		</div>	
-	</form>	
-</article>
+			<div class="clear"></div>
+			<div class="rev_btn_box btn_box" style="float: left">
+				<input type="button" value="메인으로" class="cancel" onClick="location.href='/'">
+			</div>
+			 
+			<!--  리뷰 수정box -->
+			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
+				<input type="button" value="목록보기" class="submit" onClick="location.href='qnaList'">
+				<c:if test="${ qnaVO.ID == loginUser.ID }">
+					<input type="button" value="수정하기" class="qna_update_btn" onclick="go_upd('${ qnaVO.QSEQ}')">
+				</c:if>&nbsp; <!-- 로그인 한 유저가 쓴 글만 수정할  수수 있게 버튼을표시  -->
+			</div>
+		</form>
+	</div>
+</div>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+
+<%@ include file="../footer.jsp"%>

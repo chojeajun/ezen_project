@@ -17,7 +17,10 @@
 #reviewList tr td { border-top-color:#ddd; border-bottom-color:#ddd;}
 #reviewList tr td a {display: block; }
 .rev_btn_box.btn_box {margin-top:20px;}
-.rev_btn_box.btn_box input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px;}
+.rev_btn_box.btn_box input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px; position: relative;
+    bottom: 40px;}
+.rev_btn_box.btn_box1 input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px; position: relative;
+    bottom: 40px;}
 /* review_view */
 .review_view_table {width:100%; border:1px solid #ddd;}
 .review_view_table th {width:15%; vertical-align: middle; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}
