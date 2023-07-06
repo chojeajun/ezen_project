@@ -113,7 +113,7 @@
 							<td><fmt:formatDate value="${ cartListVO.CONTENTDATE }"
 									pattern="yyyy-MM-dd" /></td>
 							<td>${ cartListVO.CONTENTTIME }</td>
-							<c:forEach items="${ buy }" end="0" var="buyVO">
+							<c:forEach items="${ buy }" begin="<%=seq-1 %>" end="<%=seq-1 %>" var="buyVO">
 								<td>${ buyVO.LOCATIONNAME }</td>
 							</c:forEach>
 							<td>${ cartListVO.AREA }</td>

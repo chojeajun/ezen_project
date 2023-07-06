@@ -2,7 +2,7 @@
 <%@ include file="../../header.jsp" %>
 
 
-<form name="frm" class="form">
+<form name="frm" class="form" method="get">
 <section name="applyBody" id="bodyBox_apply">
 	<div class="applyBox" name="applyBoxForm">
 	
@@ -173,7 +173,9 @@
 						<input class="button1" type="button" value="장바구니" onclick="insertCart()">
 					</div>
 					<div class=buttonSmallBox>
-						<input class="button1" type="button" value="다시 선택" onclick="go_apply()">
+						<a href="categorySelect?category=0">
+							<input class="button1" type="button" value="다시 선택" onclick="go_apply_hoon()">
+						</a>
 					</div>
 			</div>
 		</div>

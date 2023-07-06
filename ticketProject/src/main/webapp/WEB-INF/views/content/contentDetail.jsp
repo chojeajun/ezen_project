@@ -56,7 +56,7 @@
 
 		<div id="buttons_contentDetail">
 			<a
-				href="applyContentSelect&cseq=${ contentVO.CSEQ }&category=${ contentVO.CATEGORY }&locationNum=${ contentVO.LOCATIONNUM }">
+				href="applyContentSelect?cseq=${ contentVO.CSEQ }&category=${ contentVO.CATEGORY }&locationNum=${ contentVO.LOCATIONNUM }">
 				<input type="submit" value="신청하기"
 				onclick="return hoon_go_order_detail();" />
 			</a> <input type="button" value="홈으로"

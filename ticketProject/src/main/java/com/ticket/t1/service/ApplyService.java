@@ -53,4 +53,39 @@ public class ApplyService {
 		return adao.selectTimeByDateMybatis(cseq, contentDate);
 	}
 
+	public void insertCart(int mseq, int cseq, String date, String time, String area, int mseq2, int quantity, int locationNum) {
+		adao.insertCart(mseq, cseq, date, time, area, mseq2, quantity, locationNum);
+		
+	}
+
+	public void selectContentForLocNum(HashMap<String, Object> paramMap) {
+		adao.selectContentForLocNum(paramMap);
+		
+	}
+
+	public void insertCart(int mseq, int cseq, String date, String time, String area, int quantity, int locationNum) {
+		adao.insertCartNullMseq2(mseq, cseq, date, time, area, quantity, locationNum);
+		
+	}
+
+	public void hoouUpdateCart(int cartseq, int mseq2) {
+		adao.hoonUpdateCart(cartseq, mseq2);
+		
+	}
+
+	public void selectAreaPrice(HashMap<String, Object> paramMap1) {
+		adao.selectAreaPrice(paramMap1);
+		
+	}
+
+	public void getCommissioner(HashMap<String, Object> paramMap2) {
+		adao.getCommissioner(paramMap2);
+		
+	}
+
+	public void getCommissioner1(HashMap<String, Object> paramMap3) {
+		adao.getComFinal(paramMap3);
+		
+	}
+
 }

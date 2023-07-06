@@ -101,7 +101,6 @@ function go_cart_update() {
 	}
 
 
-
 	sessionStorage.setItem('selectedCseq', cseq);
 	sessionStorage.setItem('selectedDate', date);
 	sessionStorage.setItem('selectedTime', time);
@@ -114,6 +113,7 @@ function go_cart_update() {
 	} else if (count >= 2) {
 		alert('수정할 항목은 하나만 선택이 가능합니다');
 	} else {
+		
 		document.frm.action = "applySelectCommissioner?cseq=" + cseq + "&date=" + date + "&time=" + time + "&area=" + area + "&quantity=" + quantity;
 		document.frm.submit();
 	}
