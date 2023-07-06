@@ -19,7 +19,11 @@ function review_write() {
 	} else if (reviewForm.content.value == "") {
 		alert("내용을 입력해주세요")
 		reviewForm.content.focus()
-	}  else {
+	} else if (reviewForm.pwd.value == "") {
+		alert("비번을 입력해주세요")
+		reviewForm.pwd.focus()
+	} else {
+		alert("왓냐?");
 		reviewForm.action = "reviewWrite";
 		reviewForm.submit();
 	}
@@ -27,7 +31,7 @@ function review_write() {
 }
 
 
-//  리뷰수정 버튼 클릭  // 수정 폼으로 이동
+/*//  리뷰수정 버튼 클릭  // 수정 폼으로 이동
 function go_upd(rseq) {
 	var url = "reviewEditForm?rseq=" + rseq
 	location.href = url
@@ -78,7 +82,7 @@ function review_update() {
 }
 
 
-/* 리뷰 삭제  */
+ 리뷰 삭제  
 function review_delete(rseq) {
 	console.log(document.formm.rseq);
 	console.log(document.formm.rseq.value);
@@ -87,7 +91,7 @@ function review_delete(rseq) {
 		document.formm.action ="ticket.do?command=reviewDelete&rseq=" + rseq;
 		document.formm.submit();
 	}
-}
+}*/
 
 
 
@@ -115,10 +119,13 @@ function selectimg(){
 }
 
 function selectedimage(){
-	document.frm.submit();
+	document.formm.submit();
 }
 
 
-
+function open_win(url, name) {
+	window.open( url , name , "toolbar=no, menubar=no, scrollbars=no, "
+				+ " resizable=no, width=500, height=230");
+}
 
 

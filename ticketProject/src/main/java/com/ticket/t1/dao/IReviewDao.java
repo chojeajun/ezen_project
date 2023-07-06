@@ -23,6 +23,8 @@ public interface IReviewDao {
 	void getReviewWithoutCount(HashMap<String, Object> paramMap);
 	void deleteReply(HashMap<String, Object> paramMap);
 	void insertReview(HashMap<String, Object> paramMap);
+	void updateReview(HashMap<String, Object> paramMap);
+	void removeReview(HashMap<String, Object> paramMap);
 
 	
 }
