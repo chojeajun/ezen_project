@@ -77,5 +77,60 @@
 		select distinct contentTime from  contenttime where cseq=#{param1} and contentDate=#{param2} order by contentTime
 		<!-- select * from  contenttime where cseq=#{param1} and contentDate=#{param2} order by contentTime -->
 	</select> 
+	
+	<insert id="insertCart">
+		insert into cart(cartseq,mseq, cseq, contentDate,contentTime,locationNum,area, mseq2, quantity) 
+		values(cart_cartseq.nextVal,#{param1},#{param2},to_date(#{param3},'yyyy-mm-dd'),#{param4},#{param8},#{param5},#{param6},#{param7})
+	</insert>
+	
+	<select id="selectContentForLocNum" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL scfln(
+				#{cseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<insert id="insertCartNullMseq2">
+		insert into cart(cartseq,mseq, cseq, contentDate,contentTime,locationNum,area, quantity) 
+		values(cart_cartseq.nextVal,#{param1},#{param2},to_date(#{param3},'yyyy-mm-dd'),#{param4},#{param7},#{param5},#{param6})
+	</insert>
+	
+	<update id="hoonUpdateCart">
+		update cart set mseq2 = #{param2} where cartseq = #{param1}
+	</update>
+	
+	<select id="selectAreaPrice" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL sap(
+				#{cseq},
+				#{area},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="getCommissioner" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getCom1(
+				#{date},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="getComFinal" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getComFinal(
+				#{tDate},
+				#{startTime},
+				#{tTime},
+				#{endTime},
+				#{mseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
 
 </mapper>

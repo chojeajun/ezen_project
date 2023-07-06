@@ -81,16 +81,18 @@ public class CartController {
 				
 				System.out.println("산 목록 " + list2.get(0).get("CSEQ"));
 				System.out.println("산 목록 " + list2.get(0).get("AREA"));
+				System.out.println("산 사이즈 " + list2.size());
 				
 				for (int i = 0; i < list2.size(); i++) {
 					paramMap4.put("cseq", list2.get(i).get("CSEQ"));
 					paramMap4.put("area", list2.get(i).get("AREA"));
 					paramMap4.put("ref_cursor", null);
 					cs.sclsvb(paramMap4);
-					list4 = (ArrayList<HashMap<String, Object>>) paramMap4.get("ref_cursor");
 					
+					list4.addAll((ArrayList<HashMap<String, Object>>) paramMap4.get("ref_cursor"));
 				}
 				System.out.println(list4.size());
+				System.out.println(list4);
 				mav.addObject("buy", list4);
 
 			}

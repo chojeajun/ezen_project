@@ -20,7 +20,7 @@
 
 </head>
 <body>
-<form name="frm" action="ticket.do" method="post" class="form">
+<form name="frm" class="form">
 
 <div module="Product_BasketAdd" class="xans-product-basketadd">
     <!--@css(/css/module/product/basketAdd.css)-->
@@ -29,8 +29,8 @@
         <p>${message}</p>
     </div>
     <div class="btnArea center">
-        <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/btn_go_basket.gif" alt="장바구니 이동" onclick="opener.location.href='ticket.do?command=cartList';self.close()"/>
-        <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/btn_continue_shopping.gif" alt="쇼핑계속하기" onclick="self.close()"/>
+        <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/btn_go_basket.gif" alt="장바구니 이동" onclick="opener.location.href='cartList';self.close()"/>
+        <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/btn_continue_shopping.gif" alt="쇼핑계속하기" onclick="opener.location.href='/';self.close()"/>
     </div>
 </div>
 

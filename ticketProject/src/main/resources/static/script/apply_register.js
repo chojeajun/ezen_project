@@ -16,6 +16,15 @@ function go_apply() {
 	document.anrFrm.submit();
 }
 
+function go_apply_hoon() {
+	sessionStorage.removeItem('selectedCseq');
+	sessionStorage.removeItem('selectedDate');
+	sessionStorage.removeItem('selectedTime');
+	sessionStorage.removeItem('selectedArea');
+	sessionStorage.removeItem('selectedQuantity');
+	sessionStorage.removeItem('selectedCom');
+}
+
 function go_register() {
 	document.anrFrm.action = 'registerForm';
 	document.anrFrm.submit();
@@ -126,7 +135,7 @@ function applyFormCheck() {
 		alert("티켓 수량을 선택해 주세요.");
 		return false;
 	} else {
-		document.frm.action = 'applySelectCommissioner&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
+		document.frm.action = 'applySelectCommissioner?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
 		document.frm.submit();
 
 	}
@@ -166,13 +175,13 @@ function insertCart() {
 		if (cartseq == null) {
 			if (sessionStorage.getItem('selectedCom') != null) {
 				var mseq2 = Number(sessionStorage.getItem('selectedCom'));
-				url = 'ticket.do?command=applyCart&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity + '&mseq2=' + mseq2;
+				url = 'applyCart?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity + '&mseq2=' + mseq2;
 			} else {
-				url = 'ticket.do?command=applyCart&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
+				url = 'applyCart?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
 			}
 		} else {
 			var mseq2 = Number(sessionStorage.getItem('selectedCom'));
-			url = 'ticket.do?command=applyCart&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity + '&mseq2=' + mseq2 + '&cartseq=' + cartseq;
+			url = 'applyCart?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity + '&mseq2=' + mseq2 + '&cartseq=' + cartseq;
 		}
 
 		var opt = "toolbar=no, menubar=no, resizable=no, width=448, height=400, scrollbars=no";
@@ -198,12 +207,18 @@ function apply() {
 		alert("대리인을 선택해 주세요.");
 		return false;
 	} else {
-		document.frm.action = 'ticket.do?command=apply&cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity + '&mseq2=' + mseq2;
+		document.frm.action = 'apply?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity + '&mseq2=' + mseq2;
 		return true;
 	}
 }
 
 function go_main() {
+	sessionStorage.removeItem('selectedCseq');
+	sessionStorage.removeItem('selectedDate');
+	sessionStorage.removeItem('selectedTime');
+	sessionStorage.removeItem('selectedArea');
+	sessionStorage.removeItem('selectedQuantity');
+	sessionStorage.removeItem('selectedCom');
 	document.registerForm.action = "/";
 	document.registerForm.submit();
 }
