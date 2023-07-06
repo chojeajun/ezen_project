@@ -97,6 +97,18 @@ public class ReviewService {
 		
 	}
 
+
+	public void updateReview(HashMap<String, Object> paramMap) {
+		redao.updateReview(paramMap);
+		
+	}
+
+
+	public void removeReview(HashMap<String, Object> paramMap) {
+		redao.removeReview(paramMap);
+		
+	}
+
 	
 	
 }
