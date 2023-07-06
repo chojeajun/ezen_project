@@ -50,7 +50,7 @@
 		</td>
       </tr>    
 </table>
-<input class="btn" type="button" value="수정" onClick="go_mod_save('${contentVO.pseq}')">           
+<input class="btn9" type="button" value="수정" onClick="go_mod_save('${contentVO.CSEQ}')">           
 <input class="btn" type="button" value="취소" onClick="go_mov()">
 </form> 
 

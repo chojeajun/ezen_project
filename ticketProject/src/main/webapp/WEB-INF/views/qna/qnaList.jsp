@@ -34,7 +34,7 @@
       		</c:forEach>
 		</table>
 			<div class="clear"></div>
-			<div id="paging" style="font-size: 120%; font-weight: bold;">
+			<div id="paging" style="font-size: 120%; font-weight: bold; margin-left: 450px;">
 				<c:url var="action" value="ticket.do?command=qnaList" />
 				<c:if test="${paging.prev}">
 					<a href="${action }&page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>

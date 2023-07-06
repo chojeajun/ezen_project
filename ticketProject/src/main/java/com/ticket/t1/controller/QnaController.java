@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.service.QnaService;
+import com.ticket.t1.util.Paging;
 
 @Controller
 public class QnaController {
@@ -38,12 +39,14 @@ public class QnaController {
 			mav.setViewName("member/login");
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
 			paramMap.put("ref_curser", null);
 			qs.listQna( paramMap );
 			ArrayList<HashMap<String, Object>> list 
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 			
 			mav.addObject("qnaList", list);
+			mav.addObject("paging",(Paging)paramMap.get("paging"));
 			mav.setViewName("qna/qnaList");
 		}
 		return mav;

@@ -243,11 +243,6 @@ public class AdminService {
 		
 	}
 
-	public void updateQna(HashMap<String, Object> paramMap) {
-		adao.updateOna( paramMap);
-		
-	}
-
 	public void getBannerList(HashMap<String, Object> paramMap) {
 		adao.getBannerList( paramMap );
 		
@@ -268,6 +263,12 @@ public class AdminService {
 	}
 
 	public void updateContent(HashMap<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void updateQna(HashMap<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		
 	}

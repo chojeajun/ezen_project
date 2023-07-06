@@ -49,10 +49,10 @@ function go_mov(){
 function go_save(){
 	var theForm = document.frm;  //폼객체를 변수에 저장하고 변수이름으로 객체를 사용
 	if (theForm.name.value == '') {
-		alert('상품명을 입력하세요.'); 	
+		alert('공연명을 입력하세요.'); 	
 		theForm.name.focus();	
 	} else if (theForm.content.value == '') {
-		alert('상품상세를 입력하세요.'); 		
+		alert('공연상세를 입력하세요.'); 		
 		theForm.content.focus();
 	//} else if (theForm.image.value == '') {
 		//alert('상품이미지들 입력하세요.'); 	
@@ -79,16 +79,10 @@ function go_mod(cseq){
 
 function go_mod_save(){
 	if (document.frm.name.value == '') {
-		alert('상품명을 입력하세요');	  
+		alert('공연명을 입력하세요');	  
 		document.frm.name.focus();
-	 } else if (document.frm.price1.value == '') {
-		alert('원가를 입력하세요');	  
-		document.frm.price1.focus();
-	 } else if (document.frm.price2.value == '') {
-		alert('판매가를 입력하세요');	  
-		document.frm.price2.focus();
 	 } else if (document.frm.content.value == '') {
-		alert('상품상세를 입력하세요');	  
+		alert('공연상세를 입력하세요');	  
 		document.frm.content.focus();
 	 }else{
 		if( confirm('수정하시겠습니까?') ){

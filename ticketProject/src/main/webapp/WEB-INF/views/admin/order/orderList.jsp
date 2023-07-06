@@ -45,7 +45,7 @@
 		</c:forEach>
 	</table>
 	<div class="clear"></div>
-	<input type="button" class="btn" style="width: 200px" value="다음단계로" onClick="go_order_save()">
+	<input type="button" class="btn11" style="width: 200px" value="다음단계로" onClick="go_order_save()">
 </form><br>
 <jsp:include page="../../include/paging/paging.jsp">
 	<jsp:param name="command" value="adminOrderList" />
