@@ -36,11 +36,11 @@ public class ReviewController {
 	@RequestMapping("/reviewList")
 	public ModelAndView review_list(HttpServletRequest request) {
 		
-ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser")==null)
-			mav.setViewName("member/loginForm");
+			mav.setViewName("member/login");
 		else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("request", request);
@@ -129,7 +129,7 @@ ModelAndView mav = new ModelAndView();
 		paramMap.put("repseq" , repseq);
 		res.deleteReply( paramMap );
 		
-		return "redirect:/reviewViewWithoutCount?repseq=" + rseq;
+		return "redirect:/reviewViewWithoutCount?rseq=" + rseq;
 	}
 	
 	@RequestMapping("/reviewWriteForm")
@@ -180,7 +180,7 @@ ModelAndView mav = new ModelAndView();
 	}
 	
 	@RequestMapping( value="/reviewWrite", method=RequestMethod.POST)
-	public String board_write( 
+	public String review_write( 
 			@ModelAttribute("dto") @Valid ReviewVO reviewvo, BindingResult result,
 			Model model, HttpServletRequest request ) {
 		
@@ -191,8 +191,10 @@ ModelAndView mav = new ModelAndView();
 			model.addAttribute("message", result.getFieldError("title").getDefaultMessage() );
 		else if( result.getFieldError("content")!=null)
 			model.addAttribute("message", result.getFieldError("content").getDefaultMessage() );
-		else {			
+		else {
+			System.out.println("reviewWrite 시작");
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mseq", reviewvo.getMseq());
 			paramMap.put("id", reviewvo.getId());
 			paramMap.put("pwd", reviewvo.getPwd());
 			paramMap.put("content", reviewvo.getContent());
@@ -200,7 +202,7 @@ ModelAndView mav = new ModelAndView();
 			if(reviewvo.getImgfilename() == null) paramMap.put("imgfilename", "");
 			else paramMap.put("imgfilename", reviewvo.getImgfilename());
 			res.insertReview(paramMap);
-			url = "redirect:/main";
+			url = "redirect:/reviewList";
 		}
 		return url;
 	}
@@ -208,8 +210,106 @@ ModelAndView mav = new ModelAndView();
 	@RequestMapping("/reviewEditForm")
 	public String review_edit_form(
 			@RequestParam("rseq") String rseq, Model model, HttpServletRequest request) {
-		model.addAttribute("resq", rseq);
+		model.addAttribute("rseq", rseq);
+		System.out.println("왔냐?" + rseq);
 		return "review/reviewCheckPassForm";
+	}
+	
+	@RequestMapping("/reviewEdit")
+	public String review_edit(
+			@RequestParam("rseq") int rseq, 
+			@RequestParam("pwd") String pwd,
+			Model model, HttpServletRequest request) {
+		
+		System.out.println("ㅇㅇㅇ"+rseq);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rseq", rseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		res.getReviewWithoutCount(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		
+		HashMap<String, Object> rvo = list.get(0);
+		
+		model.addAttribute("rseq", rseq);
+		if(pwd.equals(rvo.get("PWD")))
+			return "review/reviewCheckPass";
+		else {
+			model.addAttribute("message", "비밀번호가 맞지 않습니다. 확인해주세요");
+			return "review/reviewCheckPassForm";
+		}
+	}
+	
+	@RequestMapping("/reviewUpdateForm")
+	public String review_update_form(  
+			@RequestParam("rseq") int rseq, Model model,  HttpServletRequest request) {
+		
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rseq", rseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		res.getReviewWithoutCount( paramMap );
+		ArrayList< HashMap<String, Object> > list 
+		=  (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor1");
+		HashMap<String, Object> rvo = list.get(0);
+	
+		//조회한 게시물을 dto 로 옮겨 담습니다
+		ReviewVO dto = new ReviewVO();
+		dto.setRseq( Integer.parseInt(String.valueOf(rvo.get("RSEQ") ) ) );
+		dto.setPwd( (String)rvo.get("PASS") );
+		dto.setId( (String)rvo.get("ID") );
+		dto.setTitle( (String)rvo.get("TITLE") );
+		dto.setContent( (String)rvo.get("CONTENT") );
+		dto.setMseq( Integer.parseInt(String.valueOf(rvo.get("MSEQ"))));
+		dto.setImgfilename( (String)rvo.get("IMGFILENAME") );
+		model.addAttribute("rseq", rseq);
+		model.addAttribute("dto", dto);
+		return "review/reviewUpdateForm";
+	}
+	
+	@RequestMapping(value="/reviewUpdate", method = RequestMethod.POST)
+	public String reviewUpdate( 
+			@ModelAttribute("dto") @Valid ReviewVO reviewvo,
+			BindingResult result, 
+			@RequestParam(value="oldfilename", required=false) String oldfilename, 
+			HttpServletRequest request, Model model) {
+		
+		String url = "review/reviewUpdateForm";
+		if(result.getFieldError("pwd")!=null)
+			model.addAttribute("message", "비밀번호는 게시물 수정 삭제시 필요합니다" );
+		else  if(result.getFieldError("title")!=null) 
+			model.addAttribute("message" , "제목은 필수입력 사항입니다");
+		else if(result.getFieldError("content")!=null) 
+			model.addAttribute("message" , "게시물 내용은 비워둘수 없습니다");
+		else {
+			if( reviewvo.getImgfilename()==null || reviewvo.getImgfilename().equals("") )
+				reviewvo.setImgfilename(oldfilename);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("rseq", reviewvo.getRseq());
+			paramMap.put("id", reviewvo.getId());
+			paramMap.put("pwd", reviewvo.getPwd());
+			paramMap.put("mseq", reviewvo.getMseq());
+			paramMap.put("content", reviewvo.getContent());
+			paramMap.put("title", reviewvo.getTitle());
+			paramMap.put("imgfilename", reviewvo.getImgfilename());
+			res.updateReview( paramMap );
+			url = "redirect:/reviewViewWithoutCount?rseq=" + reviewvo.getRseq();
+		}
+		return url;
+	}
+	
+	@RequestMapping("reviewDelete")
+	public String review_delete_form(@RequestParam("rseq") int rseq,
+			Model model, HttpServletRequest request) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rseq", rseq);
+		res.removeReview(paramMap);	
+		return "redirect:/reviewList";
 	}
 }
 

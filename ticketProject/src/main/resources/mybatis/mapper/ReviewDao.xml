@@ -60,12 +60,27 @@
 	
 	<insert id="insertReview" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
-			CALL insertBoard(
-				#{ id }, #{ pwd }, #{ title }, #{ content }, #{ imgfilename }
+			CALL insertReview(
+				 #{ mseq }, #{ id }, #{ pwd }, #{ content }, #{ title },  #{ imgfilename }
 			)
 		}
 	</insert>
 	
+	<update id="updateReview" statementType="CALLABLE"  parameterType="java.util.HashMap">
+		{
+			CALL updateReview( 
+				#{rseq}, #{mseq}, #{ id }, #{ pwd }, #{ content }, #{ title }, #{ imgfilename } 
+			)
+		}
+	</update>
+	
+	<delete  id="removeReview" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ 
+			CALL removeReview(	
+				#{ rseq }   
+			) 
+		}
+	</delete>
 </mapper>
 
 

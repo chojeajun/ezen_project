@@ -3,7 +3,7 @@
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ include file="../../header.jsp" %>
 
-<form name="frm" method="post" class="form">
+<form name="frm" class="form">
 	<section class="body_Choose2">
 		<div class="buttonBoxArea">
 			<div class="Header">선택하신 공연</div>
@@ -11,21 +11,21 @@
 				<div class="posterZone">
 					<div class="posterBox">
 					<c:forEach items="${detailList}" var="dl">
-						<img alt="공연 포스터" src="${dl.image}" width=300 height=400>
+						<img alt="공연 포스터" src="${dl.IMAGE}" width=300 height=400>
 					</c:forEach>
 					</div>
 				</div>
 				<div class="detailZone">
 					<c:forEach items="${detailList}" var="dl">
-						<div class="detail title">공연명 : <c:out value="${dl.title}"/></div>
-						<div class="detail artist">아티스트 : <c:out value="${dl.artist}"/></div>
+						<div class="detail title">공연명 : <c:out value="${dl.TITLE}"/></div>
+						<div class="detail artist">아티스트 : <c:out value="${dl.ARTIST}"/></div>
 					</c:forEach>
 					<c:forEach items="${areaList}" var="al">
-						<div class="detail location">공연 위치 : ${al.locationName}</div>
+						<div class="detail location">공연 위치 : ${al.LOCATIONNAME}</div>
 					</c:forEach>
-					<div class="detail dateTime">공연 일정 : ${date}&nbsp;${param.time}</div>
+					<div class="detail dateTime">공연 일정 : ${date}&nbsp;${param.TIME}</div>
 					<c:forEach items="${areaList}" var="al">
-						<div class="detail area">공연 구역 : ${al.area}&nbsp;${al.price}원</div>
+						<div class="detail area">공연 구역 : ${al.AREA}&nbsp;${al.PRICE}원</div>
 					</c:forEach>
 						<div class="detail tTime">티켓팅 일정 : ${tDateTime}</div>
 				</div>
@@ -42,13 +42,13 @@
 						<ul>
 						  	<c:forEach items="${comList}" var="cl" varStatus="state">
                                 <li onclick="saveCommissioner('${state.count}')" class="liclick_com">
-                                    <div class="noClickDiv">${cl.cnickname}</div>
-                                    <div class="noClickDiv">${cl.gname}</div>
-                                    <div class="noClickDiv">${cl.success}</div>
-                                    <div class="noClickDiv">${cl.registerdate}&nbsp;${cl.starttime}~${cl.endtime}</div>
-                                    <div class="noClickDiv">${cl.com_price}원</div>
-                                    <input type="hidden" value="${cl.mseq}" name="mseq2" id='${"Com"+=state.count}'>
-                                    <input type="hidden" value="${cl.com_price}" name="com_price" id='${"com_price"+=state.count}'>
+                                    <div class="noClickDiv">${cl.CNICKNAME}</div>
+                                    <div class="noClickDiv">${cl.GNAME}</div>
+                                    <div class="noClickDiv">${cl.SUCCESS}</div>
+                                    <div class="noClickDiv">${cl.REGISTERDATE}&nbsp;${cl.STARTTIME}~${cl.ENDTIME}</div>
+                                    <div class="noClickDiv">${cl.COM_PRICE}원</div>
+                                    <input type="hidden" value="${cl.MSEQ}" name="mseq2" id='${"Com"+=state.count}'>
+                                    <input type="hidden" value="${cl.COM_PRICE}" name="com_price" id='${"com_price"+=state.count}'>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -89,8 +89,8 @@
 					<div class="priceBox">
 						<div class="totprice p"></div><div class="p css1">=</div><div class="cprice p"></div><div class="p css1">+</div>
 						<c:forEach items="${areaList}" var="al">
-							<div class="tprice p">${al.price*quantity}</div>
-							<input type="hidden" id="ticketPriceH" value="${al.price*quantity}">
+							<div class="tprice p">${al.PRICE*QUANTITY}</div>
+							<input type="hidden" id="ticketPriceH" value="${al.PRICE*QUANTITY}">
 						</c:forEach>
 					</div>
 				</div>
