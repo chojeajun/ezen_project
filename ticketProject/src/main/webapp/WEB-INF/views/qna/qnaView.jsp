@@ -71,11 +71,6 @@
 				</c:forEach>
 			</table>
 			<table>
-			<tr>
-				<th style="width:20%;">작성자</th>
-				<th style="width:20%;">작성일</th>
-				<th style="width:60%;">내용</th>
-			</tr>
 			<tr align="center">
 				<td>${ loginUser.ID }<input type="hidden" name="id" value="${ loginUser.ID }"></td>
 				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>

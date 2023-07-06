@@ -184,7 +184,7 @@ public class AdminController {
 	
 	@RequestMapping("contentUpdateForm")
 	public ModelAndView contentUpdateForm( HttpServletRequest request,
-			@RequestParam("cseq") int cseq ) {
+			@RequestParam("cseq") String cseq ) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -197,10 +197,10 @@ public class AdminController {
 			ps.getContent(paramMap);
 			ArrayList< HashMap<String , Object> > list
 				=(ArrayList< HashMap<String , Object> >) paramMap.get("ref_cursor");
-			HashMap<String , Object> pvo = list.get(1);
-			String categoryList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
+			//HashMap<String , Object> cvo = list.get(0);
+			String categoryList[] = { "1", "2", "3", "4", "5" };
 			mav.addObject("categoryList", categoryList );
-			mav.addObject("dto", pvo);
+			//mav.addObject("dto", cvo);
 			mav.setViewName("admin/content/contentUpdate");
 		}
 		return mav;
@@ -382,10 +382,6 @@ public class AdminController {
 		as.updateQna( paramMap );
 		return "redirect:/adminQnaView?qseq=" + qseq;
 	}
-	
-	
-	
-	
 	
 	
 	

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .review_img_box {background: url(../images/sub_bg.jpg) no-repeat; height:130px;}
-#review_box {width:100%; border:1px solid red; margin:0 auto;}
+#review_box {width:100%; margin:0 auto;}
 #review_box .review_content {width:1200px;  border:1px solid black; margin:0 auto;  text-align: center;}
 #review_box .review_content .review_title { margin:10px 0;  background: none;}
 #review_box .review_content h3 {margin : 10px 0;}
@@ -10,17 +10,15 @@
 #review_box .review_content .review_form input[type="text"] , input[type="file"] {background:none; width:100%; box-sizing:border-box; height:40px;}
 #reviewList {border-collapse: collapse;border-top: 2px solid #333;border-bottom: 1px solid #333;width: 100%;margin-bottom: 20px;}
 
-#reviewList .review_list_h {background: #444; color:#fff;}
+#reviewList .review_list_h {background: #444; }
 
 #reviewList th, td {border-bottom: 1px solid #999; text-align: center;}
 #reviewList tr {height:40px; line-height:40px;}
 #reviewList tr td { border-top-color:#ddd; border-bottom-color:#ddd;}
 #reviewList tr td a {display: block; }
 .rev_btn_box.btn_box {margin-top:20px;}
-.rev_btn_box.btn_box input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px; position: relative;
-    bottom: 40px;}
-.rev_btn_box.btn_box1 input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px; position: relative;
-    bottom: 40px;}
+.rev_btn_box.btn_box input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px;}
+.rev_btn_box.btn_box1 input {background:#444; color:#fff; cursor: pointer; vertical-align: middle; width:120px; height:30px; line-height: 30px; cursor: pointer; border-radius:10px;}
 /* review_view */
 .review_view_table {width:100%; border:1px solid #ddd;}
 .review_view_table th {width:15%; vertical-align: middle; border-right:1px solid #ddd; border-bottom:1px solid #ddd;}

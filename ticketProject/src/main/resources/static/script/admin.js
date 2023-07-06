@@ -73,6 +73,11 @@ function product_update() {
 	
 }
 
+function go_rep(){
+	document.frm.action = "adminQnaRepSave";
+	document.frm.submit();
+}
+
 
 
 

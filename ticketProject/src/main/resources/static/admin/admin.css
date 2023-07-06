@@ -102,8 +102,9 @@ footer {
 }
 
 footer hr {
- width: 950px;
- border: 1px solid;
+    width: 960px;
+    border: 1px solid;
+    margin-left: 150px;
 }
 
 #login {
@@ -178,7 +179,7 @@ footer hr {
  text-decoration: none;
  text-align: center;
  padding: 5px;
- margin-left: 200px;
+ margin-left: 160px;
 }
 
 .btn5 {
@@ -239,6 +240,42 @@ position: relative;
  text-align: center;
  padding: 5px;
  margin-left: 160px
+}
+
+.btn10 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: #e4e4e4;
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+ margin-left: 160px
+}
+
+.btn11 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: #e4e4e4;
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+ margin-left: 160px
+}
+
+
+.btn11 {
+ width: 100px;
+ border-radius: 5px;
+ background-color: #ffff80;
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
 }
 
 .btn:HOVER {
