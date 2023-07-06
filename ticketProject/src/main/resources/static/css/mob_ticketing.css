@@ -224,12 +224,12 @@ table {
 /*  footer  */
 #footer {
 	width: 100%;
-	height: 250px;
-	margin-top: 50px;
+	height: auto;
+	margin-top: 0px;
 }
 
 #footer .footer_inner {
-	width: 1200px;
+	width: 100%;
 	height: 100%;
 	margin: 0 auto;
 	padding: 10px;
@@ -239,7 +239,8 @@ table {
 
 #footer .footer_inner .copy {
 	float: left;
-	margin-top: 25px;
+	margin-top: 0px;
+	line-height:30px;
 }
 
 #footer .footer_inner .copy strong {
@@ -248,16 +249,24 @@ table {
 
 #footer .footer_inner .fot_logo {
 	float: right;
-	margin-right: 40px;
-	margin-top: 30px;
+	margin-right: 0px;
+	margin-top: 0px;
 }
 
+
+#footer .footer_inner .fot_logo a img {
+	width:150px;
+	/* 엘리먼트스타일에서 css 로 이동  */	
+}
+
+#footer .footer_inner .fot_logo a {display:block;}
+
 #footer .footer_inner .kb_icon {
-	width: 81px;
-	height: 81px;
+	width: 60px;
+	height: 60px;
 	position: absolute;
 	left: 0;
-	bottom: 30px;
+	bottom: 15px;
 }
 
 #footer .footer_inner .kb_icon img {

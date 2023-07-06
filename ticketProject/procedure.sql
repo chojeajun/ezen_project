@@ -12,6 +12,7 @@ END;
 commit;
 
 
+
 select * from member;
 alter table member add provider varchar2(100);
 

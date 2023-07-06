@@ -8,22 +8,21 @@
 <script type="text/javascript">
 // 이미지 배너 페이드인아웃
 
-    var imgNum=2;
+var imgNum=1;
 $(function() {
 	var temp;
     // $('div').fadeOut(1000);
     // for(var i = 0; i <= 5; i++) $('div').eq(i).fadeOut(1000);
     clearInterval(temp);
     temp = setInterval(function() {
+    		
         	//console.log( "111111" + imgNum);
               
-        	$('.imgview4').fadeOut(500);
+        	$('.imgview4').fadeOut(1000);
             //console.log( "22222222" + imgNum);
-           	$('.imgview4').eq(imgNum-1).fadeIn(2000);
+           	$('.imgview4').eq(imgNum).fadeIn(500);
            	imgNum++;
-			if(imgNum > 5) {
-				imgNum = 1;
-			}
+			imgNum %= 5;
             //console.log( "33333333" + imgNum);
     },3000);
 });
@@ -145,7 +144,7 @@ $(function() {
 <div id="bannerList" class="row">
 	<div id="view">
 		<div id="imgs">
-			<c:forEach items="${ bannerList }" var="bannerVO">
+			<c:forEach items="${ bannerList }" begin="1" var="bannerVO">
 				<img src="${ bannerVO.IMAGE }" />
 			</c:forEach>
 		</div>
