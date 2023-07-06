@@ -10,31 +10,36 @@ h2 {
 
 /* bannerList */
 #bannerList {
-	width: 1190px;
+	width: 100%;
 	margin: 0 auto;
-	background: #eceaff;
+	background: none;
 	border: 1px solid black;
 	margin-bottom: 26px;
 }
 
 #bannerList #view {
 	position: relative;
-	width: 600px;
-	height: 800px;
+	width: 100%;
+	height: 70vh;
 	overflow: hidden;
 	margin: 0 auto;
+	padding:0;
+	
+	max-height:500px;
+	/*  mobile 기종 중 400까지 대응  그이상의 기종에서는 이미지가 잘릴 수 있음  */
 }
 
 #bannerList #view #imgs {
 	position : absolute;
-	width: 3000px;
-	height: 800px;
+	width: 1000%;
+	height:auto;
 }
 
 #bannerList #view #imgs img {
-	width: 600px;
-	height: 800px;
+	width: 10%;
 	float: left;
+	height:auto;
+	
 }
 
 /* bestContent  */
@@ -56,16 +61,20 @@ h2 {
 }
 
 #bestContent .title {
-	height: 100px;
+	height: 60px;
 	text-align: center;
 	margin: 3px auto;
 	width: 1190px;
 	font-size: 300%;
-	line-height: 100px;
+	line-height: 60px;
 	font-weight: bold;
 	background: #f3f3ff;
 	color: red;
 	border: 1px solid black;
+}
+
+#bestContent .title h3 {
+	font-size:24px;
 }
 
 #bestContent #bestcontentback {
@@ -86,7 +95,8 @@ h2 {
 #bestContent #bestcontentback .imgview1 .imgview2 {
 	position: relative;
 	width: 100%;
-	height: 600px;
+	height: 715px;
+	max-height:715px;
 	background: white;
 	overflow: hidden;
 	margin: 0 auto;
@@ -123,6 +133,7 @@ h2 {
 
 #bestContent #bestcontentback .imgview1 .imgview2 #imgview3 .imgview4 img {
 	width:100%;
+	height:70vh;
 }
 	
 
@@ -214,18 +225,16 @@ h2 {
 }
 
 /* concert */
-#concert .title h1 {
-	margin: 0;
-	line-height: 100px;
-}
+
 
 #concert {
 	width: 1200px;
 	margin: 0 auto;
+	padding:10px;
 }
 
 #concert .title {
-	height: 100px;
+	height: 60px;
 	text-align: center;
 	margin: 3px auto;
 	width: 1190px;
@@ -236,6 +245,12 @@ h2 {
 	border: 1px solid black;
 }
 
+#concert .title h1 {
+	margin: 0;
+	line-height: 60px;
+	font-size:24px;
+}
+
 #concert .title h3 {
 	line-height: 100px;
 	height: 100px;
@@ -243,41 +258,46 @@ h2 {
 }
 
 #concert .panel {
-	height: 530px;
+	height: auto;
 	width: 1190px;
 	margin: 3px auto;
 	border: 1px solid black;
 }
 
 #concert .panel #item {
-	float: left;
-	width: 280px;
-	height: 460px;
-	margin: 10px 8px;
+	float: none;
+	width: 100%;
+	height: auto;
+	margin-left:0;
 }
 
+#concert .panel #item a {
+	display:block;
+}
 #concert .panel #item img {
-	height: 360px;
-	width: 270px;
+	height: auto;
+	width: 100%;
 }
 
 #concert .panel #item h1 {
-	width: 270px;
+	width: 100%;
 	height: 90px;
 	line-height: 30px;
 	text-align: center;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 	color: white;
 	background: black;
-	margin: 5px;
+	padding:10px;
+	word-break:keep-all;
+	margin-left:0;
 }
 
 #concert .panel #item h3 {
-	width: 270px;
+	width: 100%;
 	height: 40px;
-	font-size: 25px;
-	margin-left: 5px;
+	font-size: 18px;
+	margin-left: 0px;
 	line-height: 40px;
 	font-weight: bold;
 	background: black;
@@ -359,11 +379,11 @@ h2 {
 }
 
 #success .title {
-	height: 150px;
+	height: 60px;
 	text-align: center;
 	width: 1190px;
 	font-size: 300%;
-	line-height: 150px;
+	line-height: 60px;
 	font-weight: bold;
 	background: #f3f3ff;
 	color: blue;
@@ -373,12 +393,13 @@ h2 {
 
 #success .title h1 {
 	margin: 0;
+	font-size:24px;
 }
 
 #success .successlist1 {
 	position: relative;
-	height: 238px;
-	width: 1190px;
+	height: 250px;
+	width: 100%;
 	margin: 3px auto;
 	border: 1px solid black;
 }
@@ -387,31 +408,31 @@ h2 {
 	overflow: hidden;
 	position: relative;
 	height: 220px;
-	width: 700px;
+	width: 100%;
 	margin-top: 8px;
 	border: 1px solid black;
-	margin-left: 245px;
+	margin-left: 0px;
 }
 
 #success .successlist1 .successlistrealview .successlistview {
 	position: absolute;
 	height: 220px;
-	width: 1400px;
+	width: 100%;
 }
 
 #success .successlist1 .successlistrealview .successlistview .successitem
 	{
-	width: 340px;
+	width: 100%;
 	height: 200px;
 	float: left;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 0px;
+	margin-right: 0px;
 	margin-top: 10px;
 }
 
 #success .successlist1 .successlistrealview .successlistview .successlisttitle
 	{
-	width: 340px;
+	width: 100%;
 	height: 150px;
 	border: 1px solid black;
 	margin: 0;
@@ -429,16 +450,16 @@ h2 {
 	font-weight: bold;
 	height: 100px;
 	line-height: 75px;
-	width: 330px;
+	width: 100%;
 	text-align: center;
-	line-height: 50px;
-	font-size: 20px;
-	margin: 15px 4px;
+	line-height: 34px;
+	font-size: 18px;
+	margin: 0px 0px;
 }
 
 #success .successlist1 .successlistrealview .successlistview .successlistid
 	{
-	width: 340px;
+	width: 100%;
 	height: 40px;
 	margin: 5px 5px 0 0;
 	border: 1px solid black;
@@ -455,39 +476,39 @@ h2 {
 	text-align: center;
 	font-size: 25px;
 	text-align: center;
-	width: 340px;
+	width: 100%;
 	padding-top: 0;
 	border-bottom: none;
 }
 
 #success .successlist1 #btn3 #successleft {
 	position: absolute;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 	border: 1px solid black;
-	width: 50px;
-	height: 50px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
-	line-height: 48px;
+	line-height: 25px;
 	float: left;
 	cursor: pointer;
-	left: -150px;
-	top: 10px;
+	left: -250px;
+	top: -115px;
 }
 
 #success .successlist1 #btn3 #successright {
 	position: absolute;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 	border: 1px solid black;
-	width: 50px;
-	height: 50px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
-	line-height: 48px;
-	left: 790px;
-	top: 10px;
+	line-height: 25px;
+	left: -210px;
+	top: -115px;
 	cursor: pointer;
 }
 

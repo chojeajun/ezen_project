@@ -37,19 +37,33 @@
 <script type="text/javascript">
 
 // 	var imgNum = 0;
-// 	var dist = 0;
+ 	var dist = 0;
+ 	var wwidth;
+ 	var movewidth;
 
-// 	$(function(){
-// 		var num = 0;
-// 		setInterval(function(){
-// 			$('#cont_box').animate({
-// 				left : num * -600
-// 			}, 1000);
-// 			num++;
-// 			if( num == 5 )
-// 				num = 0;
-// 		}, 2000);
-// 	});
+	$(function(){
+		
+		$(window).on('load', function() {
+			movewidth = $("#bannerList #view #imgs img").innerWidth();
+		});
+		
+		
+		$(window).resize(function () {
+			movewidth = $("#bannerList #view #imgs img").innerWidth();
+			console.log(movewidth);
+		});
+		
+		var num = 0;
+		setInterval(function(){
+			$('#imgs').animate({
+				left : num * -movewidth
+			}, 1000);
+			num++;
+			if( num == 4 )
+				num = 0;
+		}, 2000);
+		
+	});
 	
 // 	$(function() {
 // 		$("#btn2").click(function() {
@@ -92,15 +106,15 @@
 		$('#successleft').click(function() {
 			if (successNum == 0) {
 				successNum = 2;
-				dist = successNum * -350;
+				dist = successNum * -220;
 				$('.successlistview').animate({
-					left : dist
+					top : dist
 				}, 300);
 			} else {
 				successNum--;
-				dist = successNum * -350;
+				dist = successNum * -220;
 				$('.successlistview').animate({
-					left : dist
+					top : dist
 				}, 300);
 			}
 		});
@@ -111,15 +125,15 @@
 		$('#successright').click(function() {
 			if (successNum == 2) {
 				successNum = 0;
-				dist = successNum * -350;
+				dist = successNum * -220;
 				$('.successlistview').animate({
-					left : dist
+					top : dist
 				}, 300);
 			} else {
 				successNum++;
-				dist = successNum * -350;
+				dist = successNum * -220;
 				$('.successlistview').animate({
-					left : dist
+					top : dist
 				}, 300);
 			}
 		});
@@ -179,7 +193,7 @@
 
 							<nav class="category_menu navbar bg-light fixed-top" style="left:auto;">
 								<div class="container-fluid">
-									<a class="navbar-brand" href="#"></a>
+									<a class="navbar-brand"></a>
 									<button class="navbar-toggler" type="button"
 										data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
 										aria-controls="offcanvasNavbar">
@@ -195,12 +209,12 @@
 										<div class="offcanvas-body">
 											<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 											<!--  menulist  -->
-												<li class="nav-item"><a href="applyAndRegister" class="nav-link" href="#">신청/등록</a></li>
-												<li class="nav-item"><a href="successList" class="nav-link" href="#">성공내역</a></li>
-												<li class="nav-item"><a href="reviewList" class="nav-link" href="#">후기</a></li>
+												<li class="nav-item"><a href="applyAndRegister" class="nav-link" >신청/등록</a></li>
+												<li class="nav-item"><a href="successList" class="nav-link" >성공내역</a></li>
+												<li class="nav-item"><a href="reviewList" class="nav-link" >후기</a></li>
 												
 												<!-- dropdown menu -->
-												<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
+												<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button"
 													data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
 													<ul class="dropdown-menu">
 														<li><a href="category?kind=0" class="dropdown-item">전체</a></li>
