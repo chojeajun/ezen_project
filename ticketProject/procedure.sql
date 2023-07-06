@@ -11,7 +11,8 @@ END;
 
 commit;
 
-
+select * from banner;
+select * from success_board;
 
 select * from member;
 alter table member add provider varchar2(100);
@@ -37,6 +38,9 @@ begin
 end;
 
 commit;
+
+
+select * from (  select rownum rn, s.* from ( (select * from success_board order by num desc) s )  ) where rn >= 1 and rn <= 10;
 
 
 
