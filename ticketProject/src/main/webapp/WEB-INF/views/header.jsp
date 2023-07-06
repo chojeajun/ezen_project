@@ -170,7 +170,7 @@
 									<li><a href="category?kind=5">전시/행사</a></li>
 								</ul></li>
 							<li><a href="applyAndRegister">신청/등록</a></li>
-							<li><a href="successList">성공내역</a></li>
+							<li><a href="successList?first=1">성공내역</a></li>
 							<li><a href="reviewList">후기</a></li>
 						</ul>
 					</nav>

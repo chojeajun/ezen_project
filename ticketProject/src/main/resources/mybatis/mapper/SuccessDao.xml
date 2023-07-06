@@ -9,6 +9,16 @@
 	<resultMap id="replyMap1" type="java.util.HashMap"></resultMap>
 	<resultMap id="name" type="java.util.HashMap"></resultMap>
 
+
+	
+	<select id="getAllCount" resultType="_int">
+		select count(*) from ${param1}
+	</select>
+	
+	<!-- 	<select id="listSuccess" resultType="com.ticket.t1.dto.SuccessVO"> -->
+<!-- 		select * from success_board order by sucseq -->
+<!-- 	</select> -->
+	
 	
 	<select id="getSuccessListBySucseq" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
