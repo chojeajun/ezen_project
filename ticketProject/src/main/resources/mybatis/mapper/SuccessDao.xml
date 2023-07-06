@@ -15,9 +15,9 @@
 		select count(*) from ${param1}
 	</select>
 	
-	<!-- 	<select id="listSuccess" resultType="com.ticket.t1.dto.SuccessVO"> -->
-<!-- 		select * from success_board order by sucseq -->
-<!-- 	</select> -->
+	<select id="listSuccess" resultType="com.ticket.t1.dto.SuccessVO">
+		select * from ( select rownum rn, s.* from (select * from success_board order by sucseq desc) s  ) where rn &gt;= #{param1.startNum} and rn &lt;= #{param1.endNum}
+	</select>
 	
 	
 	<select id="getSuccessListBySucseq" statementType="CALLABLE" parameterType="java.util.HashMap">
