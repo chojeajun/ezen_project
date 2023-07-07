@@ -451,7 +451,7 @@ public class AnrController {
 			mav.setViewName("member/login");
 		}else {
 			
-			mav.setViewName("apply_register/apply/applyFinalPage.jsp");
+			mav.setViewName("apply_register/apply/applyFinalPage");
 			String date = ddate.substring(0,10).replace("-", "");
 			System.out.println("cseq==" + cseq);
 			System.out.println("date==" + date);
@@ -466,10 +466,12 @@ public class AnrController {
 			as.selectContentByCseq(paramMap);
 			ArrayList<HashMap<String, Object>> list
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			System.out.println("<select * from content where cseq = p_cseq>======" + list);
 			int locationNum = Integer.parseInt(list.get(0).get("LOCATIONNUM").toString());
 			
 			os.insertOrders(Integer.parseInt(loginUser.get("MSEQ").toString()),
 					cseq, date, time, area, quantity, mseq2, locationNum);
+			as.insertCart( Integer.parseInt(loginUser.get("MSEQ").toString()), cseq, date, time, area, mseq2, quantity, locationNum);
 		}
 		
 		return mav;

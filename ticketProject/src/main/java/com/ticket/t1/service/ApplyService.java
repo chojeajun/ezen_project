@@ -88,4 +88,9 @@ public class ApplyService {
 		
 	}
 
+	public void selectContentByCseq(HashMap<String, Object> paramMap) {
+		adao.selectContentByCseq(paramMap);
+		
+	}
+
 }

@@ -79,8 +79,8 @@
 	</select> 
 	
 	<insert id="insertCart">
-		insert into cart(cartseq,mseq, cseq, contentDate,contentTime,locationNum,area, mseq2, quantity) 
-		values(cart_cartseq.nextVal,#{param1},#{param2},to_date(#{param3},'yyyy-mm-dd'),#{param4},#{param8},#{param5},#{param6},#{param7})
+		insert into cart(cartseq,mseq, cseq, contentDate,contentTime,locationNum,area, mseq2, quantity, buyyn) 
+		values(cart_cartseq.nextVal,#{param1},#{param2},to_date(#{param3},'yyyy-mm-dd'),#{param4},#{param8},#{param5},#{param6},#{param7},'Y')
 	</insert>
 	
 	<select id="selectContentForLocNum" statementType="CALLABLE" parameterType="java.util.HashMap">
@@ -128,6 +128,15 @@
 				#{tTime},
 				#{endTime},
 				#{mseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
+			)
+		}
+	</select>
+	
+	<select id="selectContentByCseq" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL scbc(
+				#{cseq},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=applyMap}
 			)
 		}
