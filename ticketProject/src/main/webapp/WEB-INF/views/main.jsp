@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="header.jsp"%>
+
+
 <div id="bestContent">
 	<div class="title">
 		<h1>Best Content</h1>

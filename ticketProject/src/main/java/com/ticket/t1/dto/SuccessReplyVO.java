@@ -12,7 +12,7 @@ public class SuccessReplyVO {
 	private int mseq; // 멤버번호 
 	private String id;
 	private String replycontent;
-	//private String successcontent;
+	private String successcontent;
 	private Timestamp writedate;
 	
 	

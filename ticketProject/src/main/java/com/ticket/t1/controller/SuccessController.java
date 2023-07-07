@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,14 +49,6 @@ public class SuccessController {
 		
 		return mav;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@RequestMapping("/successView")
 	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int seq,
@@ -118,8 +111,7 @@ public class SuccessController {
 	
 	@RequestMapping("/replyInsert")
 	public String reply_insert( HttpServletRequest request,  
-		SuccessReplyVO svo,
-		@RequestParam("reply") String reply
+		SuccessReplyVO svo
 //		@RequestParam("sucseq") String sucseq,
 //		@RequestParam("reply") String reply
 		) {
@@ -130,8 +122,7 @@ public class SuccessController {
 //		System.out.println(svo.getId());
 //		System.out.println(svo.getMseq());
 		System.out.println("svo 내용은 ? ; " + svo);
-		svo.setReplycontent("reply");
-		System.out.println(reply);
+		svo.setReplycontent("successcontent");
 		if(loginUser == null) {
 			return "member/login";
 		}else {
@@ -139,8 +130,10 @@ public class SuccessController {
 			System.out.println("받았냐 말았냐 딱대" +  loginUser.get("ID"));
 			ss.insertSuccessReply(svo);
 			
-			return "redirect:/successView";
+			return "redirect:/successView?sucseq=" + svo.getSucseq() + "&isTrue=1";
 		}
 		
 	}
+	
+	
 }
