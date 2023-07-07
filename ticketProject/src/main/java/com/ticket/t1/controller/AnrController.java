@@ -5,10 +5,8 @@ package com.ticket.t1.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.dto.MemberVO;
 import com.ticket.t1.dto.RegisterTimeVO;
 import com.ticket.t1.service.ApplyService;
+import com.ticket.t1.service.OrderService;
 import com.ticket.t1.service.RegisterService;
 
 @Controller
@@ -30,6 +30,9 @@ public class AnrController {
 
 	@Autowired
 	RegisterService rs;
+	
+	@Autowired
+	OrderService os;
 	
 	@RequestMapping("/applyAndRegister")
 	public ModelAndView applyAndRegister(HttpServletRequest request) {
@@ -327,17 +330,21 @@ public class AnrController {
 		return mav;
 	}
 	
-	@RequestMapping("/applySelectCommissioner")
+	@RequestMapping(value="/applySelectCommissioner", method=RequestMethod.POST)
 	public ModelAndView apply_select_commissioner(HttpServletRequest request,
-			@RequestParam("cseq") int cseq, @RequestParam("area") String area,
-			@RequestParam(value="date", required=false) String date, @RequestParam(value="time",required=false) String time,
-			@RequestParam(value="quantity", required=false) String quantity) {
+			@RequestParam("cseq") int cseq, @RequestParam("area") String areas,
+			@RequestParam("date") String dates, @RequestParam("time") String times,
+			@RequestParam("quantity") int quantity) {
 		
 		System.out.println("quantity : " + quantity);
-		System.out.println("area : " + area);
+		String[] area = areas.split(",");
+		String [] time = times.split(",");
+		String [] date = dates.split(",");
+		System.out.println("area : " + area[0]);
 		System.out.println("cseq : " + cseq);
-		System.out.println("date : " + date);
-		System.out.println("time : " + time);
+		System.out.println("date : " + date[0]);
+		System.out.println("time : " + time[0]);
+		
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
@@ -351,6 +358,7 @@ public class AnrController {
 			ArrayList<HashMap<String, Object>> list
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("detailList", list);
+			System.out.println("detailList===============================" + list);
 			String tDate = list.get(0).get("TDATETIME").toString().substring(0, 8);
 			String tTimeStr = list.get(0).get("TDATETIME").toString().substring(8, 12);
 			int tTime = Integer.parseInt(tTimeStr);
@@ -373,52 +381,98 @@ public class AnrController {
 			paramMap2.put("date", tDate);
 			paramMap2.put("ref_cursor", null);
 			as.getCommissioner(paramMap2);
-			list = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
+			ArrayList<HashMap<String, Object>> list2 = (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
 			
 			HashMap<String, Object> paramMap3 = new HashMap<String, Object>();
-			for(int i = 0; i < list.size(); i++) {
+			for(int i = 0; i < list2.size(); i++) {
 				paramMap3.put("tDate", tDate);
-				System.out.println("startTime= " + Integer.parseInt(list.get(i).get("STARTTIME").toString().replace(":", "")));
-				paramMap3.put("startTime", Integer.parseInt(list.get(i).get("STARTTIME").toString().replace(":", "")));
+				System.out.println("startTime= " + Integer.parseInt(list2.get(i).get("STARTTIME").toString().replace(":", "")));
+				paramMap3.put("startTime", Integer.parseInt(list2.get(i).get("STARTTIME").toString().replace(":", "")));
 				paramMap3.put("tTime", tTime);
 				System.out.println("tTime= " + tTime);
-				System.out.println("endTime= " + Integer.parseInt(list.get(i).get("ENDTIME").toString().replace(":", "")));
-				paramMap3.put("endTime", Integer.parseInt(list.get(i).get("ENDTIME").toString().replace(":", "")));
+				System.out.println("endTime= " + Integer.parseInt(list2.get(i).get("ENDTIME").toString().replace(":", "")));
+				paramMap3.put("endTime", Integer.parseInt(list2.get(i).get("ENDTIME").toString().replace(":", "")));
 				paramMap3.put("mseq", Integer.parseInt(loginUser.get("MSEQ").toString()));
 				paramMap3.put("ref_cursor", null);
 				as.getCommissioner1(paramMap3);
-				list.addAll(i, (Collection<? extends HashMap<String, Object>>)paramMap3.get("ref_cursor"));
-				try {
-					formatDate = (Date) sdf.parse(list.get(i).get("REGISTERDATE").toString());
-					String registerDate = sdfReal.format(formatDate);
-					list.get(i).put("REGISTERDATE", registerDate);
-				} catch (ParseException e) {
-					e.printStackTrace();
+			}
+			list = (ArrayList<HashMap<String, Object>>) paramMap3.get("ref_cursor");
+			if(list != null) {
+				if(list.size() != 0) {
+					for(int i = 0; i < list.size(); i++) {
+						try {
+							if(list.get(i).get("REGISTERDATE") != null) {
+								formatDate = (Date) sdf.parse(list.get(i).get("REGISTERDATE").toString());
+								String registerDate = sdfReal.format(formatDate);
+								list.get(i).put("REGISTERDATE", registerDate);
+							}
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 			mav.addObject("comList", list);
-			System.out.println(list);
+			System.out.println("comList==========================" + list);
 			
 			
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
 			paramMap1.put("cseq", cseq);
-			paramMap1.put("area", area);
+			paramMap1.put("area", area[0]);
 			paramMap1.put("ref_cursor", null);
 			as.selectAreaPrice(paramMap1);
 			list = (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
 			mav.addObject("areaList", list);
+			System.out.println("areaList========================================" + list);
 			
 			
-			System.out.println(cseq+" "+area+" "+quantity+" "+date+" " + time);
-			String dateStr = date.substring(0, 10);
+//			System.out.println(cseq+" "+area+" "+quantity+" "+date+" " + time);
+			String dateStr = date[0].substring(0, 10);
 			System.out.println("date : " + dateStr);
 			mav.addObject("date", dateStr);
-			mav.addObject("time", time);
+			mav.addObject("time", time[0]);
 			mav.addObject("quantity", quantity);
 			mav.setViewName("apply_register/apply/applySelectCommissioner");
 		}
 		return mav;
 		
+	}
+	
+	@RequestMapping("apply")
+	public ModelAndView apply( HttpServletRequest request,
+			@RequestParam("cseq") int cseq, @RequestParam("date") String ddate,
+			@RequestParam("time") String time, @RequestParam("area") String area,
+			@RequestParam("quantity") int quantity, @RequestParam("mseq2") int mseq2) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		if( loginUser == null ) {
+			mav.setViewName("member/login");
+		}else {
+			
+			mav.setViewName("apply_register/apply/applyFinalPage.jsp");
+			String date = ddate.substring(0,10).replace("-", "");
+			System.out.println("cseq==" + cseq);
+			System.out.println("date==" + date);
+			System.out.println("time==" + time);
+			System.out.println("area==" + area);
+			System.out.println("quantity==" + quantity);
+			System.out.println("mseq2==" + mseq2);
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("cseq", cseq);
+			paramMap.put("ref_cursor", null);
+			as.selectContentByCseq(paramMap);
+			ArrayList<HashMap<String, Object>> list
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			int locationNum = Integer.parseInt(list.get(0).get("LOCATIONNUM").toString());
+			
+			os.insertOrders(Integer.parseInt(loginUser.get("MSEQ").toString()),
+					cseq, date, time, area, quantity, mseq2, locationNum);
+		}
+		
+		return mav;
 	}
 	
 	

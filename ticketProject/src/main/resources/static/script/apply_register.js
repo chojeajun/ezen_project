@@ -135,9 +135,9 @@ function applyFormCheck() {
 		alert("티켓 수량을 선택해 주세요.");
 		return false;
 	} else {
-		document.frm.action = 'applySelectCommissioner?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area + '&quantity=' + quantity;
+		document.frm.action = 'applySelectCommissioner?cseq=' + cseq + '&date=' + date + '&time=' + time + '&area=' + area
+		+ '&quantity=' + quantity;
 		document.frm.submit();
-
 	}
 }
 

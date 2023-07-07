@@ -3,24 +3,24 @@
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ include file="../../header.jsp" %>
 
-<form name="frm" class="form">
+<form name="frm" method="post" class="form">
 	<section class="body_Choose2">
 		<div class="buttonBoxArea">
 			<div class="Header">선택하신 공연</div>
 			<div class="detailBody">
 				<div class="posterZone">
 					<div class="posterBox">
-					<c:forEach items="${detailList}" var="dl">
-						<img alt="공연 포스터" src="${dl.IMAGE}" width=300 height=400>
+					<c:forEach items="${detailList}" end="0" var="dl">
+						<img alt="공연 포스터" src="/${dl.IMAGE}" width=300 height=400>
 					</c:forEach>
 					</div>
 				</div>
 				<div class="detailZone">
-					<c:forEach items="${detailList}" var="dl">
+					<c:forEach items="${detailList}" end="0" var="dl">
 						<div class="detail title">공연명 : <c:out value="${dl.TITLE}"/></div>
 						<div class="detail artist">아티스트 : <c:out value="${dl.ARTIST}"/></div>
 					</c:forEach>
-					<c:forEach items="${areaList}" var="al">
+					<c:forEach items="${areaList}"  var="al">
 						<div class="detail location">공연 위치 : ${al.LOCATIONNAME}</div>
 					</c:forEach>
 					<div class="detail dateTime">공연 일정 : ${date}&nbsp;${param.TIME}</div>
@@ -62,7 +62,6 @@
                      		var ticketPrice = document.getElementById('ticketPriceH').value;
                      	 	var totalPrice = document.querySelector('.totprice');
                      	 	totalPrice.innerText=Number(ticketPrice)+Number(comPrice)+'원';
-                     	
                         	
                         	sessionStorage.removeItem('selectedCom');
                         	sessionStorage.setItem('selectedCom',document.getElementById('Com'+num).value);
@@ -89,8 +88,8 @@
 					<div class="priceBox">
 						<div class="totprice p"></div><div class="p css1">=</div><div class="cprice p"></div><div class="p css1">+</div>
 						<c:forEach items="${areaList}" var="al">
-							<div class="tprice p">${al.PRICE*QUANTITY}</div>
-							<input type="hidden" id="ticketPriceH" value="${al.PRICE*QUANTITY}">
+							<div class="tprice p">${al.PRICE*quantity}</div>
+							<input type="hidden" id="ticketPriceH" value="${al.PRICE*quantity}">
 						</c:forEach>
 					</div>
 				</div>
@@ -109,9 +108,9 @@
 					<div class=buttonSmallBox>
 						<input class="button1" type="button" value="장바구니" onclick="insertCart()">
 					</div>
-					<div class=buttonSmallBox>
+					<!-- <div class=buttonSmallBox>
 						<input class="button1" type="button" value="다시 선택" onclick="refresh()">
-					</div>
+					</div> -->
 			</div>
 		</div>
 	</section>
