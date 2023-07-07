@@ -71,6 +71,24 @@
 		}
 	</select>
 	
+	<insert id="insertOrders">
+		insert into orders(oseq, mseq, cseq) values (orders_oseq.nextVal, #{param1}, #{param2})
+	</insert>
+	
+	<select id="selectOrders" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL so(
+				#{mseq},
+				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+			)
+		}
+	</select>
+	
+	<insert id="insertOrdersDetail">
+		insert into order_detail(odseq, oseq, mseq, cseq, indate,  contentDate, contentTime, area, mseq2, quantity,locationNum) 
+		values(order_detail_odseq.nextVal, #{param1}, #{param2},#{param3},#{param4},to_date(#{param5},'yyyy-mm-dd'),#{param6},#{param7},#{param8},#{param9},#{param10})
+	</insert>
+	
 </mapper>
 
 

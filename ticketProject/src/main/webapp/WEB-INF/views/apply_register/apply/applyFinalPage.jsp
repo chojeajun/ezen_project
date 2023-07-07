@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../header.jsp" %>
 
-<form name="frm" action="ticket.do" method="post" class="resultForm">
+<form name="frm" method="post" class="resultForm">
 <input type="hidden" name="command" value="orderView">
 <section>
 <h2>신청이 완료되었습니다!</h2>

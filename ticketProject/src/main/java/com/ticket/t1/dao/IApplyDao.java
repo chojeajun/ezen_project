@@ -39,5 +39,7 @@ public interface IApplyDao {
 	void getComFinal(HashMap<String, Object> paramMap3);
 
 	void selectAreaPrice(HashMap<String, Object> paramMap1);
+
+	void selectContentByCseq(HashMap<String, Object> paramMap);
 	
 }
