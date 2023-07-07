@@ -61,7 +61,7 @@
 	<insert id="insertReview" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
 			CALL insertReview(
-				 #{ mseq }, #{ id }, #{ pwd }, #{ content }, #{ title },  #{ imgfilename }
+				 #{ mseq }, #{ id }, #{ pwd }, #{ title }, #{ content },  #{ imgfilename }
 			)
 		}
 	</insert>
@@ -69,7 +69,7 @@
 	<update id="updateReview" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
 			CALL updateReview( 
-				#{rseq}, #{mseq}, #{ id }, #{ pwd }, #{ content }, #{ title }, #{ imgfilename } 
+				#{rseq}, #{mseq}, #{ id }, #{ pwd }, #{ title }, #{ content },  #{ imgfilename } 
 			)
 		}
 	</update>

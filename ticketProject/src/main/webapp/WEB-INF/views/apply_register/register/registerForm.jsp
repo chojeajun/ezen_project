@@ -123,7 +123,7 @@
                 queryString += "&";
             }
         }
-		alert(queryString);
+		//alert(queryString);
         document.registerForm.action = "registerTimeForm?" + queryString;
         document.registerForm.submit();
         

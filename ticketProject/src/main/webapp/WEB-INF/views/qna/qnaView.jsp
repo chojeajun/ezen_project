@@ -5,8 +5,7 @@
 	<div class="review_content">
 		<h2 class="review_title">1:1 고객 게시판</h2>
 		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
-		<form name="rev_formm" method="post" class="review_form" action="ticket.do">
-			<input type="hidden" name="command" value="reviewReply">
+		<form name="rev_formm" method="post" class="review_form" >
 			<input type="hidden" name="qseq" value="${ qnaVO.QSEQ }">
 			<table class="review_view_table">
 				<tr>
@@ -28,10 +27,6 @@
 						<fmt:formatDate var="resultdate" value="${parseDate}" pattern="yyyy-MM-dd" />
 						${qnaVO.INDATE}
 					</td>
-				</tr>
-				<tr>
-					<th>조회수</th>
-					<td>${qnaVO.READCOUNT}</td>
 				</tr>
 				<tr>
 					<th>내용</th>

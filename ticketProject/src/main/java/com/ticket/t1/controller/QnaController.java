@@ -112,7 +112,7 @@ public class QnaController {
 	
 	
 	@RequestMapping("/qnaWriteForm")
-	public String write_form(HttpServletRequest request) {
+	public String qna_write_form(HttpServletRequest request) {
 		
 		String url = "qna/qnaWriteForm";
 		HttpSession session = request.getSession();

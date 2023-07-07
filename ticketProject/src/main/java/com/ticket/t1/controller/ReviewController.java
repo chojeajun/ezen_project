@@ -211,7 +211,7 @@ public class ReviewController {
 	public String review_edit_form(
 			@RequestParam("rseq") String rseq, Model model, HttpServletRequest request) {
 		model.addAttribute("rseq", rseq);
-		System.out.println("왔냐?" + rseq);
+		// System.out.println("왔냐?" + rseq);
 		return "review/reviewCheckPassForm";
 	}
 	
@@ -221,7 +221,7 @@ public class ReviewController {
 			@RequestParam("pwd") String pwd,
 			Model model, HttpServletRequest request) {
 		
-		System.out.println("ㅇㅇㅇ"+rseq);
+		//System.out.println("ㅇㅇㅇ"+rseq);
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("rseq", rseq);
 		paramMap.put("ref_cursor1", null);
@@ -293,8 +293,8 @@ public class ReviewController {
 			paramMap.put("id", reviewvo.getId());
 			paramMap.put("pwd", reviewvo.getPwd());
 			paramMap.put("mseq", reviewvo.getMseq());
-			paramMap.put("content", reviewvo.getContent());
 			paramMap.put("title", reviewvo.getTitle());
+			paramMap.put("content", reviewvo.getContent());
 			paramMap.put("imgfilename", reviewvo.getImgfilename());
 			res.updateReview( paramMap );
 			url = "redirect:/reviewViewWithoutCount?rseq=" + reviewvo.getRseq();

@@ -5,14 +5,19 @@
 	<div class="review_content">
 		<h2 class="review_title">후기 게시판</h2>
 		<h3>고객님들의 티켓팅 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
-		<form name="formm" method="post" class="review_form">
-			<input type="hidden" name="rseq" value="${ reviewVO.RSEQ }">
-			<input type="hidden" name="oldimage" value="${ reviewVO.IMAGE }">
+		<form name="formm" method="post" class="review_form" action="reviewUpdate">
+			<input type="hidden" name="rseq" value="${ dto.rseq }">
 			<table class="review_update_table review_view_table"> 
 				<tr>
 					<th>작성자</th>
-					<td>${dto.id }
-						<input type="hidden" name="id" value="${ loginUser.id }">
+					<td>${loginUser.ID }
+						<input type="hidden" name="id" value="${ loginUser.ID }">
+					</td>
+				</tr>
+				<tr>
+					<th>비번</th>
+					<td>
+						<input type="password" name="pwd" size="12">* 필수 (게시물 수정 삭제시 필요합니다.)
 					</td>
 				</tr>
 				<tr>
@@ -45,6 +50,7 @@
 				<input type="submit" value="수정">
 				<input type="button" value="돌아가기" onclick="location.href='reviewView?rseq=${ dto.rseq }'">
 			</div>
+			<br>${message}
 		</form>
 	</div>
 </div>
