@@ -19,7 +19,7 @@
 		      </c:forEach>
 	    </select></td></tr>
   <tr><th>공연명</th><td width="343" colspan="5">
-      <input type="text" name="name" size="47" value="${content.TITLE}"></td></tr>
+      <input type="text" name="title" size="47" value="${content.TITLE}"></td></tr>
   <tr><th>베스트공연</th><td>
       <c:choose>
         <c:when test='${contentVO.BESTYN=="Y"}'>

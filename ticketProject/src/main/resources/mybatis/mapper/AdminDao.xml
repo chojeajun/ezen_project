@@ -43,9 +43,10 @@
 	
 	
 	<insert id="insertContent" statementType="CALLABLE" parameterType="java.util.HashMap" >
+	
 		{ 
 			CALL insertContent( 
-				#{title}, #{category}, #{price1}, #{price2}, #{price3}, #{content} , #{image} 
+				#{title}, #{category}, #{content}, #{image}, #{age}, #{artist} 
 			)	 
 		}
 	</insert>
@@ -149,6 +150,8 @@
 			CALL updateSeq(	#{bseq}, #{useyn}, #{changeval}		)	 
 		}
 	</insert>
+	
+	
 	
 	
 </mapper>

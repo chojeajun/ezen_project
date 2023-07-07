@@ -11,7 +11,7 @@
      <img src="${ contentVO.IMAGE }" width="200px">    
      </td></tr>
 </table>
-<input class="btn9"  type="button" value="수정" onClick="go_mod('${contentVO.cseq}')">
+<input class="btn9"  type="button" value="수정" onClick="go_mod('${contentVO.CSEQ}')">
 <input class="btn"  type="button" value="목록" onClick="go_mov()">           
 </form>
 </article>

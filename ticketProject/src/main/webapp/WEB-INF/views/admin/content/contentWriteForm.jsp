@@ -6,18 +6,25 @@
 <h1>공연등록</h1>  
 <form name="frm" method="post" >
 <table id="list">
-		<tr> <%--<th>공연분류</th><td colspan="5">
+		<tr> <th>공연분류</th><td colspan="5">
 		<select name="category">
     		<c:forEach items="${categoryList}" var="category" varStatus="status">
       			<option value="${status.count}">${category}</option>
    			</c:forEach>
-  		</select></td>--%>
+  		</select></td>
  
 	<tr><th>공연명</th> <td width="343" colspan="5">
-	       <input type="text" name="name" size="47" maxlength="100" > </td></tr>
-	<tr><th>상세설명</th><td colspan="5">
+	       <input type="text" name="title" size="47" maxlength="100" > </td></tr>
+	<tr><th>아티스트</th> <td width="343" colspan="5">
+	       <input type="text" name="artist" size="47" maxlength="100" > </td></tr>
+	<tr><th>관람연령</th> <td width="343" colspan="5">
+	       <input type="text" name="age" size="47" maxlength="100" > </td></tr>
+	
+	<!-- <tr><th>공연시간</th> <td width="343" colspan="5">
+	       <input type="text" name="title" size="47" maxlength="100" > </td></tr> -->
+	<tr><th>내용</th><td colspan="5">
 	      <textarea name="content" rows="8" cols="70" ></textarea></td></tr>
-
+	
     <tr height="200">
     	<th>공연이미지</th>
 	    <td width="343" colspan="5" style="vertical-align:top;">
