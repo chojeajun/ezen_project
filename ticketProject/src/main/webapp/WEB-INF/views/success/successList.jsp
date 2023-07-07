@@ -17,7 +17,7 @@
 					<tr>
 						<td>${successVO.sucseq }</td>
 						<td width="30%">
-							<a href="ticket.do?command=successView&sucseq=${ successVO.sucseq }">${successVO.title}</a>
+							<a href="successView?sucseq=${ successVO.sucseq }">${successVO.title}</a>
 						</td>
 						<td>${ successVO.id}</td>
 						<td>
@@ -46,11 +46,11 @@
 			<div class="clear"></div>
 			<br>
 			<div class="rev_btn_box btn_box" style="float: left">
-				<input type="button" value="메인으로" class="cancel" onclick="location.href='ticket.do?command=index'">
+				<input type="button" value="메인으로" class="cancel" onclick="location.href='/'">
 			</div>
 			<!--  버튼 위치 좌우로 수정 -->
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
-				<input type="button" value="글쓰기" class="submit" onclick="location.href='ticket.do?command=successWriteForm'">
+				<input type="button" value="글쓰기" class="submit" onclick="location.href='successWriteForm'">
 			</div>
 			<div class="clear"></div>
 			<br>

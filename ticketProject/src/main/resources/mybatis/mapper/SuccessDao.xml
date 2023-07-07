@@ -55,7 +55,7 @@
 		}
 	</select>
 	
-	<delete id="replyDelete">
+	<delete id="replyDelete" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			CALL replyDelete(
 				#{srseq}
@@ -63,12 +63,10 @@
 		}
 	</delete>
 	
-	<insert id="insertReply">
+	<insert id="insertSuccessReply" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
-			CALL insertReply(
-				#{seq},
-				#{reply},
-				#{nickname}
+			CALL insertSuccessReply(
+				#{ mseq }, #{ sucseq },  #{ successcontent } 
 			)
 		}
 	</insert>

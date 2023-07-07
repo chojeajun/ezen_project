@@ -298,6 +298,7 @@ public class MemberController {
 			@ModelAttribute("dto") @Valid MemberVO membervo, BindingResult result,
 			@RequestParam(value="reid", required=false) String reid,
 			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
+			@RequestParam(value="birth") String birth,
 			HttpServletRequest request, Model model	) {
 		String url = "member/joinForm";
 		if( result.getFieldError("id")!=null)
@@ -321,7 +322,10 @@ public class MemberController {
 			paramMap.put("gender", membervo.getGender() );
 			paramMap.put("email", membervo.getEmail() );
 			paramMap.put("phone", membervo.getPhone() );
-			paramMap.put("birth", membervo.getBirth() );
+			//paramMap.put("birth", membervo.getBirth() );
+			
+			membervo.setBirth(java.sql.Timestamp.valueOf(birth + " 00:00:00"));
+			paramMap.put("birth", membervo.getBirth());
 			paramMap.put("zip_num", membervo.getZip_num() );
 			paramMap.put("address1", membervo.getAddress1() );
 			paramMap.put("address2", membervo.getAddress2() );

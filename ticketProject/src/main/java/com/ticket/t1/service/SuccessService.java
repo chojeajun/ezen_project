@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.t1.dao.ISuccessDao;
+import com.ticket.t1.dto.SuccessReplyVO;
 import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.util.Paging;
 
@@ -41,10 +42,6 @@ public class SuccessService {
 		
 	}
 
-	public void insertReply(int seq, String reply, String nickname) {
-		sucdao.insertReply(seq, reply, nickname);
-		
-	}
 	// list 형태로 리턴받을거야
 //	public List<SuccessVO> listSuccess() {
 //		return sucdao.listSuccess();
@@ -70,10 +67,6 @@ public class SuccessService {
 			session.removeAttribute("page");
 		}
 		
-		
-		
-		
-		
 		Paging paging = new Paging();
 		paging.setPage(page);
 		
@@ -86,6 +79,10 @@ public class SuccessService {
 		
 		
 		return result;
+	}
+
+	public void insertSuccessReply(SuccessReplyVO svo) {
+		sucdao.insertSuccessReply(svo);
 	}
 
 	

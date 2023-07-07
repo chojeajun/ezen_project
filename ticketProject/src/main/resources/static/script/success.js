@@ -3,20 +3,36 @@
  */
 
 /* success reply 리뷰댓글작성 */
-function success_chk(sucseq) {
+//function success_chk(sucseq) {
+//	if(document.rev_formm.reply.value == "") {
+//		alert("댓글 내용을 입력해주세요");
+//		document.rev_formm.reply.focus();
+//		return false;
+//	}
+//	var reply = document.rev_formm.reply.value;
+//	document.rev_formm.action = "replyInsert?reply=" + reply + "&sucseq=" + sucseq;
+//	document.rev_formm.submit();
+//}
+
+function success_chk() {
 	if(document.rev_formm.reply.value == "") {
 		alert("댓글 내용을 입력해주세요");
-		document.rev_formm.reply.focus();
 		return false;
 	}
-	var reply = document.rev_formm.reply.value;
-	document.rev_formm.action = "replyInsert?reply=" + reply + "&sucseq=" + sucseq;
-	document.rev_formm.submit();
+	return true;
 }
+
+
+
+
+
+
+
+
  
  // 수정 버튼 클릭  // 수정 폼으로 이동
 function go_supd(sucseq) {
-	var url = "ticket.do?command=successEditForm&sucseq=" + sucseq
+	var url = "successEditForm&sucseq=" + sucseq
 	location.href = url
 }
  
@@ -32,7 +48,7 @@ function success_update() {
 		//return false;
 	} else {
 		if(confirm("수정 ㄱ?")) {
-			document.formm.action ="ticket.do?command=successEdit";
+			document.formm.action ="successEdit";
 			document.formm.submit();
 		}
 	}
@@ -44,7 +60,7 @@ function success_delete(sucseq) {
 	console.log(document.formm.sucseq.value);
 	if(confirm("정말 삭제하시겠습니까?")) {
 		//return;
-		document.formm.action ="ticket.do?command=successDelete&sucseq=" + sucseq;
+		document.formm.action ="successDelete&sucseq=" + sucseq;
 		document.formm.submit();
 	}
 }
@@ -58,7 +74,7 @@ function success_write() {
 		alert("내용을 입력해주세요")
 		reviewForm.content.focus()
 	}  else {
-		reviewForm.action = "ticket.do?command=successWrite";
+		reviewForm.action = "successWrite";
 		reviewForm.submit();
 	}
 

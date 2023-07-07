@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ticket.t1.dto.SuccessReplyVO;
 import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.util.Paging;
 
@@ -21,10 +22,10 @@ public interface ISuccessDao {
 
 	void replyDelete(int srseq);
 
-	void insertReply(int seq, String reply, String nickname);
-
 	List<SuccessVO> listSuccess(Paging paging);
 
 	int getAllCount(String string);
+
+	void insertSuccessReply(SuccessReplyVO svo);
 	
 }
