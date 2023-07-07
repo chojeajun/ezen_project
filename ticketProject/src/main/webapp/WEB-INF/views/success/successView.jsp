@@ -90,7 +90,7 @@
 			<tr align="center">
 				<td>${ loginUser.ID }<input type="hidden" name="id" value="${ loginUser.ID }"></td>
 				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>
-				<td><input type="text" name="reply" size="80"></td>
+				<td><input type="text" name="successcontent" size="80"></td>
 				<td><input type="submit" value="답글 작성" 
 					onclick="reply_chk();"></td>
 			</tr>

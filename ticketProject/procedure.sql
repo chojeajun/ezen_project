@@ -101,8 +101,10 @@ BEGIN
     COMMIT;
 END;
 
+
+
 CREATE OR REPLACE PROCEDURE insertSuccessReply(
-    p_sucseq IN success_reply.sucseq%TYPE,
+    p_sucseq IN success_board.sucseq%TYPE,
     p_mseq in success_reply.mseq%type,
     p_successcontent IN success_reply.successcontent%TYPE
 )
@@ -112,6 +114,10 @@ BEGIN
     VALUES(SUCCESS_REPLY_SRSEQ.nextVal,  p_mseq, p_sucseq, p_successcontent );
     COMMIT;
 END;
+
+select * from member;
+select * from success_board;
+select * from success_reply;
 
 commit;
 select * from success_reply;

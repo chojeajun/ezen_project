@@ -20,6 +20,8 @@ public class SuccessService {
 	@Autowired
 	ISuccessDao sucdao;
 	
+	
+	
 	public void getSuccessListBySucseq(HashMap<String, Object> paramMap) {
 		sucdao.getSuccessListBySucseq( paramMap );
 	}
@@ -83,6 +85,11 @@ public class SuccessService {
 
 	public void insertSuccessReply(SuccessReplyVO svo) {
 		sucdao.insertSuccessReply(svo);
+	}
+
+	public void getSuccessWithoutCount(HashMap<String, Object> paramMap) {
+		sucdao.getSuccessListBySucseq(paramMap);
+		
 	}
 
 	
