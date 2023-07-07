@@ -5,7 +5,7 @@
 <%@ include file="../header.jsp"%>
 
 <div id="cartlistwrap">
-	<form id="frmcartList" name="frm">
+	<form id="frmcartList" method="post" name="frm">
 		<c:choose>
 			<c:when test="${ notBuy_cartList.size() == 0 }">
 				<h3

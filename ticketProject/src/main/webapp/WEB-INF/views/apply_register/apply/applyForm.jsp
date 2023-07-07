@@ -2,7 +2,7 @@
 <%@ include file="../../header.jsp" %>
 
 
-<form name="frm" class="form" method="get">
+<form name="frm" method="post" class="form">
 <section name="applyBody" id="bodyBox_apply">
 	<div class="applyBox" name="applyBoxForm">
 	
