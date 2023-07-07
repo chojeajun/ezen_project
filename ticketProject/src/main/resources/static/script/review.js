@@ -23,7 +23,7 @@ function review_write() {
 		alert("비번을 입력해주세요")
 		reviewForm.pwd.focus()
 	} else {
-		alert("왓냐?");
+		//alert("왓냐?");
 		reviewForm.action = "reviewWrite";
 		reviewForm.submit();
 	}
