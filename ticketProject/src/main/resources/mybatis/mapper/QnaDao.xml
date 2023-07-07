@@ -41,20 +41,29 @@
 		}
 	</select>
 	
-		<update id="plusOneReadCount" statementType="CALLABLE" parameterType="java.util.HashMap">
-			{	
-				CALL plusOneReadCount( #{qseq} )
-			}
-	</update>
-
-
-	<insert id="insertReply" statementType="CALLABLE"   parameterType="java.util.HashMap" >
+	<insert id="insertQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
-			CALL insertReply(
-				#{ qseq }, #{ mseq }, #{ replycontent } 
+			CALL insertQna(
+				 #{ mseq }, #{ id }, #{ pwd }, #{ title }, #{ content }  
 			)
 		}
-	</insert>	
+	</insert>
+	
+	<update id="updateQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
+		{
+			CALL updateQna( 
+				#{qseq}, #{mseq}, #{ id }, #{ pwd }, #{ title }, #{ content }
+			)
+		}
+	</update>
+	
+	<delete  id="removeQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ 
+			CALL removeQna(	
+				#{ qseq }   
+			) 
+		}
+	</delete>
 	
 </mapper>
 

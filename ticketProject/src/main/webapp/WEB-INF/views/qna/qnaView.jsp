@@ -57,22 +57,10 @@
 						<td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.WRITEDATE }" pattern="MM/dd HH:mm" /></td>
 						<td style="line-height:30px;" align="left">&nbsp;${ reply.REPLYCONTENT }</td>
 						<td style="line-height:30px;">
-							<c:if test="${ reply.USERID == loginUser.ID }">
-								<input type="button" value="삭제" onclick="location.href='ticket.do?command=reviewReplyDelete&repseq=${ reply.RESEQ }&qseq=${ qnaVO.QSEQ }'">
-							</c:if>
-							<!-- 로그인 한 유저가 쓴 댓글만 삭제할 수 있게 버튼을표시  -->
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<table>
-			<tr align="center">
-				<td>${ loginUser.ID }<input type="hidden" name="id" value="${ loginUser.ID }"></td>
-				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>
-				<td><input type="text" name="reply" size="80"></td>
-				<td><input type="submit" value="답글 작성" onclick="return reply_chk();"></td>
-			</tr>
-		</table>
 			<div class="clear"></div>
 			<div class="rev_btn_box btn_box" style="float: left">
 				<input type="button" value="메인으로" class="cancel" onClick="location.href='/'">

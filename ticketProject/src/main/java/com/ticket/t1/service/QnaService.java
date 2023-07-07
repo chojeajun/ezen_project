@@ -70,13 +70,13 @@ public class QnaService {
 	}
 
 
-	public void insertReply(HashMap<String, Object> paramMap) {
-	
+	public void updateQna(HashMap<String, Object> paramMap) {
+		qdao.updateQna( paramMap);
 		
 	}
 
-	public void updateQna(HashMap<String, Object> paramMap) {
-		qdao.updateQna( paramMap);
+	public void removeQna(HashMap<String, Object> paramMap) {
+		qdao.removeQna(paramMap);
 		
 	}
 
