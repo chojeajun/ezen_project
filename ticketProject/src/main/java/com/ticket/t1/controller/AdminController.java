@@ -104,8 +104,8 @@ public class AdminController {
 	
 	@RequestMapping(value="/contentWriteForm")
 	public String content_write_form( HttpServletRequest request, Model model) {
-		String kindList[] = { "Heels", "Boots", "Sandals", "Snickers", "Slipers",  "Sale" };
-		model.addAttribute("kindList", kindList);
+		String categoryList[] = { "1", "2", "3", "4", "5" };
+		model.addAttribute("categoryList", categoryList );
 		return "admin/content/contentWriteForm";
 	}
 	
@@ -145,7 +145,11 @@ public class AdminController {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("title", request.getParameter("title") );
+		paramMap.put("category", request.getParameter("category") );
 		paramMap.put("content", request.getParameter("content") );
+		paramMap.put("age", request.getParameter("age") );
+		paramMap.put("artist", request.getParameter("artist") );
+		
 		if( request.getParameter("image") == null )
 			paramMap.put("image", "" );
 		else 

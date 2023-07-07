@@ -258,7 +258,7 @@ public class AdminService {
 	}
 
 	public void insertContent(HashMap<String, Object> paramMap) {
-		// TODO Auto-generated method stub
+		adao.insertContent(paramMap);	
 		
 	}
 

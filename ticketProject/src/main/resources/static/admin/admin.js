@@ -48,15 +48,15 @@ function go_mov(){
 
 function go_save(){
 	var theForm = document.frm;  //폼객체를 변수에 저장하고 변수이름으로 객체를 사용
-	if (theForm.name.value == '') {
+	if (theForm.title.value == '') {
 		alert('공연명을 입력하세요.'); 	
-		theForm.name.focus();	
+		theForm.title.focus();	
 	} else if (theForm.content.value == '') {
 		alert('공연상세를 입력하세요.'); 		
 		theForm.content.focus();
-	//} else if (theForm.image.value == '') {
-		//alert('상품이미지들 입력하세요.'); 	
-		//theForm.image.focus();	
+	} else if (theForm.image.value == '') {
+		alert('상품이미지들 입력하세요.'); 	
+		theForm.image.focus();	
 	} else{
 		theForm.action = "contentWrite";
 		theForm.submit();
@@ -78,9 +78,9 @@ function go_mod(cseq){
 
 
 function go_mod_save(){
-	if (document.frm.name.value == '') {
+	if (document.frm.title.value == '') {
 		alert('공연명을 입력하세요');	  
-		document.frm.name.focus();
+		document.frm.title.focus();
 	 } else if (document.frm.content.value == '') {
 		alert('공연상세를 입력하세요');	  
 		document.frm.content.focus();
