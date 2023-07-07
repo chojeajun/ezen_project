@@ -260,7 +260,7 @@ public class ReviewController {
 		//조회한 게시물을 dto 로 옮겨 담습니다
 		ReviewVO dto = new ReviewVO();
 		dto.setRseq( Integer.parseInt(String.valueOf(rvo.get("RSEQ") ) ) );
-		dto.setPwd( (String)rvo.get("PASS") );
+		dto.setPwd( (String)rvo.get("PWD") );
 		dto.setId( (String)rvo.get("ID") );
 		dto.setTitle( (String)rvo.get("TITLE") );
 		dto.setContent( (String)rvo.get("CONTENT") );
