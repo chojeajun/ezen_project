@@ -5,14 +5,13 @@
 	<div class="review_content">
 		<h2 class="review_title">성공 후기 게시판</h2>
 		<h3>고객님들의 성공 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
-		<form name="rev_formm" method="get" class="review_form">
+		<form name="rev_formm" method="post" class="review_form" action="replyInsert">
 
 			<!-- <input type="hidden" name="command" value="replyInsert"> -->
-			<input type="hidden" name="rseq" value="${ SuccessVO.SUCSEQ }">
+			<input type="hidden" name="mseq" value="${ loginUser.MSEQ }">
+			<input type="hidden" name="sucseq" value="${ SuccessVO.SUCSEQ }">
 			
 			<table class="review_view_table">
-			
-			
 				<tr>
 					<th>번호</th>
 					<td>${SuccessVO.SUCSEQ }</td>
@@ -93,7 +92,7 @@
 				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>
 				<td><input type="text" name="reply" size="80"></td>
 				<td><input type="submit" value="답글 작성" 
-					onclick="return success_chk('${successVO.SUCSEQ}');"></td>
+					onclick="reply_chk();"></td>
 			</tr>
 		</table>
 			<div class="clear"></div>

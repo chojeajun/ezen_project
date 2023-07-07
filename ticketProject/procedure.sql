@@ -8,6 +8,8 @@ BEGIN
     OPEN p_cur FOR SELECT * FROM member WHERE id=p_id;
 END;
 
+select * from review_board;
+select * from success_board;
 
 commit;
 
@@ -81,6 +83,42 @@ BEGIN
     COMMIT;
 END;
 
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE insertReply(
+    p_rseq IN review_reply.rseq%TYPE,
+    p_mseq IN review_reply.mseq%TYPE,
+    p_replycontent IN review_reply.replycontent%TYPE
+)
+IS
+BEGIN
+    INSERT INTO review_reply(repseq, rseq, mseq, replycontent)
+    VALUES(REVIEW_REPLY_REPSEQ.nextVal, p_rseq, p_mseq, p_replycontent);
+    COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE insertSuccessReply(
+    p_sucseq IN success_reply.sucseq%TYPE,
+    p_mseq in success_reply.mseq%type,
+    p_successcontent IN success_reply.successcontent%TYPE
+)
+IS
+BEGIN
+    INSERT INTO success_reply(srseq, mseq, sucseq,  successcontent)
+    VALUES(SUCCESS_REPLY_SRSEQ.nextVal,  p_mseq, p_sucseq, p_successcontent );
+    COMMIT;
+END;
+
+commit;
+select * from success_reply;
+select * from review_reply;
+
+
+
 commit;
 
 
@@ -91,6 +129,7 @@ CREATE OR REPLACE PROCEDURE insertMember(
     p_pwd member.pwd%type,
     p_name member.name%type,
     p_nickname member.nickname%type,
+    p_gender member.gender%type,
     p_email member.email%type,
     p_phone member.phone%type,
     p_birth member.birth%type,
@@ -105,7 +144,7 @@ BEGIN
     VALUES( member_mseq.nextVal, p_id, p_pwd, p_name, p_nickname, p_gender, p_email, p_phone, p_birth, p_zip_num, p_address1, p_address2, p_address3);
     COMMIT;
 END;
-
+commit;
 update member set pwd = null where pwd = 'pwd';
 select * from member;
 commit;

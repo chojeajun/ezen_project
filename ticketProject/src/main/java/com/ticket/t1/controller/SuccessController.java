@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ticket.t1.dto.SuccessReplyVO;
 import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.service.SuccessService;
 import com.ticket.t1.util.Paging;
@@ -117,19 +118,28 @@ public class SuccessController {
 	
 	@RequestMapping("/replyInsert")
 	public String reply_insert( HttpServletRequest request,  
-		@RequestParam("sucseq") String seq,
-		@RequestParam("reply") String reply) {
+		SuccessReplyVO svo,
+		@RequestParam("reply") String reply
+//		@RequestParam("sucseq") String sucseq,
+//		@RequestParam("reply") String reply
+		) {
 		
 		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser
-			= (HashMap<String, Object>) session.getAttribute("loginUser");
+		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+//		System.out.println(svo.getId());
+//		System.out.println(svo.getMseq());
+		System.out.println("svo 내용은 ? ; " + svo);
+		svo.setReplycontent("reply");
+		System.out.println(reply);
 		if(loginUser == null) {
 			return "member/login";
 		}else {
 			
-			ss.insertReply(Integer.parseInt(seq), reply, (String)loginUser.get("NICKNAME"));
+			System.out.println("받았냐 말았냐 딱대" +  loginUser.get("ID"));
+			ss.insertSuccessReply(svo);
 			
-			return "redirect:/successView?sucseq=" + seq + "&isTrue='yes'";
+			return "redirect:/successView";
 		}
 		
 	}
