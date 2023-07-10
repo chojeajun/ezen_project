@@ -6,14 +6,26 @@
 		<h2>성공 후기 게시판</h2>
 		<h3>성공 후기를 작성할 수 있는 게시판 입니다.</h3>
 		<article>
-			<form name="formm" method="post" class="review_form review_write" enctype="multipart/form-data">
+			<form name="formm" method="post" class="review_form review_write">
 				<fieldset>
 					<legend></legend>
 					<table id="successList">
+					<tr>
+						<th>작성자</th>
+							<td>${loginUser.ID}
+								<input type="hidden" name="id" value="${loginUser.ID}">
+							</td>
+						</tr>
 						<tr>
 							<th>제목</th>
 							<td>
 								<input type="text" name="title">
+							</td>
+						</tr>
+						<tr>
+							<th>비밀번호</th>
+							<td>
+								<input type="password" name="pwd">
 							</td>
 						</tr>
 						<tr>
@@ -25,10 +37,10 @@
 						<tr>
 							<th>이미지업로드</th>
 							<td>
-								<div class="filebox">
-									<label for="file" style="width: 100%; text-align: left; padding-left: 20px;">첨부파일</label>
-									<input type="file" id="file" name="image" style="display: none;">
-								</div>
+								<input type="button" value="파일 선택" onClick="selectimg()">
+								<div id="image" style="float:left"></div>
+								<input type="hidden" name="imgfilename" >
+								<img src=""  id="previewimg" width="150" style="display:none" />
 							</td>
 						</tr>
 					</table>

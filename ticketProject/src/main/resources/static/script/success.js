@@ -28,7 +28,6 @@ function success_chk() {
 
 
 
-
  
  // 수정 버튼 클릭  // 수정 폼으로 이동
 function go_supd(sucseq) {
@@ -65,17 +64,34 @@ function success_delete(sucseq) {
 	}
 }
 
+
+/* success_board 이미지 업로드 */
+function selectimg(){
+	var opt = "toolbar=no,menubar=no,resizable=no,width=450,height=200";
+	window.open( 's_selectimg' , 'selectimg',  opt);
+}
+
+function selectedimage(){
+	document.frm.submit();
+}
+
+
+
+
+
+
+
 function success_write() {
-	var reviewForm = document.formm
-	if (reviewForm.title.value == "") {
+	var successForm = document.formm
+	if (successForm.title.value == "") {
 		alert("제목을 입력해주세요")
-		reviewForm.title.focus()
-	} else if (reviewForm.content.value == "") {
+		successForm.title.focus()
+	} else if (successForm.content.value == "") {
 		alert("내용을 입력해주세요")
-		reviewForm.content.focus()
+		successForm.content.focus()
 	}  else {
-		reviewForm.action = "successWrite";
-		reviewForm.submit();
+		successForm.action = "successWrite";
+		successForm.submit();
 	}
 
 }

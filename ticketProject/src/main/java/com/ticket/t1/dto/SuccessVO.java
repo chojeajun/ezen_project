@@ -17,6 +17,6 @@ public class SuccessVO {
    private char repyn;
    private String image;
    private int readcount;
-   
+   private String imgfilename;
  
 }
