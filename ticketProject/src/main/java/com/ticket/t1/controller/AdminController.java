@@ -1,6 +1,7 @@
 package com.ticket.t1.controller;
 
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.dto.AdminQnaReplyVO;
-import com.ticket.t1.dto.ReviewReplyVO;
 import com.ticket.t1.service.AdminService;
 import com.ticket.t1.service.ContentService;
 import com.ticket.t1.service.QnaService;
@@ -378,12 +378,17 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
-	public String adminQnaRepSave( @RequestParam("qseq") int qseq,
-								@RequestParam("reply") int reply ) {
+	public String adminQnaRepSave( @RequestParam("qseq") String qseq,
+								@RequestParam("reply") String reply ) {
+		
+		
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
 		paramMap.put("reply", reply);
+		
+	
+
 		
 		as.updateQna( paramMap );
 		return "redirect:/adminQnaView?qseq=" + qseq;
