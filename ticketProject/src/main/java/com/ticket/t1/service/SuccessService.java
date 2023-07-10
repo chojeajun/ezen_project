@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,6 +90,11 @@ public class SuccessService {
 
 	public void getSuccessWithoutCount(HashMap<String, Object> paramMap) {
 		sucdao.getSuccessListBySucseq(paramMap);
+		
+	}
+
+	public void insertSuccess(HashMap<String, Object> paramMap) {
+		sucdao.insertSuccessBoard(paramMap);
 		
 	}
 

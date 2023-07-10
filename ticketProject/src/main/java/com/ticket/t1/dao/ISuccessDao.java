@@ -27,5 +27,7 @@ public interface ISuccessDao {
 	int getAllCount(String string);
 
 	void insertSuccessReply(SuccessReplyVO svo);
+
+	void insertSuccessBoard(HashMap<String, Object> paramMap);
 	
 }
