@@ -119,7 +119,7 @@ function selectimg(){
 }
 
 function selectedimage(){
-	document.formm.submit();
+	document.frm.submit();
 }
 
 

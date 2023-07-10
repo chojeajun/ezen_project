@@ -1,17 +1,26 @@
 package com.ticket.t1.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.dto.SuccessReplyVO;
@@ -34,7 +43,7 @@ public class SuccessController {
 		HashMap<String, Object> loginUser = (HashMap<String, Object>) session.getAttribute("loginUser");
 		
 		ModelAndView mav = new ModelAndView();
-		System.out.println("로그인유저 떤냐?" + loginUser);
+		//System.out.println("로그인유저 떤냐?" + loginUser);
 		if(loginUser == null) {
 			mav.setViewName("member/login");
 		} else {
@@ -94,10 +103,109 @@ public class SuccessController {
 			mav.setViewName("success/successView");
 			
 		}
-
 		return mav;
-
 	}
+	
+	
+	@RequestMapping("/successWriteForm")
+	public String success_write_form(Model model , HttpServletRequest request	) {
+		
+		HttpSession session = request.getSession();
+		//MemberVO mvo = (MemberVO) session.getAttribute("loginUser"); 없음
+		// 존재하지 않는 세션값을 가지고오니 null 이 아닌 오류뜸
+		//System.out.println("mvo 에서 받아온 로그인유저 세션" +  mvo);
+		
+		HashMap<String, Object> loginUser = (HashMap<String , Object>) session.getAttribute("loginUser");
+		System.out.println("hashmap 으로 받아온 로그인유저 세션" +  loginUser);
+		
+		if(loginUser == null) {
+			return "member/login";
+		} else {
+			return "success/successWriteForm";
+		}	
+	}
+	
+
+	
+	
+	@RequestMapping("/s_selectimg")
+	public String selectimg() {
+		return "success/selectimg";
+	}
+	
+	@Autowired
+	ServletContext context;
+	
+	@RequestMapping(value="/s_fileupload" , method = RequestMethod.POST)
+	public String fileupload(
+				@RequestParam("image") MultipartFile file, 
+				Model model, HttpServletRequest request) {
+		
+		String path = context.getRealPath("/upload");
+		//System.out.println("path = " + path);
+		//System.out.println("multipartFile = " + file);
+		
+		Calendar today = Calendar.getInstance();
+		long t = today.getTimeInMillis();
+		String filename = file.getOriginalFilename();// 파일 이름 추출
+		String fn1 = filename.substring(0, filename.indexOf("."));	//파일이름과 확장자 분리
+		String fn2 = filename.substring(filename.indexOf(".")+1);
+		
+		if(!file.isEmpty()) {		//업로드할 파일이 존재한다면
+			String uploadPath = path + "/" + fn1 + t + "." + fn2;
+			System.out.println("파일 저장 경로 = " + uploadPath);
+			try {
+				file.transferTo(new File(uploadPath));
+			} catch (IllegalStateException e) {e.printStackTrace();
+			} catch (IOException e) {e.printStackTrace();
+			}
+		}
+		model.addAttribute("image", fn1 + t + "." + fn2);
+		return "review/completupload";
+	}
+	
+	
+	
+	
+	@RequestMapping( value="/successWrite", method=RequestMethod.POST)
+	public String success_write_form( 
+			@ModelAttribute("dto") @Valid SuccessVO successvo, BindingResult result,
+			Model model, HttpServletRequest request ) {
+
+		String url = "success/successWriteForm";
+		if( result.getFieldError("pwd") != null ) {
+			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+		}else if( result.getFieldError("title")!=null) {
+			model.addAttribute("message", result.getFieldError("title").getDefaultMessage() );
+		}else if( result.getFieldError("content")!=null)
+			model.addAttribute("message", result.getFieldError("content").getDefaultMessage() );
+		else {
+			System.out.println("성공후기 작성 ㄱㄱ");
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("mseq", successvo.getMseq());
+			paramMap.put("id", successvo.getId());
+			paramMap.put("pwd", successvo.getPwd());
+			paramMap.put("content", successvo.getContent());
+			paramMap.put("title", successvo.getTitle());
+			System.out.println("들어간 것들" + paramMap);
+			if(successvo.getImgfilename() == null) paramMap.put("imgfilename", "");
+			else paramMap.put("imgfilename", successvo.getImgfilename());
+			ss.insertSuccess(paramMap);
+			url = "redirect:/successList";
+		}
+
+
+		return url;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/successReplyDelete")
 	public String success_reply_delete(@RequestParam("srseq") int srseq,
@@ -127,7 +235,7 @@ public class SuccessController {
 			return "member/login";
 		}else {
 			
-			System.out.println("받았냐 말았냐 딱대" +  loginUser.get("ID"));
+			//System.out.println("받았냐 말았냐 딱대" +  loginUser.get("ID"));
 			ss.insertSuccessReply(svo);
 			
 			return "redirect:/successView?sucseq=" + svo.getSucseq() + "&isTrue=1";

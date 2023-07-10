@@ -20,7 +20,7 @@
 <div align="center">
 	<h1>비밀번호 확인</h1>
 	<form action ="qnaCheckPass" method="post" name="frm">
-		<input type="hidden" name="qseq" value="${param.qseq}">		
+		<input type="hidden" name="qseq" value="${qseq}">		
 		<table style="width:80%">
 				<tr>	<th>열람 비밀번호</th>
 					<td><input type="password" name="pass" size="20"></td>	</tr>

@@ -25,6 +25,7 @@
 <script src="script/jquery-3.7.0.min.js"></script>
 
 <script type="text/javascript" src="/script/main.js"></script>
+<script type="text/javascript" src="/script/qna.js"></script>
 <script type="text/javascript" src="./script/member.js"></script>
 <script type="text/javascript" src="/script/cartlist.js"></script>
 <script type="text/javascript" src="/script/apply_register.js"></script>
