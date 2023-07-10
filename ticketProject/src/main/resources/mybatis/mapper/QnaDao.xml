@@ -19,16 +19,15 @@
 	<select id="listQna" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  
 			CALL listQna( 
-					#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
 			)  
 		}
 	</select>
 	
-	
 	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ 
 			CALL insertQna(  
-				#{id}, #{check} , #{pass}, #{subject}, #{content}   
+				#{id}, #{passCheck} , #{pass}, #{subject}, #{content}   
 			) 
 		}
 	</insert>
@@ -41,18 +40,10 @@
 		}
 	</select>
 	
-	<insert id="insertQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
-		{
-			CALL insertQna(
-				 #{ mseq }, #{ id }, #{ pwd }, #{ title }, #{ content }  
-			)
-		}
-	</insert>
-	
 	<update id="updateQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
 			CALL updateQna( 
-				#{qseq}, #{mseq}, #{ id }, #{ pwd }, #{ title }, #{ content }
+				#{qseq}, #{ id }, #{ pass }, #{ subject }, #{ content }
 			)
 		}
 	</update>

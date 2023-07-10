@@ -18,7 +18,7 @@
 	
 	<select id="selectReview"  statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{
-			CALL selectBoard(
+			CALL selectReview(
 				#{startNum}, #{endNum},
 				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=ReviewMap}
 			)

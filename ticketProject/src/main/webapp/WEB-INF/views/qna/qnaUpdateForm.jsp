@@ -17,7 +17,7 @@
 				<tr>
 					<th>비번</th>
 					<td>
-						<input type="password" name="pwd" size="12">* 필수 (게시물 수정 삭제시 필요합니다.)
+						<input type="password" name="pass" size="12">* 필수 (게시물 수정 삭제시 필요합니다.)
 					</td>
 				</tr>
 				<tr>

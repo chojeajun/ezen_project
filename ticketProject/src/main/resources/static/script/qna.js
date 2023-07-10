@@ -80,38 +80,48 @@ function qnaCheck(){
 	return true;
 }
 
+function enabled() {
+	if(document.formm.passCheck.checked==true) {
+		document.formm.pass.disabled = false;
+	} else {
+		document.formm.pass.disabled = true;
+		document.formm.pass.value="";
+	}
+}
 
-function reply_check(){
+function open_win(url, name) {
+	window.open( url , name , "toolbar=no, menubar=no, scrollbars=no, "
+				+ " resizable=no, width=500, height=230");
+}
+
+function passCheck(qseq){
+	var url = "passCheck?qseq=" + qseq;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+	window.open(url, "passCheck", opt);
+}
+
+/*function reply_check(){
 	if( document.frm_reply.reply.value=='' ){
 		alert("댓글 내용을 입력하세요");
 		document.frm_reply.reply.focus();
 		return false;
 	}
 	return true;
-}
+}*/
 
 
 
-function checkPass( qnanum,  popupWinName ){
+/*function checkPass( qnanum,  popupWinName ){
 	console.log(qnanum);
 	var url = "ticket.do?command=qnaPassForm&qseq=" + qnanum;
 	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=500, height=300";
 	window.open( url, popupWinName , opt);
-}
+}*/
 
 
-
-function passCheck(){
-	if (document.frm.pwd.value.length == 0) {
-		alert("비밀번호를 입력하세요.");
-		document.frm.pwd.focus();
-		return false;
-	}
-	return true;
-}
 
 //  리뷰수정 버튼 클릭  // 수정 폼으로 이동
-function go_upd(qseq) {
+/*function go_upd(qseq) {
 	var url = "ticket.do?command=qnaEditForm&rseq=" + qseq
 	location.href = url
 }
@@ -140,10 +150,10 @@ function reply_update() {
 		document.formm.submit();
 	}
 }
-
+*/
 
 // 작성 아이디와 로그인한 아이디가 일치하지 않는다면 수정하기 버튼 자체를 노출시키지 않음
-function qna_update() {
+/*function qna_update() {
 	if(document.formm.subject.value == "" ) {
 		alert("제목은 필수 입력 사항입니다.");
 		document.formm.subject.focus();
@@ -158,11 +168,11 @@ function qna_update() {
 			document.formm.submit();
 		}
 	}
-}
+}*/
 
 
 /* 리뷰 삭제  */
-function review_delete(qseq) {
+/*function review_delete(qseq) {
 	console.log(document.formm.qseq);
 	console.log(document.formm.qseq.value);
 	if(confirm("정말 삭제하시겠습니까?")) {
@@ -170,7 +180,7 @@ function review_delete(qseq) {
 		document.formm.action ="ticket.do?command=qnaDelete&qseq=" + qseq;
 		document.formm.submit();
 	}
-}
+}*/
 
 
 
@@ -184,7 +194,7 @@ function review_delete(qseq) {
 
 
 /* review reply 리뷰댓글작성 */
-function reply_chk() {
+/*function reply_chk() {
 	if(document.rev_formm.reply.value == "") {
 		alert("댓글 내용을 입력해주세요");
 		document.rev_formm.reply.focus();
@@ -196,4 +206,4 @@ function reply_chk() {
 function go_wrt(){
 	document.frm.action = "qnaWrite";
 	document.frm.submit();
-}
+}*/
