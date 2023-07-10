@@ -15,7 +15,7 @@
 											<a href="#" onClick="passCheck('${qnaVO.QSEQ}')">
 												${qnaVO.SUBJECT}
 											</a>
-											<!--&nbsp;<img src="/images/key.png" style="width:20px;vertical-align: middle">-->
+											&nbsp;<img src="/images/key.png" style="width:20px;vertical-align: middle">
 									</c:when>
 									<c:otherwise>
 											<a href="qnaView?qseq=${qnaVO.QSEQ}">${qnaVO.SUBJECT}</a>
@@ -35,18 +35,18 @@
 		</table>
 			<div class="clear"></div>
 			<div id="paging" style="font-size: 120%; font-weight: bold; margin-left: 450px;">
-				<c:url var="action" value="ticket.do?command=qnaList" />
+				<c:url var="action" value="qnaList" />
 				<c:if test="${paging.prev}">
-					<a href="${action }&page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>
+					<a href="${action }?page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>
 				<c:forEach begin="${paging.beginPage }" end="${paging.endPage }" var="index">
 					<c:choose>
 						<c:when test="${paging.page==index }">[${index }]</c:when>
 						<c:otherwise>
-							<a href="${action }&page=${index}">${index }</a> &nbsp;</c:otherwise>
+							<a href="${action }?page=${index}">${index }</a> &nbsp;</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:if test="${paging.next }">
-					<a href="${action }&page=${paging.endPage+1}">▶</a> &nbsp;</c:if>
+					<a href="${action }?page=${paging.endPage+1}">▶</a> &nbsp;</c:if>
 			</div>
 			<div class="clear"></div>
 			<br>

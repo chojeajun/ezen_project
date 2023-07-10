@@ -10,7 +10,7 @@
     	<label>Title</label><input type="text" name="subject"  size="60" ><br>
     	
     	<label>Secret mode</label>
-    		<input name="check" type="checkbox" value="secret" onchange="enabled()">
+    		<input name="passCheck" type="checkbox" value="secret" onclick="enabled()">
     			&nbsp;비밀글로 하기&nbsp;&nbsp;
     		<input name="pass" type="password" size="15" disabled="disabled"><br>
     	
@@ -20,10 +20,10 @@
     <div id="buttons" style="float:right">
 	    <input type="submit"  value="글쓰기"     class="submit"> 
     	<input type="reset"   value="취소"     class="cancel">
-    	<input type="button"  value="목록보기"  class="submit"  onclick="location.href='ticket.do?command=qnaList'">
+    	<input type="button"  value="목록보기"  class="submit"  onclick="qnaList'">
     </div>
     </form>
     </div>
     </div>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../footer.jsp" %>
