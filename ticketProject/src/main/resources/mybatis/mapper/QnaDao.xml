@@ -41,13 +41,6 @@
 		}
 	</select>
 	
-	<insert id="insertQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
-		{
-			CALL insertQna(
-				 #{ mseq }, #{ id }, #{ pwd }, #{ title }, #{ content }  
-			)
-		}
-	</insert>
 	
 	<update id="updateQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
@@ -64,6 +57,7 @@
 			) 
 		}
 	</delete>
+	
 	
 </mapper>
 

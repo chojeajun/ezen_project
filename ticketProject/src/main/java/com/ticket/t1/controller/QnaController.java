@@ -220,6 +220,7 @@ public class QnaController {
 		QnaVO dto = new QnaVO();
 		dto.setQseq( Integer.parseInt(String.valueOf(rvo.get("QSEQ") ) ) );
 		dto.setPwd( (String)rvo.get("PWD") );
+		dto.setPwd( (String)rvo.get("PWD") );
 		dto.setId( (String)rvo.get("ID") );
 		dto.setTitle( (String)rvo.get("TITLE") );
 		dto.setContent( (String)rvo.get("CONTENT") );

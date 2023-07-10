@@ -137,9 +137,13 @@ function go_rep(){
 
 
 
-
-
-
+function reply_chk1() {
+	if(document.frm.reply.value == "") {
+		alert("댓글 내용을 입력해주세요");
+		return false;
+	}
+	return true;
+}
 
 
 function go_banner_save(){

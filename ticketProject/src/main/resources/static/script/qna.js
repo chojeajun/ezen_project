@@ -82,9 +82,9 @@ function qnaCheck(){
 
 
 function reply_check(){
-	if( document.frm_reply.reply.value=='' ){
+	if( document.frm.reply.value=='' ){
 		alert("댓글 내용을 입력하세요");
-		document.frm_reply.reply.focus();
+		document.frm.reply.focus();
 		return false;
 	}
 	return true;

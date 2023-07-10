@@ -152,7 +152,21 @@
 	</insert>
 	
 	
+		<insert id="insertReply" statementType="CALLABLE"   parameterType="java.util.HashMap" >
+		{
+			CALL insertReply(
+				#{ qseq }, #{ mseq }, #{ replycontent } 
+			)
+		}
+	</insert>
 	
+	<delete id="deleteReply" statementType="CALLABLE"  parameterType="java.util.HashMap">
+		{ 
+			CALL deleteReply( 
+				#{repseq} 
+			)  
+		}
+	</delete>
 	
 </mapper>
 
