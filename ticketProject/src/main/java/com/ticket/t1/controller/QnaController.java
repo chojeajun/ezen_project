@@ -171,42 +171,6 @@ public class QnaController {
 		return mav;
 	}
 	
-	/*
-	 * @RequestMapping("/qnaUpdateForm") public String qna_update_form(
-	 * 
-	 * @RequestParam("qseq") int qseq, Model model, HttpServletRequest request) {
-	 * 
-	 * 
-	 * HashMap<String, Object> paramMap = new HashMap<String, Object>();
-	 * paramMap.put("qseq", qseq); paramMap.put("ref_cursor", null); ArrayList<
-	 * HashMap<String, Object> > list = (ArrayList< HashMap<String, Object>
-	 * >)paramMap.get("ref_cursor"); HashMap<String, Object> qvo = list.get(0);
-	 * 
-	 * //조회한 게시물을 dto 로 옮겨 담습니다 QnaVO dto = new QnaVO(); dto.setQseq(
-	 * Integer.parseInt(String.valueOf(qvo.get("QSEQ") ) ) ); dto.setPass(
-	 * (String)qvo.get("PASS") ); dto.setId( (String)qvo.get("ID") );
-	 * dto.setSubject( (String)qvo.get("SUBJECT") ); dto.setContent(
-	 * (String)qvo.get("CONTENT") ); model.addAttribute("qseq", qseq);
-	 * model.addAttribute("dto", dto); return "qna/qnaUpdateForm"; }
-	 * 
-	 * @RequestMapping(value="/qnaUpdate", method = RequestMethod.POST) public
-	 * String qnaUpdate(
-	 * 
-	 * @ModelAttribute("dto") @Valid QnaVO qnavo, BindingResult result,
-	 * HttpServletRequest request, Model model) {
-	 * 
-	 * String url = "qna/qnaUpdateForm"; if(result.getFieldError("pass")!=null)
-	 * model.addAttribute("message", "비밀번호는 게시물 수정 삭제시 필요합니다" ); else
-	 * if(result.getFieldError("subject")!=null) model.addAttribute("message" ,
-	 * "제목은 필수입력 사항입니다"); else if(result.getFieldError("content")!=null)
-	 * model.addAttribute("message" , "게시물 내용은 비워둘수 없습니다"); else { HashMap<String,
-	 * Object> paramMap = new HashMap<String, Object>(); paramMap.put("qseq",
-	 * qnavo.getQseq()); paramMap.put("id", qnavo.getId()); paramMap.put("pass",
-	 * qnavo.getPass()); paramMap.put("subject", qnavo.getSubject());
-	 * paramMap.put("content", qnavo.getContent()); qs.updateQna( paramMap ); url =
-	 * "redirect:/qnaView?qseq=" + qnavo.getQseq(); } return url; }
-	 */
-	
 	@RequestMapping("qnaDelete")
 	public String review_delete_form(@RequestParam("qseq") int qseq,
 			Model model, HttpServletRequest request) {

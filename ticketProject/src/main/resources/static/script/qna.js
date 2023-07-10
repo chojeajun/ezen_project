@@ -94,6 +94,7 @@ function open_win(url, name) {
 				+ " resizable=no, width=500, height=230");
 }
 
+
 function passCheck(qseq){
 	var url = "passCheck?qseq=" + qseq;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
@@ -103,7 +104,7 @@ function passCheck(qseq){
 /*function reply_check(){
 	if( document.frm_reply.reply.value=='' ){
 		alert("댓글 내용을 입력하세요");
-		document.frm_reply.reply.focus();
+		document.frm.reply.focus();
 		return false;
 	}
 	return true;
