@@ -74,7 +74,10 @@ function product_update() {
 }
 
 function go_rep(){
-	document.frm.action = "adminQnaRepSave";
+	var qseq = document.frm.qseq.value;
+	var reply = document.frm.reply.value;
+	alert(qseq + " " + reply);
+	document.frm.action = "adminQnaRepSave?qseq=" + qseq + "&reply=" + reply;
 	document.frm.submit();
 }
 

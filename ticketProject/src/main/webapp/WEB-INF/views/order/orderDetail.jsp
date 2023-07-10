@@ -28,7 +28,8 @@
 				</ul>
 	</div>
 </section>
-<input type="button" class="goOrderView" value="목록" onclick="location.href='/myOrderView'"/>
+<input type="button" class="goOrderView" style="width: 100px; height: 50px; background: yellow; font-weight: bold;
+    margin-left: 1000px; margin-top: 50px;" value="목록" onclick="location.href='/myOrderView'" />
 </form>
 
 <%@ include file="../footer.jsp" %>

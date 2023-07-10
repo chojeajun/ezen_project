@@ -151,6 +151,13 @@
 		}
 	</insert>
 	
+
+	<update id="updateQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL updateQna( #{qseq}, #{reply} )
+		}
+	</update>
+
 	
 		<insert id="insertReply" statementType="CALLABLE"   parameterType="java.util.HashMap" >
 		{

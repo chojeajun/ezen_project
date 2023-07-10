@@ -5,7 +5,7 @@
 <article>
 <h1>Q&amp;A 게시판</h1>   
 <form name="frm" method="post">
-	<input type="hidden" name="qseq" value="${qnaVO.qseq}">
+	<input type="hidden" name="qseq" value="${qnaVO.QSEQ}">
 	<table id="qnaList"> <!-- 게시물의 내용 -->
 	
 		<!--  <tr><th width="20%">제목</th><td align="left">${QnaVO.SUBJECT} ${qnaVO.REP}</td>-->

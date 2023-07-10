@@ -270,7 +270,7 @@ public class AdminService {
 
 
 	public void updateQna(HashMap<String, Object> paramMap) {
-		// TODO Auto-generated method stub
+		adao.updateQna( paramMap );
 		
 	}
 

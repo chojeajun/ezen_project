@@ -33,6 +33,7 @@ public interface IAdminDao {
 	void getBannerList(HashMap<String, Object> paramMap);
 	void insertBanner(HashMap<String, Object> paramMap);
 	void updateSeq(HashMap<String, Object> paramMap);
+	void updateQna(HashMap<String, Object> paramMap);
     
 
 
