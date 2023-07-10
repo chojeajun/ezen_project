@@ -110,7 +110,7 @@ public class OrderController {
 			mav.setViewName("member/login");
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("mseq", loginUser.get("MSEQ"));
+			paramMap.put("mseq", Integer.parseInt(loginUser.get("MSEQ").toString()));
 			paramMap.put("ref_cursor", null);
 			
 			os.getOrderViewByMyMseq(paramMap);

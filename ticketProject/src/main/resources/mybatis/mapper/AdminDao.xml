@@ -151,7 +151,11 @@
 		}
 	</insert>
 	
-	
+	<update id="updateQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL updateQna( #{qseq}, #{reply} )
+		}
+	</update>
 	
 	
 </mapper>

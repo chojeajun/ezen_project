@@ -41,13 +41,13 @@
 		}
 	</select>
 	
-	<insert id="insertQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
+	<!-- <insert id="insertQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
 			CALL insertQna(
 				 #{ mseq }, #{ id }, #{ pwd }, #{ title }, #{ content }  
 			)
 		}
-	</insert>
+	</insert> -->
 	
 	<update id="updateQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{

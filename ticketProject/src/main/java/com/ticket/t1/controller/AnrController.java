@@ -318,6 +318,7 @@ public class AnrController {
 					int mseq2 = Integer.parseInt(smseq2);
 					as.insertCart(mseq, cseq, date, time, area, mseq2, Integer.parseInt(quantity), locationNum);
 				} else {
+					System.out.println("time=================" + time);
 					as.insertCart(mseq, cseq, date, time, area, Integer.parseInt(quantity), locationNum);
 				}
 			} else {
