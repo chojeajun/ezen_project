@@ -10,8 +10,13 @@ END;
 
 select * from review_board;
 select * from success_board;
+commit;
+alter table success_board add imgfilename varchar2(100);
 
 commit;
+
+select * from qna;
+select * from qna_board;
 
 select * from banner;
 select * from success_board;
@@ -46,7 +51,7 @@ select * from (  select rownum rn, s.* from ( (select * from success_board order
 
 
 
-
+ select * from content;
 CREATE OR REPLACE PROCEDURE getAdmin(
     p_id IN   worker.id%TYPE,
     p_rc   OUT     SYS_REFCURSOR )
@@ -89,20 +94,20 @@ END;
 
 
 
-CREATE OR REPLACE PROCEDURE insertReply(
-    p_rseq IN review_reply.rseq%TYPE,
-    p_mseq IN review_reply.mseq%TYPE,
-    p_replycontent IN review_reply.replycontent%TYPE
-)
-IS
-BEGIN
-    INSERT INTO review_reply(repseq, rseq, mseq, replycontent)
-    VALUES(REVIEW_REPLY_REPSEQ.nextVal, p_rseq, p_mseq, p_replycontent);
-    COMMIT;
-END;
+--CREATE OR REPLACE PROCEDURE insertReply(
+--    p_rseq IN review_reply.rseq%TYPE,
+--    p_mseq IN review_reply.mseq%TYPE,
+--    p_replycontent IN review_reply.replycontent%TYPE
+--)
+--IS
+--BEGIN
+--    INSERT INTO review_reply(repseq, rseq, mseq, replycontent)
+--    VALUES(REVIEW_REPLY_REPSEQ.nextVal, p_rseq, p_mseq, p_replycontent);
+--    COMMIT;
+--END;
 
 
-
+-- 성공후기 댓글추가
 CREATE OR REPLACE PROCEDURE insertSuccessReply(
     p_sucseq IN success_board.sucseq%TYPE,
     p_mseq in success_reply.mseq%type,
@@ -122,7 +127,7 @@ select * from success_reply;
 commit;
 select * from success_reply;
 select * from review_reply;
-
+select  *from content;
 
 
 commit;
@@ -224,3 +229,31 @@ SELECT *
   FROM all_sequences
  WHERE sequence_name = 'member_mseq';
 
+
+
+
+
+
+select * from success_board;
+-- 성공후기 작성 프로시져 ㅇㅋㅅㄱ
+create or replace PROCEDURE insertSuccessBoard(
+    p_mseq IN success_BOARD.mseq%type,
+    p_id IN success_BOARD.id%type,
+    p_pwd IN success_BOARD.pwd%type,
+    p_title IN success_BOARD.title%type,
+    p_content IN success_BOARD.content%type,
+    p_imgfilename IN success_BOARD.imgfilename%type
+)
+IS
+BEGIN
+    INSERT INTO success_board( sucseq, mseq, id, pwd, title, content, imgfilename )
+    VALUES( success_board_sucseq.nextVal, p_mseq, p_id, p_pwd, p_title, p_content, p_imgfilename );
+    COMMIT;
+END;
+
+
+
+
+
+
+commit;

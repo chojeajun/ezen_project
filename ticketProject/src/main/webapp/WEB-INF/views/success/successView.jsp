@@ -44,7 +44,16 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td align="left" style=" color: white;"><img src="/images/content/${SuccessVO.IMAGE }" style="width:200px; "></td>
+					<td align="left" style=" color: white;">
+					<c:choose>
+							<c:when test="${empty SuccessVO.IMGFILENAME}">
+								<img src="/upload/noname.jpg"  width="250">
+							</c:when>
+							<c:otherwise>
+								<img src="/upload/${SuccessVO.IMGFILENAME}" width="250">
+							</c:otherwise>
+					</c:choose>
+					</td>
 				</tr>
 <!-- 				<tr> -->
 <!-- 					<th>댓글</th> -->

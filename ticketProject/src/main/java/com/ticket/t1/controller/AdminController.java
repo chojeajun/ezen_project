@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ticket.t1.dto.AdminQnaReplyVO;
+import com.ticket.t1.dto.ReviewReplyVO;
 import com.ticket.t1.service.AdminService;
 import com.ticket.t1.service.ContentService;
 import com.ticket.t1.service.QnaService;
@@ -377,7 +379,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
 	public String adminQnaRepSave( @RequestParam("qseq") int qseq,
-								@RequestParam("reply") String reply ) {
+								@RequestParam("reply") int reply ) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
@@ -428,6 +430,39 @@ public class AdminController {
 		return "redirect:/adminBannerList";
 	}
 	
+	@RequestMapping("/addReply1")
+	public String addReply( AdminQnaReplyVO qvo, HttpServletRequest request ) {
+		System.out.println(qvo.getId());
+		System.out.println(qvo.getQseq());
+		as.insertReply( qvo );
+		
+		return "redirect:/reviewViewWithoutCount?qseq=" + qvo.getQseq();
+	}
+	
+	@RequestMapping("/reviewViewWithoutCount1")
+	public ModelAndView reviewViewWithoutCount( @RequestParam("qseq") int qseq , 
+			HttpServletRequest request, Model model ) {
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qseq", qseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		as.getReviewWithoutCount( paramMap );
+		
+		ArrayList<HashMap<String, Object>> list1
+	 		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		
+		ArrayList<HashMap<String, Object>> list2
+ 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+		
+		mav.addObject("QnaVO" , list1.get(0) );
+		mav.addObject("replyList", list2 );
+		mav.setViewName("qna/qnaView");	
+		
+		return mav;
+		
+	}
 	
 	
 	@RequestMapping("/chane_order")

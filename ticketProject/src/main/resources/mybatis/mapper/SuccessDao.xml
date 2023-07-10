@@ -70,5 +70,23 @@
 			)
 		}
 	</insert>
+	
+	
+	<insert id="insertSuccessBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL insertSuccessBoard(
+				#{ mseq }, #{ id }, #{ pwd }, #{ title }, #{ content },  #{ imgfilename }
+			)
+		}
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

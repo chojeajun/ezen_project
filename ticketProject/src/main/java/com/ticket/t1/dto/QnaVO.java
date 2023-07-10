@@ -12,9 +12,10 @@ public class QnaVO {
 	private String subject;
 	private String title;
 	private String content;
-	private String reply;
+	private Integer reply;
 	private String id;
-	private String pwd;
+	private String pass;
+	private String passcheck;
 	private String repyn;
 	private Timestamp indate;
 	private String num;

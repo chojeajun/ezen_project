@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.t1.dao.IAdminDao;
+import com.ticket.t1.dto.AdminQnaReplyVO;
 import com.ticket.t1.util.Paging;
 
 
@@ -270,6 +271,18 @@ public class AdminService {
 
 	public void updateQna(HashMap<String, Object> paramMap) {
 		adao.updateQna( paramMap );
+		
+	}
+
+
+
+	public void insertReply(AdminQnaReplyVO qvo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void getReviewWithoutCount(HashMap<String, Object> paramMap) {
+		// TODO Auto-generated method stub
 		
 	}
 
