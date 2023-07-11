@@ -1,6 +1,7 @@
 package com.ticket.t1.controller;
 
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -387,13 +388,13 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
+
 	public String adminQnaRepSave( @RequestParam("qseq") int qseq,
 								@RequestParam("reply") String reply ) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
 		paramMap.put("reply", reply);
-		 
 		as.updateQna( paramMap );
 		return "redirect:/adminQnaView?qseq=" + qseq;
 	}
@@ -492,6 +493,7 @@ public class AdminController {
 		return "redirect:/adminBannerList";
 	}
 	
+
 	
 	@RequestMapping("/reviewList1")
 	public ModelAndView review_list(HttpServletRequest request) {
@@ -618,6 +620,20 @@ public class AdminController {
 			
 		}
 		return mav;
+  }
+  
+	@RequestMapping("/adminQnaDelete")
+	public String admin_qna_delete( HttpServletRequest request,
+			@RequestParam("qseq") int qseq) {
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin") == null ) {
+			return "admin/adminLoginForm";
+		}else {
+			as.deleteAdminQnaRep(qseq);
+			return "redirect:/adminQnaView?qseq=" + qseq;
+		}
+
 	}
 
 	

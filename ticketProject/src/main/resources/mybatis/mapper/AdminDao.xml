@@ -175,6 +175,9 @@
 		}
 	</delete>
 	
+	<update id="deleteAdminQnaRep">
+		update qna set reply = null, rep = '1' where qseq = #{param}
+	</update>
 </mapper>
 
 

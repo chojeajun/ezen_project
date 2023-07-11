@@ -43,6 +43,8 @@ public interface IAdminDao {
 	void getSuccessListBySucseq(HashMap<String, Object> paramMap);
 	void getReplyList(HashMap<String, Object> paramMap);
 	void getReplyMember(HashMap<String, Object> paramMap);
+	void deleteAdminQnaRep(int qseq);
+
     
 
 

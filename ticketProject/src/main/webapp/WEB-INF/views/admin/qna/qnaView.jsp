@@ -21,7 +21,7 @@
 <!-- 관리자가 쓴 답글 또는 답글 쓰는 입력란 표시 -->
 	<c:choose>          
 		<c:when test='${qnaVO.REP=="1"}'> <!-- 관리자 답변 전 표시 -->
-			<table id="orderList">
+			<table id="qnaList">
 				<tr><td colspan="2"><img src="admin/opinionimg01.gif"></td></tr>
 	    		<tr><td colspan="2"><textarea name="reply" rows="3" cols="50"></textarea>
 	   				<input type="button" class="btn" value="저장" onClick="go_rep()"></td></tr>
@@ -31,9 +31,13 @@
 			<table id="orderList"><tr><th>댓글</th><td>${qnaVO.REPLY}</td></tr>
 			<input type="button" value="삭제" onclick="location.href='qnaReplyDelete?srseq=${ reply.SRSEQ }&qseq=${ qnaVO.QSEQ }'">
 			</table>
+			<table id="qnaList"><tr><th>댓글</th><td>${qnaVO.REPLY}</td></tr></table>
 		</c:otherwise>
 	</c:choose>
 	<input type="button" class="btn" value="목록" 	onClick="location.href='adminQnaList'">
+	<c:if test='${qnaVO.REP=="2" }'>
+		<input type="button" class="btn" value="삭제" 	onClick="location.href='adminQnaDelete?qseq=${qnaVO.QSEQ}'">
+	</c:if>
 </form>
 </article>
 

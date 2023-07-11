@@ -5,7 +5,7 @@
 	<div class="review_content">
 		<h2 class="review_title">후기 게시판</h2>
 		<h3>고객님들의 티켓팅 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
-		<form name="formm" method="post" class="review_form" action="reviewUpdate">
+		<form name="formm" method="post" class="review_form" action="successUpdate">
 			<input type="hidden" name="sucseq" value="${ dto.sucseq }">
 			<table class="review_update_table review_view_table"> 
 				<tr>

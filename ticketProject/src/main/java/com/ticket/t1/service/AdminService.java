@@ -288,6 +288,7 @@ public class AdminService {
 		
 	}
 
+
 	public void selectReview(HashMap<String, Object> paramMap) {
 		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
 		HttpSession session = request.getSession();
@@ -389,6 +390,10 @@ public class AdminService {
 
 	public void getReplyMember(HashMap<String, Object> paramMap) {
 		adao.getReplyMember( paramMap );
+
+	public void deleteAdminQnaRep(int qseq) {
+		adao.deleteAdminQnaRep(qseq);
+
 		
 	}
 

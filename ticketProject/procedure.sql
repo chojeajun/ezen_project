@@ -1,4 +1,4 @@
-
+-- 멤버 회원 리스트 아이디 조회 
 CREATE OR REPLACE PROCEDURE getMember(
     p_id IN member.id%type,
     p_cur OUT SYS_REFCURSOR
@@ -11,12 +11,16 @@ END;
 select * from review_board;
 select * from success_board;
 commit;
+-- 성공후기 테이블에 IMGFILENAME 이라는 칼럼 추가 
 alter table success_board add imgfilename varchar2(100);
 
 commit;
 
 select * from qna;
 select * from qna_board;
+
+select * from success_reply;
+select * from member;
 
 select * from banner;
 select * from success_board;
@@ -25,7 +29,7 @@ select * from member;
 alter table member add provider varchar2(100);
 
 select * from banner;
-
+-- 메인페이지 배너 리스트 
 create or replace procedure getBestNewSuccessBannerList(
     p_rc1 out sys_refcursor,
     p_rc2 out sys_refcursor,
@@ -71,9 +75,6 @@ CREATE PROCEDURE IF NOT EXISTS
 END$$
 
 DELIMITER ;
-
-
-
 --카카오로그인
 CREATE OR REPLACE PROCEDURE joinKakao(
     p_id IN member.id%TYPE,
@@ -87,12 +88,6 @@ BEGIN
     VALUES( member_mseq.nextVal, p_id , p_name , p_email , p_provider);
     COMMIT;
 END;
-
-
-
-
-
-
 
 --CREATE OR REPLACE PROCEDURE insertReply(
 --    p_rseq IN review_reply.rseq%TYPE,
@@ -131,10 +126,8 @@ select  *from content;
 
 
 commit;
-
-
 select * from member;
-
+-- 멤버 회원가입
 CREATE OR REPLACE PROCEDURE insertMember(
     p_id member.id%type,
     p_pwd member.pwd%type,
@@ -159,6 +152,7 @@ commit;
 update member set pwd = null where pwd = 'pwd';
 select * from member;
 commit;
+-- 멤버 정보수정
 CREATE OR REPLACE PROCEDURE updateMember(
     p_id member.id%type,
     p_pwd member.pwd%type,
@@ -183,26 +177,14 @@ END;
 commit;
 
 SELECT COUNT(*) as cnt FROM content WHERE title LIKE '%'||'하리보'|| '%';
-
-
 select * from member;
-
-
-
 select * from member;
 
 commit;
---#{id}, #{pwd},
---#{name}, #{nickname},
---#{gender}, #{email},
---#{phone}, #{birth},
---#{zip_num}, #{address1} ,
---#{address2}, #{address3} , 
---#{grade} , #{success} , #{useyn}
 
 select count(*) from member where name like '%'||'롱'||'%';
 
-
+-- 테이블 칼럼 내용 변경
 update member set name = '홍낄동' where mseq = 29;
 commit;
 select * from member;
@@ -227,7 +209,7 @@ select * from order_view;
 select * from all_sequences where sequence = 'member_mseq';
 
 select * from  REVIEW_REPLY_MEMBER;
--- 
+-- 성공후기 리스트 번호로 리스트 전체 조회 , 성공후기 댓글리스트 조회
 create or replace PROCEDURE getSuccessListBySucseq(
     p_sucseq IN success_reply.sucseq%type,
     p_cur1 OUT SYS_REFCURSOR,
@@ -243,17 +225,9 @@ END;
 commit;
 
 
-
-
-
-
 SELECT *
   FROM all_sequences
  WHERE sequence_name = 'member_mseq';
-
-
-
-
 
 
 select * from success_board;
@@ -276,6 +250,35 @@ END;
 
 
 
+
+-- 성공후기 수정
+create or replace PROCEDURE updateSuccess(
+    p_sucseq IN SUCCESS_BOARD.sucseq%type,
+    p_mseq IN SUCCESS_BOARD.mseq%type,
+    p_id IN SUCCESS_BOARD.id%type,
+    p_pwd IN SUCCESS_BOARD.pwd%type,
+    p_title IN SUCCESS_BOARD.title%type,
+    p_content IN SUCCESS_BOARD.content%type,
+    p_imgfilename IN SUCCESS_BOARD.imgfilename%type
+)
+IS
+BEGIN
+    UPDATE SUCCESS_BOARD SET pwd=p_pwd, id=p_id, mseq=p_mseq, title=p_title,
+    content=p_content, imgfilename=p_imgfilename WHERE sucseq=p_sucseq;
+    COMMIT;
+END;
+
+
+-- 성공후기 삭제
+create or replace PROCEDURE deleteSuccess(
+    p_sucseq IN SUCCESS_BOARD.sucseq%TYPE
+)
+IS
+BEGIN
+    DELETE FROM SUCCESS_BOARD WHERE sucseq=p_sucseq;
+    DELETE FROM success_reply WHERE srseq=p_sucseq;
+    COMMIT;
+END;
 
 
 commit;
