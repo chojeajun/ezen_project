@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../header.jsp" %>
 <%@ include file="../include/sub04/sub_image_menu.jsp" %> 
 
 <article>
 
-<h2>회사 소개</h2>
-Shoes Shop 은 어쩌고 저쩌고....
+<h2>회사 소개</h2><br>
+티켓tang 은 어쩌고 저쩌고....
+<br><br>
 
-<h2>오시는 길</h2>
+<h2>오시는 길</h2><br>
 - 서울특별시 서대문구 신촌로 141 (은하빌딩 1층 101호)<br>
 - 전화02)393-4321
 - 팩스02)365-5880
+<br><br>
 
 <h3>버스</h3>
 - 신촌 5거리
+<br><br>
 
 <h3>전철</h3>
 - 2호선 신촌역 4번 출구 200M직진 또는 이대역 1번 출구 100M직진
+<br><br>
 
 <h3>위치안내</h3>
 <div>
@@ -44,4 +48,4 @@ Shoes Shop 은 어쩌고 저쩌고....
 </div>
 </article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../footer.jsp" %>

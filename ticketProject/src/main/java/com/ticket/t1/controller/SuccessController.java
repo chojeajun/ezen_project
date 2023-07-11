@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ticket.t1.dto.ReviewVO;
 import com.ticket.t1.dto.SuccessReplyVO;
 import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.service.SuccessService;
@@ -60,7 +61,7 @@ public class SuccessController {
 	}
 	
 	@RequestMapping("/successView")
-	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int seq,
+	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int sucseq,
 					@RequestParam(value = "isTrue", required=false) String isTrue) {
 
 		ModelAndView mav = new ModelAndView();
@@ -73,24 +74,26 @@ public class SuccessController {
 		} else {
 			
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
-			paramMap1.put("sucseq", seq);
+			paramMap1.put("sucseq", sucseq);
 			
 			if(isTrue == null) ss.readCountOne(paramMap1);
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("sucseq", seq);
-			paramMap.put("ref_cursor", null);
-
+			paramMap.put("sucseq", sucseq);
+			paramMap.put("ref_cursor1", null);
+			paramMap.put("ref_cursor2", null);
 			ss.getSuccessListBySucseq(paramMap);
 
-			ArrayList<HashMap<String, Object>> list 
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			// getsuccessListBySucseq : 성공후기 번호로 조회해서 댓글 리스트, 내용 가져오기
+			ArrayList<HashMap<String, Object>> list3 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+			ArrayList<HashMap<String, Object>> list4 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
 
-			mav.addObject("SuccessVO", list.get(0));
+			mav.addObject("SuccessVO", list3.get(0));
+			mav.addObject("replyList", list4);
+			
 
 			ss.getReplyList(paramMap);
-
-			ArrayList<HashMap<String, Object>> list1 
+			ArrayList<HashMap<String, Object>> list1
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
 			ss.getReplyMember( paramMap );
@@ -105,7 +108,6 @@ public class SuccessController {
 		}
 		return mav;
 	}
-	
 	
 	@RequestMapping("/successWriteForm")
 	public String success_write_form(Model model , HttpServletRequest request	) {
@@ -125,9 +127,6 @@ public class SuccessController {
 		}	
 	}
 	
-
-	
-	
 	@RequestMapping("/s_selectimg")
 	public String selectimg() {
 		return "success/selectimg";
@@ -135,7 +134,7 @@ public class SuccessController {
 	
 	@Autowired
 	ServletContext context;
-	
+	// 파일 업로드
 	@RequestMapping(value="/s_fileupload" , method = RequestMethod.POST)
 	public String fileupload(
 				@RequestParam("image") MultipartFile file, 
@@ -164,9 +163,7 @@ public class SuccessController {
 		return "review/completupload";
 	}
 	
-	
-	
-	
+	// 리뷰 작성
 	@RequestMapping( value="/successWrite", method=RequestMethod.POST)
 	public String success_write_form( 
 			@ModelAttribute("dto") @Valid SuccessVO successvo, BindingResult result,
@@ -193,13 +190,119 @@ public class SuccessController {
 			ss.insertSuccess(paramMap);
 			url = "redirect:/successList";
 		}
-
-
 		return url;
 	}
 	
 	
+	@RequestMapping("/successEditForm")
+	public String success_edit_form(
+			@RequestParam("sucseq") String sucseq, Model model, HttpServletRequest request) {
+		model.addAttribute("sucseq", sucseq);
+		// System.out.println("왔냐?" + rseq);
+		return "success/successCheckPassForm";
+	}
 	
+    // 성공 후기 수정	
+	@RequestMapping("/successEdit")
+	public String success_edit(
+			@RequestParam("sucseq") int sucseq, 
+			@RequestParam("pwd") String pwd,
+			Model model, HttpServletRequest request) {
+		
+		//System.out.println("ㅇㅇㅇ"+rseq);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sucseq", sucseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		ss.getSuccessWithoutCount(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		HashMap<String, Object> svo = list.get(0);
+		
+		model.addAttribute("sucseq", sucseq);
+		if(pwd.equals(svo.get("PWD").toString())) {
+			return "success/successCheckPass";
+		}else {
+			model.addAttribute("message", "비밀번호가 맞지 않습니다. 확인해주세요");
+			return "success/successCheckPassForm";
+		}
+
+	}
+	
+	
+	@RequestMapping("/successUpdateForm")
+	public String success_update_form(  
+			@RequestParam("sucseq") int sucseq, Model model,  HttpServletRequest request) {
+		
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sucseq", sucseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		ss.getSuccessWithoutCount( paramMap );
+		ArrayList< HashMap<String, Object> > list 
+		=  (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor1");
+		HashMap<String, Object> svo = list.get(0);
+	
+		//조회한 게시물을 dto 로 옮겨 담습니다
+		SuccessVO dto = new SuccessVO();
+		dto.setSucseq( Integer.parseInt(String.valueOf(svo.get("SUCSEQ") ) ) );
+		dto.setPwd( (String)svo.get("PWD") );
+		dto.setId( (String)svo.get("ID") );
+		dto.setTitle( (String)svo.get("TITLE") );
+		dto.setContent( (String)svo.get("CONTENT") );
+		dto.setMseq( Integer.parseInt(String.valueOf(svo.get("MSEQ"))));
+		dto.setImgfilename( (String)svo.get("IMGFILENAME") );
+		model.addAttribute("sucseq", sucseq);
+		model.addAttribute("dto", dto);
+		return "success/successUpdateForm";
+	}
+	
+	
+	@RequestMapping(value="/successUpdate", method = RequestMethod.POST)
+	public String successUpdate( 
+			@ModelAttribute("dto") @Valid SuccessVO successvo,
+			BindingResult result, 
+			@RequestParam(value="oldfilename", required=false) String oldfilename, 
+			HttpServletRequest request, Model model) {
+		
+		String url = "success/successUpdateForm";
+		if(result.getFieldError("pwd")!=null)
+			model.addAttribute("message", "비밀번호는 게시물 수정 삭제시 필요합니다" );
+		else  if(result.getFieldError("title")!=null) 
+			model.addAttribute("message" , "제목은 필수입력 사항입니다");
+		else if(result.getFieldError("content")!=null) 
+			model.addAttribute("message" , "게시물 내용은 비워둘수 없습니다");
+		else {
+			if( successvo.getImgfilename()==null || successvo.getImgfilename().equals("") )
+				successvo.setImgfilename(oldfilename);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("sucseq", successvo.getSucseq());
+			paramMap.put("id", successvo.getId());
+			paramMap.put("pwd", successvo.getPwd());
+			paramMap.put("mseq", successvo.getMseq());
+			paramMap.put("title", successvo.getTitle());
+			paramMap.put("content", successvo.getContent());
+			paramMap.put("imgfilename", successvo.getImgfilename());
+			ss.updateSuccess( paramMap );
+			//url = "redirect:/successViewWithoutCount?sucseq=" + successvo.getSucseq();
+			//url = "redirect:/successView?sucseq=" + sucseq + "&isTrue='Yes'";
+			url = "redirect:/successView?sucseq=" + successvo.getSucseq() + "&isTrue=1";
+		}
+		return url;
+	}
+	
+	
+	@RequestMapping("successDelete")
+	public String success_delete_form(@RequestParam("sucseq") int sucseq,
+			Model model, HttpServletRequest request) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sucseq", sucseq);
+		ss.removeSuccess(paramMap);	
+		return "redirect:/successList";
+	}
 	
 	
 	

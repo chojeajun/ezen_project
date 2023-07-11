@@ -172,7 +172,7 @@ public class QnaController {
 	}
 	
 	@RequestMapping("qnaDelete")
-	public String review_delete_form(@RequestParam("qseq") int qseq,
+	public String qna_delete_form(@RequestParam("qseq") int qseq,
 			Model model, HttpServletRequest request) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();

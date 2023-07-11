@@ -378,10 +378,9 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
-	public String adminQnaRepSave( @RequestParam("qseq") String qseq,
+
+	public String adminQnaRepSave( @RequestParam("qseq") int qseq,
 								@RequestParam("reply") String reply ) {
-		
-		
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
@@ -486,6 +485,19 @@ public class AdminController {
 		as.updateSeq( paramMap );
 		
 		return "redirect:/adminBannerList";
+	}
+	
+	@RequestMapping("/adminQnaDelete")
+	public String admin_qna_delete( HttpServletRequest request,
+			@RequestParam("qseq") int qseq) {
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin") == null ) {
+			return "admin/adminLoginForm";
+		}else {
+			as.deleteAdminQnaRep(qseq);
+			return "redirect:/adminQnaView?qseq=" + qseq;
+		}
 	}
 
 	

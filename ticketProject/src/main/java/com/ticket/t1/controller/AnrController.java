@@ -335,7 +335,7 @@ public class AnrController {
 	public ModelAndView apply_select_commissioner(HttpServletRequest request,
 			@RequestParam("cseq") int cseq, @RequestParam("area") String areas,
 			@RequestParam("date") String dates, @RequestParam("time") String times,
-			@RequestParam("quantity") int quantity) {
+			@RequestParam("quantity") int quantity/*, @RequestParam(value="cartseq", required=false) String cartseqStr*/	) {
 		
 		System.out.println("quantity : " + quantity);
 		String[] area = areas.split(",");
@@ -433,6 +433,11 @@ public class AnrController {
 			mav.addObject("date", dateStr);
 			mav.addObject("time", time[0]);
 			mav.addObject("quantity", quantity);
+//			if(cartseqStr != null) { // 34,34 : For input string
+//				int cartseq = Integer.parseInt(cartseqStr);
+//				mav.addObject("cartseq", cartseq);
+//				System.out.println("cartseq=========================================" + cartseq);
+//			}
 			mav.setViewName("apply_register/apply/applySelectCommissioner");
 		}
 		return mav;

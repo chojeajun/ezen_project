@@ -98,6 +98,16 @@ public class SuccessService {
 		
 	}
 
+	public void updateSuccess(HashMap<String, Object> paramMap) {
+		sucdao.updateSuccess(paramMap);
+		
+	}
+
+	public void removeSuccess(HashMap<String, Object> paramMap) {
+		sucdao.deleteSuccess(paramMap);
+		
+	}
+
 	
 	
 }

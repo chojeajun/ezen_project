@@ -286,5 +286,10 @@ public class AdminService {
 		
 	}
 
+	public void deleteAdminQnaRep(int qseq) {
+		adao.deleteAdminQnaRep(qseq);
+		
+	}
+
 	
 }
