@@ -8,8 +8,7 @@
 	<resultMap id="successMap1" type="java.util.HashMap"></resultMap>
 	<resultMap id="replyMap1" type="java.util.HashMap"></resultMap>
 	<resultMap id="name" type="java.util.HashMap"></resultMap>
-
-
+	<resultMap id="replyMap11" type="java.util.HashMap"></resultMap>
 	
 	<select id="getAllCount" resultType="_int">
 		select count(*) from ${param1}
@@ -24,7 +23,8 @@
 		{
 			CALL getSuccessListBySucseq(
 				#{sucseq},
-				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1}
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1},
+				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=replyMap11}
 			)
 		}
 	</select>

@@ -233,7 +233,7 @@ public class ReviewController {
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
 		
 		HashMap<String, Object> rvo = list.get(0);
-		
+		System.out.println("받아온 리스트 는 ?" + list.get(0));
 		model.addAttribute("rseq", rseq);
 		if(pwd.equals(rvo.get("PWD")))
 			return "review/reviewCheckPass";
