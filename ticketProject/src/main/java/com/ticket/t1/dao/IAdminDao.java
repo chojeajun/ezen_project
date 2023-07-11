@@ -34,6 +34,7 @@ public interface IAdminDao {
 	void insertBanner(HashMap<String, Object> paramMap);
 	void updateSeq(HashMap<String, Object> paramMap);
 	void updateQna(HashMap<String, Object> paramMap);
+	void deleteAdminQnaRep(int qseq);
     
 
 

@@ -482,6 +482,19 @@ public class AdminController {
 		
 		return "redirect:/adminBannerList";
 	}
+	
+	@RequestMapping("/adminQnaDelete")
+	public String admin_qna_delete( HttpServletRequest request,
+			@RequestParam("qseq") int qseq) {
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin") == null ) {
+			return "admin/adminLoginForm";
+		}else {
+			as.deleteAdminQnaRep(qseq);
+			return "redirect:/adminQnaView?qseq=" + qseq;
+		}
+	}
 
 	
 }

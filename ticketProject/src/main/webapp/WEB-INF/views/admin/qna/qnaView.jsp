@@ -32,6 +32,9 @@
 		</c:otherwise>
 	</c:choose>
 	<input type="button" class="btn" value="목록" 	onClick="location.href='adminQnaList'">
+	<c:if test='${qnaVO.REP=="2" }'>
+		<input type="button" class="btn" value="삭제" 	onClick="location.href='adminQnaDelete?qseq=${qnaVO.QSEQ}'">
+	</c:if>
 </form>
 </article>
 
