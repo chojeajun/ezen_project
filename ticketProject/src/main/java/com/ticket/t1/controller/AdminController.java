@@ -379,7 +379,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminQnaRepSave", method=RequestMethod.POST)
 	public String adminQnaRepSave( @RequestParam("qseq") int qseq,
-								@RequestParam("reply") int reply ) {
+								@RequestParam("reply") String reply ) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);

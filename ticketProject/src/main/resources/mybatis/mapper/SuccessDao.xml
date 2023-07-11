@@ -25,6 +25,7 @@
 				#{sucseq},
 				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1},
 				#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=replyMap11}
+
 			)
 		}
 	</select>

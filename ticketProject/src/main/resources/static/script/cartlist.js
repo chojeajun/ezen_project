@@ -114,7 +114,8 @@ function go_cart_update() {
 		alert('수정할 항목은 하나만 선택이 가능합니다');
 	} else {
 		
-		document.frm.action = "applySelectCommissioner?cseq=" + cseq + "&date=" + date + "&time=" + time + "&area=" + area + "&quantity=" + quantity;
+		document.frm.action = "applySelectCommissioner?cseq=" + cseq + "&date=" + date + "&time=" + time + "&area=" 
+			+ area + "&quantity=" + quantity + "&cartseq=" + cartseq;
 		document.frm.submit();
 	}
 }
