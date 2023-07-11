@@ -64,7 +64,7 @@ a:hover {   color: #F90;    text-decoration: underline; }
 
 #sub_img {   text-align: center; }
 #sub_img img {   margin: 9px 0 0 0; }
-#sub_menu { width: 250px;    float: left;    margin: 20px 0; }
+#sub_menu { width: 200px;    float: left;    margin: 140px 0 0 40px; }
 #sub_menu ul {    margin: 20px 0 0 16px;    list-style: none; }
 #sub_menu a {   text-decoration: none;   color: #6F0C78;    font-family:Verdana ; font-weight: bold;  
       font-size: 16px;   display: block; height: 15px;   width: 160px; padding: 7px;   
@@ -76,7 +76,7 @@ a:hover {   color: #F90;    text-decoration: underline; }
    
 article h1, div h1 {   font-family: Verdana;    font-size: 45px; color: #6F0C78;   margin: 20px 0;   
       font-weight: normal; }
-article {   margin: 0 auto !important;   width: 1000px;   padding-right: 10px;   font-family: Verdana; font-size: 1em;   
+article {   margin: 0 auto !important;   width: 750px;   padding-right: 10px;   font-family: Verdana; font-size: 1em;   
       line-height: 1.5em; }
 
 

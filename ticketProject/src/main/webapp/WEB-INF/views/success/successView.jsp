@@ -71,7 +71,7 @@
 				<c:forEach items="${ replyList }" var="reply">
 					<tr align="center" style="height:30px;">
 						<c:forEach items="${ replyInsertId }" var="name" begin="<%=status %>" end ="<%=status %>">
-							<td style="line-height:30px;">${ name.NAME }</td>
+							<td style="line-height:30px;">${ name.ID }</td>
 						</c:forEach>
 						<td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.WRITEDATE }" pattern="MM/dd HH:mm" /></td>
 						<td style="line-height:30px;" align="left">&nbsp;${ reply.SUCCESSCONTENT }</td>
