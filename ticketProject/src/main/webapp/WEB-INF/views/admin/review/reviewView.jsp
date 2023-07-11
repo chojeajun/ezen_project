@@ -6,7 +6,6 @@
 <div id="review_box">
 	<div class="review_content">
 		<h2 class="review_title">후기 게시판</h2>
-		<h3>고객님들의 티켓팅 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
 		<form name="rev_formm" method="post" class="review_form" action="addReply">
 			<input type="hidden" name="rseq" value="${ reviewVO.RSEQ }">
 			<input type="hidden" name="mseq" value="${ loginUser.MSEQ }">
@@ -81,6 +80,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<!--  
 			<table>
 			<tr>
 				<th style="width:20%;">작성자</th>
@@ -93,15 +93,16 @@
 				<td><input type="text" name="replycontent" size="80"></td>
 				<td><input type="submit" value="답글 작성" onclick="reply_chk();"></td>
 			</tr>
-		</table>
+		</table> -->
 			<div class="clear"></div>
-			<div class="rev_btn_box btn_box" style="float: left">
+		<!-- 	<div class="rev_btn_box btn_box" style="float: left">
 				<input type="button" value="메인으로" class="cancel" onClick="location.href='/'">
-			</div>
+			</div> -->
 			 
 			<!--  리뷰 수정box -->
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
-				<input type="button" value="목록보기" class="submit" onClick="location.href='reviewList'">
+				<input type="button" class="btn" value="목록" 	onClick="location.href='adminQnaList'">
+				<input type="button" class="btn" value="삭제" onClick="location.href='adminReviewDelete?rseq=${reviewVO.RSEQ}'">
 				<c:if test="${ reviewVO.ID == loginUser.ID }">
 					<input type="button" value="게시글 수정" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'update')">
 					<input type="button" value="게시글 삭제" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'delete')">

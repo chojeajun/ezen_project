@@ -189,6 +189,13 @@ function qna_delete(qseq) {
 		document.formm.submit();
 	}
 }
+	
+	
+	
+
+
+
+
 
 
 
