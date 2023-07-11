@@ -393,7 +393,7 @@ public class AdminController {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
 		paramMap.put("reply", reply);
-		
+		 
 		as.updateQna( paramMap );
 		return "redirect:/adminQnaView?qseq=" + qseq;
 	}
