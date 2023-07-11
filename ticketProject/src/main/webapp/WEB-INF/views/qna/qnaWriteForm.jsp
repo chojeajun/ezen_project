@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%@ include file="../include/sub04/sub_image_menu.jsp" %> 
 <div class="review_img_box"></div>
 <div id="review_box">
 	<div class="review_content">

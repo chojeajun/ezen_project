@@ -144,7 +144,7 @@
 								<li><a href="loginForm">로그인</a></li>
 								<li><a href="contract">회원가입</a></li>
 								<li><a href="cartList">장바구니</a></li>
-								<li><a href="qnaList">1:1 문의하기</a></li>
+								<li><a href="loginForm">1:1 문의하기</a></li>
 								<li><a href="admin">admin</a>
 							</c:when>
 							<c:otherwise>
@@ -153,7 +153,7 @@
 								<li><a href="myPage">마이페이지</a></li>
 								<li><a href="cartList">장바구니</a></li>
 								<li><a href="memberEditForm">정보수정</a></li>
-								<li><a href="qnaList">1:1 문의하기</a></li>
+								<li><a href="customer">1:1 문의하기</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
