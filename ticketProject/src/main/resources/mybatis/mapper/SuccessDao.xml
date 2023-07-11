@@ -24,7 +24,7 @@
 		{
 			CALL getSuccessListBySucseq(
 				#{sucseq},
-				#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1}
+				#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=successMap1}
 			)
 		}
 	</select>
