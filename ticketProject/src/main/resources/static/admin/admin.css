@@ -367,6 +367,26 @@ table#memberList {
     text-align: center;
 }
 
+table#successList {
+    border-collapse: collapse;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table#reviewList {
+    border-collapse: collapse;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 th, td{ 
  padding: 8px 5px;
  text-align: center;

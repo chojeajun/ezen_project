@@ -13,6 +13,7 @@ import com.ticket.t1.dto.ContentVO;
 import com.ticket.t1.dto.MemberVO;
 import com.ticket.t1.dto.OrderVO;
 import com.ticket.t1.dto.QnaVO;
+import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.util.Paging;
 
 @Mapper
@@ -34,6 +35,14 @@ public interface IAdminDao {
 	void insertBanner(HashMap<String, Object> paramMap);
 	void updateSeq(HashMap<String, Object> paramMap);
 	void updateQna(HashMap<String, Object> paramMap);
+	void selectReview(HashMap<String, Object> paramMap);
+	void plusOneReadCount(HashMap<String, Object> paramMap);
+	void getReview(HashMap<String, Object> paramMap);
+	List<SuccessVO> listSuccess(Paging paging);
+	void readCountOne(HashMap<String, Object> paramMap1);
+	void getSuccessListBySucseq(HashMap<String, Object> paramMap);
+	void getReplyList(HashMap<String, Object> paramMap);
+	void getReplyMember(HashMap<String, Object> paramMap);
     
 
 

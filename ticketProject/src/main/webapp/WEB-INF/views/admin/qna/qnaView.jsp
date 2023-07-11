@@ -28,7 +28,9 @@
 			</table>
 		</c:when>
 		<c:otherwise>  <!-- 관리자 답변 완료 후 표시 -->
-			<table id="orderList"><tr><th>댓글</th><td>${qnaVO.REPLY}</td></tr></table>
+			<table id="orderList"><tr><th>댓글</th><td>${qnaVO.REPLY}</td></tr>
+			<input type="button" value="삭제" onclick="location.href='qnaReplyDelete?srseq=${ reply.SRSEQ }&qseq=${ qnaVO.QSEQ }'">
+			</table>
 		</c:otherwise>
 	</c:choose>
 	<input type="button" class="btn" value="목록" 	onClick="location.href='adminQnaList'">

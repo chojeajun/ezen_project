@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticket.t1.dto.AdminQnaReplyVO;
-import com.ticket.t1.dto.ReviewReplyVO;
+import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.service.AdminService;
 import com.ticket.t1.service.ContentService;
 import com.ticket.t1.service.QnaService;
+import com.ticket.t1.service.ReviewService;
+import com.ticket.t1.service.SuccessService;
 import com.ticket.t1.util.Paging;
 
 
@@ -34,6 +37,12 @@ public class AdminController {
 
 	@Autowired
 	AdminService as;
+	
+	@Autowired
+	ReviewService res;
+	
+	@Autowired
+	SuccessService ss;
 	
 	@RequestMapping(value="/admin")
 	public String admin() {
@@ -481,6 +490,134 @@ public class AdminController {
 		as.updateSeq( paramMap );
 		
 		return "redirect:/adminBannerList";
+	}
+	
+	
+	@RequestMapping("/reviewList1")
+	public ModelAndView review_list(HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null)
+			mav.setViewName("admin/adminLoginForm");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("request", request);
+			paramMap.put("ref_cursor", null);
+			
+			res.selectReview(paramMap);
+			
+			ArrayList<HashMap<String, Object>>list
+							=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			mav.addObject("reviewList", list);
+			mav.addObject("paging",(Paging)paramMap.get("paging"));
+			mav.setViewName("admin/review/reviewList");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/reviewView1")
+	public ModelAndView reviewView( @RequestParam("rseq") int rseq,  
+			HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rseq", rseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		res.getReview( paramMap );
+		
+		ArrayList<HashMap<String, Object>> list1
+	 		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		
+		ArrayList<HashMap<String, Object>> list2
+ 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> mvo = (HashMap<String, Object>)session.getAttribute("loginAdmin");
+		System.out.println(mvo);
+		mav.addObject("reviewVO" , list1.get(0) );
+		mav.addObject("replyList", list2 );
+		mav.setViewName("admin/review/reviewView");		
+		
+		return mav;
+	}
+	
+	@RequestMapping("/successList1")
+	public ModelAndView success_list(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		//MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+		
+		HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+		
+		ModelAndView mav = new ModelAndView();
+		//System.out.println("로그인유저 떤냐?" + loginUser);
+		if(loginAdmin == null) {
+			mav.setViewName("admin/adminLoginForm");
+		} else {
+			HashMap<String, Object> result =  ss.getSuccessList( request );
+
+			mav.addObject("successList", (List<SuccessVO>)result.get("successList"));
+			mav.addObject("paging", (Paging)result.get("paging"));
+			mav.setViewName("admin/success/successList");
+			
+//			nav.addObject("successList", ss.listSuccess());
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping("/successView1")
+	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int sucseq,
+					@RequestParam(value = "isTrue", required=false) String isTrue) {
+
+		ModelAndView mav = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("admin/adminLoginForm");
+		} else {
+			
+			HashMap<String, Object> loginAdmin = (HashMap<String, Object>) session.getAttribute("loginAdmin");
+			
+			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
+			paramMap1.put("sucseq", sucseq);
+			
+			if(isTrue == null) ss.readCountOne(paramMap1);
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("sucseq", sucseq);
+			paramMap.put("ref_cursor1", null);
+			paramMap.put("ref_cursor2", null);
+			ss.getSuccessListBySucseq(paramMap);
+
+			// getsuccessListBySucseq : 성공후기 번호로 조회해서 댓글 리스트, 내용 가져오기
+			ArrayList<HashMap<String, Object>> list3 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+			ArrayList<HashMap<String, Object>> list4 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+
+			mav.addObject("SuccessVO", list3.get(0));
+			mav.addObject("replyList", list4);
+			
+			ss.getReplyList(paramMap);
+
+			ArrayList<HashMap<String, Object>> list1 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			ss.getReplyMember( paramMap );
+			ArrayList<HashMap<String, Object>> list2 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("replyList", list1);
+			mav.addObject("loginAdmin", loginAdmin);
+			mav.addObject("replyInsertId", list2);
+			mav.setViewName("admin/success/successView");
+			
+		}
+		return mav;
 	}
 
 	

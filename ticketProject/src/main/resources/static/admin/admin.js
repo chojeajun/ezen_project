@@ -180,6 +180,15 @@ function go_banner_update(){
 }
 
 
+function qna_delete(qseq) {
+	console.log(document.formm.qseq);
+	console.log(document.formm.qseq.value);
+	if(confirm("정말 삭제하시겠습니까?")) {
+		//return;
+		document.formm.action ="ticket.do?command=qnaDelete&qseq=" + qseq;
+		document.formm.submit();
+	}
+}
 
 
 
