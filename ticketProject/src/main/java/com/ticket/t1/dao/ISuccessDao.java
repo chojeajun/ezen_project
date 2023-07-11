@@ -29,5 +29,9 @@ public interface ISuccessDao {
 	void insertSuccessReply(SuccessReplyVO svo);
 
 	void insertSuccessBoard(HashMap<String, Object> paramMap);
+
+	void updateSuccess(HashMap<String, Object> paramMap);
+
+	void deleteSuccess(HashMap<String, Object> paramMap);
 	
 }
