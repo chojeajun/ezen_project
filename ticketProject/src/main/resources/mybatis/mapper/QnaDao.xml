@@ -18,13 +18,14 @@
 	
 	<select id="listQna" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  
-			CALL listQna( 
+			CALL listQna(
+				#{startNum}, #{endNum},
 				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
 			)  
 		}
 	</select>
 	
-
+	
 	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ 
 			CALL insertQna(  
@@ -32,7 +33,6 @@
 			) 
 		}
 	</insert>
-
 	
 	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{ 
@@ -41,11 +41,11 @@
 			) 
 		}
 	</select>
-  
+	
 	<update id="updateQna" statementType="CALLABLE"  parameterType="java.util.HashMap">
 		{
 			CALL updateQna( 
-				#{qseq}, #{ id }, #{ pass }, #{ subject }, #{ content }
+				#{qseq}, #{ id }, #{ pwd }, #{ title }, #{ content }
 			)
 		}
 	</update>
@@ -57,7 +57,6 @@
 			) 
 		}
 	</delete>
-	
 	
 </mapper>
 

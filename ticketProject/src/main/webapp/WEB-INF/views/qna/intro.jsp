@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../header.jsp" %>
 <%@ include file="../include/sub04/sub_image_menu.jsp" %> 
 
 <article>
 
 <h2>회사 소개</h2>
-Shoes Shop 은 어쩌고 저쩌고....
+티켓tang 은 어쩌고 저쩌고....
 
 <h2>오시는 길</h2>
 - 서울특별시 서대문구 신촌로 141 (은하빌딩 1층 101호)<br>
@@ -44,4 +44,4 @@ Shoes Shop 은 어쩌고 저쩌고....
 </div>
 </article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../footer.jsp" %>

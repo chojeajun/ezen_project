@@ -6,11 +6,8 @@
 		<h2 class="review_title">성공 후기 게시판</h2>
 		<h3>고객님들의 성공 후기를 상세히 볼 수 있는 게시판 입니다.</h3>
 		<form name="rev_formm" method="post" class="review_form" action="replyInsert">
-
-			<!-- <input type="hidden" name="command" value="replyInsert"> -->
 			<input type="hidden" name="mseq" value="${ loginUser.MSEQ }">
 			<input type="hidden" name="sucseq" value="${ SuccessVO.SUCSEQ }">
-			
 			<table class="review_view_table">
 				<tr>
 					<th>번호</th>
@@ -113,8 +110,8 @@
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
 				<input type="button" value="목록보기" class="submit" onClick="location.href='successList'">
 				<c:if test="${ SuccessVO.ID == loginUser.ID }">
-					<input type="button" value="수정하기" class="review_update_btn" 
-						onclick="go_supd('${ successVO.SUCSEQ}')">
+					<input type="button" value="수정하기" onclick="open_win('successEditForm?sucseq=${SuccessVO.SUCSEQ}', 'update')">
+					<input type="button" value="삭제하기" onclick="open_win('successEditForm?sucseq=${SuccessVO.SUCSEQ}', 'delete')">
 				</c:if>&nbsp; <!-- 로그인 한 유저가 쓴 글만 수정할 수 있게 버튼을표시  -->
 			</div>
 
