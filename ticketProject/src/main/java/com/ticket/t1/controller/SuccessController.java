@@ -60,7 +60,7 @@ public class SuccessController {
 	}
 	
 	@RequestMapping("/successView")
-	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int seq,
+	public ModelAndView success_view(HttpServletRequest request, @RequestParam("sucseq") int sucseq,
 					@RequestParam(value = "isTrue", required=false) String isTrue) {
 
 		ModelAndView mav = new ModelAndView();
@@ -73,21 +73,23 @@ public class SuccessController {
 		} else {
 			
 			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
-			paramMap1.put("sucseq", seq);
+			paramMap1.put("sucseq", sucseq);
 			
 			if(isTrue == null) ss.readCountOne(paramMap1);
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("sucseq", seq);
-			paramMap.put("ref_cursor", null);
-
+			paramMap.put("sucseq", sucseq);
+			paramMap.put("ref_cursor1", null);
+			paramMap.put("ref_cursor2", null);
 			ss.getSuccessListBySucseq(paramMap);
 
-			ArrayList<HashMap<String, Object>> list 
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			// getsuccessListBySucseq : 성공후기 번호로 조회해서 댓글 리스트, 내용 가져오기
+			ArrayList<HashMap<String, Object>> list3 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+			ArrayList<HashMap<String, Object>> list4 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
 
-			mav.addObject("SuccessVO", list.get(0));
-
+			mav.addObject("SuccessVO", list3.get(0));
+			mav.addObject("replyList", list4);
+			
 			ss.getReplyList(paramMap);
 
 			ArrayList<HashMap<String, Object>> list1 
@@ -105,7 +107,6 @@ public class SuccessController {
 		}
 		return mav;
 	}
-	
 	
 	@RequestMapping("/successWriteForm")
 	public String success_write_form(Model model , HttpServletRequest request	) {
@@ -125,9 +126,6 @@ public class SuccessController {
 		}	
 	}
 	
-
-	
-	
 	@RequestMapping("/s_selectimg")
 	public String selectimg() {
 		return "success/selectimg";
@@ -135,7 +133,7 @@ public class SuccessController {
 	
 	@Autowired
 	ServletContext context;
-	
+	// 파일 업로드
 	@RequestMapping(value="/s_fileupload" , method = RequestMethod.POST)
 	public String fileupload(
 				@RequestParam("image") MultipartFile file, 
@@ -164,9 +162,7 @@ public class SuccessController {
 		return "review/completupload";
 	}
 	
-	
-	
-	
+	// 리뷰 작성
 	@RequestMapping( value="/successWrite", method=RequestMethod.POST)
 	public String success_write_form( 
 			@ModelAttribute("dto") @Valid SuccessVO successvo, BindingResult result,
@@ -193,10 +189,50 @@ public class SuccessController {
 			ss.insertSuccess(paramMap);
 			url = "redirect:/successList";
 		}
-
-
 		return url;
 	}
+	
+	
+	@RequestMapping("/successEditForm")
+	public String success_edit_form(
+			@RequestParam("sucseq") String sucseq, Model model, HttpServletRequest request) {
+		model.addAttribute("sucseq", sucseq);
+		// System.out.println("왔냐?" + rseq);
+		return "success/successCheckPassForm";
+	}
+	
+    // 성공 후기 수정	
+	@RequestMapping("/successEdit")
+	public String success_edit(
+			@RequestParam("sucseq") int sucseq, 
+			@RequestParam("pwd") String pwd,
+			Model model, HttpServletRequest request) {
+		
+		//System.out.println("ㅇㅇㅇ"+rseq);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sucseq", sucseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		ss.getSuccessWithoutCount(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		HashMap<String, Object> svo = list.get(0);
+		
+		model.addAttribute("sucseq", sucseq);
+		if(pwd.equals(svo.get("PWD").toString())) {
+			return "success/successCheckPass";
+		}else {
+			model.addAttribute("message", "비밀번호가 맞지 않습니다. 확인해주세요");
+			return "success/successCheckPassForm";
+		}
+
+	}
+	
+	
+	
+	
+	
 	
 	
 	

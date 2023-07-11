@@ -222,8 +222,30 @@ alter table member add address3 varchar2(50) null;
 
 commit;
 
+select * from order_view;
 
 select * from all_sequences where sequence = 'member_mseq';
+
+select * from  REVIEW_REPLY_MEMBER;
+-- 
+create or replace PROCEDURE getSuccessListBySucseq(
+    p_sucseq IN success_reply.sucseq%type,
+    p_cur1 OUT SYS_REFCURSOR,
+    p_cur2 OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur1 FOR
+        SELECT * FROM success_board WHERE sucseq=p_sucseq;
+    OPEN p_cur2 FOR
+        SELECT * FROM success_REPLY WHERE sucseq=p_sucseq ORDER BY srseq DESC;
+END;
+commit;
+
+
+
+
+
 
 SELECT *
   FROM all_sequences
