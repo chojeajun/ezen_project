@@ -58,7 +58,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/reviewView")
-	public ModelAndView boardView( @RequestParam("rseq") int rseq,  
+	public ModelAndView reviewView( @RequestParam("rseq") int rseq,  
 			HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
