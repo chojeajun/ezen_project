@@ -6,7 +6,6 @@
 <div id="review_box">
 	<div class="review_content">
 		<h2 class="review_title">성공후기 게시판</h2>
-		<h3>고객님들의 성공 후기를 볼 수 있는 게시판 입니다.</h3>
 		<form name="formm" method="post" class="review_form">
 			<table id="successList">
 				<tr class="review_list_h">
@@ -31,7 +30,7 @@
 				</c:forEach>
 			</table>
 			<div class="clear"></div>
-			<div id="paging" style="font-size: 120%; font-weight: bold;">
+			<div id="paging" style="font-size: 120%; font-weight: bold; font-size: 120%;font-weight: bold;text-align: center;">
 				<c:url var="action" value="successList" />
 				<c:if test="${paging.prev}">
 					<a href="${action }?page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>
@@ -51,9 +50,9 @@
 				<input type="button" value="메인으로" class="cancel" onclick="location.href='/'">
 			</div> -->
 			<!--  버튼 위치 좌우로 수정 -->
-			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
+			<!--  <div id="buttons" class="rev_btn_box btn_box" style="float: right">
 				<input type="button" value="글쓰기" class="submit" onclick="location.href='successWriteForm'">
-			</div>
+			</div> -->
 			<div class="clear"></div>
 			<br>
 		</form>

@@ -87,6 +87,12 @@
 				</c:forEach>
 			</table>
 			<div class="clear"></div>
+
+			<!-- <div class="rev_btn_box btn_box" style="float: left">
+				<input type="button" value="메인으로" onClick="location.href='/'">
+			</div>-->
+			
+			<!--  리뷰 수정box -->
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
 				<input type="button" value="목록보기" class="submit" onClick="location.href='successList1?first=y'">
 			</div>

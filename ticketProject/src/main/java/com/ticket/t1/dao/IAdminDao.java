@@ -44,6 +44,7 @@ public interface IAdminDao {
 	void getReplyList(HashMap<String, Object> paramMap);
 	void getReplyMember(HashMap<String, Object> paramMap);
 	void deleteAdminQnaRep(int qseq);
+	int adminGetAllCount(String string);
 
     
 
