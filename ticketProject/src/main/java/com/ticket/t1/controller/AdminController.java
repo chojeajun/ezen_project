@@ -372,11 +372,12 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
-		paramMap.put("ref_cursor", null);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
 		qs.getQna(paramMap);
 		ArrayList<HashMap<String, Object>> list 
-			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-		System.out.println(qseq);
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		System.out.println(list);
 		HashMap<String, Object> qvo = list.get(0);
 		mav.addObject("qnaVO", qvo );
 		mav.setViewName("admin/qna/qnaView");
