@@ -172,7 +172,7 @@
 								</ul></li>
 							<li><a href="applyAndRegister">신청/등록</a></li>
 							<li><a href="successList?first=1">성공내역</a></li>
-							<li><a href="reviewList">후기</a></li>
+							<li><a href="reviewList?first=1">후기</a></li>
 						</ul>
 					</nav>
 					<div class="search_box">

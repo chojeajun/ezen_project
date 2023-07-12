@@ -106,13 +106,19 @@ public class QnaController {
 	      }else {
 	         HashMap<String, Object> paramMap = new HashMap<String, Object>();
 	         paramMap.put("qseq", qseq );
-	         paramMap.put("ref_cursor", null);
+	         paramMap.put("ref_cursor1", null);
+	         paramMap.put("ref_cursor2", null);
 	         qs.getQna( paramMap );
 	         
-	         ArrayList<HashMap<String, Object>> list 
-	         = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+	         ArrayList<HashMap<String, Object>> list1
+	         = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 	         
-	         mav.addObject("qnaVO", list.get(0) );      
+	         System.out.println("받아온===" + list1);
+	         ArrayList<HashMap<String, Object>> list2
+	 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
+	         
+	         mav.addObject("qnaVO", list1.get(0) );  
+	         mav.addObject("replyList", list2);    
 	         mav.setViewName("qna/qnaView");
 	      }
 	      return mav;

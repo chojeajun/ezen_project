@@ -53,9 +53,9 @@
             </tr>
             <c:forEach items="${ replyList }" var="reply">
                <tr align="center" style="height:30px;">
-                  <td style="line-height:30px;">${ reply.USERID }</td>
-                  <td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.WRITEDATE }" pattern="MM/dd HH:mm" /></td>
-                  <td style="line-height:30px;" align="left">&nbsp;${ reply.REPLYCONTENT }</td>
+                  <td style="line-height:30px;">관리자</td>
+                  <td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.INDATE }" pattern="MM/dd HH:mm" /></td>
+                  <td style="line-height:30px;" align="left">&nbsp;${ reply.REPLY}</td>
                   <td style="line-height:30px;">
                   </td>
                </tr>

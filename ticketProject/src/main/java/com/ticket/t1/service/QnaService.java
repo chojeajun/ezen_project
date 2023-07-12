@@ -25,6 +25,10 @@ public class QnaService {
 		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
 		HttpSession session = request.getSession();
 		
+		if(request.getParameter("first") != null) {
+			session.removeAttribute("page");
+		}
+		
 		// 현재 페이지 설정
 		int page = 1;
 		if( request.getParameter("page")!=null) {
@@ -33,6 +37,7 @@ public class QnaService {
 		}else if( session.getAttribute("page") != null) {
 			page = (Integer)session.getAttribute("page");
 		}else {
+			page=1;
 			session.removeAttribute("page");
 		}
 		
@@ -43,7 +48,7 @@ public class QnaService {
 		// getAllCount 메서드를 이용한 총 게시물 갯수르 리턴
 		//필요한건 게시물 갯수를 계산해서 나에게 담아 보내줄 OUT 변수가 필요합니다
 		paramMap.put("cnt", 0);  
-		qdao.getAllCount( paramMap );
+		qdao.getAllCountQna( paramMap );
 		//getAllCount 가 실행되고 나면 "cnt" 키값에 해당하는 밸류가 총 게시물 갯수가 됩니다
 		int count = (Integer)paramMap.get("cnt");  
 		
