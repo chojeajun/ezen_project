@@ -105,6 +105,8 @@ public class CartController {
 				HashMap<String, Object> paramMap5 = new HashMap<String, Object>();
 				ArrayList<HashMap<String, Object>> list5 = new ArrayList<HashMap<String, Object>>();
 
+				String [] checkboxes = new String[list.size()];
+				
 				for (int i = 0; i < list.size(); i++) {
 					paramMap5.put("mseq2", list.get(i).get("MSEQ2"));
 					System.out.println("mseq2=================================" + list.get(i).get("MSEQ2"));
@@ -113,8 +115,16 @@ public class CartController {
 
 					list5.addAll((ArrayList<HashMap<String, Object>>) paramMap5.get("ref_cursor"));
 					System.out.println("list5========================================" + list5);
+					if(list5.get(i).get("CNICKNAME").equals("선택 안함")) {
+						checkboxes[i] = "No";
+						System.out.println("여기왔습니다");
+					}else {
+						System.out.println("대리인 선택함");
+						checkboxes[i] = "Yes";
+						
+					}
 				}
-
+				mav.addObject("checkbox", checkboxes);
 				mav.addObject("defuty", list5);
 			}
 
