@@ -14,7 +14,7 @@
 		<tr><th>내용</th><td  align="left"> <pre>${qnaVO.CONTENT}</pre></td></tr>
 	</table>
 		<c:forEach items="${ replyList }" var="reply">
-				
+				 
 				</c:forEach>
 	
 	
