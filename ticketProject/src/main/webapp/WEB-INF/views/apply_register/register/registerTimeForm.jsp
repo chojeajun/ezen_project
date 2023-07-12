@@ -45,7 +45,7 @@ h2 {margin-bottom: 20px;}
 	        </tbody>
 	    </table>
 	    <input type="submit" id="main_Button" value="홈으로" onClick="go_main()">
-	    <input type="submit" id="mypage_Button" value="마이페이지로" onClick="go_mypage()">
+	    <input type="button" id="mypage_Button" value="마이페이지로" onClick="location.href='myPage'">
 	</div>
 </form>
 

@@ -117,7 +117,8 @@ public class QnaController {
 	         System.out.println("받아온===" + list1);
 	         ArrayList<HashMap<String, Object>> list2
 	 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor2");
-	         
+	         mav.addObject("rep", list2.get(0).get("REP").toString());
+	         System.out.println("rep==============" + list2.get(0).get("REP"));
 	         mav.addObject("qnaVO", list1.get(0) );  
 	         mav.addObject("replyList", list2);    
 	         mav.setViewName("qna/qnaView");

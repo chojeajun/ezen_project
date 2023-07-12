@@ -72,7 +72,7 @@
 						<td style="line-height:30px;" align="left">&nbsp;${ reply.REPLYCONTENT }</td>
 						<td style="line-height:30px;">
 							<c:if test="${ reply.ID == loginUser.ID }">
-								<input type="button" value="삭제" onclick="location.href='deleteReply?qseq=${ reply.REPSEQ }&rseq=${ reviewVO.RSEQ }'">
+								<input type="button" value="삭제" onclick="location.href='deleteReply?repseq=${ reply.REPSEQ }&rseq=${ reviewVO.RSEQ }'">
 							</c:if>
 							<!-- 로그인 한 유저가 쓴 댓글만 삭제할 수 있게 버튼을표시  -->
 						</td>

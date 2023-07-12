@@ -45,22 +45,20 @@
          </table>
          <!--  리뷰 댓글box  -->
          <c:set var="now" value="<%=new java.util.Date()%>" />
+         <c:if test="${ rep == '2' }">
          <table class="reply_box">
             <tr style="height:30px; border-bottom:1px solid #ddd;">
                <th style="width:20%;">댓글 작성자</th>
-               <th style="width:20%; border-right:1px solid #ddd; border-left:1px solid #ddd;">작성일</th>
                <th style="width:60%;">댓글내용</th>
             </tr>
             <c:forEach items="${ replyList }" var="reply">
                <tr align="center" style="height:30px;">
                   <td style="line-height:30px;">관리자</td>
-                  <td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.INDATE }" pattern="MM/dd HH:mm" /></td>
                   <td style="line-height:30px;" align="left">&nbsp;${ reply.REPLY}</td>
-                  <td style="line-height:30px;">
-                  </td>
                </tr>
             </c:forEach>
          </table>
+         </c:if>
          <div class="clear"></div>
          <div class="rev_btn_box btn_box" style="float: left">
             <input type="button" value="메인으로" class="cancel" onClick="location.href='/'">
