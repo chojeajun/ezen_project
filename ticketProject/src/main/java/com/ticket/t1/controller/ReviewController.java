@@ -50,6 +50,8 @@ public class ReviewController {
 			
 			ArrayList<HashMap<String, Object>>list
 							=(ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			System.out.println("받아온====" + list.size());
 			mav.addObject("reviewList", list);
 			mav.addObject("paging",(Paging)paramMap.get("paging"));
 			mav.setViewName("review/reviewList");

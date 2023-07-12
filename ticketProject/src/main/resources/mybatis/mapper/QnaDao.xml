@@ -6,12 +6,14 @@
 <mapper namespace="com.ticket.t1.dao.IQnaDao">
 
 	<resultMap  id="qnaMap" type="java.util.HashMap"></resultMap>
+	<resultMap  id="qnaReplyMap" type="java.util.HashMap"></resultMap>
 	
 	<select id="getQna" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{
 			call getQna(
 				#{qseq},
-				#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap}
+				#{ref_cursor1 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaMap},
+				#{ref_cursor2 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=qnaReplyMap}
 			)
 		}
 	</select>
@@ -34,9 +36,9 @@
 		}
 	</insert>
 	
-	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+	<select id="getAllCountQna" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{ 
-			CALL getAllCount( 
+			CALL getAllCountQna( 
 				#{ cnt, mode=OUT, jdbcType=INTEGER } 
 			) 
 		}

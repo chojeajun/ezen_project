@@ -26,6 +26,10 @@ public class ReviewService {
 		HttpServletRequest request = (HttpServletRequest)paramMap.get("request");
 		HttpSession session = request.getSession();
 		
+		if(request.getParameter("first") != null) {
+			session.removeAttribute("page");
+		}
+		
 		// 현재 페이지 설정
 		int page = 1;
 		if( request.getParameter("page")!=null) {
@@ -34,6 +38,7 @@ public class ReviewService {
 		}else if( session.getAttribute("page") != null) {
 			page = (Integer)session.getAttribute("page");
 		}else {
+			page=1;
 			session.removeAttribute("page");
 		}
 		

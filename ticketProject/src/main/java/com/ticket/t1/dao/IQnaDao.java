@@ -15,9 +15,9 @@ public interface IQnaDao {
 	void listQna(HashMap<String, Object> paramMap);
 	void getQna(HashMap<String, Object> paramMap);
 	void insertQna(HashMap<String, Object> paramMap);
-	void getAllCount(HashMap<String, Object> paramMap);
 	void updateQna(HashMap<String, Object> paramMap);
 	void removeQna(HashMap<String, Object> paramMap);
+	void getAllCountQna(HashMap<String, Object> paramMap);
 
 	/*
 	List<QnaVO> listQns();
