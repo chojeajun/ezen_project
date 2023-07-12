@@ -21,7 +21,7 @@
         		<c:when test='${qnaVO.REP=="1"}'>(미처리)</c:when>
         		<c:otherwise>(답변처리완료)</c:otherwise>
       		</c:choose></td>
-      		<td><a href="#" onClick="javascript:go_view('${qnaVO.QSEQ}')">${qnaVO.SUBJECT}</a></td>
+      		<td><a href="#" onClick="go_view('${qnaVO.QSEQ}')">${qnaVO.SUBJECT}</a></td>
       		<td> ${qnaVO.ID} </td><td> <fmt:formatDate value="${qnaVO.INDATE}"/></td></tr>
     </c:forEach>
 </table><br>

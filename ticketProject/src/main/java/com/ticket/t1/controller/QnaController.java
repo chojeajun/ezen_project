@@ -95,28 +95,28 @@ public class QnaController {
 	
 	
 	@RequestMapping(value="/qnaView")
-	public ModelAndView qna_view(	HttpServletRequest request,
-			@RequestParam("qseq") int qseq	) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		HashMap<String, Object> loginUser 
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
-		if( loginUser == null ) {
-			mav.setViewName("member/login");
-		}else {
-			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("qseq", qseq );
-			paramMap.put("ref_cursor", null);
-			qs.getQna( paramMap );
-			
-			ArrayList<HashMap<String, Object>> list 
-			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
-			
-			mav.addObject("qnaVO", list.get(0) );		
-			mav.setViewName("qna/qnaView");
-		}
-		return mav;
-	}
+	   public ModelAndView qna_view(   HttpServletRequest request,
+	         @RequestParam("qseq") int qseq   ) {
+	      ModelAndView mav = new ModelAndView();
+	      HttpSession session = request.getSession();
+	      HashMap<String, Object> loginUser 
+	         = (HashMap<String, Object>)session.getAttribute("loginUser");
+	      if( loginUser == null ) {
+	         mav.setViewName("member/login");
+	      }else {
+	         HashMap<String, Object> paramMap = new HashMap<String, Object>();
+	         paramMap.put("qseq", qseq );
+	         paramMap.put("ref_cursor", null);
+	         qs.getQna( paramMap );
+	         
+	         ArrayList<HashMap<String, Object>> list 
+	         = (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+	         
+	         mav.addObject("qnaVO", list.get(0) );      
+	         mav.setViewName("qna/qnaView");
+	      }
+	      return mav;
+	   }
 	
 	
 	@RequestMapping("/qnaWriteForm")

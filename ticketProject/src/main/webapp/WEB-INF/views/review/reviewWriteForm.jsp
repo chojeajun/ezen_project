@@ -5,15 +5,15 @@
 	<div class="review_content">
 		<h2>후기 게시판</h2>
 		<h3>후기를 작성할 수 있는 게시판 입니다.</h3>
-		<article>
+		<article style="width:auto;">
 			<form name="formm" method="post" class="review_form review_write">
 				<fieldset>
 					<legend></legend>
 					<table id="reviewList">
 						<tr>
 							<th>작성자</th>
-							<td>${loginUser.ID}
-								<input type="hidden" name="id" value="${loginUser.ID}">
+							<td style="text-align:left">${loginUser.ID}
+								<input type="hidden" name="id" value="${loginUser.ID}" >
 							</td>
 						</tr>
 						<tr>
@@ -24,7 +24,7 @@
 						</tr>
 						<tr>
 							<th>비밀번호</th>
-							<td>
+							<td style="text-align:left">
 								<input type="password" name="pwd">
 							</td>
 						</tr>
@@ -36,7 +36,7 @@
 						</tr>
 						<tr>
 							<th>이미지업로드</th>
-							<td>	
+							<td style="text-align:left">	
 								<input type="button" value="파일 선택" onClick="selectimg()">
 								<div id="image" style="float:left"></div>
 								<input type="hidden" name="imgfilename" >
