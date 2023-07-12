@@ -16,6 +16,8 @@ alter table success_board add imgfilename varchar2(100);
 
 commit;
 
+alter table member modify email varchar2(100) null;
+commit;
 select * from qna;
 select * from qna_board;
 
@@ -175,6 +177,8 @@ BEGIN
 END;
 
 commit;
+select * from member;
+delete from member where provider = 'kakao'; 
 
 SELECT COUNT(*) as cnt FROM content WHERE title LIKE '%'||'하리보'|| '%';
 select * from member;
