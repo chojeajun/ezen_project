@@ -377,6 +377,7 @@ public class AdminController {
 		qs.getQna(paramMap);
 		ArrayList<HashMap<String, Object>> list 
 			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor1");
+		System.out.println(qseq);
 		System.out.println(list);
 		HashMap<String, Object> qvo = list.get(0);
 		mav.addObject("qnaVO", qvo );
