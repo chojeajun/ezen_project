@@ -107,10 +107,12 @@ public class CartController {
 
 				for (int i = 0; i < list.size(); i++) {
 					paramMap5.put("mseq2", list.get(i).get("MSEQ2"));
+					System.out.println("mseq2=================================" + list.get(i).get("MSEQ2"));
 					paramMap5.put("ref_cursor", null);
 					cs.getCnickName(paramMap5);
 
 					list5.addAll((ArrayList<HashMap<String, Object>>) paramMap5.get("ref_cursor"));
+					System.out.println("list5========================================" + list5);
 				}
 
 				mav.addObject("defuty", list5);

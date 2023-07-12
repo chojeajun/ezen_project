@@ -108,6 +108,11 @@ public class SuccessService {
 		
 	}
 
+	public void deleteSuccess(int sucseq) {
+		sucdao.deleteSuccess1(sucseq);
+		
+	}
+
 	
 	
 }

@@ -63,6 +63,7 @@
 			<!--  리뷰 댓글box  -->
 			<%! int status = 0; %>
 			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<c:if test="${ replyList.size() != 0 }">
 			<table class="reply_box">
 				<tr style="height:30px; border-bottom:1px solid #ddd;">
 					<th style="width:15%;">댓글 작성자</th>
@@ -86,6 +87,7 @@
 					<% status = 0; %>
 				</c:forEach>
 			</table>
+			</c:if>
 			<div class="clear"></div>
 
 			<!-- <div class="rev_btn_box btn_box" style="float: left">

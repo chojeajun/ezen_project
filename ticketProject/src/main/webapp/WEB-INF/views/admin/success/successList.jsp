@@ -13,6 +13,7 @@
 					<th>제목</th>
 					<th>작성자</th>
 					<th>등록일</th>
+					<th>삭제</th>
 				</tr>
 				<c:forEach items="${successList }" var="successVO">
 					<tr>
@@ -26,12 +27,16 @@
 							<fmt:formatDate var="indate" value="${indateStr}" pattern="yyyy-MM-dd" />
 							${indate}
 						</td>
+						<td>
+							<input type="button" value="삭제" 
+							onclick="location.href='deleteSuccess1?sucseq=${successVO.sucseq}'"/>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
 			<div class="clear"></div>
 			<div id="paging" style="font-size: 120%; font-weight: bold; font-size: 120%;font-weight: bold;text-align: center;">
-				<c:url var="action" value="successList" />
+				<c:url var="action" value="successList1" />
 				<c:if test="${paging.prev}">
 					<a href="${action }?page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>
 				<c:forEach begin="${paging.beginPage }" end="${paging.endPage }" var="index">

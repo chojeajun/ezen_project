@@ -13,7 +13,7 @@
 			<input class="btn2" type="button" name="btn_write" value="공연등록"  	onClick="go_wrt();"></td></tr>
 	</table>
 	<table id="contentList" align="center">
-		<tr><th>번호</th><th>공연명</th><th>아티스트</th><th>컨텐츠</th><th>연령제한</th><th>사용여부</th></tr>
+		<tr><th>번호</th><th>공연명</th><th>아티스트</th><th>컨텐츠</th><th>연령제한</th><th>사용여부</th><th>삭제</th></tr>
 		<c:choose>
 	    	<c:when test="${contentListSize<=0}">
 	    		<tr><td width="100%" colspan="7" align="center" height="23">등록된 공연이 없습니다.</td></tr>
@@ -30,6 +30,10 @@
 			      			<c:when test='${contentVO.USEYN=="N"}'>미사용</c:when>
 			   	 			<c:otherwise>사용</c:otherwise> 
 						</c:choose></td>
+						<td>
+							<input type="button" value="삭제" 
+								onclick="location.href='deleteContent1?cseq=${ contentVO.CSEQ }'"/>
+						</td>
 					</tr>
 			    </c:forEach> 
 	    	</c:otherwise>

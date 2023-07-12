@@ -86,6 +86,8 @@ public class MemberController {
 			} else if(!mvo.get("PWD").equals( membervo.getPwd() )) {
 				model.addAttribute("message" , "비밀번호가 틀립니다");
 				System.out.println("틀린 비밀번호 비교 : @@@@@@@@ "+ membervo.getPwd());
+			} else if(mvo.get("USEYN").equals("N")) {
+				model.addAttribute("message", "탈퇴 이력이 있습니다. 관리자에게 문의하세요");
 			} else if( mvo.get("PWD").equals( membervo.getPwd() ) ) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
@@ -237,11 +239,15 @@ public class MemberController {
 		paramMap.put("id", kakaoProfile.getId() );
 		paramMap.put("ref_cursor", null );
 		ms.getMember( paramMap );
-		ArrayList< HashMap<String, Object> > list = (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor" );
+		ArrayList< HashMap<String, Object> > list = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor" );
 		if ( list == null || list.size() == 0 ) {
 
 			paramMap.put("id", kakaoProfile.getId() );
-			paramMap.put("email" , ac.getEmail());
+			if(ac.getEmail() == null) {
+				paramMap.put("email", "");
+			}else {
+				paramMap.put("email" , ac.getEmail());
+			}
 			paramMap.put("name" , pf.getNickname());
 			paramMap.put("provider" , "kakao");
 			ms.joinKakao( paramMap );
