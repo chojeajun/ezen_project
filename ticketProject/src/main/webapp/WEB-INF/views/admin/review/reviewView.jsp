@@ -60,6 +60,7 @@
 			</table>
 			<!--  리뷰 댓글box  -->
 			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<c:if test="${ replyList.size() != 0 }">
 			<table class="reply_box">
 				<tr style="height:30px; border-bottom:1px solid #ddd;">
 					<th style="width:20%;">댓글 작성자</th>
@@ -72,14 +73,12 @@
 						<td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.WRITEDATE }" pattern="MM/dd HH:mm" /></td>
 						<td style="line-height:30px;" align="left">&nbsp;${ reply.REPLYCONTENT }</td>
 						<td style="line-height:30px;">
-							<c:if test="${ reply.ID == loginUser.ID }">
-								<input type="button" value="삭제" onclick="location.href='deleteReply?qseq=${ reply.REPSEQ }&rseq=${ reviewVO.RSEQ }'">
-							</c:if>
-							<!-- 로그인 한 유저가 쓴 댓글만 삭제할 수 있게 버튼을표시  -->
+							<input type="button" value="삭제" onclick="location.href='reviewdeleteReply1?repseq=${ reply.REPSEQ }&rseq=${ reviewVO.RSEQ }'">
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
+
 			<!--  
 			<table>
 			<tr>
@@ -107,6 +106,12 @@
 					<input type="button" value="게시글 수정" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'update')">
 					<input type="button" value="게시글 삭제" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'delete')">
 				</c:if>&nbsp; <!-- 로그인 한 유저가 쓴 글만 수정할 수 있게 버튼을표시  -->
+
+			</c:if>
+			<div class="clear"></div>
+			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
+				<input type="button" value="목록보기" class="submit" onClick="location.href='reviewList1?first=y'">
+
 			</div>
 		</form>
 	</div>

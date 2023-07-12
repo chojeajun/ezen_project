@@ -604,14 +604,18 @@ public class AdminController {
 			mav.addObject("SuccessVO", list3.get(0));
 			mav.addObject("replyList", list4);
 			
-			ss.getReplyList(paramMap);
-
-			ArrayList<HashMap<String, Object>> list1 
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
-			ss.getReplyMember( paramMap );
+
+			paramMap1.put("ref_cursor", null);
+			ss.getReplyList(paramMap1);
+			ArrayList<HashMap<String, Object>> list1 
+				= (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+			
+			
+			ss.getReplyMember( paramMap1 );
 			ArrayList<HashMap<String, Object>> list2 
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+				= (ArrayList<HashMap<String, Object>>) paramMap1.get("ref_cursor");
+			System.out.println("list2===========================" + list2);
 			
 			mav.addObject("replyList", list1);
 			mav.addObject("loginAdmin", loginAdmin);
@@ -634,6 +638,42 @@ public class AdminController {
 			return "redirect:/adminQnaView?qseq=" + qseq;
 		}
 
+	}
+	
+	@RequestMapping("/successReplyDelete1")
+	public String success_reply_delete(@RequestParam("srseq") int srseq,
+				@RequestParam("sucseq") int sucseq) {
+		
+		ss.replyDelete(srseq);
+		
+		return "redirect:/successView1?sucseq=" + sucseq + "&isTrue='Yes'";
+		
+	}
+	
+	@RequestMapping("/reviewdeleteReply1")
+	public String review_delete_reply(@RequestParam("repseq") int repseq,
+				@RequestParam("rseq") int rseq) {
+		
+		HashMap<String, Object> HashMap = new HashMap<String, Object>();
+		HashMap.put("repseq", repseq);
+		res.deleteReply(HashMap);
+		
+		return "redirect:/reviewView1?rseq=" + rseq;
+		
+	}
+	
+	@RequestMapping("/deleteReviewList1")
+	public String delete_review_list(@RequestParam(value="rseq") String rseqStr, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLoginForm";
+		}else {
+			int rseq = Integer.parseInt(rseqStr);
+			res.deleteReview(rseq);
+			return "redirect:/reviewView1";
+		}
+		
 	}
 
 	

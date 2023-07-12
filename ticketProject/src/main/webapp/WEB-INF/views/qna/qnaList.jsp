@@ -10,13 +10,13 @@
 			<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>답변 여부</th></tr>
       		<c:forEach items="${qnaList}"  var="qnaVO">
       			<tr><td> ${qnaVO.QSEQ} </td>
-					<td>
+					<td style="position:relative;">
 							<c:choose>
 									<c:when test="${qnaVO.PASSCHECK == 'Y'}">
 											<a href="#" onClick="passCheck('${qnaVO.QSEQ}')">
 												${qnaVO.SUBJECT}
 											</a>
-											&nbsp;<img src="/images/key.png" style="width:20px;vertical-align: middle">
+										<img src="/images/key.png" style="vertical-align: middle;position: absolute;right: 15px;top: 16px;width: 20px;height: 20px;">
 									</c:when>
 									<c:otherwise>
 											<a href="qnaView?qseq=${qnaVO.QSEQ}">${qnaVO.SUBJECT}</a>
@@ -35,7 +35,7 @@
       		</c:forEach>
 		</table>
 			<div class="clear"></div>
-			<div id="paging" style="font-size: 120%; font-weight: bold; margin-left: 450px;">
+			<div id="paging" style="font-size: 120%; font-weight: bold; margin-left: 335px;">
 				<c:url var="action" value="qnaList" />
 				<c:if test="${paging.prev}">
 					<a href="${action }?page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>
@@ -51,11 +51,9 @@
 			</div>
 			<div class="clear"></div>
 			<br>
-			<div class="rev_btn_box btn_box" style= "float: left; margin-left: 720px;">
-				<input type="button" value="메인으로" class="cancel" onclick="location.href='/'">
-			</div>
-					<div id="buttons" class="rev_btn_box btn_box1" >
-				<input type="button" value="글쓰기" class="submit" onclick="location.href='qnaWriteForm'">
+			<div class="rev_btn_box btn_box">
+				<input style="float:left;" type="button" value="글쓰기" class="submit" onclick="location.href='qnaWriteForm'">
+				<input style="float:right;" type="button" value="메인으로" class="cancel" onclick="location.href='/'">
 			</div>
 			<div class="clear"></div>
 			<br>

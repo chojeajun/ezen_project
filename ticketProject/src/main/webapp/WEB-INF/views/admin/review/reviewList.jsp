@@ -14,6 +14,7 @@
 					<th>작성자</th>
 					<th>등록일</th>
 					<th>답변 여부</th>
+					<th>삭제</th>
 				</tr>
 				<c:forEach items="${reviewList }" var="reviewVO">
 					<tr>
@@ -32,6 +33,9 @@
 								<c:when test="${reviewVO.REPYN=='N' }">no</c:when>
 								<c:when test="${reviewVO.REPYN=='Y' }">yes</c:when>
 							</c:choose>
+						</td>
+						<td>
+							<input type="button" value="삭제" onclick="location.href='deleteReviewList1?rseq=${reviewVO.RSEQ}'"/>
 						</td>
 					</tr>
 				</c:forEach>
@@ -61,10 +65,7 @@
 			<div id="buttons" class="rev_btn_box btn_box1" style="float: right">
 				<input type="button" value="글쓰기" class="submit" onclick="location.href='ticket.do?command=reviewWriteForm'">
 -->
-		<!--  	<div id="buttons" class="rev_btn_box btn_box" style="float: right">
-				<input type="button" value="글쓰기" class="submit" onclick="location.href='reviewWriteForm'">
 
-			</div> -->
 			<div class="clear"></div>
 			<br>
 		</form>
