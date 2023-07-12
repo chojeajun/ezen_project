@@ -16,4 +16,4 @@
 <input class="btn"  type="button" value="목록" onClick="go_mov()">           
 </form>
 </article>
-<%@ include file="../../include/admin/footer.jsp"%>
+<%@ include file="../../include/admin/footer.jsp"%> 
