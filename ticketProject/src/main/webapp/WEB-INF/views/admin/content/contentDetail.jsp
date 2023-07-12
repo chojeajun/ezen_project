@@ -12,7 +12,7 @@
      </td></tr>
 </table>
 <input class="btn9"  type="button" value="수정" onClick="go_mod('${contentVO.CSEQ}')">
-<input class="btn"  type="button" value="삭제" onClick="location.href='adminContentDelete?qseq=${qnaVO.QSEQ}'">
+<%-- <input class="btn"  type="button" value="삭제" onClick="location.href='adminContentDelete?qseq=${qnaVO.QSEQ}'"> --%>
 <input class="btn"  type="button" value="목록" onClick="go_mov()">           
 </form>
 </article>

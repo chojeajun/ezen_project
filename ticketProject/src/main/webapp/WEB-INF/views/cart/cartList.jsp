@@ -60,11 +60,14 @@
 										<c:if test="${ not empty defutyVO.CNICKNAME }">
 											<td>${ defutyVO.CNICKNAME }</td>
 										</c:if>
-
+										<c:forEach items="${checkbox }" var="checkbox"
+											begin="<%=seq-1%>" end="<%=seq-1%>">
+												<input type="hidden" name="checkbox" value="${ checkbox }"/>
+													<td><input type="checkbox" name="cartseq"
+														value="${ cartListVO.CARTSEQ }"></td>
+												
+										</c:forEach>
 									</c:forEach>
-
-									<td><input type="checkbox" name="cartseq"
-										value="${ cartListVO.CARTSEQ }"></td>
 								</c:forEach>
 							</tr>
 							<%
@@ -113,7 +116,8 @@
 							<td><fmt:formatDate value="${ cartListVO.CONTENTDATE }"
 									pattern="yyyy-MM-dd" /></td>
 							<td>${ cartListVO.CONTENTTIME }</td>
-							<c:forEach items="${ buy }" begin="<%=seq-1 %>" end="<%=seq-1 %>" var="buyVO">
+							<c:forEach items="${ buy }" begin="<%=seq-1 %>" end="<%=seq-1 %>"
+								var="buyVO">
 								<td>${ buyVO.LOCATIONNAME }</td>
 							</c:forEach>
 							<td>${ cartListVO.AREA }</td>

@@ -37,6 +37,7 @@ function go_cart_order() {
 		if (document.frm.cartseq.checked == true){
 			count++;
 			cartseq = document.frm.cartseq.value;
+			checkbox = document.frm.checkbox.value;
 		}
 			
 	} else {
@@ -45,6 +46,7 @@ function go_cart_order() {
 			if (document.frm.cartseq[i].checked == true){
 				count++;
 				cartseq = document.frm.cartseq[i].value;
+				checkbox = document.frm.checkbox[i].value;
 			}
 		}
 		
@@ -52,6 +54,10 @@ function go_cart_order() {
 
 	if (count == 0) {
 		alert('주문할 항목을 선택하세요');
+	} else if(count > 1){
+		alert('주문은 한개씩 가능합니다');	
+	} else if (checkbox == 'No'){
+		alert('대리인을 선택해주세요');
 	} else {
 		document.frm.action = "orderInsert?cartseq=" + cartseq;
 		document.frm.submit();
