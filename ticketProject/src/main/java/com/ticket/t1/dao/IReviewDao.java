@@ -25,6 +25,7 @@ public interface IReviewDao {
 	void insertReview(HashMap<String, Object> paramMap);
 	void updateReview(HashMap<String, Object> paramMap);
 	void removeReview(HashMap<String, Object> paramMap);
+	void deleteReview(int rseq);
 
 	
 }

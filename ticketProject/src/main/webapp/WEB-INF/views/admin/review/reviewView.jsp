@@ -61,6 +61,7 @@
 			</table>
 			<!--  리뷰 댓글box  -->
 			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<c:if test="${ replyList.size() != 0 }">
 			<table class="reply_box">
 				<tr style="height:30px; border-bottom:1px solid #ddd;">
 					<th style="width:20%;">댓글 작성자</th>
@@ -73,39 +74,15 @@
 						<td style="line-height:30px; border-right:1px solid #ddd; border-left:1px solid #ddd;" ><fmt:formatDate value="${ reply.WRITEDATE }" pattern="MM/dd HH:mm" /></td>
 						<td style="line-height:30px;" align="left">&nbsp;${ reply.REPLYCONTENT }</td>
 						<td style="line-height:30px;">
-							<c:if test="${ reply.ID == loginUser.ID }">
-								<input type="button" value="삭제" onclick="location.href='deleteReply?qseq=${ reply.REPSEQ }&rseq=${ reviewVO.RSEQ }'">
-							</c:if>
-							<!-- 로그인 한 유저가 쓴 댓글만 삭제할 수 있게 버튼을표시  -->
+							<input type="button" value="삭제" onclick="location.href='reviewdeleteReply1?repseq=${ reply.REPSEQ }&rseq=${ reviewVO.RSEQ }'">
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<table>
-			<tr>
-				<th style="width:20%;">작성자</th>
-				<th style="width:20%;">작성일</th>
-				<th style="width:60%;">내용</th>
-			</tr>
-			<tr align="center">
-				<td>${ loginUser.ID }<input type="hidden" name="id" value="${ loginUser.ID }"></td>
-				<td><fmt:formatDate value="${ now }" pattern="MM/dd HH:mm"/></td>
-				<td><input type="text" name="replycontent" size="80"></td>
-				<td><input type="submit" value="답글 작성" onclick="reply_chk();"></td>
-			</tr>
-		</table>
+			</c:if>
 			<div class="clear"></div>
-			<div class="rev_btn_box btn_box" style="float: left">
-				<input type="button" value="메인으로" class="cancel" onClick="location.href='/'">
-			</div>
-			 
-			<!--  리뷰 수정box -->
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
-				<input type="button" value="목록보기" class="submit" onClick="location.href='reviewList'">
-				<c:if test="${ reviewVO.ID == loginUser.ID }">
-					<input type="button" value="게시글 수정" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'update')">
-					<input type="button" value="게시글 삭제" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'delete')">
-				</c:if>&nbsp; <!-- 로그인 한 유저가 쓴 글만 수정할 수 있게 버튼을표시  -->
+				<input type="button" value="목록보기" class="submit" onClick="location.href='reviewList1?first=y'">
 			</div>
 		</form>
 	</div>
