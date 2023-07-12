@@ -73,14 +73,15 @@ public class QnaController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String , Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("qseq", qseq);
-		paramMap.put("ref_cursor", null);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
 		qs.getQna( paramMap );
 		
 		ArrayList< HashMap<String, Object> > list 
-			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor");
+			= (ArrayList< HashMap<String, Object> >)paramMap.get("ref_cursor1");
 		
 		HashMap<String, Object> qvo = list.get(0);
-		
+		System.out.println("받아온 리스트 는 ?" + list.get(0));
 		
 		if( qvo.get("PASS").equals(pass) ){
 			mav.addObject("qseq", qseq);
