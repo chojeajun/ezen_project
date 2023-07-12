@@ -81,6 +81,10 @@
 			) 
 		}
 	</delete>
+	
+	<delete id="deleteReview">
+		delete from review_board where rseq = #{param}
+	</delete>
 </mapper>
 
 

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.t1.dao.IAdminDao;
+import com.ticket.t1.dao.IReviewDao;
+import com.ticket.t1.dao.ISuccessDao;
 import com.ticket.t1.dto.AdminQnaReplyVO;
 import com.ticket.t1.dto.SuccessVO;
 import com.ticket.t1.util.Paging;
@@ -21,6 +23,12 @@ public class AdminService {
 
 	@Autowired
 	IAdminDao adao;
+	
+	@Autowired
+	IReviewDao redao;
+	
+	@Autowired
+	ISuccessDao sucdao;
 
 	public void getAdmin(HashMap<String, Object> paramMap) {
 		adao.getAdmin( paramMap );		
@@ -310,8 +318,8 @@ public class AdminService {
 		
 		// getAllCount 메서드를 이용한 총 게시물 갯수르 리턴
 		//필요한건 게시물 갯수를 계산해서 나에게 담아 보내줄 OUT 변수가 필요합니다
-		paramMap.put("cnt", 1);  
-		adao.GetAllCount( paramMap );
+		paramMap.put("cnt", 0);  
+		redao.getAllCount( paramMap );
 		//getAllCount 가 실행되고 나면 "cnt" 키값에 해당하는 밸류가 총 게시물 갯수가 됩니다
 		int count = (Integer)paramMap.get("cnt");  
 		
@@ -322,7 +330,7 @@ public class AdminService {
 		paramMap.put("startNum", paging.getStartNum() );  // 전달인수
 		paramMap.put("endNum", paging.getEndNum() );  // 전달인수
 		
-		adao.selectReview( paramMap ); //결과가 ref_cursor에 담깁니다
+		redao.selectReview( paramMap ); //결과가 ref_cursor에 담깁니다
 		
 		paramMap.put("paging", paging);  // 리턴될 인수
 		
@@ -340,7 +348,8 @@ public class AdminService {
 		
 	}
 
-	public HashMap<String, Object> getSuccessList(HttpServletRequest request) {
+public HashMap<String, Object> getSuccessList(HttpServletRequest request) {
+		
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
 		
@@ -362,10 +371,10 @@ public class AdminService {
 		Paging paging = new Paging();
 		paging.setPage(page);
 		
-		int count = adao.adminGetAllCount("success_board");
+		int count = sucdao.getAllCount("success_board");
 		paging.setTotalCount(count);
 		
-		List<SuccessVO> successList = adao.listSuccess(paging);
+		List<SuccessVO> successList = sucdao.listSuccess(paging);
 		result.put("successList", successList);
 		result.put("paging", paging);
 		
@@ -390,6 +399,7 @@ public class AdminService {
 
 	public void getReplyMember(HashMap<String, Object> paramMap) {
 		adao.getReplyMember( paramMap );
+	}
 
 	public void deleteAdminQnaRep(int qseq) {
 		adao.deleteAdminQnaRep(qseq);

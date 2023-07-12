@@ -109,6 +109,11 @@ public class ReviewService {
 		
 	}
 
+
+	public void deleteReview(int rseq) {
+		redao.deleteReview(rseq);
+	}
+
 	
 	
 }
