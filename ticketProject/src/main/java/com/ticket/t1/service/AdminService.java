@@ -21,6 +21,7 @@ import com.ticket.t1.util.Paging;
 @Service
 public class AdminService {
 
+
 	@Autowired
 	IAdminDao adao;
 	
@@ -409,3 +410,4 @@ public HashMap<String, Object> getSuccessList(HttpServletRequest request) {
 
 	
 }
+
