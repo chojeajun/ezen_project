@@ -292,6 +292,7 @@ public class AdminController {
 		
 		if( useyn.equals("Y") ) useyn="N";
 		else useyn="Y";
+		System.out.println("useyn=============================" + useyn);
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", id);
@@ -671,10 +672,37 @@ public class AdminController {
 		}else {
 			int rseq = Integer.parseInt(rseqStr);
 			res.deleteReview(rseq);
-			return "redirect:/reviewView1";
+			return "redirect:/reviewList1";
 		}
 		
 	}
+	
+	@RequestMapping("/deleteSuccess1")
+	public String delete_Success(@RequestParam("sucseq") String sucseqStr, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLoginForm";
+		}else {
+			int sucseq = Integer.parseInt(sucseqStr);
+			ss.deleteSuccess(sucseq);
+			return "redirect:/successList1";
+		}
+	}
+	
+	@RequestMapping("/deleteContent1")
+	public String delete_content(@RequestParam("cseq") String cseqStr, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLoginForm";
+		}else {
+			int cseq = Integer.parseInt(cseqStr);
+			as.deleteContent(cseq);
+			return "redirect:/contentList";
+		}
+	}
+	
 
 	
 }

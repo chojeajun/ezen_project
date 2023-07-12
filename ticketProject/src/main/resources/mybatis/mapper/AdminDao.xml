@@ -179,6 +179,9 @@
 		update qna set reply = null, rep = '1' where qseq = #{param}
 	</update>
 	
+	<delete id="deleteContent">
+		delete from content where cseq=#{param}
+	</delete>
 </mapper>
 
 

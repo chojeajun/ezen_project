@@ -97,6 +97,10 @@
 		}
 	</update>
 	
+	<delete id="deleteSuccess1">
+		delete from success_board where sucseq = #{param}
+	</delete>
+	
 	
 	
 	

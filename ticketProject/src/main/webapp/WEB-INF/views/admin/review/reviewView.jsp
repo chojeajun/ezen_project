@@ -99,19 +99,12 @@
 			</div> -->
 			 
 			<!--  리뷰 수정box -->
-			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
-				<input type="button" class="btn" value="목록" 	onClick="location.href='adminQnaList'">
-				<input type="button" class="btn" value="삭제" onClick="location.href='adminReviewDelete?rseq=${reviewVO.RSEQ}'">
-				<c:if test="${ reviewVO.ID == loginUser.ID }">
-					<input type="button" value="게시글 수정" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'update')">
-					<input type="button" value="게시글 삭제" onclick="open_win('reviewEditForm?rseq=${reviewVO.RSEQ}', 'delete')">
-				</c:if>&nbsp; <!-- 로그인 한 유저가 쓴 글만 수정할 수 있게 버튼을표시  -->
+			
 
 			</c:if>
 			<div class="clear"></div>
 			<div id="buttons" class="rev_btn_box btn_box" style="float: right">
 				<input type="button" value="목록보기" class="submit" onClick="location.href='reviewList1?first=y'">
-
 			</div>
 		</form>
 	</div>

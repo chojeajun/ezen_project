@@ -52,9 +52,9 @@
 											pattern="yyyy-MM-dd" /></td>
 									<td>${ cartListVO.CONTENTTIME }</td>
 									<td>${ cartListVO.QUANTITY }</td>
-									<c:if test="${ cartListVO.MSEQ2 == 0 }">
+									<%-- <c:if test="${ cartListVO.MSEQ2 == 0 }">
 										<td>선택 안함</td>
-									</c:if>
+									</c:if> --%>
 									<c:forEach items="${ defuty }" begin="<%=seq-1 %>"
 										end="<%=seq-1 %>" var="defutyVO">
 										<c:if test="${ not empty defutyVO.CNICKNAME }">

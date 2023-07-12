@@ -33,5 +33,7 @@ public interface ISuccessDao {
 	void updateSuccess(HashMap<String, Object> paramMap);
 
 	void deleteSuccess(HashMap<String, Object> paramMap);
+
+	void deleteSuccess1(int sucseq);
 	
 }

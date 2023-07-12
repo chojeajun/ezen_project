@@ -406,5 +406,10 @@ public HashMap<String, Object> getSuccessList(HttpServletRequest request) {
 
 		
 	}
+
+	public void deleteContent(int cseq) {
+		adao.deleteContent(cseq);
+		
+	}
 }
 

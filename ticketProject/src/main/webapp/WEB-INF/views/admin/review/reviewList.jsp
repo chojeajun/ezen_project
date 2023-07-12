@@ -42,7 +42,7 @@
 			</table>
 			<div class="clear"></div>
 			<div id="paging" style="font-size: 120%; font-weight: bold; font-size: 120%;font-weight: bold;text-align: center;">
-				<c:url var="action" value="reviewList" />
+				<c:url var="action" value="reviewList1" />
 				<c:if test="${paging.prev}">
 					<a href="${action }?page=${paging.beginPage-1}">◀</a>&nbsp;</c:if>
 				<c:forEach begin="${paging.beginPage }" end="${paging.endPage }" var="index">
